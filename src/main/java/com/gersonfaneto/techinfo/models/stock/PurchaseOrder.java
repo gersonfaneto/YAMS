@@ -1,22 +1,22 @@
 package com.gersonfaneto.techinfo.models.stock;
 
 public class PurchaseOrder {
-    private Component purchasedComponent;
+    private ComponentType purchasedComponentType;
     private Integer purchasedAmount;
     private Double unitaryValue;
 
-    public PurchaseOrder(Component component, Integer amount, Double unitaryValue) {
-        this.purchasedComponent = component;
-        this.purchasedAmount = amount;
+    public PurchaseOrder(ComponentType purchasedComponentType, Integer purchasedAmount, Double unitaryValue) {
+        this.purchasedComponentType = purchasedComponentType;
+        this.purchasedAmount = purchasedAmount;
         this.unitaryValue = unitaryValue;
     }
 
-    public Component getPart() {
-        return purchasedComponent;
+    public ComponentType getPurchasedComponentType() {
+        return purchasedComponentType;
     }
 
-    public void setPart(Component component) {
-        this.purchasedComponent = component;
+    public void setPurchasedComponentType(ComponentType purchasedComponentType) {
+        this.purchasedComponentType = purchasedComponentType;
     }
 
     public Integer getPurchasedAmount() {

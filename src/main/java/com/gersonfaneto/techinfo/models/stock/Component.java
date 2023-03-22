@@ -2,23 +2,23 @@ package com.gersonfaneto.techinfo.models.stock;
 
 public class Component {
     private ComponentType componentType;
-    private String partDescription;
+    private String componentDescription;
 
-    private Double partCost;
+    private Double componentCost;
 
-    public Component(ComponentType componentType, String partDescription, Double partCost) {
+    public Component(ComponentType componentType, String componentDescription, Double componentCost) {
         this.componentType = componentType;
-        this.partDescription = partDescription;
-        this.partCost = partCost;
+        this.componentDescription = componentDescription;
+        this.componentCost = componentCost;
     }
 
-    public Component(ComponentType componentType, Double partCost) {
+    public Component(ComponentType componentType, Double componentCost) {
         this.componentType = componentType;
-        this.partDescription = "Not provided!";
-        this.partCost = partCost;
+        this.componentDescription = "Not provided!";
+        this.componentCost = componentCost;
     }
 
-    public ComponentType getPartType() {
+    public ComponentType getComponentType() {
         return componentType;
     }
 
@@ -26,19 +26,19 @@ public class Component {
         this.componentType = componentType;
     }
 
-    public String getPartDescription() {
-        return partDescription;
+    public String getComponentDescription() {
+        return componentDescription;
     }
 
-    public void setPartDescription(String partDescription) {
-        this.partDescription = partDescription;
+    public void setComponentDescription(String componentDescription) {
+        this.componentDescription = componentDescription;
     }
 
-    public Double getPartCost() {
-        return partCost;
+    public Double getComponentCost() {
+        return componentCost;
     }
 
-    public void setPartCost(Double partCost) {
-        this.partCost = partCost;
+    public void setComponentCost(Double componentCost) {
+        this.componentCost = componentCost;
     }
 }
