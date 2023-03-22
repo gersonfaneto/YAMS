@@ -46,40 +46,4 @@ public class Technician {
     public PurchaseOrder buyPart() {
         return null;
     }
-
-    public Integer getTechnicianID() {
-        return technicianID;
-    }
-
-    public Boolean getADM() {
-        return hasPrivileges;
-    }
-
-    public void setADM(Boolean ADM) {
-        hasPrivileges = ADM;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public List<Order> getOrderHistory() {
-        return orderHistory;
-    }
-
-    public List<PurchaseOrder> getPurchaseOrderHistory() {
-        return purchaseOrderHistory;
-    }
 }

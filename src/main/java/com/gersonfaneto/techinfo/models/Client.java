@@ -18,37 +18,4 @@ public class Client {
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;
     }
-
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public List<Order> getOrderHistory() {
-        return orderHistory;
-    }
-
-    public Integer getClientID() {
-        return clientID;
-    }
-
 }

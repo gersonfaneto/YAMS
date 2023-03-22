@@ -17,28 +17,4 @@ public class Component {
         this.componentDescription = "Not provided!";
         this.componentCost = componentCost;
     }
-
-    public ComponentType getComponentType() {
-        return componentType;
-    }
-
-    public void setComponentType(ComponentType componentType) {
-        this.componentType = componentType;
-    }
-
-    public String getComponentDescription() {
-        return componentDescription;
-    }
-
-    public void setComponentDescription(String componentDescription) {
-        this.componentDescription = componentDescription;
-    }
-
-    public Double getComponentCost() {
-        return componentCost;
-    }
-
-    public void setComponentCost(Double componentCost) {
-        this.componentCost = componentCost;
-    }
 }

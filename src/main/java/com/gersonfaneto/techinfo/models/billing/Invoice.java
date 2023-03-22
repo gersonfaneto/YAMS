@@ -9,42 +9,13 @@ public class Invoice {
     private Double totalValue;
     private Double payedValue;
 
-    public Invoice(Double totalValue, Integer orderID, Integer invoiceID) {
-        this.totalValue = totalValue;
-        this.orderID = orderID;
+    public Invoice(Integer invoiceID, Integer orderID, Double totalValue) {
         this.invoiceID = invoiceID;
+        this.orderID = orderID;
+        this.totalValue = totalValue;
     }
 
     public Payment newPayment() {
         return null;
     }
-
-    public Double getTotalValue() {
-        return totalValue;
-    }
-
-    public void setTotalValue(Double totalValue) {
-        this.totalValue = totalValue;
-    }
-
-    public List<Payment> getReceivedPayments() {
-        return receivedPayments;
-    }
-
-    public Integer getOrderID() {
-        return orderID;
-    }
-
-    public Double getPayedValue() {
-        return payedValue;
-    }
-
-    public void setPayedValue(Double payedValue) {
-        this.payedValue = payedValue;
-    }
-
-    public Integer getInvoiceID() {
-        return invoiceID;
-    }
-
 }

@@ -7,13 +7,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Administrator {
-    private Administrator singleInstance = null;
+    private static Administrator singleInstance;
     private String userName;
     private String userPassword;
-    private List<Technician> registeredTechnicians;
-    private List<Client> registeredClients;
-    private List<Order> orderHistory;
-    private List<Invoice> invoiceHistory;
+    private static List<Technician> registeredTechnicians;
+    private static List<Client> registeredClients;
+    private static List<Order> orderHistory;
+    private static List<Invoice> invoiceHistory;
 
     private Administrator() {
     }
@@ -26,7 +26,7 @@ public class Administrator {
         return true;
     }
 
-    public Administrator retrieveAdministrator(String userName, String userPassword) {
+    public static Administrator retrieveAdministrator(String userName, String userPassword) {
         if (singleInstance == null) {
             singleInstance = new Administrator();
             singleInstance.userName = userName;
@@ -49,37 +49,5 @@ public class Administrator {
 
     public Technician registerTechnician() {
         return null;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public List<Technician> getRegisteredTechnicians() {
-        return registeredTechnicians;
-    }
-
-    public List<Client> getRegisteredClients() {
-        return registeredClients;
-    }
-
-    public List<Order> getOrderHistory() {
-        return orderHistory;
-    }
-
-    public List<Invoice> getInvoiceHistory() {
-        return invoiceHistory;
     }
 }

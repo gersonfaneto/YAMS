@@ -9,9 +9,9 @@ public class Service {
     private final Integer orderID;
     private Date openingDate;
     private Date closingDate;
+    private Double serviceCost;
     private Component usedComponent;
     private Double clientRating;
-    private Double serviceCost;
 
     public Service(ServiceType serviceType, Date openingDate, Integer orderID, Component usedComponent) {
         this.serviceType = serviceType;
@@ -33,59 +33,11 @@ public class Service {
         this.serviceCost = 0.0;
     }
 
-    public Component addPartToService() {
+    public Component addComponent() {
         return null;
     }
 
-    public Boolean removePartFromService() {
+    public Boolean removeComponent() {
         return true;
-    }
-
-    public ServiceType getServiceType() {
-        return serviceType;
-    }
-
-    public Double getServiceCost() {
-        return serviceCost;
-    }
-
-    public void setServiceCost(Double serviceCost) {
-        this.serviceCost = serviceCost;
-    }
-
-    public Date getOpeningDate() {
-        return openingDate;
-    }
-
-    public void setOpeningDate(Date openingDate) {
-        this.openingDate = openingDate;
-    }
-
-    public Date getClosingDate() {
-        return closingDate;
-    }
-
-    public void setClosingDate(Date closingDate) {
-        this.closingDate = closingDate;
-    }
-
-    public Double getClientRating() {
-        return clientRating;
-    }
-
-    public void setClientRating(Double clientRating) {
-        this.clientRating = clientRating;
-    }
-
-    public Integer getOrderID() {
-        return orderID;
-    }
-
-    public Component getPart() {
-        return usedComponent;
-    }
-
-    public void setPart(Component component) {
-        this.usedComponent = component;
     }
 }

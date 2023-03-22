@@ -31,12 +31,4 @@ public class Stock {
     public Boolean newPurchaseOrder() {
         return true;
     }
-
-    public List<Component> getAvailableComponents() {
-        return availableComponents;
-    }
-
-    public List<PurchaseOrder> getPurchaseOrderHistory() {
-        return purchaseOrderHistory;
-    }
 }
