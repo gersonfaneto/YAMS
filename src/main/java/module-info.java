@@ -5,6 +5,4 @@ module com.gersonfaneto.techinfo {
 
     opens com.gersonfaneto.techinfo to javafx.fxml;
     exports com.gersonfaneto.techinfo;
-    exports com.gersonfaneto.techinfo.controllers;
-    opens com.gersonfaneto.techinfo.controllers to javafx.fxml;
 }
