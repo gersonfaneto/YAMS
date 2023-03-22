@@ -1,7 +1,7 @@
 package com.gersonfaneto.techinfo.models.stock;
 
 public class Component {
-    private final ComponentType componentType;
+    private ComponentType componentType;
     private String partDescription;
 
     private Double partCost;
@@ -20,6 +20,10 @@ public class Component {
 
     public ComponentType getPartType() {
         return componentType;
+    }
+
+    public void setComponentType(ComponentType componentType) {
+        this.componentType = componentType;
     }
 
     public String getPartDescription() {
