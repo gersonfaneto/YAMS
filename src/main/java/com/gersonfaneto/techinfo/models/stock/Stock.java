@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Stock {
-    private Stock singleInstance = null;
-    private List<Component> availableComponents;
-    private List<PurchaseOrder> purchaseOrderHistory;
+    private static Stock singleInstance = null;
+    private static List<Component> availableComponents;
+    private static List<PurchaseOrder> purchaseOrderHistory;
 
     private Stock() {
     }
 
-    public Stock retrieveStock() {
+    public static Stock retrieveStock() {
         if (singleInstance == null) {
             singleInstance = new Stock();
             availableComponents = new LinkedList<>();
