@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Stock {
-    private static Stock singleInstance = null;
+    private static Stock singleInstance;
     private static List<Component> availableComponents;
     private static List<PurchaseOrder> purchaseOrderHistory;
 
@@ -20,15 +20,54 @@ public class Stock {
         return singleInstance;
     }
 
-    public Boolean verifyComponents() {
-        return true;
+    public Boolean verifyComponent(ComponentType targetType, int neededAmount) {
+        int foundAmount = 0;
+
+        for (Component currentComponent : availableComponents) {
+            if (currentComponent.getComponentType() == targetType) {
+                foundAmount++;
+            }
+        }
+
+        return foundAmount >= neededAmount;
     }
 
-    public Boolean verifyPurchaseOrders() {
-        return true;
+    // ? (#1) : If the purchase orders are processed immediately, do we need to check for duplicates?
+    public Boolean verifyPurchaseOrders(ComponentType targetType, int neededAmount) {
+        int foundAmount = 0;
+
+        for (PurchaseOrder currentPurchaseOrder : purchaseOrderHistory) {
+            if (currentPurchaseOrder.getPurchasedComponentType() == targetType) {
+                foundAmount += currentPurchaseOrder.getPurchasedAmount();
+            }
+        }
+
+        return foundAmount >= neededAmount;
     }
 
-    public Boolean newPurchaseOrder() {
-        return true;
+    // ? (#1) : ...
+    public Boolean newPurchaseOrder(ComponentType componentType, int neededAmount, double unitaryValue) {
+        int foundAmount = 0;
+
+        for (PurchaseOrder currentPurchaseOrder : purchaseOrderHistory) {
+            if (currentPurchaseOrder.getPurchasedComponentType() == componentType) {
+                foundAmount += currentPurchaseOrder.getPurchasedAmount();
+            }
+        }
+
+        if (foundAmount < neededAmount) {
+            purchaseOrderHistory.add(new PurchaseOrder(componentType, neededAmount, unitaryValue));
+            return true;
+        }
+
+        return false;
+    }
+
+    public static List<Component> getAvailableComponents() {
+        return availableComponents;
+    }
+
+    public static List<PurchaseOrder> getPurchaseOrderHistory() {
+        return purchaseOrderHistory;
     }
 }
