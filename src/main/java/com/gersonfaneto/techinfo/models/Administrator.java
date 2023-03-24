@@ -18,15 +18,7 @@ public class Administrator {
     private Administrator() {
     }
 
-    public static Boolean loginTechnician() {
-        return true;
-    }
-
-    public static Boolean logoffTechnician() {
-        return true;
-    }
-
-    public static Administrator retrieveAdministrator(String userName, String userPassword) {
+    public static Administrator registerAdministrator(String userName, String userPassword) {
         if (singleInstance == null) {
             singleInstance = new Administrator();
             singleInstance.userName = userName;
@@ -39,15 +31,31 @@ public class Administrator {
         return singleInstance;
     }
 
-    public Boolean generateReport() {
+    public static boolean loginAdministrator(String userName, String userPassword) {
+        if (singleInstance != null) {
+            return singleInstance.userName.equals(userName) && singleInstance.userPassword.equals(userPassword);
+        }
+
+        return false;
+    }
+
+    public Technician registerTechnician() {
+        return null;
+    }
+
+    public boolean loginTechnician(String userName, String userPassword) {
+        return true;
+    }
+
+    public boolean logoffTechnician(String userName, String userPassword) {
+        return true;
+    }
+
+    public boolean generateReport() {
         return true;
     }
 
     public Client registerClient() {
-        return null;
-    }
-
-    public Technician registerTechnician() {
         return null;
     }
 }
