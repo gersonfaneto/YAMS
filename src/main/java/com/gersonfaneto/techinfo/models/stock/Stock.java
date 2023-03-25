@@ -1,5 +1,7 @@
 package com.gersonfaneto.techinfo.models.stock;
 
+import com.gersonfaneto.techinfo.dao.DAO;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,54 +22,21 @@ public class Stock {
         return singleInstance;
     }
 
-    public boolean verifyComponent(ComponentType targetType, int neededAmount) {
-        int foundAmount = 0;
-
+    public boolean hasComponent(ComponentType targetType) {
         for (Component currentComponent : availableComponents) {
             if (currentComponent.getComponentType() == targetType) {
-                foundAmount++;
+                return true;
             }
-        }
-
-        return foundAmount >= neededAmount;
-    }
-
-    // ? (#1) : If the purchase orders are processed immediately, do we need to check for duplicates?
-    public boolean verifyPurchaseOrders(ComponentType targetType, int neededAmount) {
-        int foundAmount = 0;
-
-        for (PurchaseOrder currentPurchaseOrder : purchaseOrderHistory) {
-            if (currentPurchaseOrder.getPurchasedComponentType() == targetType) {
-                foundAmount += currentPurchaseOrder.getPurchasedAmount();
-            }
-        }
-
-        return foundAmount >= neededAmount;
-    }
-
-    // ? (#1) : ...
-    public boolean newPurchaseOrder(ComponentType componentType, int technicianID, int neededAmount, double unitaryValue) {
-        int foundAmount = 0;
-
-        for (PurchaseOrder currentPurchaseOrder : purchaseOrderHistory) {
-            if (currentPurchaseOrder.getPurchasedComponentType() == componentType) {
-                foundAmount += currentPurchaseOrder.getPurchasedAmount();
-            }
-        }
-
-        if (foundAmount < neededAmount) {
-            purchaseOrderHistory.add(new PurchaseOrder(componentType, technicianID, neededAmount, unitaryValue));
-            return true;
         }
 
         return false;
     }
 
     public static List<Component> getAvailableComponents() {
-        return availableComponents;
+        return DAO.getComponents().findMany();
     }
 
     public static List<PurchaseOrder> getPurchaseOrderHistory() {
-        return purchaseOrderHistory;
+        return DAO.getPurchaseOrders().findMany();
     }
 }
