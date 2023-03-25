@@ -20,7 +20,7 @@ public class Stock {
         return singleInstance;
     }
 
-    public Boolean verifyComponent(ComponentType targetType, int neededAmount) {
+    public boolean verifyComponent(ComponentType targetType, int neededAmount) {
         int foundAmount = 0;
 
         for (Component currentComponent : availableComponents) {
@@ -33,7 +33,7 @@ public class Stock {
     }
 
     // ? (#1) : If the purchase orders are processed immediately, do we need to check for duplicates?
-    public Boolean verifyPurchaseOrders(ComponentType targetType, int neededAmount) {
+    public boolean verifyPurchaseOrders(ComponentType targetType, int neededAmount) {
         int foundAmount = 0;
 
         for (PurchaseOrder currentPurchaseOrder : purchaseOrderHistory) {
@@ -46,7 +46,7 @@ public class Stock {
     }
 
     // ? (#1) : ...
-    public Boolean newPurchaseOrder(ComponentType componentType, int neededAmount, double unitaryValue) {
+    public boolean newPurchaseOrder(ComponentType componentType, int neededAmount, double unitaryValue) {
         int foundAmount = 0;
 
         for (PurchaseOrder currentPurchaseOrder : purchaseOrderHistory) {
