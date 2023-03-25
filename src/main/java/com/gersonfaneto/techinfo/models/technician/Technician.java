@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models;
+package com.gersonfaneto.techinfo.models.technician;
 
 import com.gersonfaneto.techinfo.models.order.Order;
 import com.gersonfaneto.techinfo.models.stock.PurchaseOrder;
@@ -11,6 +11,7 @@ public class Technician {
     private static int referenceID = 0;
     private final int technicianID;
     private TechnicianType technicianType;
+    private String technicianName;
     private String userName;
     private String userPassword;
     private List<Order> orderHistory;
@@ -57,6 +58,14 @@ public class Technician {
 
     public void setTechnicianType(TechnicianType technicianType) {
         this.technicianType = technicianType;
+    }
+
+    public String getTechnicianName() {
+        return technicianName;
+    }
+
+    public void setTechnicianName(String technicianName) {
+        this.technicianName = technicianName;
     }
 
     public String getUserName() {

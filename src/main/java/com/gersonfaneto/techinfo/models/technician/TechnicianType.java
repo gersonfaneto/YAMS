@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models;
+package com.gersonfaneto.techinfo.models.technician;
 
 public enum TechnicianType {
     Normal,

@@ -2,6 +2,8 @@ package com.gersonfaneto.techinfo.models;
 
 import com.gersonfaneto.techinfo.models.billing.Invoice;
 import com.gersonfaneto.techinfo.models.order.Order;
+import com.gersonfaneto.techinfo.models.technician.Technician;
+import com.gersonfaneto.techinfo.models.technician.TechnicianType;
 
 import java.util.LinkedList;
 import java.util.List;
