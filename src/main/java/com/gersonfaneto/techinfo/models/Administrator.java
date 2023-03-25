@@ -1,34 +1,26 @@
 package com.gersonfaneto.techinfo.models;
 
+import com.gersonfaneto.techinfo.dao.DAO;
 import com.gersonfaneto.techinfo.models.billing.Invoice;
 import com.gersonfaneto.techinfo.models.order.Order;
 import com.gersonfaneto.techinfo.models.technician.Technician;
 import com.gersonfaneto.techinfo.models.technician.TechnicianType;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Administrator {
     private static Administrator singleInstance;
     private String userName;
     private String userPassword;
-    private static List<Technician> registeredTechnicians;
-    private static List<Client> registeredClients;
-    private static List<Order> orderHistory;
-    private static List<Invoice> invoiceHistory;
 
     private Administrator() {
     }
 
-    public static Administrator registerAdministrator(String userName, String userPassword) {
+    public static Administrator retrieveAdministrator(String userName, String userPassword) {
         if (singleInstance == null) {
             singleInstance = new Administrator();
             singleInstance.userName = userName;
             singleInstance.userPassword = userPassword;
-            registeredTechnicians = new LinkedList<>();
-            registeredClients = new LinkedList<>();
-            orderHistory = new LinkedList<>();
-            invoiceHistory = new LinkedList<>();
         }
         return singleInstance;
     }
@@ -42,6 +34,8 @@ public class Administrator {
     }
 
     public boolean registerTechnician(String userName, String userPassword, TechnicianType technicianType) {
+        List<Technician> registeredTechnicians = DAO.getTechnicians().findMany();
+
         for (Technician currentTechnician : registeredTechnicians) {
             if (currentTechnician.getUserName().equals(userName)) {
                 return false;
@@ -54,6 +48,8 @@ public class Administrator {
     }
 
     public boolean loginTechnician(String userName, String userPassword) {
+        List<Technician> registeredTechnicians = DAO.getTechnicians().findMany();
+
         for (Technician currentTechnician : registeredTechnicians) {
             if (currentTechnician.getUserName().equals(userName) && currentTechnician.getUserPassword().equals(userPassword)) {
                 return true;
@@ -80,19 +76,19 @@ public class Administrator {
     }
 
     public static List<Technician> getRegisteredTechnicians() {
-        return registeredTechnicians;
+        return DAO.getTechnicians().findMany();
     }
 
     public static List<Client> getRegisteredClients() {
-        return registeredClients;
+        return DAO.getClients().findMany();
     }
 
     public static List<Order> getOrderHistory() {
-        return orderHistory;
+        return DAO.getOrders().findMany();
     }
 
     public static List<Invoice> getInvoiceHistory() {
-        return invoiceHistory;
+        return DAO.getInvoices().findMany();
     }
 
 }
