@@ -1,17 +1,12 @@
 package com.gersonfaneto.techinfo.models.billing;
 
-import java.util.List;
-
 public class Invoice {
-    private static int referenceID = 0;
-    private final int invoiceID;
-    private final int orderID;
+    private int invoiceID;
+    private int orderID;
     private double totalValue;
     private double payedValue;
-    private List<Payment> receivedPayments;
 
     public Invoice(int orderID, double totalValue) {
-        this.invoiceID = ++referenceID;
         this.orderID = orderID;
         this.totalValue = totalValue;
     }
@@ -20,8 +15,16 @@ public class Invoice {
         return invoiceID;
     }
 
+    public void setInvoiceID(int invoiceID) {
+        this.invoiceID = invoiceID;
+    }
+
     public int getOrderID() {
         return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
     public double getTotalValue() {
@@ -38,9 +41,5 @@ public class Invoice {
 
     public void setPayedValue(double payedValue) {
         this.payedValue = payedValue;
-    }
-
-    public List<Payment> getReceivedPayments() {
-        return receivedPayments;
     }
 }

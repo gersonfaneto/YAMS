@@ -1,5 +1,7 @@
 package com.gersonfaneto.techinfo.dao;
 
+import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceDAO;
+import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceListCRUD;
 import com.gersonfaneto.techinfo.dao.billing.payment.PaymentDAO;
 import com.gersonfaneto.techinfo.dao.billing.payment.PaymentListCRUD;
 import com.gersonfaneto.techinfo.dao.billing.purchaseorder.PurchaseOrderDAO;
@@ -16,6 +18,7 @@ public abstract class DAO {
     private static OrderDAO registeredOrders;
     private static TechnicianDAO registeredTechnicians;
     private static PurchaseOrderDAO registeredPurchaseOrders;
+    private static InvoiceDAO registeredInvoices;
     private static PaymentDAO registeredPayments;
 
     public static ClientDAO getClients() {
@@ -44,6 +47,13 @@ public abstract class DAO {
             registeredPurchaseOrders = new PurchaseOrderListCRUD();
         }
         return registeredPurchaseOrders;
+    }
+
+    public static InvoiceDAO getInvoices() {
+        if (registeredInvoices == null) {
+            registeredInvoices = new InvoiceListCRUD();
+        }
+        return registeredInvoices;
     }
 
     public static PaymentDAO getPayments() {
