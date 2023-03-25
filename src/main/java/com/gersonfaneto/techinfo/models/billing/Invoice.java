@@ -1,5 +1,9 @@
 package com.gersonfaneto.techinfo.models.billing;
 
+import com.gersonfaneto.techinfo.dao.DAO;
+
+import java.util.List;
+
 public class Invoice {
     private int invoiceID;
     private int orderID;
@@ -9,6 +13,10 @@ public class Invoice {
     public Invoice(int orderID, double totalValue) {
         this.orderID = orderID;
         this.totalValue = totalValue;
+    }
+
+    public List<Payment> getPerformedPayments() {
+        return DAO.getPayments().findByInvoiceID(invoiceID);
     }
 
     public int getInvoiceID() {
@@ -36,7 +44,16 @@ public class Invoice {
     }
 
     public double getPayedValue() {
-        return payedValue;
+        List<Payment> performedPayments = DAO.getPayments().findByInvoiceID(invoiceID);
+        double payedValue = 0.0;
+
+        for (Payment currentPayment : performedPayments) {
+            payedValue += currentPayment.getPayedValue();
+        }
+
+        this.payedValue = payedValue;
+
+        return this.payedValue;
     }
 
     public void setPayedValue(double payedValue) {
