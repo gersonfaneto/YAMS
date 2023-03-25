@@ -10,13 +10,17 @@ import com.gersonfaneto.techinfo.dao.client.ClientDAO;
 import com.gersonfaneto.techinfo.dao.client.ClientListCRUD;
 import com.gersonfaneto.techinfo.dao.order.OrderDAO;
 import com.gersonfaneto.techinfo.dao.order.OrderListCRUD;
+import com.gersonfaneto.techinfo.dao.service.ServiceDAO;
+import com.gersonfaneto.techinfo.dao.service.ServiceListCRUD;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianDAO;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianListCRUD;
+import com.gersonfaneto.techinfo.models.service.Service;
 
 public abstract class DAO {
     private static ClientDAO registeredClients;
-    private static OrderDAO registeredOrders;
     private static TechnicianDAO registeredTechnicians;
+    private static ServiceDAO registeredServices;
+    private static OrderDAO registeredOrders;
     private static PurchaseOrderDAO registeredPurchaseOrders;
     private static InvoiceDAO registeredInvoices;
     private static PaymentDAO registeredPayments;
@@ -28,18 +32,25 @@ public abstract class DAO {
         return registeredClients;
     }
 
-    public static OrderDAO getOrders() {
-        if (registeredOrders == null) {
-            registeredOrders = new OrderListCRUD();
-        }
-        return registeredOrders;
-    }
-
     public static TechnicianDAO getTechnicians() {
         if (registeredTechnicians == null) {
             registeredTechnicians = new TechnicianListCRUD();
         }
         return registeredTechnicians;
+    }
+
+    public static ServiceDAO getServices() {
+        if (registeredServices == null) {
+            registeredServices = new ServiceListCRUD();
+        }
+        return registeredServices;
+    }
+
+    public static OrderDAO getOrders() {
+        if (registeredOrders == null) {
+            registeredOrders = new OrderListCRUD();
+        }
+        return registeredOrders;
     }
 
     public static PurchaseOrderDAO getPurchaseOrders() {

@@ -2,35 +2,30 @@ package com.gersonfaneto.techinfo.models.service;
 
 import com.gersonfaneto.techinfo.models.stock.Component;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Service {
-    private static int referenceID = 0;
-    private final ServiceType serviceType;
-    private final int orderID;
-    private final Date openingDate;
-    private Date closingDate;
+    private ServiceType serviceType;
+    private int serviceID;
+    private int orderID;
+    private Calendar openingTime;
+    private Calendar closingTime;
     private double serviceCost;
     private Component usedComponent;
     private double clientRating;
 
-    public Service(ServiceType serviceType, Date openingDate, Component usedComponent, double serviceCost) {
+    public Service(ServiceType serviceType, int orderID, Component usedComponent, double serviceCost) {
         this.serviceType = serviceType;
-        this.orderID = ++referenceID;
-        this.openingDate = openingDate;
-        this.closingDate = null;
+        this.orderID = orderID;
+        this.openingTime = Calendar.getInstance();
         this.usedComponent = usedComponent;
-        this.clientRating = 0.0;
         this.serviceCost = serviceCost;
     }
 
-    public Service(ServiceType serviceType, Date openingDate, double serviceCost) {
+    public Service(ServiceType serviceType, int orderID, double serviceCost) {
         this.serviceType = serviceType;
-        this.orderID = ++referenceID;
-        this.openingDate = openingDate;
-        this.closingDate = null;
-        this.usedComponent = null;
-        this.clientRating = 0.0;
+        this.orderID = orderID;
+        this.openingTime = Calendar.getInstance();
         this.serviceCost = serviceCost;
     }
 
@@ -38,16 +33,40 @@ public class Service {
         return serviceType;
     }
 
-    public Date getOpeningDate() {
-        return openingDate;
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
     }
 
-    public Date getClosingDate() {
-        return closingDate;
+    public int getServiceID() {
+        return serviceID;
     }
 
-    public void setClosingDate(Date closingDate) {
-        this.closingDate = closingDate;
+    public void setServiceID(int serviceID) {
+        this.serviceID = serviceID;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public Calendar getOpeningTime() {
+        return openingTime;
+    }
+
+    public void setOpeningTime(Calendar openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public Calendar getClosingTime() {
+        return closingTime;
+    }
+
+    public void setClosingTime(Calendar closingTime) {
+        this.closingTime = closingTime;
     }
 
     public double getServiceCost() {
