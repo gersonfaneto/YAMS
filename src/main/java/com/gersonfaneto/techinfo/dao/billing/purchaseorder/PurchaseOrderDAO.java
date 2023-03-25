@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.dao.purchaseorder;
+package com.gersonfaneto.techinfo.dao.billing.purchaseorder;
 
 import com.gersonfaneto.techinfo.dao.CRUD;
 import com.gersonfaneto.techinfo.models.stock.ComponentType;

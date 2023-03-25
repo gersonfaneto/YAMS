@@ -4,8 +4,8 @@ import com.gersonfaneto.techinfo.dao.client.ClientDAO;
 import com.gersonfaneto.techinfo.dao.client.ClientListCRUD;
 import com.gersonfaneto.techinfo.dao.order.OrderDAO;
 import com.gersonfaneto.techinfo.dao.order.OrderListCRUD;
-import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderDAO;
-import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderListCRUD;
+import com.gersonfaneto.techinfo.dao.billing.purchaseorder.PurchaseOrderDAO;
+import com.gersonfaneto.techinfo.dao.billing.purchaseorder.PurchaseOrderListCRUD;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianDAO;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianListCRUD;
 
