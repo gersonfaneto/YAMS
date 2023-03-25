@@ -11,14 +11,16 @@ public class Service {
     private Calendar openingTime;
     private Calendar closingTime;
     private double serviceCost;
+    private String serviceDescription;
     private Component usedComponent;
     private double clientRating;
 
-    public Service(ServiceType serviceType, int orderID, Component usedComponent, double serviceCost) {
+    public Service(ServiceType serviceType, int orderID, Component usedComponent, String serviceDescription, double serviceCost) {
         this.serviceType = serviceType;
         this.orderID = orderID;
         this.openingTime = Calendar.getInstance();
         this.usedComponent = usedComponent;
+        this.serviceDescription = serviceDescription;
         this.serviceCost = serviceCost;
     }
 
@@ -26,6 +28,7 @@ public class Service {
         this.serviceType = serviceType;
         this.orderID = orderID;
         this.openingTime = Calendar.getInstance();
+        this.serviceDescription = "Not provided!";
         this.serviceCost = serviceCost;
     }
 
@@ -83,6 +86,14 @@ public class Service {
 
     public void setUsedComponent(Component usedComponent) {
         this.usedComponent = usedComponent;
+    }
+
+    public String getServiceDescription() {
+        return serviceDescription;
+    }
+
+    public void setServiceDescription(String serviceDescription) {
+        this.serviceDescription = serviceDescription;
     }
 
     public double getClientRating() {

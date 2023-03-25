@@ -1,6 +1,11 @@
 package com.gersonfaneto.techinfo.models.technician;
 
+import com.gersonfaneto.techinfo.dao.DAO;
 import com.gersonfaneto.techinfo.models.order.Order;
+import com.gersonfaneto.techinfo.models.order.OrderStatus;
+import com.gersonfaneto.techinfo.models.service.Service;
+import com.gersonfaneto.techinfo.models.service.ServiceType;
+import com.gersonfaneto.techinfo.models.stock.Component;
 import com.gersonfaneto.techinfo.models.stock.PurchaseOrder;
 import com.gersonfaneto.techinfo.models.stock.Stock;
 
@@ -13,25 +18,50 @@ public class Technician {
     private String technicianName;
     private String userName;
     private String userPassword;
-    private List<Order> orderHistory;
-    private List<PurchaseOrder> purchaseOrderHistory;
+    private boolean hasOrderOpen;
     private Stock avaliableStock;
 
     public Technician(TechnicianType technicianType, String userName, String userPassword) {
         this.technicianType = technicianType;
         this.userName = userName;
         this.userPassword = userPassword;
-        this.orderHistory = new LinkedList<>();
-        this.purchaseOrderHistory = new LinkedList<>();
         this.avaliableStock = Stock.retrieveStock();
     }
 
-    public Order createOrder() {
-        return null;
+    public List<Order> retrieveOrderHistory() {
+        return DAO.getOrders().findByTechnician(technicianID);
     }
 
-    public Order openOrder() {
-        return null;
+    public List<PurchaseOrder> retrievePurchaseOrderHistory() {
+        return DAO.getPurchaseOrders().findByTechnician(technicianID);
+    }
+
+    public boolean createOrder(ServiceType chosenService, Component usedComponent, double serviceCost, int clientID, boolean assignToSelf) {
+
+        return true;
+    }
+
+    public boolean createOrder(ServiceType chosenService, double serviceCost, int clientID, boolean assignToSelf) {
+        return true;
+    }
+
+    public boolean openOrder(int orderID) {
+        if (hasOrderOpen) {
+            return false;
+        }
+
+        Order targetOrder = DAO.getOrders().findByID(orderID);
+
+        if (targetOrder.getOrderStatus() != OrderStatus.Created) {
+            return false;
+        }
+
+        targetOrder.setOrderStatus(OrderStatus.Open);
+        targetOrder.setTechnicianID(technicianID);
+
+        DAO.getOrders().updateInformation(targetOrder);
+
+        return true;
     }
 
     public boolean closeOrder() {
@@ -84,13 +114,5 @@ public class Technician {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
-    }
-
-    public List<Order> getOrderHistory() {
-        return orderHistory;
-    }
-
-    public List<PurchaseOrder> getPurchaseOrderHistory() {
-        return purchaseOrderHistory;
     }
 }
