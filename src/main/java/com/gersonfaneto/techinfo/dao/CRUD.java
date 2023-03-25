@@ -9,7 +9,7 @@ public interface CRUD<T> {
 
     public List<T> findMany();
 
-    public void updateInformation(T targetObject);
+    public boolean updateInformation(T targetObject);
 
     public boolean deleteByID(int targetID);
 
