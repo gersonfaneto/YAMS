@@ -15,7 +15,7 @@ public class Order {
     public Order(int technicianID, int clientID) {
         this.technicianID = technicianID;
         this.clientID = clientID;
-        this.orderStatus = OrderStatus.WIP;
+        this.orderStatus = OrderStatus.Created;
         this.averageRating = 0.0;
     }
 
