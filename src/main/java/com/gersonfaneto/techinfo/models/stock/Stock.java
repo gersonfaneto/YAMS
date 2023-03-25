@@ -46,7 +46,7 @@ public class Stock {
     }
 
     // ? (#1) : ...
-    public boolean newPurchaseOrder(ComponentType componentType, int neededAmount, double unitaryValue) {
+    public boolean newPurchaseOrder(ComponentType componentType, int technicianID, int neededAmount, double unitaryValue) {
         int foundAmount = 0;
 
         for (PurchaseOrder currentPurchaseOrder : purchaseOrderHistory) {
@@ -56,7 +56,7 @@ public class Stock {
         }
 
         if (foundAmount < neededAmount) {
-            purchaseOrderHistory.add(new PurchaseOrder(componentType, neededAmount, unitaryValue));
+            purchaseOrderHistory.add(new PurchaseOrder(componentType, technicianID, neededAmount, unitaryValue));
             return true;
         }
 
