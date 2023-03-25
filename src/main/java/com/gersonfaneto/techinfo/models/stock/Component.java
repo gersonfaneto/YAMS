@@ -1,7 +1,8 @@
 package com.gersonfaneto.techinfo.models.stock;
 
 public class Component {
-    private final ComponentType componentType;
+    private ComponentType componentType;
+    private int componentID;
     private String componentDescription;
     private double componentValue;
 
@@ -17,8 +18,20 @@ public class Component {
         this.componentValue = componentValue;
     }
 
+    public int getComponentID() {
+        return componentID;
+    }
+
+    public void setComponentID(int componentID) {
+        this.componentID = componentID;
+    }
+
     public ComponentType getComponentType() {
         return componentType;
+    }
+
+    public void setComponentType(ComponentType componentType) {
+        this.componentType = componentType;
     }
 
     public String getComponentDescription() {

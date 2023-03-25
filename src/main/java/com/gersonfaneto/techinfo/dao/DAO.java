@@ -4,6 +4,8 @@ import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceDAO;
 import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceListCRUD;
 import com.gersonfaneto.techinfo.dao.billing.payment.PaymentDAO;
 import com.gersonfaneto.techinfo.dao.billing.payment.PaymentListCRUD;
+import com.gersonfaneto.techinfo.dao.stock.component.ComponentDAO;
+import com.gersonfaneto.techinfo.dao.stock.component.ComponentListCRUD;
 import com.gersonfaneto.techinfo.dao.stock.purchaseorder.PurchaseOrderDAO;
 import com.gersonfaneto.techinfo.dao.stock.purchaseorder.PurchaseOrderListCRUD;
 import com.gersonfaneto.techinfo.dao.client.ClientDAO;
@@ -21,6 +23,7 @@ public abstract class DAO {
     private static ServiceDAO registeredServices;
     private static OrderDAO registeredOrders;
     private static PurchaseOrderDAO registeredPurchaseOrders;
+    private static ComponentDAO registeredComponents;
     private static InvoiceDAO registeredInvoices;
     private static PaymentDAO registeredPayments;
 
@@ -57,6 +60,14 @@ public abstract class DAO {
             registeredPurchaseOrders = new PurchaseOrderListCRUD();
         }
         return registeredPurchaseOrders;
+    }
+
+    public static ComponentDAO getComponents() {
+        if (registeredComponents == null) {
+            registeredComponents = new ComponentListCRUD();
+        }
+
+        return registeredComponents;
     }
 
     public static InvoiceDAO getInvoices() {
