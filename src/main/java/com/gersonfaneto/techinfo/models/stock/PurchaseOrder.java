@@ -1,17 +1,33 @@
 package com.gersonfaneto.techinfo.models.stock;
 
 public class PurchaseOrder {
-    private static int referenceID = 0;
     private ComponentType purchasedComponentType;
     private int purchaseOrderID;
+    private int technicianID;
     private int purchasedAmount;
     private double unitaryValue;
 
-    public PurchaseOrder(ComponentType purchasedComponentType, int purchasedAmount, double unitaryValue) {
-        this.purchaseOrderID = ++referenceID;
+    public PurchaseOrder(ComponentType purchasedComponentType, int technicianID, int purchasedAmount, double unitaryValue) {
         this.purchasedComponentType = purchasedComponentType;
+        this.technicianID = technicianID;
         this.purchasedAmount = purchasedAmount;
         this.unitaryValue = unitaryValue;
+    }
+
+    public int getPurchaseOrderID() {
+        return purchaseOrderID;
+    }
+
+    public void setPurchaseOrderID(int purchaseOrderID) {
+        this.purchaseOrderID = purchaseOrderID;
+    }
+
+    public int getTechnicianID() {
+        return technicianID;
+    }
+
+    public void setTechnicianID(int technicianID) {
+        this.technicianID = technicianID;
     }
 
     public ComponentType getPurchasedComponentType() {
