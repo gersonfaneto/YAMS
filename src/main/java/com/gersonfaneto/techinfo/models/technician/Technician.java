@@ -8,8 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Technician {
-    private static int referenceID = 0;
-    private final int technicianID;
+    private int technicianID;
     private TechnicianType technicianType;
     private String technicianName;
     private String userName;
@@ -19,7 +18,6 @@ public class Technician {
     private Stock avaliableStock;
 
     public Technician(TechnicianType technicianType, String userName, String userPassword) {
-        this.technicianID = ++referenceID;
         this.technicianType = technicianType;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -50,6 +48,10 @@ public class Technician {
 
     public int getTechnicianID() {
         return technicianID;
+    }
+
+    public void setTechnicianID(int technicianID) {
+        this.technicianID = technicianID;
     }
 
     public TechnicianType getTechnicianType() {
