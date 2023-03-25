@@ -15,7 +15,7 @@ public class Invoice {
         this.totalValue = totalValue;
     }
 
-    public List<Payment> getPerformedPayments() {
+    public List<Payment> retrievePerformedPayments() {
         return DAO.getPayments().findByInvoiceID(invoiceID);
     }
 
