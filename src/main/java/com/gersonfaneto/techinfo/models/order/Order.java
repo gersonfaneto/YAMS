@@ -1,8 +1,7 @@
 package com.gersonfaneto.techinfo.models.order;
 
+import com.gersonfaneto.techinfo.dao.DAO;
 import com.gersonfaneto.techinfo.models.service.Service;
-
-import java.util.LinkedList;
 import java.util.List;
 
 public class Order {
@@ -10,23 +9,24 @@ public class Order {
     private int invoiceID;
     private int clientID;
     private int technicianID;
-    private final List<Service> registeredServices;
     private OrderStatus orderStatus;
     private double averageRating;
 
     public Order(int technicianID, int clientID) {
         this.technicianID = technicianID;
         this.clientID = clientID;
-        this.registeredServices = new LinkedList<>();
         this.orderStatus = OrderStatus.WIP;
         this.averageRating = 0.0;
     }
 
     public Order(int clientID) {
         this.clientID = clientID;
-        this.registeredServices = new LinkedList<>();
         this.orderStatus = OrderStatus.Open;
         this.averageRating = 0.0;
+    }
+
+    public List<Service> retrieveRelatedServices() {
+        return DAO.getServices().findByOrderID(orderID);
     }
 
     public int getOrderID() {
@@ -57,16 +57,8 @@ public class Order {
         return technicianID;
     }
 
-    public boolean setTechnicianID(int technicianID) {
-        if (this.technicianID == -1) {
-            this.technicianID = technicianID;
-            return true;
-        }
-        return false;
-    }
-
-    public List<Service> getRegisteredServices() {
-        return registeredServices;
+    public void setTechnicianID(int technicianID) {
+        this.technicianID = technicianID;
     }
 
     public OrderStatus getOrderStatus() {
