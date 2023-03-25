@@ -39,23 +39,58 @@ public class Administrator {
         return false;
     }
 
-    public Technician registerTechnician() {
-        return null;
+    public boolean registerTechnician(String userName, String userPassword, TechnicianType technicianType) {
+        for (Technician currentTechnician : registeredTechnicians) {
+            if (currentTechnician.getUserName().equals(userName)) {
+                return false;
+            }
+        }
+
+        registeredTechnicians.add(new Technician(technicianType, userName, userPassword));
+
+        return true;
     }
 
     public boolean loginTechnician(String userName, String userPassword) {
-        return true;
+        for (Technician currentTechnician : registeredTechnicians) {
+            if (currentTechnician.getUserName().equals(userName) && currentTechnician.getUserPassword().equals(userPassword)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public boolean logoffTechnician(String userName, String userPassword) {
-        return true;
+    public String getUserName() {
+        return userName;
     }
 
-    public boolean generateReport() {
-        return true;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public Client registerClient() {
-        return null;
+    public String getUserPassword() {
+        return userPassword;
     }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public static List<Technician> getRegisteredTechnicians() {
+        return registeredTechnicians;
+    }
+
+    public static List<Client> getRegisteredClients() {
+        return registeredClients;
+    }
+
+    public static List<Order> getOrderHistory() {
+        return orderHistory;
+    }
+
+    public static List<Invoice> getInvoiceHistory() {
+        return invoiceHistory;
+    }
+
 }
