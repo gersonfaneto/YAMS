@@ -4,6 +4,8 @@ import com.gersonfaneto.techinfo.dao.client.ClientDAO;
 import com.gersonfaneto.techinfo.dao.client.ClientListCRUD;
 import com.gersonfaneto.techinfo.dao.order.OrderDAO;
 import com.gersonfaneto.techinfo.dao.order.OrderListCRUD;
+import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderDAO;
+import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderListCRUD;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianDAO;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianListCRUD;
 
@@ -11,6 +13,7 @@ public abstract class DAO {
     private static ClientDAO registeredClients;
     private static OrderDAO registeredOrders;
     private static TechnicianDAO registeredTechnicians;
+    private static PurchaseOrderDAO registeredPurchaseOrders;
 
     public static ClientDAO getClients() {
         if (registeredClients == null) {
@@ -25,11 +28,18 @@ public abstract class DAO {
         }
         return registeredOrders;
     }
-    
+
     public static TechnicianDAO getTechnicians() {
         if (registeredTechnicians == null) {
             registeredTechnicians = new TechnicianListCRUD();
         }
         return registeredTechnicians;
+    }
+
+    public static PurchaseOrderDAO getPurchaseOrders() {
+        if (registeredPurchaseOrders == null) {
+            registeredPurchaseOrders = new PurchaseOrderListCRUD();
+        }
+        return registeredPurchaseOrders;
     }
 }
