@@ -6,18 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Order {
-    private static int referenceID = 0;
-    private final int orderID;
-    private final int invoiceID;
-    private final int clientID;
+    private int orderID;
+    private int invoiceID;
+    private int clientID;
     private int technicianID;
-    private List<Service> registeredServices;
+    private final List<Service> registeredServices;
     private OrderStatus orderStatus;
     private double averageRating;
 
     public Order(int technicianID, int clientID) {
-        this.orderID = ++referenceID;
-        this.invoiceID = -1;
         this.technicianID = technicianID;
         this.clientID = clientID;
         this.registeredServices = new LinkedList<>();
@@ -26,9 +23,6 @@ public class Order {
     }
 
     public Order(int clientID) {
-        this.orderID = ++referenceID;
-        this.invoiceID = -1;
-        this.technicianID = -1;
         this.clientID = clientID;
         this.registeredServices = new LinkedList<>();
         this.orderStatus = OrderStatus.Open;
@@ -39,12 +33,24 @@ public class Order {
         return orderID;
     }
 
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
     public int getInvoiceID() {
         return invoiceID;
     }
 
+    public void setInvoiceID(int invoiceID) {
+        this.invoiceID = invoiceID;
+    }
+
     public int getClientID() {
         return clientID;
+    }
+
+    public void setClientID(int clientID) {
+        this.clientID = clientID;
     }
 
     public int getTechnicianID() {
