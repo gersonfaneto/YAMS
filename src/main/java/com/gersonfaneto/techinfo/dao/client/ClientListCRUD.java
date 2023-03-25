@@ -37,14 +37,15 @@ public class ClientListCRUD implements ClientDAO {
     }
 
     @Override
-    public void updateInformation(Client targetObject) {
+    public boolean updateInformation(Client targetObject) {
         for (Client currentClient : clientList) {
             if (currentClient.getClientID() == targetObject.getClientID()) {
                 int targetIndex = clientList.indexOf(currentClient);
                 clientList.set(targetIndex, targetObject);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     @Override
