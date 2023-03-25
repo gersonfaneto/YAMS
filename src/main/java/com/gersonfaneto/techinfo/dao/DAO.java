@@ -4,8 +4,8 @@ import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceDAO;
 import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceListCRUD;
 import com.gersonfaneto.techinfo.dao.billing.payment.PaymentDAO;
 import com.gersonfaneto.techinfo.dao.billing.payment.PaymentListCRUD;
-import com.gersonfaneto.techinfo.dao.billing.purchaseorder.PurchaseOrderDAO;
-import com.gersonfaneto.techinfo.dao.billing.purchaseorder.PurchaseOrderListCRUD;
+import com.gersonfaneto.techinfo.dao.stock.purchaseorder.PurchaseOrderDAO;
+import com.gersonfaneto.techinfo.dao.stock.purchaseorder.PurchaseOrderListCRUD;
 import com.gersonfaneto.techinfo.dao.client.ClientDAO;
 import com.gersonfaneto.techinfo.dao.client.ClientListCRUD;
 import com.gersonfaneto.techinfo.dao.order.OrderDAO;
@@ -14,7 +14,6 @@ import com.gersonfaneto.techinfo.dao.service.ServiceDAO;
 import com.gersonfaneto.techinfo.dao.service.ServiceListCRUD;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianDAO;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianListCRUD;
-import com.gersonfaneto.techinfo.models.service.Service;
 
 public abstract class DAO {
     private static ClientDAO registeredClients;

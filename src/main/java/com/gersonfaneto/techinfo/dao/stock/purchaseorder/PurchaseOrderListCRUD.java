@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.dao.billing.purchaseorder;
+package com.gersonfaneto.techinfo.dao.stock.purchaseorder;
 
 import com.gersonfaneto.techinfo.models.stock.ComponentType;
 import com.gersonfaneto.techinfo.models.stock.PurchaseOrder;
