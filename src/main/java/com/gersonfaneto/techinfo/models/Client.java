@@ -1,5 +1,6 @@
 package com.gersonfaneto.techinfo.models;
 
+import com.gersonfaneto.techinfo.dao.DAO;
 import com.gersonfaneto.techinfo.models.order.Order;
 
 import java.util.LinkedList;
@@ -10,21 +11,15 @@ public class Client {
     private String clientName;
     private String homeAddress;
     private String phoneNumber;
-    private List<Order> orderHistory;
 
     public Client(String clientName, String homeAddress, String phoneNumber) {
         this.clientName = clientName;
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;
-        this.orderHistory = new LinkedList<>();
     }
 
     public int getClientID() {
         return clientID;
-    }
-
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
     }
 
     public String getClientName() {
@@ -52,6 +47,6 @@ public class Client {
     }
 
     public List<Order> getOrderHistory() {
-        return orderHistory;
+        return DAO.getOrders().findByClient(this.clientID);
     }
 }
