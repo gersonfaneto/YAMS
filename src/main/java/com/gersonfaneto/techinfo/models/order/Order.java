@@ -13,7 +13,7 @@ public class Order {
     private int technicianID;
     private List<Service> registeredServices;
     private OrderStatus orderStatus;
-    private Double averageRating;
+    private double averageRating;
 
     public Order(int technicianID, int clientID) {
         this.orderID = ++referenceID;
@@ -71,11 +71,11 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public Double getAverageRating() {
+    public double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(Double averageRating) {
+    public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
 }
