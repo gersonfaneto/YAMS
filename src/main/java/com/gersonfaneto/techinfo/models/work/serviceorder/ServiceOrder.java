@@ -1,6 +1,9 @@
 package com.gersonfaneto.techinfo.models.work.serviceorder;
 
+import com.gersonfaneto.techinfo.models.work.service.Service;
+
 import java.util.Calendar;
+import java.util.SplittableRandom;
 
 import static com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrderStatus.Created;
 
@@ -23,6 +26,26 @@ public class ServiceOrder {
         this.closedAt = null;
         this.serviceOrderStatus = Created;
         this.averageRating = 0.0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("""
+                ID: %s
+                Client: %s
+                Opened At: %s
+                Status: %s
+                """, serviceOrderID, clientID, openedAt.toString(), serviceOrderStatus.getTypeName());
+    }
+
+    @Override
+    public boolean equals(Object objectToCompare) {
+        if (objectToCompare instanceof ServiceOrder) {
+            ServiceOrder otherServiceOrder = (ServiceOrder) objectToCompare;
+            return otherServiceOrder.serviceOrderID.equals(this.serviceOrderID);
+        }
+
+        return false;
     }
 
     public String getServiceOrderID() {
