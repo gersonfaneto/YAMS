@@ -1,5 +1,10 @@
 package com.gersonfaneto.techinfo.models.entities;
 
+import com.gersonfaneto.techinfo.dao.DAO;
+import com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrder;
+
+import java.util.List;
+
 public class Client {
     private String clientID;
     private String clientName;
@@ -11,6 +16,10 @@ public class Client {
         this.clientName = clientName;
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<ServiceOrder> retrieveServiceOrderHistory() {
+        return DAO.fromServiceOrders().findByClient(this.clientID);
     }
 
     @Override
