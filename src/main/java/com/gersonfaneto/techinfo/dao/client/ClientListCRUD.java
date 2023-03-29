@@ -1,80 +1,83 @@
 package com.gersonfaneto.techinfo.dao.client;
 
-import com.gersonfaneto.techinfo.models.Client;
+import com.gersonfaneto.techinfo.models.entities.Client;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ClientListCRUD implements ClientDAO {
-    private List<Client> clientList;
-    private int referenceID;
+    private final Map<String, Client> registeredClients;
 
     public ClientListCRUD() {
-        this.clientList = new LinkedList<>();
-        this.referenceID = 0;
+        this.registeredClients = new HashMap<>();
     }
 
     @Override
-    public Client createOne(Client targetObject) {
-        targetObject.setClientID(++referenceID);
-        clientList.add(targetObject);
-        return targetObject;
+    public Client createOne(Client newClient) {
+        String newID = UUID.randomUUID().toString();
+
+        newClient.setClientID(newID);
+
+        registeredClients.put(newID, newClient);
+
+        return newClient;
     }
 
     @Override
-    public Client findByID(int targetID) {
-        for (Client currentClient : clientList) {
-            if (currentClient.getClientID() == targetID) {
-                return currentClient;
-            }
-        }
-        return null;
+    public Client findByID(String targetID) {
+        return registeredClients.get(targetID);
     }
 
     @Override
     public List<Client> findMany() {
-        return clientList;
+        List<Client> foundClients = new LinkedList<>();
+
+        for (Client currentClient : registeredClients.values()) {
+            foundClients.add(currentClient);
+        }
+
+        return foundClients;
     }
 
     @Override
-    public boolean updateInformation(Client targetObject) {
-        for (Client currentClient : clientList) {
-            if (currentClient.getClientID() == targetObject.getClientID()) {
-                int targetIndex = clientList.indexOf(currentClient);
-                clientList.set(targetIndex, targetObject);
-                return true;
-            }
+    public boolean updateInformation(Client targetClient) {
+        String clientID = targetClient.getClientID();
+
+        if (registeredClients.containsKey(clientID)) {
+            registeredClients.put(clientID, targetClient);
+            return true;
         }
+
         return false;
     }
 
     @Override
-    public boolean deleteByID(int targetID) {
-        for (Client currentClient : clientList) {
-            if (currentClient.getClientID() == targetID) {
-                clientList.remove(currentClient);
-                return true;
-            }
+    public boolean deleteByID(String targetID) {
+        if (registeredClients.containsKey(targetID)) {
+            registeredClients.remove(targetID);
+            return true;
         }
+
         return false;
     }
 
     @Override
     public boolean deleteMany() {
-        if (!clientList.isEmpty()) {
-            clientList.clear();
+        if (!registeredClients.isEmpty()) {
+            registeredClients.clear();
             return true;
-        };
+        }
+
         return false;
     }
 
     @Override
     public Client findByName(String clientName) {
-        for (Client currentClient : clientList) {
+        for (Client currentClient : registeredClients.values()) {
             if (currentClient.getClientName().equals(clientName)) {
                 return currentClient;
             }
-        };
+        }
+
         return null;
     }
 }

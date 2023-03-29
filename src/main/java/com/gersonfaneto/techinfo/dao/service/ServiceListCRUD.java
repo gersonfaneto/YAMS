@@ -1,62 +1,60 @@
 package com.gersonfaneto.techinfo.dao.service;
 
-import com.gersonfaneto.techinfo.models.service.Service;
+import com.gersonfaneto.techinfo.models.work.service.Service;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ServiceListCRUD implements ServiceDAO {
-    private List<Service> serviceList;
-    private int referenceID;
+    private final Map<String, Service> registeredServices;
 
     public ServiceListCRUD() {
-        this.serviceList = new LinkedList<>();
-        this.referenceID = 0;
+        this.registeredServices = new HashMap<>();
     }
 
     @Override
-    public Service createOne(Service targetObject) {
-        targetObject.setServiceID(++referenceID);
-        serviceList.add(targetObject);
-        return targetObject;
+    public Service createOne(Service newService) {
+        String newID = UUID.randomUUID().toString();
+
+        newService.setServiceID(newID);
+
+        registeredServices.put(newID, newService);
+
+        return newService;
     }
 
     @Override
-    public Service findByID(int targetID) {
-        for (Service currentService : serviceList) {
-            if (currentService.getServiceID() == targetID) {
-                return currentService;
-            }
-        }
-
-        return null;
+    public Service findByID(String targetID) {
+        return registeredServices.get(targetID);
     }
 
     @Override
     public List<Service> findMany() {
-        return serviceList;
+        List<Service> foundServices = new LinkedList<>();
+
+        for (Service currentService : registeredServices.values()) {
+            foundServices.add(currentService);
+        }
+
+        return foundServices;
     }
 
     @Override
     public boolean updateInformation(Service targetObject) {
-        for (Service currentService : serviceList) {
-            if (currentService.getServiceID() == targetObject.getServiceID()) {
-                int targetIndex = serviceList.indexOf(currentService);
-                serviceList.set(targetIndex, targetObject);
-                return true;
-            }
+        String serviceID = targetObject.getServiceID();
+
+        if (registeredServices.containsKey(serviceID)) {
+            registeredServices.put(serviceID, targetObject);
+            return true;
         }
 
         return false;
     }
 
     @Override
-    public boolean deleteByID(int targetID) {
-        for (Service currentService : serviceList) {
-            if (currentService.getServiceID() == targetID) {
-                serviceList.remove(currentService);
-                return true;
-            }
+    public boolean deleteByID(String targetID) {
+        if (registeredServices.containsKey(targetID)) {
+            registeredServices.remove(targetID);
+            return true;
         }
 
         return false;
@@ -64,19 +62,19 @@ public class ServiceListCRUD implements ServiceDAO {
 
     @Override
     public boolean deleteMany() {
-        if (!serviceList.isEmpty()) {
-            serviceList.clear();
+        if (!registeredServices.isEmpty()) {
+            registeredServices.clear();
             return true;
         }
         return false;
     }
 
     @Override
-    public List<Service> findByOrderID(int targetID) {
+    public List<Service> findByOrderID(String targetID) {
         List<Service> foundServices = new LinkedList<>();
 
-        for (Service currentService : serviceList) {
-            if (currentService.getOrderID() == targetID) {
+        for (Service currentService : registeredServices.values()) {
+            if (currentService.getOrderID().equals(targetID)) {
                 foundServices.add(currentService);
             }
         }

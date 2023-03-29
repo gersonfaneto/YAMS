@@ -3,15 +3,15 @@ package com.gersonfaneto.techinfo.dao;
 import java.util.List;
 
 public interface CRUD<T> {
-    public T createOne(T targetObject);
+    T createOne(T targetObject);
 
-    public T findByID(int targetID);
+    T findByID(String targetID);
 
-    public List<T> findMany();
+    List<T> findMany();
 
-    public boolean updateInformation(T targetObject);
+    boolean updateInformation(T targetObject);
 
-    public boolean deleteByID(int targetID);
+    boolean deleteByID(String targetID);
 
-    public boolean deleteMany();
+    boolean deleteMany();
 }

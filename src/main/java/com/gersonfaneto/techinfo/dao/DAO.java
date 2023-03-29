@@ -1,19 +1,19 @@
 package com.gersonfaneto.techinfo.dao;
 
-import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceDAO;
-import com.gersonfaneto.techinfo.dao.billing.invoice.InvoiceListCRUD;
-import com.gersonfaneto.techinfo.dao.billing.payment.PaymentDAO;
-import com.gersonfaneto.techinfo.dao.billing.payment.PaymentListCRUD;
-import com.gersonfaneto.techinfo.dao.stock.component.ComponentDAO;
-import com.gersonfaneto.techinfo.dao.stock.component.ComponentListCRUD;
-import com.gersonfaneto.techinfo.dao.stock.purchaseorder.PurchaseOrderDAO;
-import com.gersonfaneto.techinfo.dao.stock.purchaseorder.PurchaseOrderListCRUD;
 import com.gersonfaneto.techinfo.dao.client.ClientDAO;
 import com.gersonfaneto.techinfo.dao.client.ClientListCRUD;
-import com.gersonfaneto.techinfo.dao.order.OrderDAO;
-import com.gersonfaneto.techinfo.dao.order.OrderListCRUD;
+import com.gersonfaneto.techinfo.dao.component.ComponentDAO;
+import com.gersonfaneto.techinfo.dao.component.ComponentListCRUD;
+import com.gersonfaneto.techinfo.dao.invoice.InvoiceDAO;
+import com.gersonfaneto.techinfo.dao.invoice.InvoiceListCRUD;
+import com.gersonfaneto.techinfo.dao.payment.PaymentDAO;
+import com.gersonfaneto.techinfo.dao.payment.PaymentListCRUD;
+import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderDAO;
+import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderListCRUD;
 import com.gersonfaneto.techinfo.dao.service.ServiceDAO;
 import com.gersonfaneto.techinfo.dao.service.ServiceListCRUD;
+import com.gersonfaneto.techinfo.dao.serviceorder.ServiceOrderDAO;
+import com.gersonfaneto.techinfo.dao.serviceorder.ServiceOrderListCRUD;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianDAO;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianListCRUD;
 
@@ -21,7 +21,7 @@ public abstract class DAO {
     private static ClientDAO registeredClients;
     private static TechnicianDAO registeredTechnicians;
     private static ServiceDAO registeredServices;
-    private static OrderDAO registeredOrders;
+    private static ServiceOrderDAO registeredOrders;
     private static PurchaseOrderDAO registeredPurchaseOrders;
     private static ComponentDAO registeredComponents;
     private static InvoiceDAO registeredInvoices;
@@ -48,9 +48,9 @@ public abstract class DAO {
         return registeredServices;
     }
 
-    public static OrderDAO getOrders() {
+    public static ServiceOrderDAO getOrders() {
         if (registeredOrders == null) {
-            registeredOrders = new OrderListCRUD();
+            registeredOrders = new ServiceOrderListCRUD();
         }
         return registeredOrders;
     }

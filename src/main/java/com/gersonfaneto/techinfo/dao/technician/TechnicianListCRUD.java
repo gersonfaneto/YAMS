@@ -1,68 +1,69 @@
 package com.gersonfaneto.techinfo.dao.technician;
 
-import com.gersonfaneto.techinfo.models.technician.Technician;
+import com.gersonfaneto.techinfo.models.entities.Technician;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class TechnicianListCRUD implements TechnicianDAO {
-    private List<Technician> technicianList;
-    private int referenceID;
+    private final Map<String, Technician> registeredTechnicians;
 
     public TechnicianListCRUD() {
-        this.technicianList = new LinkedList<>();
-        this.referenceID = 0;
+        this.registeredTechnicians = new HashMap<>();
     }
 
     @Override
-    public Technician createOne(Technician targetObject) {
-        targetObject.setTechnicianID(++referenceID);
-        technicianList.add(targetObject);
-        return targetObject;
+    public Technician createOne(Technician newTechnician) {
+        String newID = UUID.randomUUID().toString();
+
+        newTechnician.setUserID(newID);
+
+        registeredTechnicians.put(newID, newTechnician);
+
+        return newTechnician;
     }
 
     @Override
-    public Technician findByID(int targetID) {
-        for (Technician currentTechnician : technicianList) {
-            if (currentTechnician.getTechnicianID() == targetID) {
-                return currentTechnician;
-            }
-        }
-        return null;
+    public Technician findByID(String targetID) {
+        return registeredTechnicians.get(targetID);
     }
 
     @Override
     public List<Technician> findMany() {
-        return technicianList;
+        List<Technician> foundTechnicians = new LinkedList<>();
+
+        for (Technician currentTechnician : registeredTechnicians.values()) {
+            foundTechnicians.add(currentTechnician);
+        }
+
+        return foundTechnicians;
     }
 
     @Override
-    public boolean updateInformation(Technician targetObject) {
-        for (Technician currentTechnician : technicianList) {
-            if (currentTechnician.getTechnicianID() == targetObject.getTechnicianID()) {
-                int targetIndex = technicianList.indexOf(currentTechnician);
-                technicianList.set(targetIndex, targetObject);
-                return true;
-            }
+    public boolean updateInformation(Technician targetTechnician) {
+        String technicianID = targetTechnician.getUserID();
+
+        if (registeredTechnicians.containsKey(technicianID)) {
+            registeredTechnicians.put(technicianID, targetTechnician);
+            return true;
         }
+
         return false;
     }
 
     @Override
-    public boolean deleteByID(int targetID) {
-        for (Technician currentTechnician : technicianList) {
-            if (currentTechnician.getTechnicianID() == targetID) {
-                technicianList.remove(currentTechnician);
-                return true;
-            }
+    public boolean deleteByID(String targetID) {
+        if (registeredTechnicians.containsKey(targetID)) {
+            registeredTechnicians.remove(targetID);
+            return true;
         }
+
         return false;
     }
 
     @Override
     public boolean deleteMany() {
-        if (!technicianList.isEmpty()) {
-            technicianList.clear();
+        if (!registeredTechnicians.isEmpty()) {
+            registeredTechnicians.clear();
             return true;
         }
         return false;
