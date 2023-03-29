@@ -2,6 +2,7 @@ package com.gersonfaneto.techinfo.models.billing;
 
 import com.gersonfaneto.techinfo.dao.DAO;
 import com.gersonfaneto.techinfo.models.billing.payment.Payment;
+import com.gersonfaneto.techinfo.models.billing.payment.PaymentType;
 
 import java.util.List;
 
@@ -20,6 +21,18 @@ public class Invoice {
 
     public List<Payment> retrievePerformedPayment() {
         return DAO.fromPayments().findByInvoiceID(this.invoiceID);
+    }
+
+    public boolean newPayment(PaymentType paymentType, double paidValue) {
+        if (this.paidValue + paidValue >= this.totalValue) {
+            return false;
+        }
+
+        Payment newPayment = new Payment(this.invoiceID, paymentType, paidValue);
+
+        DAO.fromPayments().createOne(newPayment);
+
+        return true;
     }
 
     @Override
