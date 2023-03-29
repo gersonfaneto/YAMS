@@ -66,6 +66,18 @@ public class TechnicianListCRUD implements TechnicianDAO {
             registeredTechnicians.clear();
             return true;
         }
+
         return false;
+    }
+
+    @Override
+    public Technician findByEmail(String userEmail) {
+        for (Technician currentTechnician : registeredTechnicians.values()) {
+            if (currentTechnician.getUserEmail().equals(userEmail)) {
+                return currentTechnician;
+            }
+        }
+
+        return null;
     }
 }
