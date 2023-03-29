@@ -7,9 +7,11 @@ import java.util.*;
 
 public class ServiceOrderListCRUD implements ServiceOrderDAO {
     private final Map<String, ServiceOrder> registeredServiceOrders;
+    private final Queue<ServiceOrder> serviceOrdersQueue;
 
     public ServiceOrderListCRUD() {
         this.registeredServiceOrders = new HashMap<>();
+        this.serviceOrdersQueue = new LinkedList<>();
     }
 
     @Override
@@ -19,6 +21,7 @@ public class ServiceOrderListCRUD implements ServiceOrderDAO {
         newServiceOrder.setServiceOrderID(newID);
 
         registeredServiceOrders.put(newID, newServiceOrder);
+        serviceOrdersQueue.add(newServiceOrder);
 
         return newServiceOrder;
     }
@@ -108,4 +111,15 @@ public class ServiceOrderListCRUD implements ServiceOrderDAO {
 
         return foundServiceOrders;
     }
+
+    @Override
+    public Queue<ServiceOrder> findAllNext() {
+        return serviceOrdersQueue;
+    }
+
+    @Override
+    public ServiceOrder deleteNext() {
+        return serviceOrdersQueue.remove();
+    }
+
 }
