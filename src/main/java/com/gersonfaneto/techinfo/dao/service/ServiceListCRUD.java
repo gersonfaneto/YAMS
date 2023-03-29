@@ -74,7 +74,7 @@ public class ServiceListCRUD implements ServiceDAO {
         List<Service> foundServices = new LinkedList<>();
 
         for (Service currentService : registeredServices.values()) {
-            if (currentService.getOrderID().equals(targetID)) {
+            if (currentService.getServiceOrderID().equals(targetID)) {
                 foundServices.add(currentService);
             }
         }

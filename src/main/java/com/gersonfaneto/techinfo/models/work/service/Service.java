@@ -3,7 +3,7 @@ package com.gersonfaneto.techinfo.models.work.service;
 import com.gersonfaneto.techinfo.models.stock.component.Component;
 
 public class Service {
-    private final String orderID;
+    private final String serviceOrderID;
     private final ServiceType serviceType;
     private final String serviceDescription;
     private String serviceID;
@@ -11,9 +11,9 @@ public class Service {
     private double servicePrice;
     private double clientRating;
 
-    public Service(String orderID, ServiceType serviceType, String serviceDescription, Component usedComponent) {
+    public Service(String serviceOrderID, ServiceType serviceType, String serviceDescription, Component usedComponent) {
         this.serviceID = "Undefined!";
-        this.orderID = orderID;
+        this.serviceOrderID = serviceOrderID;
         this.serviceType = serviceType;
         this.serviceDescription = serviceDescription;
         this.usedComponent = usedComponent;
@@ -21,9 +21,9 @@ public class Service {
         this.clientRating = 0.0;
     }
 
-    public Service(String orderID, ServiceType serviceType, String serviceDescription) {
+    public Service(String serviceOrderID, ServiceType serviceType, String serviceDescription) {
         this.serviceID = "Undefined!";
-        this.orderID = orderID;
+        this.serviceOrderID = serviceOrderID;
         this.serviceType = serviceType;
         this.serviceDescription = serviceDescription;
         this.usedComponent = null;
@@ -40,7 +40,7 @@ public class Service {
                 Description: %s
                 Price: %s
                 Rating: %.2f
-                """, serviceID, orderID, serviceType.getTypeName(), serviceDescription, servicePrice, clientRating);
+                """, serviceID, serviceOrderID, serviceType.getTypeName(), serviceDescription, servicePrice, clientRating);
     }
 
     @Override
@@ -60,8 +60,8 @@ public class Service {
         this.serviceID = serviceID;
     }
 
-    public String getOrderID() {
-        return orderID;
+    public String getServiceOrderID() {
+        return serviceOrderID;
     }
 
     public ServiceType getServiceType() {
