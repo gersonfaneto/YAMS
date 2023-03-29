@@ -1,38 +1,56 @@
 package com.gersonfaneto.techinfo.models.billing;
 
 import com.gersonfaneto.techinfo.dao.DAO;
+import com.gersonfaneto.techinfo.models.billing.payment.Payment;
 
 import java.util.List;
 
 public class Invoice {
-    private int invoiceID;
-    private int orderID;
+    private final String orderID;
+    private String invoiceID;
     private double totalValue;
-    private double payedValue;
+    private double paidValue;
 
-    public Invoice(int orderID, double totalValue) {
+    public Invoice(String orderID, double totalValue) {
+        this.invoiceID = "Undefined!";
         this.orderID = orderID;
         this.totalValue = totalValue;
+        this.paidValue = 0.0;
     }
 
-    public List<Payment> retrievePerformedPayments() {
-        return DAO.getPayments().findByInvoiceID(invoiceID);
+    public List<Payment> retrievePerformedPayment() {
+        return DAO.getPayments().findByInvoiceID(this.invoiceID);
     }
 
-    public int getInvoiceID() {
+    @Override
+    public String toString() {
+        return String.format("""
+                ID: %s
+                Order: %s
+                Total Value: R$ %.2f
+                Paid Value: R$ %.2f
+                """, invoiceID, orderID, totalValue, paidValue);
+    }
+
+    @Override
+    public boolean equals(Object objectToCompare) {
+        if (objectToCompare instanceof Invoice otherInvoice) {
+            return otherInvoice.invoiceID.equals(this.invoiceID);
+        }
+
+        return false;
+    }
+
+    public String getInvoiceID() {
         return invoiceID;
     }
 
-    public void setInvoiceID(int invoiceID) {
+    public void setInvoiceID(String invoiceID) {
         this.invoiceID = invoiceID;
     }
 
-    public int getOrderID() {
+    public String getOrderID() {
         return orderID;
-    }
-
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
     }
 
     public double getTotalValue() {
@@ -43,20 +61,20 @@ public class Invoice {
         this.totalValue = totalValue;
     }
 
-    public double getPayedValue() {
-        List<Payment> performedPayments = DAO.getPayments().findByInvoiceID(invoiceID);
-        double payedValue = 0.0;
+    public double getPaidValue() {
+        List<Payment> foundPayments = DAO.getPayments().findByInvoiceID(this.invoiceID);
+        double paidValue = 0.0;
 
-        for (Payment currentPayment : performedPayments) {
-            payedValue += currentPayment.getPayedValue();
+        for (Payment currentPayment : foundPayments) {
+            paidValue += currentPayment.getPaidValue();
         }
 
-        this.payedValue = payedValue;
+        this.paidValue = paidValue;
 
-        return this.payedValue;
+        return paidValue;
     }
 
-    public void setPayedValue(double payedValue) {
-        this.payedValue = payedValue;
+    public void setPaidValue(double paidValue) {
+        this.paidValue = paidValue;
     }
 }
