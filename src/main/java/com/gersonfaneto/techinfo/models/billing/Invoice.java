@@ -7,14 +7,14 @@ import com.gersonfaneto.techinfo.models.billing.payment.PaymentType;
 import java.util.List;
 
 public class Invoice {
-    private final String orderID;
+    private final String serviceOrderID;
     private String invoiceID;
     private double totalValue;
     private double paidValue;
 
-    public Invoice(String orderID, double totalValue) {
+    public Invoice(String serviceOrderID, double totalValue) {
         this.invoiceID = "Undefined!";
-        this.orderID = orderID;
+        this.serviceOrderID = serviceOrderID;
         this.totalValue = totalValue;
         this.paidValue = 0.0;
     }
@@ -42,7 +42,7 @@ public class Invoice {
                 Order: %s
                 Total Value: R$ %.2f
                 Paid Value: R$ %.2f
-                """, invoiceID, orderID, totalValue, paidValue);
+                """, invoiceID, serviceOrderID, totalValue, paidValue);
     }
 
     @Override
@@ -62,8 +62,8 @@ public class Invoice {
         this.invoiceID = invoiceID;
     }
 
-    public String getOrderID() {
-        return orderID;
+    public String getServiceOrderID() {
+        return serviceOrderID;
     }
 
     public double getTotalValue() {

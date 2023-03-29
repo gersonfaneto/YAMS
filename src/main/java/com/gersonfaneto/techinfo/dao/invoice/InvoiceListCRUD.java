@@ -73,7 +73,7 @@ public class InvoiceListCRUD implements InvoiceDAO {
     @Override
     public Invoice findByOrderID(String targetID) {
         for (Invoice currentInvoice : registeredInvoices.values()) {
-            if (currentInvoice.getOrderID().equals(targetID)) {
+            if (currentInvoice.getServiceOrderID().equals(targetID)) {
                 return currentInvoice;
             }
         }
