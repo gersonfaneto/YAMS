@@ -18,69 +18,69 @@ import com.gersonfaneto.techinfo.dao.technician.TechnicianDAO;
 import com.gersonfaneto.techinfo.dao.technician.TechnicianListCRUD;
 
 public abstract class DAO {
-    private static ClientDAO registeredClients;
-    private static TechnicianDAO registeredTechnicians;
-    private static ServiceDAO registeredServices;
-    private static ServiceOrderDAO registeredOrders;
-    private static PurchaseOrderDAO registeredPurchaseOrders;
-    private static ComponentDAO registeredComponents;
-    private static InvoiceDAO registeredInvoices;
-    private static PaymentDAO registeredPayments;
+    private static ClientDAO clientDAO;
+    private static TechnicianDAO technicianDAO;
+    private static ServiceDAO serviceDAO;
+    private static ServiceOrderDAO serviceOrderDAO;
+    private static PurchaseOrderDAO purchaseOrderDAO;
+    private static ComponentDAO componentDAO;
+    private static InvoiceDAO invoiceDAO;
+    private static PaymentDAO paymentDAO;
 
-    public static ClientDAO getClients() {
-        if (registeredClients == null) {
-            registeredClients = new ClientListCRUD();
+    public static ClientDAO fromClients() {
+        if (clientDAO == null) {
+            clientDAO = new ClientListCRUD();
         }
-        return registeredClients;
+        return clientDAO;
     }
 
-    public static TechnicianDAO getTechnicians() {
-        if (registeredTechnicians == null) {
-            registeredTechnicians = new TechnicianListCRUD();
+    public static TechnicianDAO fromTechnicians() {
+        if (technicianDAO == null) {
+            technicianDAO = new TechnicianListCRUD();
         }
-        return registeredTechnicians;
+        return technicianDAO;
     }
 
-    public static ServiceDAO getServices() {
-        if (registeredServices == null) {
-            registeredServices = new ServiceListCRUD();
+    public static ServiceDAO fromServices() {
+        if (serviceDAO == null) {
+            serviceDAO = new ServiceListCRUD();
         }
-        return registeredServices;
+        return serviceDAO;
     }
 
-    public static ServiceOrderDAO getOrders() {
-        if (registeredOrders == null) {
-            registeredOrders = new ServiceOrderListCRUD();
+    public static ServiceOrderDAO fromServiceOrders() {
+        if (serviceOrderDAO == null) {
+            serviceOrderDAO = new ServiceOrderListCRUD();
         }
-        return registeredOrders;
+        return serviceOrderDAO;
     }
 
-    public static PurchaseOrderDAO getPurchaseOrders() {
-        if (registeredPurchaseOrders == null) {
-            registeredPurchaseOrders = new PurchaseOrderListCRUD();
+    public static PurchaseOrderDAO fromPurchaseOrders() {
+        if (purchaseOrderDAO == null) {
+            purchaseOrderDAO = new PurchaseOrderListCRUD();
         }
-        return registeredPurchaseOrders;
+        return purchaseOrderDAO;
     }
 
-    public static ComponentDAO getComponents() {
-        if (registeredComponents == null) {
-            registeredComponents = new ComponentListCRUD();
+    public static ComponentDAO fromComponents() {
+        if (componentDAO == null) {
+            componentDAO = new ComponentListCRUD();
         }
 
-        return registeredComponents;
+        return componentDAO;
     }
 
-    public static InvoiceDAO getInvoices() {
-        if (registeredInvoices == null) {
-            registeredInvoices = new InvoiceListCRUD();
+    public static InvoiceDAO fromInvoices() {
+        if (invoiceDAO == null) {
+            invoiceDAO = new InvoiceListCRUD();
         }
-        return registeredInvoices;
+        return invoiceDAO;
     }
 
-    public static PaymentDAO getPayments() {
-        if (registeredPayments == null) {
-            registeredPayments = new PaymentListCRUD();
+    public static PaymentDAO fromPayments() {
+        if (paymentDAO == null) {
+            paymentDAO = new PaymentListCRUD();
         }
-        return registeredPayments;
+        return paymentDAO;
     }
 }

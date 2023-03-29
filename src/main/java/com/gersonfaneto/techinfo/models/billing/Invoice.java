@@ -19,7 +19,7 @@ public class Invoice {
     }
 
     public List<Payment> retrievePerformedPayment() {
-        return DAO.getPayments().findByInvoiceID(this.invoiceID);
+        return DAO.fromPayments().findByInvoiceID(this.invoiceID);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Invoice {
     }
 
     public double getPaidValue() {
-        List<Payment> foundPayments = DAO.getPayments().findByInvoiceID(this.invoiceID);
+        List<Payment> foundPayments = DAO.fromPayments().findByInvoiceID(this.invoiceID);
         double paidValue = 0.0;
 
         for (Payment currentPayment : foundPayments) {
