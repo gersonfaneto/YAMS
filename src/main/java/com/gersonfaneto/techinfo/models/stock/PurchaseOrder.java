@@ -6,27 +6,27 @@ public class PurchaseOrder {
     private final String technicianID;
     private final ComponentType componentType;
     private final String componentDescription;
-    private final int chosenAmount;
+    private final int purchasedAmount;
     private final double unitaryPrice;
     private final double unitaryCost;
     private String purchaseOrderID;
 
-    public PurchaseOrder(String technicianID, ComponentType componentType, String componentDescription, int chosenAmount, double unitaryPrice, double unitaryCost) {
+    public PurchaseOrder(String technicianID, ComponentType componentType, String componentDescription, int purchasedAmount, double unitaryPrice, double unitaryCost) {
         this.purchaseOrderID = "Undefined!";
         this.technicianID = technicianID;
         this.componentType = componentType;
         this.componentDescription = componentDescription;
-        this.chosenAmount = chosenAmount;
+        this.purchasedAmount = purchasedAmount;
         this.unitaryPrice = unitaryPrice;
         this.unitaryCost = unitaryCost;
     }
 
-    public PurchaseOrder(String technicianID, ComponentType componentType, String componentDescription, int chosenAmount, double unitaryCost) {
+    public PurchaseOrder(String technicianID, ComponentType componentType, String componentDescription, int purchasedAmount, double unitaryCost) {
         this.purchaseOrderID = "Undefined!";
         this.technicianID = technicianID;
         this.componentType = componentType;
         this.componentDescription = componentDescription;
-        this.chosenAmount = chosenAmount;
+        this.purchasedAmount = purchasedAmount;
         this.unitaryPrice = componentType.getTypeValue();
         this.unitaryCost = unitaryCost;
     }
@@ -72,8 +72,8 @@ public class PurchaseOrder {
         return componentDescription;
     }
 
-    public int getChosenAmount() {
-        return chosenAmount;
+    public int getPurchasedAmount() {
+        return purchasedAmount;
     }
 
     public double getUnitaryPrice() {
