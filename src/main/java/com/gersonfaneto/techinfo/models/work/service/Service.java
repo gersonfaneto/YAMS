@@ -17,7 +17,7 @@ public class Service {
         this.serviceType = serviceType;
         this.serviceDescription = serviceDescription;
         this.usedComponent = usedComponent;
-        this.servicePrice = usedComponent.getComponentCost();
+        this.servicePrice = usedComponent.getComponentPrice();
         this.clientRating = 0.0;
     }
 
