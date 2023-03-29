@@ -1,25 +1,43 @@
-package com.gersonfaneto.techinfo.models;
-
-import com.gersonfaneto.techinfo.dao.DAO;
-import com.gersonfaneto.techinfo.models.order.Order;
-
-import java.util.LinkedList;
-import java.util.List;
+package com.gersonfaneto.techinfo.models.entities;
 
 public class Client {
-    private int clientID;
+    private String clientID;
     private String clientName;
     private String homeAddress;
     private String phoneNumber;
 
     public Client(String clientName, String homeAddress, String phoneNumber) {
+        this.clientID = "Undefined!";
         this.clientName = clientName;
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;
     }
 
-    public int getClientID() {
+    @Override
+    public String toString() {
+        return String.format("""
+                ID: %s
+                Name: %s
+                Address: %s
+                Contact: %s
+                """, clientID, clientName, homeAddress, phoneNumber);
+    }
+
+    @Override
+    public boolean equals(Object objectToCompare) {
+        if (objectToCompare instanceof Client otherClient) {
+            return otherClient.clientID.equals(this.clientID);
+        }
+
+        return false;
+    }
+
+    public String getClientID() {
         return clientID;
+    }
+
+    public void setClientID(String clientID) {
+        this.clientID = clientID;
     }
 
     public String getClientName() {
@@ -46,7 +64,4 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Order> getOrderHistory() {
-        return DAO.getOrders().findByClient(this.clientID);
-    }
 }
