@@ -1,6 +1,6 @@
 package com.gersonfaneto.techinfo;
 
-public class TechInfo {
+public class App {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
