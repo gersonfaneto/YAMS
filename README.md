@@ -13,6 +13,14 @@
 > *Y.A.M.S.* stands for "Yet Another Managements System" (no pun intended 😉). This project is being developed
 > for educational purposes, so don't expect much of it 🙃.
 
+<h4 align="center">
+  <a href="#what-is-this%3F">About</a>
+  ·
+  <a href="#how-to-use-it%3F">Usage</a>
+  ·
+  <a href="#license">License</a>
+</h4>
+
 ## What is this?
 
 *Y.A.M.S* is a management system developed to make the day-to-day of a microcomputer assistance
