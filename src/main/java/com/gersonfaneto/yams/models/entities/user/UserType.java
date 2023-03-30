@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models.entities.user;
+package com.gersonfaneto.yams.models.entities.user;
 
 public enum UserType {
     Normal("Normal"),

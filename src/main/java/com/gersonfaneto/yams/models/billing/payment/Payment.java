@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models.billing.payment;
+package com.gersonfaneto.yams.models.billing.payment;
 
 public class Payment {
     private final String invoiceID;

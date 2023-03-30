@@ -1,7 +1,7 @@
-package com.gersonfaneto.techinfo.dao.serviceorder;
+package com.gersonfaneto.yams.dao.serviceorder;
 
-import com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrder;
-import com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrderStatus;
+import com.gersonfaneto.yams.models.work.serviceorder.ServiceOrder;
+import com.gersonfaneto.yams.models.work.serviceorder.ServiceOrderStatus;
 
 import java.util.*;
 

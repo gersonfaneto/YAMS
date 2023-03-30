@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models.stock.component;
+package com.gersonfaneto.yams.models.stock.component;
 
 public enum ComponentType {
     RAM("RAM", 20.00),

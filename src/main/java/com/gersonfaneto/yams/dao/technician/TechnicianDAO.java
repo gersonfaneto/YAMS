@@ -1,7 +1,7 @@
-package com.gersonfaneto.techinfo.dao.technician;
+package com.gersonfaneto.yams.dao.technician;
 
-import com.gersonfaneto.techinfo.dao.CRUD;
-import com.gersonfaneto.techinfo.models.entities.Technician;
+import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.models.entities.Technician;
 
 public interface TechnicianDAO extends CRUD<Technician> {
     public Technician findByEmail(String userEmail);

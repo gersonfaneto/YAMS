@@ -1,7 +1,7 @@
-package com.gersonfaneto.techinfo.dao.client;
+package com.gersonfaneto.yams.dao.client;
 
-import com.gersonfaneto.techinfo.dao.CRUD;
-import com.gersonfaneto.techinfo.models.entities.Client;
+import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.models.entities.Client;
 
 public interface ClientDAO extends CRUD<Client> {
     Client findByName(String clientName);

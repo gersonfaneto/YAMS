@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models.entities.user;
+package com.gersonfaneto.yams.models.entities.user;
 
 public abstract class User {
     private String userID;

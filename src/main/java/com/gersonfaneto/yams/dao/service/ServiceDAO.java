@@ -1,7 +1,7 @@
-package com.gersonfaneto.techinfo.dao.service;
+package com.gersonfaneto.yams.dao.service;
 
-import com.gersonfaneto.techinfo.dao.CRUD;
-import com.gersonfaneto.techinfo.models.work.service.Service;
+import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.models.work.service.Service;
 
 import java.util.List;
 

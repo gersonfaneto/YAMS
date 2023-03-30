@@ -3,6 +3,6 @@ module com.gersonfaneto.techinfo {
     requires javafx.fxml;
 
 
-    opens com.gersonfaneto.techinfo to javafx.fxml;
-    exports com.gersonfaneto.techinfo;
+    opens com.gersonfaneto.yams to javafx.fxml;
+    exports com.gersonfaneto.yams;
 }

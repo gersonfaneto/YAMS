@@ -1,6 +1,6 @@
-package com.gersonfaneto.techinfo.dao.invoice;
+package com.gersonfaneto.yams.dao.invoice;
 
-import com.gersonfaneto.techinfo.models.billing.Invoice;
+import com.gersonfaneto.yams.models.billing.Invoice;
 
 import java.util.*;
 

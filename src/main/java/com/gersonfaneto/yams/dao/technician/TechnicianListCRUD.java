@@ -1,6 +1,6 @@
-package com.gersonfaneto.techinfo.dao.technician;
+package com.gersonfaneto.yams.dao.technician;
 
-import com.gersonfaneto.techinfo.models.entities.Technician;
+import com.gersonfaneto.yams.models.entities.Technician;
 
 import java.util.*;
 

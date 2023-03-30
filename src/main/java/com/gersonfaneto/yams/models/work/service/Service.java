@@ -1,6 +1,6 @@
-package com.gersonfaneto.techinfo.models.work.service;
+package com.gersonfaneto.yams.models.work.service;
 
-import com.gersonfaneto.techinfo.models.stock.component.Component;
+import com.gersonfaneto.yams.models.stock.component.Component;
 
 public class Service {
     private final String serviceOrderID;

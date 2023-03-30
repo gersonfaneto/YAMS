@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.dao;
+package com.gersonfaneto.yams.dao;
 
 import java.util.List;
 

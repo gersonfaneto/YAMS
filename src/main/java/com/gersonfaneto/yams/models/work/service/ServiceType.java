@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models.work.service;
+package com.gersonfaneto.yams.models.work.service;
 
 public enum ServiceType {
     SimpleFormatting("Simple Formatting", 50.00),

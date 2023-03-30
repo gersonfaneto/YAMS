@@ -1,6 +1,6 @@
-package com.gersonfaneto.techinfo.models.stock;
+package com.gersonfaneto.yams.models.stock;
 
-import com.gersonfaneto.techinfo.models.stock.component.ComponentType;
+import com.gersonfaneto.yams.models.stock.component.ComponentType;
 
 public class PurchaseOrder {
     private final String technicianID;

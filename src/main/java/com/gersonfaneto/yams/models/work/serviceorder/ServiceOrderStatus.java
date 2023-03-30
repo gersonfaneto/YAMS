@@ -1,4 +1,4 @@
-package com.gersonfaneto.techinfo.models.work.serviceorder;
+package com.gersonfaneto.yams.models.work.serviceorder;
 
 public enum ServiceOrderStatus {
     Created("Created"),

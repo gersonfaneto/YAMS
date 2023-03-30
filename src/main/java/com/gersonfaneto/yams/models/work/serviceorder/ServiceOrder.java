@@ -1,17 +1,15 @@
-package com.gersonfaneto.techinfo.models.work.serviceorder;
+package com.gersonfaneto.yams.models.work.serviceorder;
 
-import com.gersonfaneto.techinfo.dao.DAO;
-import com.gersonfaneto.techinfo.models.billing.Invoice;
-import com.gersonfaneto.techinfo.models.stock.component.Component;
-import com.gersonfaneto.techinfo.models.work.service.Service;
-import com.gersonfaneto.techinfo.models.work.service.ServiceType;
+import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.billing.Invoice;
+import com.gersonfaneto.yams.models.stock.component.Component;
+import com.gersonfaneto.yams.models.work.service.Service;
+import com.gersonfaneto.yams.models.work.service.ServiceType;
 
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.SplittableRandom;
 
-import static com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrderStatus.*;
+import static com.gersonfaneto.yams.models.work.serviceorder.ServiceOrderStatus.*;
 
 public class ServiceOrder {
     private final String clientID;

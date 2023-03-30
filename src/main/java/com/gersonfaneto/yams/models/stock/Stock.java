@@ -1,8 +1,8 @@
-package com.gersonfaneto.techinfo.models.stock;
+package com.gersonfaneto.yams.models.stock;
 
-import com.gersonfaneto.techinfo.dao.DAO;
-import com.gersonfaneto.techinfo.models.stock.component.Component;
-import com.gersonfaneto.techinfo.models.stock.component.ComponentType;
+import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.stock.component.Component;
+import com.gersonfaneto.yams.models.stock.component.ComponentType;
 
 import java.util.List;
 

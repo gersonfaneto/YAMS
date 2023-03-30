@@ -1,7 +1,7 @@
-package com.gersonfaneto.techinfo.dao.invoice;
+package com.gersonfaneto.yams.dao.invoice;
 
-import com.gersonfaneto.techinfo.dao.CRUD;
-import com.gersonfaneto.techinfo.models.billing.Invoice;
+import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.models.billing.Invoice;
 
 public interface InvoiceDAO extends CRUD<Invoice> {
     Invoice findByOrderID(String targetID);

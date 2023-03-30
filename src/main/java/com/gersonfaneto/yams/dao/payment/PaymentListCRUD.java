@@ -1,6 +1,6 @@
-package com.gersonfaneto.techinfo.dao.payment;
+package com.gersonfaneto.yams.dao.payment;
 
-import com.gersonfaneto.techinfo.models.billing.payment.Payment;
+import com.gersonfaneto.yams.models.billing.payment.Payment;
 
 import java.util.*;
 

@@ -1,21 +1,21 @@
-package com.gersonfaneto.techinfo.dao;
+package com.gersonfaneto.yams.dao;
 
-import com.gersonfaneto.techinfo.dao.client.ClientDAO;
-import com.gersonfaneto.techinfo.dao.client.ClientListCRUD;
-import com.gersonfaneto.techinfo.dao.component.ComponentDAO;
-import com.gersonfaneto.techinfo.dao.component.ComponentListCRUD;
-import com.gersonfaneto.techinfo.dao.invoice.InvoiceDAO;
-import com.gersonfaneto.techinfo.dao.invoice.InvoiceListCRUD;
-import com.gersonfaneto.techinfo.dao.payment.PaymentDAO;
-import com.gersonfaneto.techinfo.dao.payment.PaymentListCRUD;
-import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderDAO;
-import com.gersonfaneto.techinfo.dao.purchaseorder.PurchaseOrderListCRUD;
-import com.gersonfaneto.techinfo.dao.service.ServiceDAO;
-import com.gersonfaneto.techinfo.dao.service.ServiceListCRUD;
-import com.gersonfaneto.techinfo.dao.serviceorder.ServiceOrderDAO;
-import com.gersonfaneto.techinfo.dao.serviceorder.ServiceOrderListCRUD;
-import com.gersonfaneto.techinfo.dao.technician.TechnicianDAO;
-import com.gersonfaneto.techinfo.dao.technician.TechnicianListCRUD;
+import com.gersonfaneto.yams.dao.client.ClientDAO;
+import com.gersonfaneto.yams.dao.client.ClientListCRUD;
+import com.gersonfaneto.yams.dao.component.ComponentDAO;
+import com.gersonfaneto.yams.dao.component.ComponentListCRUD;
+import com.gersonfaneto.yams.dao.invoice.InvoiceDAO;
+import com.gersonfaneto.yams.dao.invoice.InvoiceListCRUD;
+import com.gersonfaneto.yams.dao.payment.PaymentDAO;
+import com.gersonfaneto.yams.dao.payment.PaymentListCRUD;
+import com.gersonfaneto.yams.dao.purchaseorder.PurchaseOrderDAO;
+import com.gersonfaneto.yams.dao.purchaseorder.PurchaseOrderListCRUD;
+import com.gersonfaneto.yams.dao.service.ServiceDAO;
+import com.gersonfaneto.yams.dao.service.ServiceListCRUD;
+import com.gersonfaneto.yams.dao.serviceorder.ServiceOrderDAO;
+import com.gersonfaneto.yams.dao.serviceorder.ServiceOrderListCRUD;
+import com.gersonfaneto.yams.dao.technician.TechnicianDAO;
+import com.gersonfaneto.yams.dao.technician.TechnicianListCRUD;
 
 public abstract class DAO {
     private static ClientDAO clientDAO;

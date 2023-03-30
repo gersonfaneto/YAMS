@@ -1,7 +1,7 @@
-package com.gersonfaneto.techinfo.dao.purchaseorder;
+package com.gersonfaneto.yams.dao.purchaseorder;
 
-import com.gersonfaneto.techinfo.models.stock.PurchaseOrder;
-import com.gersonfaneto.techinfo.models.stock.component.ComponentType;
+import com.gersonfaneto.yams.models.stock.PurchaseOrder;
+import com.gersonfaneto.yams.models.stock.component.ComponentType;
 
 import java.util.*;
 

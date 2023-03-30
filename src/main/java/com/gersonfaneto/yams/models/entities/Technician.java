@@ -1,17 +1,17 @@
-package com.gersonfaneto.techinfo.models.entities;
+package com.gersonfaneto.yams.models.entities;
 
-import com.gersonfaneto.techinfo.dao.DAO;
-import com.gersonfaneto.techinfo.models.entities.user.User;
-import com.gersonfaneto.techinfo.models.entities.user.UserType;
-import com.gersonfaneto.techinfo.models.stock.component.Component;
-import com.gersonfaneto.techinfo.models.work.service.Service;
-import com.gersonfaneto.techinfo.models.work.service.ServiceType;
-import com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrder;
+import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.entities.user.User;
+import com.gersonfaneto.yams.models.entities.user.UserType;
+import com.gersonfaneto.yams.models.stock.component.Component;
+import com.gersonfaneto.yams.models.work.service.Service;
+import com.gersonfaneto.yams.models.work.service.ServiceType;
+import com.gersonfaneto.yams.models.work.serviceorder.ServiceOrder;
 
 import java.util.List;
 
-import static com.gersonfaneto.techinfo.models.entities.user.UserType.Administrator;
-import static com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrderStatus.*;
+import static com.gersonfaneto.yams.models.entities.user.UserType.Administrator;
+import static com.gersonfaneto.yams.models.work.serviceorder.ServiceOrderStatus.*;
 
 public class Technician extends User {
     private boolean hasServiceOrderOpen;

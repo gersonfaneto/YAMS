@@ -1,6 +1,6 @@
-package com.gersonfaneto.techinfo.dao.client;
+package com.gersonfaneto.yams.dao.client;
 
-import com.gersonfaneto.techinfo.models.entities.Client;
+import com.gersonfaneto.yams.models.entities.Client;
 
 import java.util.*;
 

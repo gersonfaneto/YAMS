@@ -1,7 +1,7 @@
-package com.gersonfaneto.techinfo.models.entities;
+package com.gersonfaneto.yams.models.entities;
 
-import com.gersonfaneto.techinfo.dao.DAO;
-import com.gersonfaneto.techinfo.models.work.serviceorder.ServiceOrder;
+import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.work.serviceorder.ServiceOrder;
 
 import java.util.List;
 
