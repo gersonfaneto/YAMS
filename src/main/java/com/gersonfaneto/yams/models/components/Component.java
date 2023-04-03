@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.models.stock;
+package com.gersonfaneto.yams.models.components;
 
 public abstract class Component {
     private String componentID;
