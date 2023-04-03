@@ -42,7 +42,7 @@ The development was divided in the following phases:
 
 ## How to use it?
 
-> **Warning**: Y.A.S.M. is currently under development, so you won't probably be able
+> **Warning**: _Y.A.S.M._ is currently under development, so you won't probably be able
 > to do much until I reach Phase IV 🙃.
 
 #### Dependencies
