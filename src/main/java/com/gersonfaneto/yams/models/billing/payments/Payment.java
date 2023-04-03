@@ -3,9 +3,9 @@ package com.gersonfaneto.yams.models.billing.payments;
 public abstract class Payment {
     private String paymentID;
     private String invoiceID;
-    private String paidValue;
+    private double paidValue;
 
-    public Payment(String invoiceID, String paidValue) {
+    public Payment(String invoiceID, double paidValue) {
         this.invoiceID = invoiceID;
         this.paidValue = paidValue;
     }
@@ -44,11 +44,11 @@ public abstract class Payment {
         this.invoiceID = invoiceID;
     }
 
-    public String getPaidValue() {
+    public double getPaidValue() {
         return paidValue;
     }
 
-    public void setPaidValue(String paidValue) {
+    public void setPaidValue(double paidValue) {
         this.paidValue = paidValue;
     }
 }
