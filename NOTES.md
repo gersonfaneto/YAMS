@@ -8,7 +8,6 @@
     - Name: String
     - HomeAddress: String
     - PhoneNumber: String
-    - WorkOrderHistory: List\<WorkOrder\>
 
 - _User_
   - Attributes
@@ -25,7 +24,6 @@
 - Technician : _User_
   - Attributes
     - Name: String
-    - WorkingOn: WorkOrder
     - State: TechnicianState
     - WorkOrderHistory: List<WorkOrder>
   - Methods:
@@ -129,17 +127,16 @@
   - Methods
     - NewPayment(): Boolean
 
-## Design Patterns
+## States
 
 - _TechnicianState_
-    - Technician
+  - Attributes
+    - Technician: Technician
+    - WorkOrder: WorkOrder
   - Methods:
-    - _AddService_(): Boolean
-    - _RemoveService_(): Boolean
     - _OpenOrder_(): Boolean
     - _CancelOrder_(): Boolean
     - _CloseOrder_(): Boolean
-    - _GenerateInvoice_(): Boolean
 
 - Free : _TechnicianState_
 
@@ -162,20 +159,3 @@
 
 - Payed : _WorkOrderState_
 
-- _ComponentFactory_
-  - Attributes:
-    - ComponentPrototypes: Map<String, Component>
-  - Methods:
-    - CreateComponent(): Component
-
-- _PaymentFactory_
-  - Attributes
-    - PaymentPrototypes: Map<String, Component>
-  - Methods:
-    - CreatePayment(): Payment
-
-- _ServiceFactory_
-  - Attributes
-    - ServicePrototypes: Map<String, Component>
-  - Methods:
-    - CreateService(): Payment
