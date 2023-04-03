@@ -4,11 +4,13 @@ public abstract class Service {
     private String serviceID;
     private String serviceType;
     private String serviceDescription;
+    private double clientRating;
     private double servicePrice;
 
     public Service(String serviceType, String serviceDescription, double servicePrice) {
         this.serviceType = serviceType;
         this.serviceDescription = serviceDescription;
+        this.clientRating = 0.0;
         this.servicePrice = servicePrice;
     }
 
@@ -53,6 +55,14 @@ public abstract class Service {
 
     public void setServiceDescription(String serviceDescription) {
         this.serviceDescription = serviceDescription;
+    }
+
+    public double getClientRating() {
+        return clientRating;
+    }
+
+    public void setClientRating(double clientRating) {
+        this.clientRating = clientRating;
     }
 
     public double getServicePrice() {
