@@ -1,7 +1,7 @@
 package com.gersonfaneto.yams.models.entities;
 
 public class Client {
-    private String clientID = "Undefined";
+    private String clientID;
     private String clientName;
     private String homeAddress;
     private String phoneNumber;
