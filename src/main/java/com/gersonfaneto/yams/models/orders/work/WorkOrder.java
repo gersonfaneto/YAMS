@@ -4,8 +4,10 @@ import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.services.Service;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.spi.CalendarDataProvider;
 
 public class WorkOrder {
     private String workOrderID;
@@ -13,11 +15,14 @@ public class WorkOrder {
     private String technicianID;
     private String invoiceID;
     private State workOrderState;
+    private Calendar createdAt;
+    private Calendar closedAt;
     private List<Service> selectedServices;
 
     public WorkOrder(String clientID) {
         this.clientID = clientID;
         this.workOrderState = new Created(this);
+        this.createdAt = Calendar.getInstance();
         this.selectedServices = new LinkedList<>();
     }
 
@@ -87,6 +92,22 @@ public class WorkOrder {
 
     public void setWorkOrderState(State workOrderState) {
         this.workOrderState = workOrderState;
+    }
+
+    public Calendar getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Calendar createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Calendar getClosedAt() {
+        return closedAt;
+    }
+
+    public void setClosedAt(Calendar closedAt) {
+        this.closedAt = closedAt;
     }
 
     public List<Service> getSelectedServices() {
