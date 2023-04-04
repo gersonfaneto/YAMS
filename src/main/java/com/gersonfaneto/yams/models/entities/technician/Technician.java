@@ -12,13 +12,11 @@ import java.util.List;
 public class Technician extends User {
     private String technicianName;
     private State technicianState;
-    private List<WorkOrder> workOrders;
 
     public Technician(String userEmail, String userPassword, String technicianName) {
         super(userEmail, userPassword);
         this.technicianName = technicianName;
         this.technicianState = new Free(this);
-        this.workOrders = new LinkedList<>();
     }
 
     public WorkOrder createWorkOrder(String clientID) {
@@ -72,13 +70,5 @@ public class Technician extends User {
 
     public void setTechnicianState(State technicianState) {
         this.technicianState = technicianState;
-    }
-
-    public List<WorkOrder> getWorkOrders() {
-        return workOrders;
-    }
-
-    public void setWorkOrders(List<WorkOrder> workOrders) {
-        this.workOrders = workOrders;
     }
 }
