@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.dao.client;
+package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.models.entities.Client;
 

@@ -1,7 +1,7 @@
 package com.gersonfaneto.yams.dao;
 
-import com.gersonfaneto.yams.dao.client.ClientCRUD;
-import com.gersonfaneto.yams.dao.client.ClientMemoryDAO;
+import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
+import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
 
 public abstract class DAO {
     private static ClientCRUD clientCRUD;
