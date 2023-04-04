@@ -14,6 +14,8 @@ import com.gersonfaneto.yams.dao.entities.technician.TechnicianCRUD;
 import com.gersonfaneto.yams.dao.entities.technician.TechnicianMemoryDAO;
 import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderCRUD;
 import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderMemoryDAO;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderCRUD;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderMemoryDAO;
 import com.gersonfaneto.yams.dao.services.ServiceCRUD;
 import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 
@@ -26,6 +28,7 @@ public abstract class DAO {
     private static ComponentCRUD componentCRUD;
     private static ServiceCRUD serviceCRUD;
     private static PurchaseOrderCRUD purchaseOrderCRUD;
+    private static WorkOrderCRUD workOrderCRUD;
 
     public static ClientCRUD fromClients() {
         if (clientCRUD == null) {
@@ -89,5 +92,13 @@ public abstract class DAO {
         }
 
         return purchaseOrderCRUD;
+    }
+
+    public static WorkOrderCRUD fromWorkOrders() {
+        if (workOrderCRUD == null) {
+            workOrderCRUD = new WorkOrderMemoryDAO();
+        }
+
+        return workOrderCRUD;
     }
 }
