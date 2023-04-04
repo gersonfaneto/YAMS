@@ -11,22 +11,11 @@ public class Invoice {
     private String workOrderID;
     private double totalValue;
     private double paidValue;
-    private List<Payment> performedPayments;
 
-    public Invoice(String workOrderID, double totalValue, double paidValue) {
+    public Invoice(String workOrderID, double totalValue) {
         this.workOrderID = workOrderID;
         this.totalValue = totalValue;
-        this.paidValue = paidValue;
-        this.performedPayments = new LinkedList<>();
-    }
-
-    public boolean newPayment(Payment newPayment) {
-        if (newPayment.getPaidValue() + paidValue <= totalValue) {
-            performedPayments.add(newPayment);
-            return true;
-        }
-
-        return false;
+        this.paidValue = 0.0;
     }
 
     @Override
@@ -78,13 +67,5 @@ public class Invoice {
 
     public void setPaidValue(double paidValue) {
         this.paidValue = paidValue;
-    }
-
-    public List<Payment> getPerformedPayments() {
-        return performedPayments;
-    }
-
-    public void setPerformedPayments(List<Payment> performedPayments) {
-        this.performedPayments = performedPayments;
     }
 }
