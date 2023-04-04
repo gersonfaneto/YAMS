@@ -30,4 +30,9 @@ public class Free extends State {
     public boolean closeOrder() {
         return false;
     }
+
+    @Override
+    public boolean generateInvoice() {
+        return false;
+    }
 }

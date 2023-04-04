@@ -32,22 +32,22 @@ public class Technician extends User {
     }
 
     public boolean openOrder(WorkOrder workOrder) {
-        return getTechnicianState().openOrder(workOrder);
+        return technicianState.openOrder(workOrder);
     }
 
     public boolean cancelOrder() {
-        return getTechnicianState().cancelOrder();
+        return technicianState.cancelOrder();
     }
 
     public boolean closeOrder() {
-        return getTechnicianState().closeOrder();
+        return technicianState.closeOrder();
+    }
+
+    public boolean generateInvoice() {
+        return technicianState.generateInvoice();
     }
 
     // TODO: Add Implementations.
-    public boolean generateInvoice() {
-        return true;
-    }
-
     public boolean buyComponent() {
         return true;
     }

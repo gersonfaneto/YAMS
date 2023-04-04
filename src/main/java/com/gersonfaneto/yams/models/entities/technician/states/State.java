@@ -17,6 +17,7 @@ public abstract class State {
     public abstract boolean cancelOrder();
 
     public abstract boolean closeOrder();
+    public abstract boolean generateInvoice();
 
     public Technician getTechnician() {
         return technician;

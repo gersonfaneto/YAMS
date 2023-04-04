@@ -30,4 +30,9 @@ public class Occupied extends State {
 
         return true;
     }
+
+    @Override
+    public boolean generateInvoice() {
+        return getWorkOrder().generateInvoice(getWorkOrder().getTechnicianID());
+    }
 }
