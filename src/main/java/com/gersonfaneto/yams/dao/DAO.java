@@ -1,16 +1,20 @@
 package com.gersonfaneto.yams.dao;
 
+import com.gersonfaneto.yams.dao.billing.paymet.PaymentCRUD;
+import com.gersonfaneto.yams.dao.billing.paymet.PaymentMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
 import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistCRUD;
 import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.technician.TechnicianCRUD;
 import com.gersonfaneto.yams.dao.entities.technician.TechnicianMemoryDAO;
+import javafx.animation.PauseTransition;
 
 public abstract class DAO {
     private static ClientCRUD clientCRUD;
     private static ReceptionistCRUD receptionistCRUD;
     private static TechnicianCRUD technicianCRUD;
+    private static PaymentCRUD paymentCRUD;
 
     public static ClientCRUD fromClients() {
         if (clientCRUD == null) {
@@ -34,5 +38,13 @@ public abstract class DAO {
         }
 
         return technicianCRUD;
+    }
+
+    public static PaymentCRUD fromPayments() {
+        if (paymentCRUD == null) {
+            paymentCRUD = new PaymentMemoryDAO();
+        }
+
+        return paymentCRUD;
     }
 }
