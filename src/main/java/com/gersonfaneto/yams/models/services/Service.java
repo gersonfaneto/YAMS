@@ -2,12 +2,14 @@ package com.gersonfaneto.yams.models.services;
 
 public abstract class Service {
     private String serviceID;
+    private String workOrderID;
     private String serviceType;
     private String serviceDescription;
     private double clientRating;
     private double servicePrice;
 
-    public Service(String serviceType, String serviceDescription, double servicePrice) {
+    public Service(String workOrderID, String serviceType, String serviceDescription, double servicePrice) {
+        this.workOrderID = workOrderID;
         this.serviceType = serviceType;
         this.serviceDescription = serviceDescription;
         this.clientRating = 0.0;
@@ -39,6 +41,14 @@ public abstract class Service {
 
     public void setServiceID(String serviceID) {
         this.serviceID = serviceID;
+    }
+
+    public String getWorkOrderID() {
+        return workOrderID;
+    }
+
+    public void setWorkOrderID(String workOrderID) {
+        this.workOrderID = workOrderID;
     }
 
     public String getServiceType() {

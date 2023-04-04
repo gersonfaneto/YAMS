@@ -9,8 +9,8 @@ import java.util.List;
 public class Assembly extends Service {
     private List<Component> usedComponents;
 
-    public Assembly(String serviceType, String serviceDescription, List<Component> usedComponents) {
-        super(serviceType, serviceDescription, usedComponents.stream().map(Component::getComponentPrice).reduce(0.0, Double::sum));
+    public Assembly(String workOrderID, String serviceType, String serviceDescription, List<Component> usedComponents) {
+        super(workOrderID, serviceType, serviceDescription, usedComponents.stream().map(Component::getComponentPrice).reduce(0.0, Double::sum));
         this.usedComponents = usedComponents;
     }
 

@@ -8,8 +8,8 @@ public class ProgramsInstallation extends Service {
     private static final double PRICE_PER_PROGRAM = 10.00;
     private List<String> chosenPrograms;
 
-    public ProgramsInstallation(String serviceType, String serviceDescription, List<String> chosenPrograms) {
-        super(serviceType, serviceDescription, chosenPrograms.size() * PRICE_PER_PROGRAM);
+    public ProgramsInstallation(String workOrderID, String serviceType, String serviceDescription, List<String> chosenPrograms) {
+        super(workOrderID, serviceType, serviceDescription, chosenPrograms.size() * PRICE_PER_PROGRAM);
         this.chosenPrograms = chosenPrograms;
     }
 
