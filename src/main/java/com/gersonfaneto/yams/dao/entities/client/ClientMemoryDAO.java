@@ -37,8 +37,10 @@ public class ClientMemoryDAO implements ClientCRUD {
 
     @Override
     public boolean updateInformation(Client updatedClient) {
-        if (storedClients.containsValue(updatedClient)) {
-            storedClients.put(updatedClient.getClientID(), updatedClient);
+        String clientID = updatedClient.getClientID();
+
+        if (storedClients.containsKey(clientID)) {
+            storedClients.put(clientID, updatedClient);
             return true;
         }
 
