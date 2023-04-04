@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ServiceCRUD extends CRUD<Service> {
     public List<Service> findByType(String serviceType);
+    public List<Service> findByWorkOrder(String workOrderID);
 }
