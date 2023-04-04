@@ -1,10 +1,5 @@
 package com.gersonfaneto.yams.models.entities;
 
-import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.work.serviceorder.ServiceOrder;
-
-import java.util.List;
-
 public class Client {
     private String clientID;
     private String clientName;
@@ -12,14 +7,18 @@ public class Client {
     private String phoneNumber;
 
     public Client(String clientName, String homeAddress, String phoneNumber) {
-        this.clientID = "Undefined!";
         this.clientName = clientName;
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;
     }
 
-    public List<ServiceOrder> retrieveServiceOrderHistory() {
-        return DAO.fromServiceOrders().findByClient(this.clientID);
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject instanceof Client otherClient) {
+            return otherClient.clientID.equals(this.clientID);
+        }
+
+        return false;
     }
 
     @Override
@@ -30,15 +29,6 @@ public class Client {
                 Address: %s
                 Contact: %s
                 """, clientID, clientName, homeAddress, phoneNumber);
-    }
-
-    @Override
-    public boolean equals(Object objectToCompare) {
-        if (objectToCompare instanceof Client otherClient) {
-            return otherClient.clientID.equals(this.clientID);
-        }
-
-        return false;
     }
 
     public String getClientID() {
@@ -72,5 +62,4 @@ public class Client {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 }

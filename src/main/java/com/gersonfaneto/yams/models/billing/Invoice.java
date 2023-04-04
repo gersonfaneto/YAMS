@@ -1,57 +1,51 @@
 package com.gersonfaneto.yams.models.billing;
 
-import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.billing.payment.Payment;
-import com.gersonfaneto.yams.models.billing.payment.PaymentType;
+import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.models.services.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Invoice {
-    private final String serviceOrderID;
     private String invoiceID;
+    private String workOrderID;
     private double totalValue;
     private double paidValue;
+    private List<Payment> performedPayments;
 
-    public Invoice(String serviceOrderID, double totalValue) {
-        this.invoiceID = "Undefined!";
-        this.serviceOrderID = serviceOrderID;
+    public Invoice(String workOrderID, double totalValue, double paidValue) {
+        this.workOrderID = workOrderID;
         this.totalValue = totalValue;
-        this.paidValue = 0.0;
+        this.paidValue = paidValue;
+        this.performedPayments = new LinkedList<>();
     }
 
-    public List<Payment> retrievePerformedPayment() {
-        return DAO.fromPayments().findByInvoiceID(this.invoiceID);
-    }
-
-    public boolean newPayment(PaymentType paymentType, double paidValue) {
-        if (this.paidValue + paidValue >= this.totalValue) {
-            return false;
+    public boolean newPayment(Payment newPayment) {
+        if (newPayment.getPaidValue() + paidValue <= totalValue) {
+            performedPayments.add(newPayment);
+            return true;
         }
 
-        Payment newPayment = new Payment(this.invoiceID, paymentType, paidValue);
+        return false;
+    }
 
-        DAO.fromPayments().createOne(newPayment);
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject instanceof  Invoice otherInvoice) {
+            return otherInvoice.invoiceID.equals(this.invoiceID);
+        }
 
-        return true;
+        return false;
     }
 
     @Override
     public String toString() {
         return String.format("""
                 ID: %s
-                Order: %s
+                Work Order: %s
                 Total Value: R$ %.2f
                 Paid Value: R$ %.2f
-                """, invoiceID, serviceOrderID, totalValue, paidValue);
-    }
-
-    @Override
-    public boolean equals(Object objectToCompare) {
-        if (objectToCompare instanceof Invoice otherInvoice) {
-            return otherInvoice.invoiceID.equals(this.invoiceID);
-        }
-
-        return false;
+                """, invoiceID, workOrderID, totalValue, paidValue);
     }
 
     public String getInvoiceID() {
@@ -62,8 +56,12 @@ public class Invoice {
         this.invoiceID = invoiceID;
     }
 
-    public String getServiceOrderID() {
-        return serviceOrderID;
+    public String getWorkOrderID() {
+        return workOrderID;
+    }
+
+    public void setWorkOrderID(String workOrderID) {
+        this.workOrderID = workOrderID;
     }
 
     public double getTotalValue() {
@@ -75,19 +73,18 @@ public class Invoice {
     }
 
     public double getPaidValue() {
-        List<Payment> foundPayments = DAO.fromPayments().findByInvoiceID(this.invoiceID);
-        double paidValue = 0.0;
-
-        for (Payment currentPayment : foundPayments) {
-            paidValue += currentPayment.getPaidValue();
-        }
-
-        this.paidValue = paidValue;
-
         return paidValue;
     }
 
     public void setPaidValue(double paidValue) {
         this.paidValue = paidValue;
+    }
+
+    public List<Payment> getPerformedPayments() {
+        return performedPayments;
+    }
+
+    public void setPerformedPayments(List<Payment> performedPayments) {
+        this.performedPayments = performedPayments;
     }
 }

@@ -1,86 +1,104 @@
 package com.gersonfaneto.yams.dao;
 
-import com.gersonfaneto.yams.dao.client.ClientDAO;
-import com.gersonfaneto.yams.dao.client.ClientListCRUD;
-import com.gersonfaneto.yams.dao.component.ComponentDAO;
-import com.gersonfaneto.yams.dao.component.ComponentListCRUD;
-import com.gersonfaneto.yams.dao.invoice.InvoiceDAO;
-import com.gersonfaneto.yams.dao.invoice.InvoiceListCRUD;
-import com.gersonfaneto.yams.dao.payment.PaymentDAO;
-import com.gersonfaneto.yams.dao.payment.PaymentListCRUD;
-import com.gersonfaneto.yams.dao.purchaseorder.PurchaseOrderDAO;
-import com.gersonfaneto.yams.dao.purchaseorder.PurchaseOrderListCRUD;
-import com.gersonfaneto.yams.dao.service.ServiceDAO;
-import com.gersonfaneto.yams.dao.service.ServiceListCRUD;
-import com.gersonfaneto.yams.dao.serviceorder.ServiceOrderDAO;
-import com.gersonfaneto.yams.dao.serviceorder.ServiceOrderListCRUD;
-import com.gersonfaneto.yams.dao.technician.TechnicianDAO;
-import com.gersonfaneto.yams.dao.technician.TechnicianListCRUD;
+import com.gersonfaneto.yams.dao.billing.invoice.InvoiceCRUD;
+import com.gersonfaneto.yams.dao.billing.invoice.InvoiceMemoryDAO;
+import com.gersonfaneto.yams.dao.billing.paymet.PaymentCRUD;
+import com.gersonfaneto.yams.dao.billing.paymet.PaymentMemoryDAO;
+import com.gersonfaneto.yams.dao.components.ComponentCRUD;
+import com.gersonfaneto.yams.dao.components.ComponentMemoryDAO;
+import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
+import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
+import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistCRUD;
+import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistMemoryDAO;
+import com.gersonfaneto.yams.dao.entities.technician.TechnicianCRUD;
+import com.gersonfaneto.yams.dao.entities.technician.TechnicianMemoryDAO;
+import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderCRUD;
+import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderMemoryDAO;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderCRUD;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderMemoryDAO;
+import com.gersonfaneto.yams.dao.services.ServiceCRUD;
+import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 
 public abstract class DAO {
-    private static ClientDAO clientDAO;
-    private static TechnicianDAO technicianDAO;
-    private static ServiceDAO serviceDAO;
-    private static ServiceOrderDAO serviceOrderDAO;
-    private static PurchaseOrderDAO purchaseOrderDAO;
-    private static ComponentDAO componentDAO;
-    private static InvoiceDAO invoiceDAO;
-    private static PaymentDAO paymentDAO;
+    private static ClientCRUD clientCRUD;
+    private static ReceptionistCRUD receptionistCRUD;
+    private static TechnicianCRUD technicianCRUD;
+    private static PaymentCRUD paymentCRUD;
+    private static InvoiceCRUD invoiceCRUD;
+    private static ComponentCRUD componentCRUD;
+    private static ServiceCRUD serviceCRUD;
+    private static PurchaseOrderCRUD purchaseOrderCRUD;
+    private static WorkOrderCRUD workOrderCRUD;
 
-    public static ClientDAO fromClients() {
-        if (clientDAO == null) {
-            clientDAO = new ClientListCRUD();
+    public static ClientCRUD fromClients() {
+        if (clientCRUD == null) {
+            clientCRUD = new ClientMemoryDAO();
         }
-        return clientDAO;
+
+        return clientCRUD;
     }
 
-    public static TechnicianDAO fromTechnicians() {
-        if (technicianDAO == null) {
-            technicianDAO = new TechnicianListCRUD();
+    public static ReceptionistCRUD fromReceptionists() {
+        if (receptionistCRUD == null) {
+            receptionistCRUD = new ReceptionistMemoryDAO();
         }
-        return technicianDAO;
+
+        return receptionistCRUD;
     }
 
-    public static ServiceDAO fromServices() {
-        if (serviceDAO == null) {
-            serviceDAO = new ServiceListCRUD();
+    public static TechnicianCRUD fromTechnicians() {
+        if (technicianCRUD == null) {
+            technicianCRUD = new TechnicianMemoryDAO();
         }
-        return serviceDAO;
+
+        return technicianCRUD;
     }
 
-    public static ServiceOrderDAO fromServiceOrders() {
-        if (serviceOrderDAO == null) {
-            serviceOrderDAO = new ServiceOrderListCRUD();
+    public static PaymentCRUD fromPayments() {
+        if (paymentCRUD == null) {
+            paymentCRUD = new PaymentMemoryDAO();
         }
-        return serviceOrderDAO;
+
+        return paymentCRUD;
     }
 
-    public static PurchaseOrderDAO fromPurchaseOrders() {
-        if (purchaseOrderDAO == null) {
-            purchaseOrderDAO = new PurchaseOrderListCRUD();
+    public static InvoiceCRUD fromInvoices() {
+        if (invoiceCRUD == null) {
+            invoiceCRUD = new InvoiceMemoryDAO();
         }
-        return purchaseOrderDAO;
+
+        return invoiceCRUD;
     }
 
-    public static ComponentDAO fromComponents() {
-        if (componentDAO == null) {
-            componentDAO = new ComponentListCRUD();
+    public static ComponentCRUD fromComponents() {
+        if (componentCRUD == null) {
+            componentCRUD = new ComponentMemoryDAO();
         }
 
-        return componentDAO;
+        return componentCRUD;
     }
 
-    public static InvoiceDAO fromInvoices() {
-        if (invoiceDAO == null) {
-            invoiceDAO = new InvoiceListCRUD();
+    public static ServiceCRUD fromService() {
+        if (serviceCRUD == null) {
+            serviceCRUD = new ServiceMemoryDAO();
         }
-        return invoiceDAO;
+
+        return serviceCRUD;
     }
 
-    public static PaymentDAO fromPayments() {
-        if (paymentDAO == null) {
-            paymentDAO = new PaymentListCRUD();
+    public static PurchaseOrderCRUD fromPurchaseOrders() {
+        if (purchaseOrderCRUD == null) {
+            purchaseOrderCRUD = new PurchaseOrderMemoryDAO();
         }
-        return paymentDAO;
+
+        return purchaseOrderCRUD;
+    }
+
+    public static WorkOrderCRUD fromWorkOrders() {
+        if (workOrderCRUD == null) {
+            workOrderCRUD = new WorkOrderMemoryDAO();
+        }
+
+        return workOrderCRUD;
     }
 }
