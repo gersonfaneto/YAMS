@@ -17,21 +17,23 @@ public class WorkOrder {
     private State workOrderState;
     private Calendar createdAt;
     private Calendar closedAt;
-    private List<Service> selectedServices;
 
     public WorkOrder(String clientID) {
         this.clientID = clientID;
         this.workOrderState = new Created(this);
         this.createdAt = Calendar.getInstance();
-        this.selectedServices = new LinkedList<>();
     }
 
     public boolean addService(String technicianID, Service chosenService) {
         return workOrderState.addService(technicianID, chosenService);
     }
 
-    public boolean removeService(String technicianID,Service chosenService) {
+    public boolean removeService(String technicianID, Service chosenService) {
         return workOrderState.removeService(technicianID, chosenService);
+    }
+
+    public boolean generateInvoice(String technicianID) {
+        return workOrderState.generateInvoice(technicianID);
     }
 
     @Override
@@ -108,13 +110,5 @@ public class WorkOrder {
 
     public void setClosedAt(Calendar closedAt) {
         this.closedAt = closedAt;
-    }
-
-    public List<Service> getSelectedServices() {
-        return selectedServices;
-    }
-
-    public void setSelectedServices(List<Service> selectedServices) {
-        this.selectedServices = selectedServices;
     }
 }

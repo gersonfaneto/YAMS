@@ -17,4 +17,9 @@ public class Payed extends State{
     public boolean removeService(String technicianID, Service chosenServices) {
         return false;
     }
+
+    @Override
+    public boolean generateInvoice(String technicianID) {
+        return false;
+    }
 }

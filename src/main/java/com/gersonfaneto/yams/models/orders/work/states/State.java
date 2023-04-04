@@ -12,6 +12,7 @@ public abstract class State {
 
     public abstract boolean addService(String technicianID, Service chosenService);
     public abstract boolean removeService(String technicianID, Service chosenServices);
+    public abstract boolean generateInvoice(String technicianID);
 
     public WorkOrder getWorkOrder() {
         return workOrder;
