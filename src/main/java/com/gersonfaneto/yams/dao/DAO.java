@@ -1,5 +1,7 @@
 package com.gersonfaneto.yams.dao;
 
+import com.gersonfaneto.yams.dao.billing.invoice.InvoiceCRUD;
+import com.gersonfaneto.yams.dao.billing.invoice.InvoiceMemoryDAO;
 import com.gersonfaneto.yams.dao.billing.paymet.PaymentCRUD;
 import com.gersonfaneto.yams.dao.billing.paymet.PaymentMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
@@ -15,6 +17,7 @@ public abstract class DAO {
     private static ReceptionistCRUD receptionistCRUD;
     private static TechnicianCRUD technicianCRUD;
     private static PaymentCRUD paymentCRUD;
+    private static InvoiceCRUD invoiceCRUD;
 
     public static ClientCRUD fromClients() {
         if (clientCRUD == null) {
@@ -46,5 +49,13 @@ public abstract class DAO {
         }
 
         return paymentCRUD;
+    }
+
+    public static InvoiceCRUD fromInvoices() {
+        if (invoiceCRUD == null) {
+            invoiceCRUD = new InvoiceMemoryDAO();
+        }
+
+        return invoiceCRUD;
     }
 }
