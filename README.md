@@ -27,7 +27,7 @@
 more practical and efficient. The final product should be capable of managing:
 
 - Clients.
-- Service Orders.
+- Work Orders.
 - Payments.
 - Stock.
 - Reports.
