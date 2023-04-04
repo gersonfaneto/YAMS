@@ -12,7 +12,8 @@ import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistCRUD;
 import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.technician.TechnicianCRUD;
 import com.gersonfaneto.yams.dao.entities.technician.TechnicianMemoryDAO;
-import javafx.animation.PauseTransition;
+import com.gersonfaneto.yams.dao.services.ServiceCRUD;
+import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 
 public abstract class DAO {
     private static ClientCRUD clientCRUD;
@@ -21,6 +22,7 @@ public abstract class DAO {
     private static PaymentCRUD paymentCRUD;
     private static InvoiceCRUD invoiceCRUD;
     private static ComponentCRUD componentCRUD;
+    private static ServiceCRUD serviceCRUD;
 
     public static ClientCRUD fromClients() {
         if (clientCRUD == null) {
@@ -68,5 +70,13 @@ public abstract class DAO {
         }
 
         return componentCRUD;
+    }
+
+    public static ServiceCRUD fromService() {
+        if (serviceCRUD == null) {
+            serviceCRUD = new ServiceMemoryDAO();
+        }
+
+        return serviceCRUD;
     }
 }
