@@ -4,6 +4,8 @@ import com.gersonfaneto.yams.dao.billing.invoice.InvoiceCRUD;
 import com.gersonfaneto.yams.dao.billing.invoice.InvoiceMemoryDAO;
 import com.gersonfaneto.yams.dao.billing.paymet.PaymentCRUD;
 import com.gersonfaneto.yams.dao.billing.paymet.PaymentMemoryDAO;
+import com.gersonfaneto.yams.dao.components.ComponentCRUD;
+import com.gersonfaneto.yams.dao.components.ComponentMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
 import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistCRUD;
@@ -18,6 +20,7 @@ public abstract class DAO {
     private static TechnicianCRUD technicianCRUD;
     private static PaymentCRUD paymentCRUD;
     private static InvoiceCRUD invoiceCRUD;
+    private static ComponentCRUD componentCRUD;
 
     public static ClientCRUD fromClients() {
         if (clientCRUD == null) {
@@ -57,5 +60,13 @@ public abstract class DAO {
         }
 
         return invoiceCRUD;
+    }
+
+    public static ComponentCRUD fromComponents() {
+        if (componentCRUD == null) {
+            componentCRUD = new ComponentMemoryDAO();
+        }
+
+        return componentCRUD;
     }
 }
