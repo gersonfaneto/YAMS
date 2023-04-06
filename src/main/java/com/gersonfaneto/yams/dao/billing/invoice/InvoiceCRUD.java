@@ -4,5 +4,6 @@ import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.billing.Invoice;
 
 public interface InvoiceCRUD extends CRUD<Invoice> {
-    public Invoice findByWorkOrder(String workOrderID);
+
+  Invoice findByWorkOrder(String workOrderID);
 }

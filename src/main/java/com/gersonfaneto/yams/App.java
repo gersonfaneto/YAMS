@@ -9,26 +9,27 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello, World!");
-        Button primaryButton = new Button();
-        primaryButton.setText("Say \"Hello, World!\"");
-        primaryButton.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+  public static void main(String[] args) {
+    launch(args);
+  }
 
-        StackPane primaryPane = new StackPane();
-        primaryPane.getChildren().add(primaryButton);
-        primaryStage.setScene(new Scene(primaryPane, 300, 250));
-        primaryStage.show();
-    }
+  @Override
+  public void start(Stage primaryStage) {
+    primaryStage.setTitle("Hello, World!");
+    Button primaryButton = new Button();
+    primaryButton.setText("Say \"Hello, World!\"");
+    primaryButton.setOnAction(new EventHandler<ActionEvent>() {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+      @Override
+      public void handle(ActionEvent event) {
+        System.out.println("Hello World!");
+      }
+    });
+
+    StackPane primaryPane = new StackPane();
+    primaryPane.getChildren().add(primaryButton);
+    primaryStage.setScene(new Scene(primaryPane, 300, 250));
+    primaryStage.show();
+  }
 }

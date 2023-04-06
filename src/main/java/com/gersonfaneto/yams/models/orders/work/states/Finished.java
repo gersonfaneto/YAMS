@@ -6,32 +6,32 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
 
 public class Finished extends State {
-    public Finished(WorkOrder workOrder) {
-        super(workOrder);
-    }
 
-    @Override
-    public boolean addService(String technicianID, Service chosenService) {
-        return false;
-    }
+  public Finished(WorkOrder workOrder) {
+    super(workOrder);
+  }
 
-    @Override
-    public boolean removeService(String technicianID, Service chosenServices) {
-        return false;
-    }
+  @Override
+  public boolean addService(String technicianID, Service chosenService) {
+    return false;
+  }
 
-    @Override
-    public boolean generateInvoice(String technicianID) {
-        DAO.fromInvoices().createOne(new Invoice(
-                getWorkOrder().getWorkOrderID(),
-                DAO.fromService()
-                        .findByWorkOrder(getWorkOrder().getWorkOrderID())
-                        .stream()
-                        .map(Service::getServicePrice)
-                        .reduce(0.0, Double::sum)
-        ));
+  @Override
+  public boolean removeService(String technicianID, Service chosenServices) {
+    return false;
+  }
 
+  @Override
+  public boolean generateInvoice(String technicianID) {
+    DAO.fromInvoices().createOne(new Invoice(
+        getWorkOrder().getWorkOrderID(),
+        DAO.fromService()
+            .findByWorkOrder(getWorkOrder().getWorkOrderID())
+            .stream()
+            .map(Service::getServicePrice)
+            .reduce(0.0, Double::sum)
+    ));
 
-        return true;
-    }
+    return true;
+  }
 }

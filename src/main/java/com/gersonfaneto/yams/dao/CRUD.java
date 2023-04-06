@@ -3,15 +3,16 @@ package com.gersonfaneto.yams.dao;
 import java.util.List;
 
 public interface CRUD<T> {
-    T createOne(T newObject);
 
-    T findByID(String targetID);
+  T createOne(T newObject);
 
-    List<T> findMany();
+  T findByID(String targetID);
 
-    boolean updateInformation(T updatedObject);
+  List<T> findMany();
 
-    boolean deleteByID(String targetID);
+  boolean updateInformation(T updatedObject);
 
-    boolean deleteMany();
+  boolean deleteByID(String targetID);
+
+  boolean deleteMany();
 }

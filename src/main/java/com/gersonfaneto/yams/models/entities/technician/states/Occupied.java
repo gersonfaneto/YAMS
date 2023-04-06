@@ -6,33 +6,34 @@ import com.gersonfaneto.yams.models.orders.work.states.Canceled;
 import com.gersonfaneto.yams.models.orders.work.states.Finished;
 
 public class Occupied extends State {
-    public Occupied(Technician technician, WorkOrder workOrder) {
-        super(technician, workOrder);
-    }
 
-    @Override
-    public boolean openOrder(WorkOrder workOrder) {
-        return false;
-    }
+  public Occupied(Technician technician, WorkOrder workOrder) {
+    super(technician, workOrder);
+  }
 
-    @Override
-    public boolean cancelOrder() {
-        getWorkOrder().setWorkOrderState(new Canceled(getWorkOrder()));
-        getTechnician().setTechnicianState(new Free(getTechnician()));
+  @Override
+  public boolean openOrder(WorkOrder workOrder) {
+    return false;
+  }
 
-        return false;
-    }
+  @Override
+  public boolean cancelOrder() {
+    getWorkOrder().setWorkOrderState(new Canceled(getWorkOrder()));
+    getTechnician().setTechnicianState(new Free(getTechnician()));
 
-    @Override
-    public boolean closeOrder() {
-        getWorkOrder().setWorkOrderState(new Finished(getWorkOrder()));
-        getTechnician().setTechnicianState(new Free(getTechnician()));
+    return false;
+  }
 
-        return true;
-    }
+  @Override
+  public boolean closeOrder() {
+    getWorkOrder().setWorkOrderState(new Finished(getWorkOrder()));
+    getTechnician().setTechnicianState(new Free(getTechnician()));
 
-    @Override
-    public boolean generateInvoice() {
-        return getWorkOrder().generateInvoice(getWorkOrder().getTechnicianID());
-    }
+    return true;
+  }
+
+  @Override
+  public boolean generateInvoice() {
+    return getWorkOrder().generateInvoice(getWorkOrder().getTechnicianID());
+  }
 }

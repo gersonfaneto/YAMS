@@ -6,69 +6,67 @@ import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Technician extends User {
-    private String technicianName;
-    private State technicianState;
 
-    public Technician(String userEmail, String userPassword, String technicianName) {
-        super(userEmail, userPassword);
-        this.technicianName = technicianName;
-        this.technicianState = new Free(this);
-    }
+  private String technicianName;
+  private State technicianState;
 
-    public WorkOrder createWorkOrder(String clientID) {
-        return new WorkOrder(clientID);
-    }
+  public Technician(String userEmail, String userPassword, String technicianName) {
+    super(userEmail, userPassword);
+    this.technicianName = technicianName;
+    this.technicianState = new Free(this);
+  }
 
-    public boolean addService(WorkOrder workOrder, Service chosenService) {
-        return workOrder.addService(getUserID(), chosenService);
-    }
+  public WorkOrder createWorkOrder(String clientID) {
+    return new WorkOrder(clientID);
+  }
 
-    public boolean removeService(WorkOrder workOrder, Service chosenService) {
-        return workOrder.removeService(getUserID(), chosenService);
-    }
+  public boolean addService(WorkOrder workOrder, Service chosenService) {
+    return workOrder.addService(getUserID(), chosenService);
+  }
 
-    public boolean openOrder(WorkOrder workOrder) {
-        return technicianState.openOrder(workOrder);
-    }
+  public boolean removeService(WorkOrder workOrder, Service chosenService) {
+    return workOrder.removeService(getUserID(), chosenService);
+  }
 
-    public boolean cancelOrder() {
-        return technicianState.cancelOrder();
-    }
+  public boolean openOrder(WorkOrder workOrder) {
+    return technicianState.openOrder(workOrder);
+  }
 
-    public boolean closeOrder() {
-        return technicianState.closeOrder();
-    }
+  public boolean cancelOrder() {
+    return technicianState.cancelOrder();
+  }
 
-    public boolean generateInvoice() {
-        return technicianState.generateInvoice();
-    }
+  public boolean closeOrder() {
+    return technicianState.closeOrder();
+  }
 
-    // TODO: Add Implementations.
-    public boolean buyComponent() {
-        return true;
-    }
+  public boolean generateInvoice() {
+    return technicianState.generateInvoice();
+  }
 
-    public boolean generateReport() {
-        return true;
-    }
+  // TODO: Add Implementations.
+  public boolean buyComponent() {
+    return true;
+  }
 
-    public String getTechnicianName() {
-        return technicianName;
-    }
+  public boolean generateReport() {
+    return true;
+  }
 
-    public void setTechnicianName(String technicianName) {
-        this.technicianName = technicianName;
-    }
+  public String getTechnicianName() {
+    return technicianName;
+  }
 
-    public State getTechnicianState() {
-        return technicianState;
-    }
+  public void setTechnicianName(String technicianName) {
+    this.technicianName = technicianName;
+  }
 
-    public void setTechnicianState(State technicianState) {
-        this.technicianState = technicianState;
-    }
+  public State getTechnicianState() {
+    return technicianState;
+  }
+
+  public void setTechnicianState(State technicianState) {
+    this.technicianState = technicianState;
+  }
 }
