@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.models.services;
 
-import java.util.SplittableRandom;
-
 public abstract class Service {
 
   private String serviceID;
@@ -10,6 +8,7 @@ public abstract class Service {
   private String serviceDescription;
   private double clientRating;
   private double servicePrice;
+  private boolean isComplete;
 
   public Service(String workOrderID, String serviceType, String serviceDescription,
       double servicePrice) {
@@ -18,6 +17,7 @@ public abstract class Service {
     this.serviceDescription = serviceDescription;
     this.clientRating = 0.0;
     this.servicePrice = servicePrice;
+    this.isComplete = false;
   }
 
   public Service() {
@@ -46,11 +46,13 @@ public abstract class Service {
   @Override
   public String toString() {
     return String.format("""
-        ID: %s
-        Type: %s
-        Description: %s
-        Price: R$ %.2f
-        """, serviceID, serviceType, serviceDescription, servicePrice);
+            ID: %s
+            Type: %s
+            Description: %s
+            Price: R$ %.2f
+            Status: %s
+            """, serviceID, serviceType, serviceDescription, servicePrice,
+        (isComplete) ? "Complete" : "Pending");
   }
 
   public String getServiceID() {
@@ -99,5 +101,13 @@ public abstract class Service {
 
   public void setServicePrice(double servicePrice) {
     this.servicePrice = servicePrice;
+  }
+
+  public boolean isComplete() {
+    return isComplete;
+  }
+
+  public void setComplete(boolean complete) {
+    isComplete = complete;
   }
 }
