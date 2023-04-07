@@ -45,15 +45,6 @@ public class Technician extends User {
     return technicianState.generateInvoice();
   }
 
-  // TODO: Add Implementations.
-  public boolean buyComponent() {
-    return true;
-  }
-
-  public boolean generateReport() {
-    return true;
-  }
-
   public String getTechnicianName() {
     return technicianName;
   }
