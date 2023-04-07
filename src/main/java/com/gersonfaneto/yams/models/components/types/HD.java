@@ -10,4 +10,13 @@ public class HD extends Component {
   public HD(String componentDescription, double componentCost) {
     super(COMPONENT_TYPE, componentDescription, componentCost, COMPONENT_PRICE);
   }
+
+  public HD() {
+    super();
+  }
+
+  @Override
+  public HD clone(String componentDescription, double componentCost) {
+    return new HD(componentDescription, componentCost);
+  }
 }

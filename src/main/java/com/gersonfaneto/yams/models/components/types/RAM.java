@@ -10,4 +10,13 @@ public class RAM extends Component {
   public RAM(String componentDescription, double componentCost) {
     super(COMPONENT_TYPE, componentDescription, componentCost, COMPONENT_PRICE);
   }
+
+  public RAM() {
+    super();
+  }
+
+  @Override
+  public RAM clone(String componentDescription, double componentCost) {
+    return new RAM(componentDescription, componentCost);
+  }
 }

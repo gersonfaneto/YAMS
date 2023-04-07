@@ -10,4 +10,13 @@ public class SSD extends Component {
   public SSD(String componentDescription, double componentCost) {
     super(COMPONENT_TYPE, componentDescription, componentCost, COMPONENT_PRICE);
   }
+
+  public SSD() {
+    super();
+  }
+
+  @Override
+  public SSD clone(String componentDescription, double componentCost) {
+    return new SSD(componentDescription, componentCost);
+  }
 }

@@ -8,4 +8,13 @@ public class Others extends Component {
       double componentPrice) {
     super(componentType, componentDescription, componentCost, componentPrice);
   }
+
+  public Others() {
+    super();
+  }
+
+  @Override
+  public Others clone(String componentDescription, double componentCost) {
+    return new Others("Undefined", componentDescription, componentCost, 0.0);
+  }
 }

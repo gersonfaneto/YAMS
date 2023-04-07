@@ -10,4 +10,13 @@ public class PowerSupply extends Component {
   public PowerSupply(String componentDescription, double componentCost) {
     super(COMPONENT_TYPE, componentDescription, componentCost, COMPONENT_PRICE);
   }
+
+  public PowerSupply() {
+    super();
+  }
+
+  @Override
+  public PowerSupply clone(String componentDescription, double componentCost) {
+    return new PowerSupply(componentDescription, componentCost);
+  }
 }

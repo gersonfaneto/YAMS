@@ -16,6 +16,12 @@ public abstract class Component {
     this.componentPrice = componentPrice;
   }
 
+  public Component() {
+
+  }
+
+  public abstract Component clone(String componentDescription, double componentCost);
+
   @Override
   public boolean equals(Object otherObject) {
     if (this == otherObject) {

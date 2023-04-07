@@ -10,4 +10,13 @@ public class Motherboard extends Component {
   public Motherboard(String componentDescription, double componentCost) {
     super(COMPONENT_TYPE, componentDescription, componentCost, COMPONENT_PRICE);
   }
+
+  public Motherboard() {
+    super();
+  }
+
+  @Override
+  public Motherboard clone(String componentDescription, double componentCost) {
+    return new Motherboard(componentDescription, componentCost);
+  }
 }
