@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.factories.types;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.types.Assembly;
 import com.gersonfaneto.yams.models.services.types.Cleaning;
+import com.gersonfaneto.yams.models.services.types.Formatting;
 import com.gersonfaneto.yams.models.services.types.ProgramsInstallation;
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class ServiceFactory {
 
     servicePrototypes.put("Assembly", new Assembly());
     servicePrototypes.put("Cleaning", new Cleaning());
-    servicePrototypes.put("Formatting", new Cleaning());
+    servicePrototypes.put("Formatting", new Formatting());
     servicePrototypes.put("Programs Installation", new ProgramsInstallation());
   }
 
