@@ -1,5 +1,7 @@
 package com.gersonfaneto.yams.models.billing;
 
+import javax.crypto.spec.IvParameterSpec;
+
 public class Invoice {
 
   private String invoiceID;
@@ -15,11 +17,19 @@ public class Invoice {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof Invoice otherInvoice) {
-      return otherInvoice.invoiceID.equals(this.invoiceID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof Invoice otherInvoice)) {
+      return false;
+    }
+
+    return invoiceID.equals(otherInvoice.invoiceID);
   }
 
   @Override

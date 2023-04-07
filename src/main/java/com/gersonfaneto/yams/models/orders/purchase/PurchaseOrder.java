@@ -20,11 +20,19 @@ public class PurchaseOrder {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof PurchaseOrder otherPurchaseOrder) {
-      return otherPurchaseOrder.purchaseOrderID.equals(this.purchaseOrderID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof PurchaseOrder otherPurchaseOrder)) {
+      return false;
+    }
+
+    return purchaseOrderID.equals(otherPurchaseOrder.purchaseOrderID);
   }
 
   @Override

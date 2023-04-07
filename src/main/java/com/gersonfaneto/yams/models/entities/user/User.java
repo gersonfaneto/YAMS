@@ -13,11 +13,19 @@ public abstract class User {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof User otherClient) {
-      return otherClient.userID.equals(this.userID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof User otherUser)) {
+      return false;
+    }
+
+    return userID.equals(otherUser.userID);
   }
 
   @Override

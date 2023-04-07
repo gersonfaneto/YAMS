@@ -35,11 +35,19 @@ public class WorkOrder {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof WorkOrder otherWorkOrder) {
-      return otherWorkOrder.workOrderID.equals(this.workOrderID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof WorkOrder otherWorkOrder)) {
+      return false;
+    }
+
+    return workOrderID.equals(otherWorkOrder.workOrderID);
   }
 
   @Override

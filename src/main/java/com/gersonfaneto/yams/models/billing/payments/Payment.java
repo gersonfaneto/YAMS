@@ -13,11 +13,19 @@ public abstract class Payment {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof Payment otherPayment) {
-      return otherPayment.paymentID.equals(this.paymentID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof Payment otherPayment)) {
+      return false;
+    }
+
+    return paymentID.equals(otherPayment.paymentID);
   }
 
   @Override

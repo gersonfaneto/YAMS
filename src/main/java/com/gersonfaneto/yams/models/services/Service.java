@@ -1,5 +1,7 @@
 package com.gersonfaneto.yams.models.services;
 
+import java.util.SplittableRandom;
+
 public abstract class Service {
 
   private String serviceID;
@@ -20,11 +22,19 @@ public abstract class Service {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof Service otherService) {
-      return otherService.serviceID.equals(this.serviceID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof Service otherService)) {
+      return false;
+    }
+
+    return serviceID.equals(otherService.serviceID);
   }
 
   @Override

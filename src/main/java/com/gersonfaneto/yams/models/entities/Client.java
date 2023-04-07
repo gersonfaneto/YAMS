@@ -15,11 +15,19 @@ public class Client {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof Client otherClient) {
-      return otherClient.clientID.equals(this.clientID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof Client otherClient)) {
+      return false;
+    }
+
+    return clientID.equals(otherClient.clientID);
   }
 
   @Override

@@ -18,11 +18,19 @@ public abstract class Component {
 
   @Override
   public boolean equals(Object otherObject) {
-    if (otherObject instanceof Component otherComponent) {
-      return otherComponent.componentID.equals(this.componentID);
+    if (this == otherObject) {
+      return true;
     }
 
-    return false;
+    if (otherObject == null) {
+      return false;
+    }
+
+    if (!(otherObject instanceof Component otherComponent)) {
+      return false;
+    }
+
+    return componentID.equals(otherComponent.componentID);
   }
 
   @Override
