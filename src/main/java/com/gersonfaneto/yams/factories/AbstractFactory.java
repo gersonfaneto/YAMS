@@ -1,9 +1,11 @@
 package com.gersonfaneto.yams.factories;
 
 import com.gersonfaneto.yams.factories.types.PaymentFactory;
+import com.gersonfaneto.yams.factories.types.ServiceFactory;
 
 public abstract class AbstractFactory {
   private static PaymentFactory paymentFactory;
+  private static ServiceFactory serviceFactory;
 
   public static PaymentFactory fromPayments() {
     if (paymentFactory == null) {
@@ -11,5 +13,13 @@ public abstract class AbstractFactory {
     }
 
     return paymentFactory;
+  }
+
+  public static ServiceFactory fromServices() {
+    if (serviceFactory == null) {
+      serviceFactory = new ServiceFactory();
+    }
+
+    return serviceFactory;
   }
 }
