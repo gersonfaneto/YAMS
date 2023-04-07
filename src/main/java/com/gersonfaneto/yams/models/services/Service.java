@@ -20,6 +20,12 @@ public abstract class Service {
     this.servicePrice = servicePrice;
   }
 
+  public Service() {
+
+  }
+
+  public abstract Service clone(String workOrderID, String serviceDescription);
+
   @Override
   public boolean equals(Object otherObject) {
     if (this == otherObject) {
