@@ -8,4 +8,13 @@ public class CreditCard extends Payment {
   public CreditCard(String invoiceID, double paidValue) {
     super(PAYMENT_METHOD, invoiceID, paidValue);
   }
+
+  public CreditCard() {
+    super();
+  }
+
+  @Override
+  public CreditCard clone(String invoiceID, double paidValue) {
+    return new CreditCard(invoiceID, paidValue);
+  }
 }

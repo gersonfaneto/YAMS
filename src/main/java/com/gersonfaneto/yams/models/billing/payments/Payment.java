@@ -13,6 +13,12 @@ public abstract class Payment {
     this.paidValue = paidValue;
   }
 
+  public Payment() {
+
+  }
+
+  public abstract Payment clone(String invoiceID, double paidValue);
+
   @Override
   public boolean equals(Object otherObject) {
     if (this == otherObject) {
@@ -34,9 +40,10 @@ public abstract class Payment {
   public String toString() {
     return String.format("""
         ID: %s
+        Method: %s
         Invoice: %s
         Value: R$ %.2f
-        """, paymentID, invoiceID, paidValue);
+        """, paymentID, paymentMethod, invoiceID, paidValue);
   }
 
   public String getPaymentID() {

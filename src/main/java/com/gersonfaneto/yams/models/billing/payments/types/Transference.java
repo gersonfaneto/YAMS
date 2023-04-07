@@ -8,4 +8,13 @@ public class Transference extends Payment {
   public Transference(String invoiceID, double paidValue) {
     super(PAYMENT_METHOD, invoiceID, paidValue);
   }
+
+  public Transference() {
+    super();
+  }
+
+  @Override
+  public Transference clone(String invoiceID, double paidValue) {
+    return new Transference(invoiceID, paidValue);
+  }
 }
