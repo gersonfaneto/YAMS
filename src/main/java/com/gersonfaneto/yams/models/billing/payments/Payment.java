@@ -4,10 +4,12 @@ public abstract class Payment {
 
   private String paymentID;
   private String invoiceID;
+  private String paymentMethod;
   private double paidValue;
 
-  public Payment(String invoiceID, double paidValue) {
+  public Payment(String paymentMethod, String invoiceID, double paidValue) {
     this.invoiceID = invoiceID;
+    this.paymentMethod = paymentMethod;
     this.paidValue = paidValue;
   }
 
@@ -51,6 +53,14 @@ public abstract class Payment {
 
   public void setInvoiceID(String invoiceID) {
     this.invoiceID = invoiceID;
+  }
+
+  public String getPaymentMethod() {
+    return paymentMethod;
+  }
+
+  public void setPaymentMethod(String paymentMethod) {
+    this.paymentMethod = paymentMethod;
   }
 
   public double getPaidValue() {
