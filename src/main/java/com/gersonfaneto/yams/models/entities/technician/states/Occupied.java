@@ -5,6 +5,7 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Canceled;
 import com.gersonfaneto.yams.models.orders.work.states.Finished;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Occupied extends State {
 
@@ -19,6 +20,7 @@ public class Occupied extends State {
 
   @Override
   public boolean cancelOrder() {
+    getWorkOrder().setClosedAt(Calendar.getInstance());
     getWorkOrder().setWorkOrderState(new Canceled(getWorkOrder()));
     getTechnician().setTechnicianState(new Free(getTechnician()));
 
