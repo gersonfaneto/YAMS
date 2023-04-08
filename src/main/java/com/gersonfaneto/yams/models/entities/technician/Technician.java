@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
+import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
@@ -18,7 +19,7 @@ public class Technician extends User {
   }
 
   public WorkOrder createWorkOrder(String clientID) {
-    return new WorkOrder(clientID);
+    return DAO.fromWorkOrders().createOne(new WorkOrder(clientID));
   }
 
   public boolean addService(WorkOrder workOrder, Service chosenService) {
