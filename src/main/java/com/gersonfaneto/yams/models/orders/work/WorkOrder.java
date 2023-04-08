@@ -4,6 +4,7 @@ import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.services.Service;
 import java.util.Calendar;
+import java.util.List;
 
 public class WorkOrder {
 
@@ -14,11 +15,13 @@ public class WorkOrder {
   private State workOrderState;
   private Calendar createdAt;
   private Calendar closedAt;
+  private List<Service> chosenServices;
 
-  public WorkOrder(String clientID) {
+  public WorkOrder(String clientID, List<Service> chosenServices) {
     this.clientID = clientID;
     this.workOrderState = new Created(this);
     this.createdAt = Calendar.getInstance();
+    this.chosenServices = chosenServices;
   }
 
   public boolean addService(String technicianID, Service chosenService) {
