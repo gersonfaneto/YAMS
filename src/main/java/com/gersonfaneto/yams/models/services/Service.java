@@ -1,6 +1,10 @@
 package com.gersonfaneto.yams.models.services;
 
-public abstract class Service {
+import com.gersonfaneto.yams.builders.service.ServiceBuilder;
+import com.gersonfaneto.yams.models.components.Component;
+import java.util.List;
+
+public class Service {
 
   private String serviceID;
   private String workOrderID;
@@ -8,23 +12,20 @@ public abstract class Service {
   private String serviceDescription;
   private double clientRating;
   private double servicePrice;
-  private boolean isComplete;
+  private boolean isComplete = false;
+  private List<Component> usedComponents;
 
-  public Service(String workOrderID, String serviceType, String serviceDescription,
-      double servicePrice) {
-    this.workOrderID = workOrderID;
-    this.serviceType = serviceType;
-    this.serviceDescription = serviceDescription;
-    this.clientRating = 0.0;
-    this.servicePrice = servicePrice;
-    this.isComplete = false;
+  public Service(ServiceBuilder serviceBuilder) {
+    this.workOrderID = serviceBuilder.getWorkOrderID();
+    this.serviceType = serviceBuilder.getServiceDescription();
+    this.serviceDescription = serviceBuilder.getServiceDescription();
+    this.servicePrice = serviceBuilder.getServicePrice();
+    this.usedComponents = serviceBuilder.getUsedComponents();
   }
 
   public Service() {
 
   }
-
-  public abstract Service clone(String workOrderID, String serviceDescription);
 
   @Override
   public boolean equals(Object otherObject) {
@@ -109,5 +110,14 @@ public abstract class Service {
 
   public void setComplete(boolean complete) {
     isComplete = complete;
+  }
+
+  public List<Component> getUsedComponents() {
+    return usedComponents;
+  }
+
+  public void setUsedComponents(
+      List<Component> usedComponents) {
+    this.usedComponents = usedComponents;
   }
 }

@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.models.components;
 
-import com.gersonfaneto.yams.builders.types.ComponentBuilder;
+import com.gersonfaneto.yams.builders.component.ComponentBuilder;
 
 public class Component {
 
