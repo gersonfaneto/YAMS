@@ -1,7 +1,8 @@
 package com.gersonfaneto.yams.models.billing;
 
+import com.gersonfaneto.yams.builders.Builder;
+import com.gersonfaneto.yams.builders.types.PaymentBuilder;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.factories.AbstractFactory;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import java.util.List;
 
@@ -14,19 +15,6 @@ public class Invoice {
   public Invoice(String workOrderID, double totalValue) {
     this.workOrderID = workOrderID;
     this.totalValue = totalValue;
-  }
-
-  public boolean newPayment(String paymentMethod, double paidValue) {
-    if (totalValue + paidValue >= calculatePaidValue()) {
-      return false;
-    }
-
-    Payment newPayment = AbstractFactory.fromPayments()
-        .generatePayment(paymentMethod, invoiceID, paidValue);
-
-    DAO.fromPayments().createOne(newPayment);
-
-    return true;
   }
 
   public double calculatePaidValue() {

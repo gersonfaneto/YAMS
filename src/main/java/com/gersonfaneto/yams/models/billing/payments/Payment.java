@@ -1,23 +1,23 @@
 package com.gersonfaneto.yams.models.billing.payments;
 
-public abstract class Payment {
+import com.gersonfaneto.yams.builders.types.PaymentBuilder;
+
+public class Payment {
 
   private String paymentID;
   private String invoiceID;
-  private String paymentMethod;
+  private PaymentMethod paymentMethod;
   private double paidValue;
 
-  public Payment(String paymentMethod, String invoiceID, double paidValue) {
-    this.invoiceID = invoiceID;
-    this.paymentMethod = paymentMethod;
-    this.paidValue = paidValue;
+  public Payment(PaymentBuilder paymentBuilder) {
+    this.invoiceID = paymentBuilder.getInvoiceID();
+    this.paymentMethod = paymentBuilder.getPaymentMethod();
+    this.paidValue = paymentBuilder.getPaidValue();
   }
 
   public Payment() {
 
   }
-
-  public abstract Payment clone(String invoiceID, double paidValue);
 
   @Override
   public boolean equals(Object otherObject) {
@@ -62,11 +62,11 @@ public abstract class Payment {
     this.invoiceID = invoiceID;
   }
 
-  public String getPaymentMethod() {
+  public PaymentMethod getPaymentMethod() {
     return paymentMethod;
   }
 
-  public void setPaymentMethod(String paymentMethod) {
+  public void setPaymentMethod(PaymentMethod paymentMethod) {
     this.paymentMethod = paymentMethod;
   }
 
