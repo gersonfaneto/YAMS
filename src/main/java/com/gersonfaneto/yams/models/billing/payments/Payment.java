@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.models.billing.payments;
 
-import com.gersonfaneto.yams.builders.types.PaymentBuilder;
+import com.gersonfaneto.yams.builders.payment.PaymentBuilder;
 
 public class Payment {
 

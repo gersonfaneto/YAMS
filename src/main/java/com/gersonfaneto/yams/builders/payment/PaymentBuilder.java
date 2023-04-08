@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.builders.types;
+package com.gersonfaneto.yams.builders.payment;
 
 import com.gersonfaneto.yams.builders.Builder;
 import com.gersonfaneto.yams.models.billing.payments.Payment;

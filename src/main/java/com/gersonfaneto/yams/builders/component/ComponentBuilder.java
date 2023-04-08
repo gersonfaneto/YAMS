@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.builders.types;
+package com.gersonfaneto.yams.builders.component;
 
 
 import static com.gersonfaneto.yams.models.components.ComponentType.Others;

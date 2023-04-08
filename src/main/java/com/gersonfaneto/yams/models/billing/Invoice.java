@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.models.billing;
 
-import com.gersonfaneto.yams.builders.Builder;
-import com.gersonfaneto.yams.builders.types.PaymentBuilder;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import java.util.List;
