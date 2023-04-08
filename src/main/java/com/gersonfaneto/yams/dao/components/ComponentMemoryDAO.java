@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.components;
 
 import com.gersonfaneto.yams.models.components.Component;
+import com.gersonfaneto.yams.models.components.ComponentType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,7 @@ public class ComponentMemoryDAO implements ComponentCRUD {
   }
 
   @Override
-  public List<Component> findByType(String componentType) {
+  public List<Component> findByType(ComponentType componentType) {
     return storedComponents.values()
         .stream()
         .filter(x -> x.getComponentType().equals(componentType))
