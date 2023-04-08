@@ -1,21 +1,23 @@
 package com.gersonfaneto.yams.models.orders.purchase;
 
+import com.gersonfaneto.yams.builders.orders.purchase.PurchaseOrderBuilder;
+import com.gersonfaneto.yams.models.components.ComponentType;
+
 public class PurchaseOrder {
 
   private String purchaseOrderID;
-  private String componentType;
+  private ComponentType componentType;
   private String componentDescription;
   private int boughtAmount;
   private double componentCost;
   private double componentPrice;
 
-  public PurchaseOrder(String componentType, String componentDescription, int boughtAmount,
-      double componentCost, double componentPrice) {
-    this.componentType = componentType;
-    this.componentDescription = componentDescription;
-    this.boughtAmount = boughtAmount;
-    this.componentCost = componentCost;
-    this.componentPrice = componentPrice;
+  public PurchaseOrder(PurchaseOrderBuilder purchaseOrderBuilder) {
+    this.componentType = purchaseOrderBuilder.getComponentType();
+    this.componentDescription = purchaseOrderBuilder.getComponentDescription();
+    this.boughtAmount = purchaseOrderBuilder.getBoughtAmount();
+    this.componentCost = purchaseOrderBuilder.getComponentCost();
+    this.componentPrice = purchaseOrderBuilder.getComponentPrice();
   }
 
   @Override
@@ -56,11 +58,11 @@ public class PurchaseOrder {
     this.purchaseOrderID = purchaseOrderID;
   }
 
-  public String getComponentType() {
+  public ComponentType getComponentType() {
     return componentType;
   }
 
-  public void setComponentType(String componentType) {
+  public void setComponentType(ComponentType componentType) {
     this.componentType = componentType;
   }
 
