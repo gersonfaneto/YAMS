@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.services;
 
 import com.gersonfaneto.yams.models.services.Service;
+import com.gersonfaneto.yams.models.services.ServiceType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,7 @@ public class ServiceMemoryDAO implements ServiceCRUD {
   }
 
   @Override
-  public List<Service> findByType(String serviceType) {
+  public List<Service> findByType(ServiceType serviceType) {
     return storedServices.values()
         .stream()
         .filter(x -> x.getServiceType().equals(serviceType))
