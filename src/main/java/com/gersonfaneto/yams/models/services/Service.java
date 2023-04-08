@@ -24,10 +24,6 @@ public class Service {
     this.usedComponents = serviceBuilder.getUsedComponents();
   }
 
-  public Service() {
-
-  }
-
   @Override
   public boolean equals(Object otherObject) {
     if (this == otherObject) {

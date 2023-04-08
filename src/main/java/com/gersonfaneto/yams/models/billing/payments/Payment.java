@@ -15,10 +15,6 @@ public class Payment {
     this.paidValue = paymentBuilder.getPaidValue();
   }
 
-  public Payment() {
-
-  }
-
   @Override
   public boolean equals(Object otherObject) {
     if (this == otherObject) {
