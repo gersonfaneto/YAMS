@@ -8,8 +8,6 @@ import com.gersonfaneto.yams.dao.components.ComponentCRUD;
 import com.gersonfaneto.yams.dao.components.ComponentMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
 import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
-import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistCRUD;
-import com.gersonfaneto.yams.dao.entities.receptionist.ReceptionistMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.technician.TechnicianCRUD;
 import com.gersonfaneto.yams.dao.entities.technician.TechnicianMemoryDAO;
 import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderCRUD;
@@ -22,7 +20,6 @@ import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 public abstract class DAO {
 
   private static ClientCRUD clientCRUD;
-  private static ReceptionistCRUD receptionistCRUD;
   private static TechnicianCRUD technicianCRUD;
   private static PaymentCRUD paymentCRUD;
   private static InvoiceCRUD invoiceCRUD;
@@ -37,14 +34,6 @@ public abstract class DAO {
     }
 
     return clientCRUD;
-  }
-
-  public static ReceptionistCRUD fromReceptionists() {
-    if (receptionistCRUD == null) {
-      receptionistCRUD = new ReceptionistMemoryDAO();
-    }
-
-    return receptionistCRUD;
   }
 
   public static TechnicianCRUD fromTechnicians() {
