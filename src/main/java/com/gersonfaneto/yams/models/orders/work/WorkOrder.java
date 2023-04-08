@@ -119,4 +119,13 @@ public class WorkOrder {
   public void setClosedAt(Calendar closedAt) {
     this.closedAt = closedAt;
   }
+
+  public List<Service> getChosenServices() {
+    return chosenServices;
+  }
+
+  public void setChosenServices(
+      List<Service> chosenServices) {
+    this.chosenServices = chosenServices;
+  }
 }
