@@ -5,8 +5,8 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 
 public abstract class State {
 
-  private Technician technician;
-  private WorkOrder workOrder;
+  private final Technician technician;
+  private final WorkOrder workOrder;
 
   public State(Technician technician, WorkOrder workOrder) {
     this.technician = technician;
@@ -25,15 +25,7 @@ public abstract class State {
     return technician;
   }
 
-  public void setTechnician(Technician technician) {
-    this.technician = technician;
-  }
-
   public WorkOrder getWorkOrder() {
     return workOrder;
-  }
-
-  public void setWorkOrder(WorkOrder workOrder) {
-    this.workOrder = workOrder;
   }
 }
