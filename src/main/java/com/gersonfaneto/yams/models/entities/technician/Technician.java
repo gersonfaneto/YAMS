@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.entities.Client;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
@@ -16,6 +17,10 @@ public class Technician extends User {
     super(userEmail, userPassword);
     this.technicianName = technicianName;
     this.technicianState = new Free(this);
+  }
+
+  public Client registerClient(String clientName, String homeAddress, String phoneNumber) {
+    return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
   }
 
   public WorkOrder createWorkOrder(String clientID) {
