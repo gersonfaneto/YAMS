@@ -12,7 +12,6 @@ import java.util.List;
 public class ServiceBuilder implements Builder<Service> {
 
   private final ServiceType serviceType;
-  private String workOrderID;
   private String serviceDescription;
   private double servicePrice;
   private List<Component> usedComponents;
@@ -23,11 +22,6 @@ public class ServiceBuilder implements Builder<Service> {
     }
 
     this.serviceType = ServiceType.findByName(serviceType);
-  }
-
-  public ServiceBuilder fromOrder(String workOrderID) {
-    this.workOrderID = workOrderID;
-    return this;
   }
 
   public ServiceBuilder defineDescription(String serviceDescription) {
@@ -61,10 +55,6 @@ public class ServiceBuilder implements Builder<Service> {
 
   public Service Build() {
     return new Service(this);
-  }
-
-  public String getWorkOrderID() {
-    return workOrderID;
   }
 
   public ServiceType getServiceType() {

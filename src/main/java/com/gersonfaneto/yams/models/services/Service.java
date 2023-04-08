@@ -8,7 +8,6 @@ import java.util.List;
 public class Service {
 
   private String serviceID;
-  private String workOrderID;
   private ServiceType serviceType;
   private String serviceDescription;
   private double clientRating;
@@ -17,7 +16,6 @@ public class Service {
   private List<Component> usedComponents;
 
   public Service(ServiceBuilder serviceBuilder) {
-    this.workOrderID = serviceBuilder.getWorkOrderID();
     this.serviceType = serviceBuilder.getServiceType();
     this.serviceDescription = serviceBuilder.getServiceDescription();
     this.servicePrice = serviceBuilder.getServicePrice();
@@ -59,14 +57,6 @@ public class Service {
 
   public void setServiceID(String serviceID) {
     this.serviceID = serviceID;
-  }
-
-  public String getWorkOrderID() {
-    return workOrderID;
-  }
-
-  public void setWorkOrderID(String workOrderID) {
-    this.workOrderID = workOrderID;
   }
 
   public ServiceType getServiceType() {
