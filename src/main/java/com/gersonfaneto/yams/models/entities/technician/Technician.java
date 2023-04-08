@@ -1,84 +1,66 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
+import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.entities.Client;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
-
-import java.util.LinkedList;
 import java.util.List;
 
 public class Technician extends User {
-    private String technicianName;
-    private State technicianState;
-    private List<WorkOrder> workOrders;
 
-    public Technician(String userEmail, String userPassword, String technicianName) {
-        super(userEmail, userPassword);
-        this.technicianName = technicianName;
-        this.technicianState = new Free(this);
-        this.workOrders = new LinkedList<>();
-    }
+  private String technicianName;
+  private State technicianState;
 
-    public WorkOrder createWorkOrder(String clientID) {
-        return new WorkOrder(clientID);
-    }
+  public Technician(String userEmail, String userPassword, String technicianName) {
+    super(userEmail, userPassword);
+    this.technicianName = technicianName;
+    this.technicianState = new Free(this);
+  }
 
-    public boolean addService(WorkOrder workOrder, Service chosenService) {
-        return workOrder.addService(getUserID(), chosenService);
-    }
+  public Client registerClient(String clientName, String homeAddress, String phoneNumber) {
+    return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
+  }
 
-    public boolean removeService(WorkOrder workOrder, Service chosenService) {
-        return workOrder.removeService(getUserID(), chosenService);
-    }
+  public WorkOrder createWorkOrder(String clientID, List<Service> chosenServices) {
+    return DAO.fromWorkOrders().createOne(new WorkOrder(clientID, chosenServices));
+  }
 
-    public boolean openOrder(WorkOrder workOrder) {
-        return getTechnicianState().openOrder(workOrder);
-    }
+  public boolean removeService(WorkOrder workOrder, Service chosenService) {
+    return workOrder.removeService(getUserID(), chosenService);
+  }
 
-    public boolean cancelOrder() {
-        return getTechnicianState().cancelOrder();
-    }
+  public boolean openOrder(WorkOrder workOrder) {
+    return technicianState.openOrder(workOrder);
+  }
 
-    public boolean closeOrder() {
-        return getTechnicianState().closeOrder();
-    }
+  public boolean cancelOrder() {
+    return technicianState.cancelOrder();
+  }
 
-    // TODO: Add Implementations.
-    public boolean generateInvoice() {
-        return true;
-    }
+  public boolean closeOrder() {
+    return technicianState.closeOrder();
+  }
 
-    public boolean buyComponent() {
-        return true;
-    }
+  public boolean generateInvoice() {
+    return technicianState.generateInvoice();
+  }
 
-    public boolean generateReport() {
-        return true;
-    }
+  public String getTechnicianName() {
+    return technicianName;
+  }
 
-    public String getTechnicianName() {
-        return technicianName;
-    }
+  public void setTechnicianName(String technicianName) {
+    this.technicianName = technicianName;
+  }
 
-    public void setTechnicianName(String technicianName) {
-        this.technicianName = technicianName;
-    }
+  public State getTechnicianState() {
+    return technicianState;
+  }
 
-    public State getTechnicianState() {
-        return technicianState;
-    }
-
-    public void setTechnicianState(State technicianState) {
-        this.technicianState = technicianState;
-    }
-
-    public List<WorkOrder> getWorkOrders() {
-        return workOrders;
-    }
-
-    public void setWorkOrders(List<WorkOrder> workOrders) {
-        this.workOrders = workOrders;
-    }
+  public void setTechnicianState(State technicianState) {
+    this.technicianState = technicianState;
+  }
 }

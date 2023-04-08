@@ -14,14 +14,14 @@
 > for educational purposes, so don't expect much of it 🙃.
 
 <h4 align="center">
-  <a href="#what-is-this%3F">About</a>
+  <a href="#about">About</a>
   ·
-  <a href="#how-to-use-it%3F">Usage</a>
+  <a href="#usage">Usage</a>
   ·
   <a href="#license">License</a>
 </h4>
 
-## What is this?
+## About
 
 *Y.A.M.S* is a management system developed to make the day-to-day of a microcomputer assistance
 more practical and efficient. The final product should be capable of managing:
@@ -40,7 +40,7 @@ The development was divided in the following phases:
 - [ ] Phase III: Assure the persistence of the system's information, through files or DB.
 - [ ] Phase IV: Construction of the GUI using JavaFX.
 
-## How to use it?
+## Usage
 
 > **Warning**: _Y.A.S.M._ is currently under development, so you won't probably be able
 > to do much until I reach Phase IV 🙃.

@@ -1,54 +1,63 @@
 package com.gersonfaneto.yams.models.entities.user;
 
 public abstract class User {
-    private String userID;
-    private String userEmail;
-    private String userPassword;
 
-    public User(String userEmail, String userPassword) {
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
+  private String userID;
+  private String userEmail;
+  private String userPassword;
+
+  public User(String userEmail, String userPassword) {
+    this.userEmail = userEmail;
+    this.userPassword = userPassword;
+  }
+
+  @Override
+  public boolean equals(Object otherObject) {
+    if (this == otherObject) {
+      return true;
     }
 
-    @Override
-    public boolean equals(Object otherObject) {
-        if (otherObject instanceof User otherClient) {
-            return otherClient.userID.equals(this.userID);
-        }
-
-        return false;
+    if (otherObject == null) {
+      return false;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                ID: %s
-                Email: %s
-                Password: %s
-                """, userID, userEmail, userPassword);
+    if (!(otherObject instanceof User otherUser)) {
+      return false;
     }
 
-    public String getUserID() {
-        return userID;
-    }
+    return userID.equals(otherUser.userID);
+  }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
+  @Override
+  public String toString() {
+    return String.format("""
+        ID: %s
+        Email: %s
+        Password: %s
+        """, userID, userEmail, userPassword);
+  }
 
-    public String getUserEmail() {
-        return userEmail;
-    }
+  public String getUserID() {
+    return userID;
+  }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
+  public void setUserID(String userID) {
+    this.userID = userID;
+  }
 
-    public String getUserPassword() {
-        return userPassword;
-    }
+  public String getUserEmail() {
+    return userEmail;
+  }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
+  public void setUserEmail(String userEmail) {
+    this.userEmail = userEmail;
+  }
+
+  public String getUserPassword() {
+    return userPassword;
+  }
+
+  public void setUserPassword(String userPassword) {
+    this.userPassword = userPassword;
+  }
 }

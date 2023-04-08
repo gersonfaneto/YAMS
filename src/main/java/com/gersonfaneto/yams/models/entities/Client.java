@@ -1,65 +1,74 @@
 package com.gersonfaneto.yams.models.entities;
 
 public class Client {
-    private String clientID;
-    private String clientName;
-    private String homeAddress;
-    private String phoneNumber;
 
-    public Client(String clientName, String homeAddress, String phoneNumber) {
-        this.clientName = clientName;
-        this.homeAddress = homeAddress;
-        this.phoneNumber = phoneNumber;
+  private String clientID;
+  private String clientName;
+  private String homeAddress;
+  private String phoneNumber;
+
+  public Client(String clientName, String homeAddress, String phoneNumber) {
+    this.clientName = clientName;
+    this.homeAddress = homeAddress;
+    this.phoneNumber = phoneNumber;
+  }
+
+  @Override
+  public boolean equals(Object otherObject) {
+    if (this == otherObject) {
+      return true;
     }
 
-    @Override
-    public boolean equals(Object otherObject) {
-        if (otherObject instanceof Client otherClient) {
-            return otherClient.clientID.equals(this.clientID);
-        }
-
-        return false;
+    if (otherObject == null) {
+      return false;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                ID: %s
-                Name: %s
-                Address: %s
-                Contact: %s
-                """, clientID, clientName, homeAddress, phoneNumber);
+    if (!(otherObject instanceof Client otherClient)) {
+      return false;
     }
 
-    public String getClientID() {
-        return clientID;
-    }
+    return clientID.equals(otherClient.clientID);
+  }
 
-    public void setClientID(String clientID) {
-        this.clientID = clientID;
-    }
+  @Override
+  public String toString() {
+    return String.format("""
+        ID: %s
+        Name: %s
+        Address: %s
+        Contact: %s
+        """, clientID, clientName, homeAddress, phoneNumber);
+  }
 
-    public String getClientName() {
-        return clientName;
-    }
+  public String getClientID() {
+    return clientID;
+  }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
+  public void setClientID(String clientID) {
+    this.clientID = clientID;
+  }
 
-    public String getHomeAddress() {
-        return homeAddress;
-    }
+  public String getClientName() {
+    return clientName;
+  }
 
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
+  public void setClientName(String clientName) {
+    this.clientName = clientName;
+  }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+  public String getHomeAddress() {
+    return homeAddress;
+  }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+  public void setHomeAddress(String homeAddress) {
+    this.homeAddress = homeAddress;
+  }
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
 }

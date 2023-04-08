@@ -1,75 +1,110 @@
 package com.gersonfaneto.yams.models.services;
 
-public abstract class Service {
-    private String serviceID;
-    private String serviceType;
-    private String serviceDescription;
-    private double clientRating;
-    private double servicePrice;
+import com.gersonfaneto.yams.builders.service.ServiceBuilder;
+import com.gersonfaneto.yams.models.components.Component;
+import java.security.Provider;
+import java.util.List;
 
-    public Service(String serviceType, String serviceDescription, double servicePrice) {
-        this.serviceType = serviceType;
-        this.serviceDescription = serviceDescription;
-        this.clientRating = 0.0;
-        this.servicePrice = servicePrice;
+public class Service {
+
+  private String serviceID;
+  private ServiceType serviceType;
+  private String serviceDescription;
+  private double clientRating;
+  private double servicePrice;
+  private boolean isComplete = false;
+  private List<Component> usedComponents;
+
+  public Service(ServiceBuilder serviceBuilder) {
+    this.serviceType = serviceBuilder.getServiceType();
+    this.serviceDescription = serviceBuilder.getServiceDescription();
+    this.servicePrice = serviceBuilder.getServicePrice();
+    this.usedComponents = serviceBuilder.getUsedComponents();
+  }
+
+  @Override
+  public boolean equals(Object otherObject) {
+    if (this == otherObject) {
+      return true;
     }
 
-    @Override
-    public boolean equals(Object otherObject) {
-        if (otherObject instanceof Service otherService) {
-            return otherService.serviceID.equals(this.serviceID);
-        }
-
-        return false;
+    if (otherObject == null) {
+      return false;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                ID: %s
-                Type: %s
-                Description: %s
-                Price: R$ %.2f
-                """, serviceID, serviceType, serviceDescription, servicePrice);
+    if (!(otherObject instanceof Service otherService)) {
+      return false;
     }
 
-    public String getServiceID() {
-        return serviceID;
-    }
+    return serviceID.equals(otherService.serviceID);
+  }
 
-    public void setServiceID(String serviceID) {
-        this.serviceID = serviceID;
-    }
+  @Override
+  public String toString() {
+    return String.format("""
+            ID: %s
+            Type: %s
+            Description: %s
+            Price: R$ %.2f
+            Status: %s
+            """, serviceID, serviceType, serviceDescription, servicePrice,
+        (isComplete) ? "Complete" : "Pending");
+  }
 
-    public String getServiceType() {
-        return serviceType;
-    }
+  public String getServiceID() {
+    return serviceID;
+  }
 
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
-    }
+  public void setServiceID(String serviceID) {
+    this.serviceID = serviceID;
+  }
 
-    public String getServiceDescription() {
-        return serviceDescription;
-    }
+  public ServiceType getServiceType() {
+    return serviceType;
+  }
 
-    public void setServiceDescription(String serviceDescription) {
-        this.serviceDescription = serviceDescription;
-    }
+  public void setServiceType(ServiceType serviceType) {
+    this.serviceType = serviceType;
+  }
 
-    public double getClientRating() {
-        return clientRating;
-    }
+  public String getServiceDescription() {
+    return serviceDescription;
+  }
 
-    public void setClientRating(double clientRating) {
-        this.clientRating = clientRating;
-    }
+  public void setServiceDescription(String serviceDescription) {
+    this.serviceDescription = serviceDescription;
+  }
 
-    public double getServicePrice() {
-        return servicePrice;
-    }
+  public double getClientRating() {
+    return clientRating;
+  }
 
-    public void setServicePrice(double servicePrice) {
-        this.servicePrice = servicePrice;
-    }
+  public void setClientRating(double clientRating) {
+    this.clientRating = clientRating;
+  }
+
+  public double getServicePrice() {
+    return servicePrice;
+  }
+
+  public void setServicePrice(double servicePrice) {
+    this.servicePrice = servicePrice;
+  }
+
+  public boolean isComplete() {
+    return isComplete;
+  }
+
+  public void setComplete(boolean complete) {
+    isComplete = complete;
+  }
+
+  public List<Component> getUsedComponents() {
+    return usedComponents;
+  }
+
+  public void setUsedComponents(
+      List<Component> usedComponents) {
+    this.usedComponents = usedComponents;
+  }
 }

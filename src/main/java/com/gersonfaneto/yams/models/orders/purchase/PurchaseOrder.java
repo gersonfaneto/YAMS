@@ -1,87 +1,100 @@
 package com.gersonfaneto.yams.models.orders.purchase;
 
+import com.gersonfaneto.yams.builders.orders.purchase.PurchaseOrderBuilder;
+import com.gersonfaneto.yams.models.components.ComponentType;
+
 public class PurchaseOrder {
-    private String purchaseOrderID;
-    private String componentType;
-    private String componentDescription;
-    private int boughtAmount;
-    private double componentCost;
-    private double componentPrice;
 
-    public PurchaseOrder(String componentType, String componentDescription, int boughtAmount, double componentCost, double componentPrice) {
-        this.componentType = componentType;
-        this.componentDescription = componentDescription;
-        this.boughtAmount = boughtAmount;
-        this.componentCost = componentCost;
-        this.componentPrice = componentPrice;
+  private String purchaseOrderID;
+  private ComponentType componentType;
+  private String componentDescription;
+  private int boughtAmount;
+  private double componentCost;
+  private double componentPrice;
+
+  public PurchaseOrder(PurchaseOrderBuilder purchaseOrderBuilder) {
+    this.componentType = purchaseOrderBuilder.getComponentType();
+    this.componentDescription = purchaseOrderBuilder.getComponentDescription();
+    this.boughtAmount = purchaseOrderBuilder.getBoughtAmount();
+    this.componentCost = purchaseOrderBuilder.getComponentCost();
+    this.componentPrice = purchaseOrderBuilder.getComponentPrice();
+  }
+
+  @Override
+  public boolean equals(Object otherObject) {
+    if (this == otherObject) {
+      return true;
     }
 
-    @Override
-    public boolean equals(Object otherObject) {
-        if (otherObject instanceof PurchaseOrder otherPurchaseOrder) {
-            return otherPurchaseOrder.purchaseOrderID.equals(this.purchaseOrderID);
-        }
-
-        return false;
+    if (otherObject == null) {
+      return false;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                ID: %s
-                Type: %s
-                Description: %s
-                Amount: %d
-                Cost: R$ %.2f
-                Price: R$ %.2f
-                """, purchaseOrderID, componentType, componentDescription, boughtAmount, componentCost, componentPrice);
+    if (!(otherObject instanceof PurchaseOrder otherPurchaseOrder)) {
+      return false;
     }
 
-    public String getPurchaseOrderID() {
-        return purchaseOrderID;
-    }
+    return purchaseOrderID.equals(otherPurchaseOrder.purchaseOrderID);
+  }
 
-    public void setPurchaseOrderID(String purchaseOrderID) {
-        this.purchaseOrderID = purchaseOrderID;
-    }
+  @Override
+  public String toString() {
+    return String.format("""
+            ID: %s
+            Type: %s
+            Description: %s
+            Amount: %d
+            Cost: R$ %.2f
+            Price: R$ %.2f
+            """, purchaseOrderID, componentType, componentDescription, boughtAmount, componentCost,
+        componentPrice);
+  }
 
-    public String getComponentType() {
-        return componentType;
-    }
+  public String getPurchaseOrderID() {
+    return purchaseOrderID;
+  }
 
-    public void setComponentType(String componentType) {
-        this.componentType = componentType;
-    }
+  public void setPurchaseOrderID(String purchaseOrderID) {
+    this.purchaseOrderID = purchaseOrderID;
+  }
 
-    public String getComponentDescription() {
-        return componentDescription;
-    }
+  public ComponentType getComponentType() {
+    return componentType;
+  }
 
-    public void setComponentDescription(String componentDescription) {
-        this.componentDescription = componentDescription;
-    }
+  public void setComponentType(ComponentType componentType) {
+    this.componentType = componentType;
+  }
 
-    public int getBoughtAmount() {
-        return boughtAmount;
-    }
+  public String getComponentDescription() {
+    return componentDescription;
+  }
 
-    public void setBoughtAmount(int boughtAmount) {
-        this.boughtAmount = boughtAmount;
-    }
+  public void setComponentDescription(String componentDescription) {
+    this.componentDescription = componentDescription;
+  }
 
-    public double getComponentCost() {
-        return componentCost;
-    }
+  public int getBoughtAmount() {
+    return boughtAmount;
+  }
 
-    public void setComponentCost(double componentCost) {
-        this.componentCost = componentCost;
-    }
+  public void setBoughtAmount(int boughtAmount) {
+    this.boughtAmount = boughtAmount;
+  }
 
-    public double getComponentPrice() {
-        return componentPrice;
-    }
+  public double getComponentCost() {
+    return componentCost;
+  }
 
-    public void setComponentPrice(double componentPrice) {
-        this.componentPrice = componentPrice;
-    }
+  public void setComponentCost(double componentCost) {
+    this.componentCost = componentCost;
+  }
+
+  public double getComponentPrice() {
+    return componentPrice;
+  }
+
+  public void setComponentPrice(double componentPrice) {
+    this.componentPrice = componentPrice;
+  }
 }

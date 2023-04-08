@@ -1,54 +1,76 @@
 package com.gersonfaneto.yams.models.billing.payments;
 
-public abstract class Payment {
-    private String paymentID;
-    private String invoiceID;
-    private double paidValue;
+import com.gersonfaneto.yams.builders.payment.PaymentBuilder;
 
-    public Payment(String invoiceID, double paidValue) {
-        this.invoiceID = invoiceID;
-        this.paidValue = paidValue;
+public class Payment {
+
+  private String paymentID;
+  private String invoiceID;
+  private PaymentMethod paymentMethod;
+  private double paidValue;
+
+  public Payment(PaymentBuilder paymentBuilder) {
+    this.invoiceID = paymentBuilder.getInvoiceID();
+    this.paymentMethod = paymentBuilder.getPaymentMethod();
+    this.paidValue = paymentBuilder.getPaidValue();
+  }
+
+  @Override
+  public boolean equals(Object otherObject) {
+    if (this == otherObject) {
+      return true;
     }
 
-    @Override
-    public boolean equals(Object otherObject) {
-        if (otherObject instanceof Payment otherPayment) {
-            return otherPayment.paymentID.equals(this.paymentID);
-        }
-
-        return false;
+    if (otherObject == null) {
+      return false;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                ID: %s
-                Invoice: %s
-                Value: R$ %.2f
-                """, paymentID, invoiceID, paidValue);
+    if (!(otherObject instanceof Payment otherPayment)) {
+      return false;
     }
 
-    public String getPaymentID() {
-        return paymentID;
-    }
+    return paymentID.equals(otherPayment.paymentID);
+  }
 
-    public void setPaymentID(String paymentID) {
-        this.paymentID = paymentID;
-    }
+  @Override
+  public String toString() {
+    return String.format("""
+        ID: %s
+        Method: %s
+        Invoice: %s
+        Value: R$ %.2f
+        """, paymentID, paymentMethod, invoiceID, paidValue);
+  }
 
-    public String getInvoiceID() {
-        return invoiceID;
-    }
+  public String getPaymentID() {
+    return paymentID;
+  }
 
-    public void setInvoiceID(String invoiceID) {
-        this.invoiceID = invoiceID;
-    }
+  public void setPaymentID(String paymentID) {
+    this.paymentID = paymentID;
+  }
 
-    public double getPaidValue() {
-        return paidValue;
-    }
+  public String getInvoiceID() {
+    return invoiceID;
+  }
 
-    public void setPaidValue(double paidValue) {
-        this.paidValue = paidValue;
-    }
+  public void setInvoiceID(String invoiceID) {
+    this.invoiceID = invoiceID;
+  }
+
+  public PaymentMethod getPaymentMethod() {
+    return paymentMethod;
+  }
+
+  public void setPaymentMethod(PaymentMethod paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
+
+  public double getPaidValue() {
+    return paidValue;
+  }
+
+  public void setPaidValue(double paidValue) {
+    this.paidValue = paidValue;
+  }
 }
