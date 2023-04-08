@@ -48,7 +48,7 @@ public class ServiceBuilder implements Builder<Service> {
       return this;
     }
 
-    this.servicePrice = servicePrice;
+    this.servicePrice = serviceType.getTypeValue();
     return this;
   }
 
