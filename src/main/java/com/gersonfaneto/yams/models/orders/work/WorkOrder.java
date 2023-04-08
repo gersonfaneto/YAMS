@@ -33,6 +33,10 @@ public class WorkOrder {
     return workOrderState.generateInvoice(technicianID);
   }
 
+  public boolean generateReport(String technicianID) {
+    return workOrderState.generateReport(technicianID);
+  }
+
   @Override
   public boolean equals(Object otherObject) {
     if (this == otherObject) {

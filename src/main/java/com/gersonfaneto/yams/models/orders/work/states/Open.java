@@ -34,4 +34,9 @@ public class Open extends State {
   public boolean generateInvoice(String technicianID) {
     return false;
   }
+
+  @Override
+  public boolean generateReport(String technicianID) {
+    return false;
+  }
 }

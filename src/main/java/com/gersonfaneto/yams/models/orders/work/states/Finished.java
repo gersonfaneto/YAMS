@@ -34,4 +34,10 @@ public class Finished extends State {
 
     return true;
   }
+
+  // TODO: Implement!
+  @Override
+  public boolean generateReport(String technicianID) {
+    return true;
+  }
 }
