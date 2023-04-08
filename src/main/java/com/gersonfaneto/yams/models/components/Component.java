@@ -1,26 +1,22 @@
 package com.gersonfaneto.yams.models.components;
 
-public abstract class Component {
+import com.gersonfaneto.yams.builders.types.ComponentBuilder;
+
+public class Component {
 
   private String componentID;
-  private String componentType;
+  private ComponentType componentType;
   private String componentDescription;
   private double componentCost;
   private double componentPrice;
 
-  public Component(String componentType, String componentDescription, double componentCost,
-      double componentPrice) {
-    this.componentType = componentType;
-    this.componentDescription = componentDescription;
-    this.componentCost = componentCost;
-    this.componentPrice = componentPrice;
+
+  public Component(ComponentBuilder componentBuilder) {
+    this.componentType = componentBuilder.getComponentType();
+    this.componentDescription = componentBuilder.getComponentDescription();
+    this.componentCost = componentBuilder.getComponentCost();
+    this.componentPrice = componentBuilder.getComponentPrice();
   }
-
-  public Component() {
-
-  }
-
-  public abstract Component clone(String componentDescription, double componentCost);
 
   @Override
   public boolean equals(Object otherObject) {
@@ -58,11 +54,11 @@ public abstract class Component {
     this.componentID = componentID;
   }
 
-  public String getComponentType() {
+  public ComponentType getComponentType() {
     return componentType;
   }
 
-  public void setComponentType(String componentType) {
+  public void setComponentType(ComponentType componentType) {
     this.componentType = componentType;
   }
 
