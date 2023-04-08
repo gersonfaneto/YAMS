@@ -24,10 +24,6 @@ public class WorkOrder {
     this.chosenServices = chosenServices;
   }
 
-  public boolean addService(String technicianID, Service chosenService) {
-    return workOrderState.addService(technicianID, chosenService);
-  }
-
   public boolean removeService(String technicianID, Service chosenService) {
     return workOrderState.removeService(technicianID, chosenService);
   }

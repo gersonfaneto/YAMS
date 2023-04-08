@@ -12,11 +12,6 @@ public class Finished extends State {
   }
 
   @Override
-  public boolean addService(String technicianID, Service chosenService) {
-    return false;
-  }
-
-  @Override
   public boolean removeService(String technicianID, Service chosenServices) {
     return false;
   }

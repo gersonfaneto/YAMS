@@ -11,13 +11,6 @@ public class Created extends State {
   }
 
   @Override
-  public boolean addService(String technicianID, Service chosenService) {
-    chosenService.setWorkOrderID(getWorkOrder().getWorkOrderID());
-    DAO.fromService().createOne(chosenService);
-    return true;
-  }
-
-  @Override
   public boolean removeService(String technicianID, Service chosenServices) {
     return DAO.fromService().deleteByID(chosenServices.getServiceID());
   }

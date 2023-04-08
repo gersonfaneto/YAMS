@@ -11,8 +11,6 @@ public abstract class State {
     this.workOrder = workOrder;
   }
 
-  public abstract boolean addService(String technicianID, Service chosenService);
-
   public abstract boolean removeService(String technicianID, Service chosenServices);
 
   public abstract boolean generateInvoice(String technicianID);

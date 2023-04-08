@@ -11,17 +11,6 @@ public class Open extends State {
   }
 
   @Override
-  public boolean addService(String technicianID, Service chosenService) {
-    if (technicianID.equals(getWorkOrder().getTechnicianID())) {
-      chosenService.setWorkOrderID(getWorkOrder().getWorkOrderID());
-      DAO.fromService().createOne(chosenService);
-      return true;
-    }
-
-    return false;
-  }
-
-  @Override
   public boolean removeService(String technicianID, Service chosenService) {
     if (technicianID.equals(getWorkOrder().getTechnicianID())) {
       return DAO.fromService().deleteByID(chosenService.getServiceID());

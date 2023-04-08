@@ -7,6 +7,7 @@ import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
+import java.util.List;
 
 public class Technician extends User {
 
@@ -23,12 +24,8 @@ public class Technician extends User {
     return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
   }
 
-  public WorkOrder createWorkOrder(String clientID) {
-    return DAO.fromWorkOrders().createOne(new WorkOrder(clientID));
-  }
-
-  public boolean addService(WorkOrder workOrder, Service chosenService) {
-    return workOrder.addService(getUserID(), chosenService);
+  public WorkOrder createWorkOrder(String clientID, List<Service> chosenServices) {
+    return DAO.fromWorkOrders().createOne(new WorkOrder(clientID, chosenServices));
   }
 
   public boolean removeService(WorkOrder workOrder, Service chosenService) {
