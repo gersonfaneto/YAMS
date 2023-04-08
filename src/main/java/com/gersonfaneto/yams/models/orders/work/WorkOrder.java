@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.models.orders.work;
 
 import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
+import com.gersonfaneto.yams.models.reports.work.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 import java.util.Calendar;
 import java.util.List;
@@ -15,8 +16,10 @@ public class WorkOrder {
   private State workOrderState;
   private Calendar createdAt;
   private Calendar closedAt;
-  private List<Service> chosenServices;
 
+  private WorkReport workReport;
+
+  private List<Service> chosenServices;
   public WorkOrder(String clientID, List<Service> chosenServices) {
     this.clientID = clientID;
     this.workOrderState = new Created(this);
@@ -118,6 +121,14 @@ public class WorkOrder {
 
   public void setClosedAt(Calendar closedAt) {
     this.closedAt = closedAt;
+  }
+
+  public WorkReport getWorkReport() {
+    return workReport;
+  }
+
+  public void setWorkReport(WorkReport workReport) {
+    this.workReport = workReport;
   }
 
   public List<Service> getChosenServices() {

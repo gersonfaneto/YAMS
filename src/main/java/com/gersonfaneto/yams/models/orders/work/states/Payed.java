@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.models.orders.work.states;
 
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.reports.work.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 
 public class Payed extends State {
@@ -21,6 +22,8 @@ public class Payed extends State {
 
   @Override
   public boolean generateReport(String technicianID) {
-    return false;
+    WorkReport workReport = new WorkReport(getWorkOrder());
+    getWorkOrder().setWorkReport(workReport);
+    return true;
   }
 }
