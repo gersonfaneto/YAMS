@@ -10,21 +10,17 @@ import java.security.InvalidParameterException;
 
 public class ComponentBuilder implements Builder<Component> {
 
-  private ComponentType componentType;
+  private final ComponentType componentType;
   private String componentDescription;
   private double componentCost;
   private double componentPrice;
 
-  public ComponentBuilder() {
-  }
-
-  public ComponentBuilder defineType(String componentType) {
+  public ComponentBuilder(String componentType) {
     if (ComponentType.findByType(componentType) == null) {
       throw new InvalidParameterException("Component type not known!");
     }
 
     this.componentType = ComponentType.findByType(componentType);
-    return this;
   }
 
   public ComponentBuilder defineDescription(String componentDescription) {

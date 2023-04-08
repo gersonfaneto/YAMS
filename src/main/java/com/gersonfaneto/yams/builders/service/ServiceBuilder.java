@@ -11,27 +11,22 @@ import java.util.List;
 
 public class ServiceBuilder implements Builder<Service> {
 
+  private final ServiceType serviceType;
   private String workOrderID;
-  private ServiceType serviceType;
   private String serviceDescription;
   private double servicePrice;
   private List<Component> usedComponents;
 
-  public ServiceBuilder() {
-
-  }
-
-  public ServiceBuilder fromOrder(String workOrderID) {
-    this.workOrderID = workOrderID;
-    return this;
-  }
-
-  public ServiceBuilder ofType(String serviceType) {
+  public ServiceBuilder(String serviceType) {
     if (ServiceType.findByName(serviceType) == null) {
       throw new InvalidParameterException("Service type not found!");
     }
 
     this.serviceType = ServiceType.findByName(serviceType);
+  }
+
+  public ServiceBuilder fromOrder(String workOrderID) {
+    this.workOrderID = workOrderID;
     return this;
   }
 

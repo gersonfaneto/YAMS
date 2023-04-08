@@ -6,25 +6,20 @@ import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
 import java.security.InvalidParameterException;
 
 public class PaymentBuilder implements Builder<Payment> {
+  private final PaymentMethod paymentMethod;
   private String invoiceID;
-  private PaymentMethod paymentMethod;
   private double paidValue;
 
-  public PaymentBuilder() {
-
-  }
-
-  public PaymentBuilder fromInvoice(String invoiceID) {
-    this.invoiceID = invoiceID;
-    return this;
-  }
-
-  public PaymentBuilder defineMethod(String paymentMethod) {
+  public PaymentBuilder(String paymentMethod) {
     if (PaymentMethod.findByType(paymentMethod) == null) {
       throw new InvalidParameterException("Payment method not found!");
     }
 
     this.paymentMethod = PaymentMethod.findByType(paymentMethod);
+  }
+
+  public PaymentBuilder fromInvoice(String invoiceID) {
+    this.invoiceID = invoiceID;
     return this;
   }
 
