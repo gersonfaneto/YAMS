@@ -1,18 +1,44 @@
 package com.gersonfaneto.yams.models.billing;
 
-import javax.crypto.spec.IvParameterSpec;
+import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.factories.AbstractFactory;
+import com.gersonfaneto.yams.models.billing.payments.Payment;
+import java.util.List;
 
 public class Invoice {
 
   private String invoiceID;
   private String workOrderID;
   private double totalValue;
-  private double paidValue;
 
   public Invoice(String workOrderID, double totalValue) {
     this.workOrderID = workOrderID;
     this.totalValue = totalValue;
-    this.paidValue = 0.0;
+  }
+
+  public boolean newPayment(String paymentMethod, double paidValue) {
+    if (totalValue + paidValue >= calculatePaidValue()) {
+      return false;
+    }
+
+    Payment newPayment = AbstractFactory.fromPayments()
+        .generatePayment(paymentMethod, invoiceID, paidValue);
+
+    DAO.fromPayments().createOne(newPayment);
+
+    return true;
+  }
+
+  public double calculatePaidValue() {
+    return DAO.fromPayments()
+        .findByInvoice(invoiceID)
+        .stream()
+        .map(Payment::getPaidValue)
+        .reduce(0.0, Double::sum);
+  }
+
+  public List<Payment> retrievePayments() {
+    return DAO.fromPayments().findByInvoice(invoiceID);
   }
 
   @Override
@@ -39,7 +65,7 @@ public class Invoice {
         Work Order: %s
         Total Value: R$ %.2f
         Paid Value: R$ %.2f
-        """, invoiceID, workOrderID, totalValue, paidValue);
+        """, invoiceID, workOrderID, totalValue, calculatePaidValue());
   }
 
   public String getInvoiceID() {
@@ -64,13 +90,5 @@ public class Invoice {
 
   public void setTotalValue(double totalValue) {
     this.totalValue = totalValue;
-  }
-
-  public double getPaidValue() {
-    return paidValue;
-  }
-
-  public void setPaidValue(double paidValue) {
-    this.paidValue = paidValue;
   }
 }
