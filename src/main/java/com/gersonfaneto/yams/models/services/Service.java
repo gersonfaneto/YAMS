@@ -2,13 +2,14 @@ package com.gersonfaneto.yams.models.services;
 
 import com.gersonfaneto.yams.builders.service.ServiceBuilder;
 import com.gersonfaneto.yams.models.components.Component;
+import java.security.Provider;
 import java.util.List;
 
 public class Service {
 
   private String serviceID;
   private String workOrderID;
-  private String serviceType;
+  private ServiceType serviceType;
   private String serviceDescription;
   private double clientRating;
   private double servicePrice;
@@ -17,7 +18,7 @@ public class Service {
 
   public Service(ServiceBuilder serviceBuilder) {
     this.workOrderID = serviceBuilder.getWorkOrderID();
-    this.serviceType = serviceBuilder.getServiceDescription();
+    this.serviceType = serviceBuilder.getServiceType();
     this.serviceDescription = serviceBuilder.getServiceDescription();
     this.servicePrice = serviceBuilder.getServicePrice();
     this.usedComponents = serviceBuilder.getUsedComponents();
@@ -72,11 +73,11 @@ public class Service {
     this.workOrderID = workOrderID;
   }
 
-  public String getServiceType() {
+  public ServiceType getServiceType() {
     return serviceType;
   }
 
-  public void setServiceType(String serviceType) {
+  public void setServiceType(ServiceType serviceType) {
     this.serviceType = serviceType;
   }
 
