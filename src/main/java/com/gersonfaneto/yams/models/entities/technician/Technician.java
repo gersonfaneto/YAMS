@@ -20,10 +20,6 @@ public class Technician extends User {
     this.technicianState = new Free(this);
   }
 
-  public Client registerClient(String clientName, String homeAddress, String phoneNumber) {
-    return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
-  }
-
   public WorkOrder createWorkOrder(String clientID, List<Service> chosenServices) {
     return DAO.fromWorkOrders().createOne(new WorkOrder(clientID, chosenServices));
   }
