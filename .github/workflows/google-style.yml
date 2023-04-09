@@ -1,18 +1,17 @@
 name: GoogleStyle-CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "dev", "feature/**" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   Formatting:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (Push / Manuel)
-        uses: actions/checkout@v3
-        if: ${{ github.event_name != 'pull_request' }}
-
-      - name : Checkout ( Pull Request )
+      - name : Checkout Codebase.
         uses : actions/checkout@v3
-        if : ${{ github.event_name == 'pull_request' }}
         with :
           repository : ${{ github.event.pull_request.head.repo.full_name }}
           ref : ${{ github.event.pull_request.head.ref }}
@@ -23,9 +22,10 @@ jobs:
           java-version: "17"
           distribution: "oracle"
 
-      - name: Setup formatter
+      - name: Setup Formatter
         uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--replace"
           version: "v1.16.0"
-          commitMessage: "style: Apply `Google Syle` formatting."
+          commit-message: "style: Apply `Google Syle` formatting."
+
