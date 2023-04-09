@@ -36,18 +36,23 @@ public abstract class StockController {
     return DAO.fromComponents().createOne(unusedComponent);
   }
 
-  public static PurchaseOrder buyComponent(String componentType, String componentDescription,
-      double componentPrice, double componentCost) throws ComponentTypeNotFound {
+  public static PurchaseOrder buyComponent(
+      String componentType,
+      String componentDescription,
+      double componentPrice,
+      double componentCost)
+      throws ComponentTypeNotFound {
 
     if (ComponentType.findByType(componentType) == null) {
       throw new ComponentTypeNotFound("Component type '" + componentType + "' not found!");
     }
 
-    PurchaseOrder purchaseOrder = new PurchaseOrderBuilder(ComponentType.findByType(componentType))
-        .componentDescription(componentDescription)
-        .priceOfEach(componentPrice)
-        .costOfEach(componentCost)
-        .Build();
+    PurchaseOrder purchaseOrder =
+        new PurchaseOrderBuilder(ComponentType.findByType(componentType))
+            .componentDescription(componentDescription)
+            .priceOfEach(componentPrice)
+            .costOfEach(componentCost)
+            .Build();
 
     DAO.fromPurchaseOrders().createOne(purchaseOrder);
 
@@ -55,9 +60,8 @@ public abstract class StockController {
   }
 
   public static List<Component> storeBoughtComponents(PurchaseOrder purchaseOrder) {
-    ComponentBuilder componentBuilder = new ComponentBuilder(
-        purchaseOrder.getComponentType().getTypeName()
-    );
+    ComponentBuilder componentBuilder =
+        new ComponentBuilder(purchaseOrder.getComponentType().getTypeName());
 
     List<Component> receivedComponents = new LinkedList<>();
 
@@ -67,8 +71,7 @@ public abstract class StockController {
               .defineDescription(purchaseOrder.getComponentDescription())
               .defineCost(purchaseOrder.getComponentCost())
               .definePrice(purchaseOrder.getComponentPrice())
-              .Build()
-      );
+              .Build());
     }
 
     for (Component currentComponent : receivedComponents) {
