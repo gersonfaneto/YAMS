@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
@@ -19,14 +20,6 @@ public class Technician extends User {
     this.technicianState = new Free(this);
   }
 
-  public WorkOrder createWorkOrder(String clientID, List<Service> chosenServices) {
-    return DAO.fromWorkOrders().createOne(new WorkOrder(clientID, chosenServices));
-  }
-
-  public boolean removeService(WorkOrder workOrder, Service chosenService) {
-    return workOrder.removeService(getUserID(), chosenService);
-  }
-
   public boolean openOrder(WorkOrder workOrder) {
     return technicianState.openOrder(workOrder);
   }
@@ -39,7 +32,7 @@ public class Technician extends User {
     return technicianState.closeOrder();
   }
 
-  public boolean generateInvoice() {
+  public Invoice generateInvoice() {
     return technicianState.generateInvoice();
   }
 
