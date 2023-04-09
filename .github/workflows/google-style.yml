@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: axel-op/googlejavaformat-action@v3
         with:
-          args: "--replace --skip-reflowing-long-strings --version"
+          args: "--replace"
           version: 1.14.0
           skip-commit: false
           commit-message: "style: Apply `Google Syle` formatting."
