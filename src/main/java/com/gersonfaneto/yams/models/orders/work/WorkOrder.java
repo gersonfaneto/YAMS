@@ -17,16 +17,12 @@ public class WorkOrder {
   private State workOrderState;
   private Calendar createdAt;
   private Calendar closedAt;
-
   private WorkReport workReport;
 
-  private List<Service> chosenServices;
-
-  public WorkOrder(String clientID, List<Service> chosenServices) {
+  public WorkOrder(String clientID) {
     this.clientID = clientID;
     this.workOrderState = new Created(this);
     this.createdAt = Calendar.getInstance();
-    this.chosenServices = chosenServices;
   }
 
   public Service removeService(String serviceID) {
@@ -133,13 +129,5 @@ public class WorkOrder {
 
   public void setWorkReport(WorkReport workReport) {
     this.workReport = workReport;
-  }
-
-  public List<Service> getChosenServices() {
-    return chosenServices;
-  }
-
-  public void setChosenServices(List<Service> chosenServices) {
-    this.chosenServices = chosenServices;
   }
 }
