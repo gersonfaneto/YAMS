@@ -1,14 +1,12 @@
 name: Maven-CI
 
-on:
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout codebase.
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Setup JDK 17
