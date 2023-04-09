@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.exceptions.ClientAlreadyRegisteredException;
 import com.gersonfaneto.yams.exceptions.ClientNotFoundException;
 import com.gersonfaneto.yams.models.entities.Client;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
@@ -8,7 +9,14 @@ import java.util.List;
 
 public abstract class ClientController {
 
-  public static Client registerClient(String clientName, String homeAddress, String phoneNumber) {
+  public static Client registerClient(String clientName, String homeAddress, String phoneNumber)
+      throws ClientAlreadyRegisteredException {
+    if (DAO.fromClients().findByName(clientName) != null) {
+      throw new ClientAlreadyRegisteredException(
+          "Client '" + clientName + "' is already registered!"
+      );
+    }
+
     return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
   }
 
