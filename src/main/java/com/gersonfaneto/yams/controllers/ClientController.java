@@ -1,9 +1,9 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.exceptions.ClientNotFoundException;
 import com.gersonfaneto.yams.models.entities.Client;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import java.security.InvalidParameterException;
 import java.util.List;
 
 public abstract class ClientController {
@@ -12,9 +12,9 @@ public abstract class ClientController {
     return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
   }
 
-  public static Client unregisterClient(String clientName) {
+  public static Client unregisterClient(String clientName) throws ClientNotFoundException {
     if (DAO.fromClients().findByName(clientName) == null) {
-      throw new InvalidParameterException("Client not found!");
+      throw new ClientNotFoundException("Client '" + clientName + "' not found!");
     }
 
     Client foundClient = DAO.fromClients().findByName(clientName);
@@ -23,17 +23,18 @@ public abstract class ClientController {
     return foundClient;
   }
 
-  public static Client findClient(String clientName) {
+  public static Client findClient(String clientName) throws ClientNotFoundException {
     if (DAO.fromClients().findByName(clientName) == null) {
-      throw new InvalidParameterException("Client not found!");
+      throw new ClientNotFoundException("Client '" + clientName + "' not found!");
     }
 
     return DAO.fromClients().findByName(clientName);
   }
 
-  public static Client updateInfo(String clientName, String homeAddress, String phoneNumber) {
+  public static Client updateInfo(String clientName, String homeAddress, String phoneNumber)
+      throws ClientNotFoundException {
     if (DAO.fromClients().findByName(clientName) == null) {
-      throw new InvalidParameterException("Client not found!");
+      throw new ClientNotFoundException("Client '" + clientName + "' not found!");
     }
 
     Client foundClient = DAO.fromClients().findByName(clientName);
@@ -47,9 +48,10 @@ public abstract class ClientController {
     return foundClient;
   }
 
-  public static List<WorkOrder> retrieveWorkOrders(String clientName) {
+  public static List<WorkOrder> retrieveWorkOrders(String clientName)
+      throws ClientNotFoundException {
     if (DAO.fromClients().findByName(clientName) == null) {
-      throw new InvalidParameterException("Client not found!");
+      throw new ClientNotFoundException("Client '" + clientName + "' not found!");
     }
 
     Client foundClient = DAO.fromClients().findByName(clientName);
