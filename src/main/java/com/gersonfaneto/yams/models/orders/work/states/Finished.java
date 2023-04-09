@@ -18,13 +18,13 @@ public class Finished extends State {
 
   @Override
   public boolean generateInvoice(String technicianID) {
-    DAO.fromInvoices().createOne(new Invoice(
-        getWorkOrder().getWorkOrderID(),
-        getWorkOrder().getChosenServices()
-            .stream()
-            .map(Service::getServicePrice)
-            .reduce(0.0, Double::sum)
-    ));
+    DAO.fromInvoices()
+        .createOne(
+            new Invoice(
+                getWorkOrder().getWorkOrderID(),
+                getWorkOrder().getChosenServices().stream()
+                    .map(Service::getServicePrice)
+                    .reduce(0.0, Double::sum)));
 
     return true;
   }

@@ -31,9 +31,8 @@ public class ServiceBuilder implements Builder<Service> {
 
   public ServiceBuilder definePrice(double servicePrice) {
     if (serviceType.equals(Assembly)) {
-      this.servicePrice = usedComponents.stream()
-          .map(Component::getComponentPrice)
-          .reduce(0.0, Double::sum);
+      this.servicePrice =
+          usedComponents.stream().map(Component::getComponentPrice).reduce(0.0, Double::sum);
       return this;
     }
 
@@ -44,8 +43,7 @@ public class ServiceBuilder implements Builder<Service> {
   public ServiceBuilder addComponent(Component chosenComponent) {
     if (!serviceType.equals(Assembly)) {
       throw new InvalidParameterException(
-          "Cannot add component to service of type " + serviceType.getTypeName() + " !"
-      );
+          "Cannot add component to service of type " + serviceType.getTypeName() + " !");
     }
 
     usedComponents.add(chosenComponent);

@@ -69,8 +69,7 @@ public class PurchaseOrderMemoryDAO implements PurchaseOrderCRUD {
 
   @Override
   public List<PurchaseOrder> findByType(String componentType) {
-    return storedPurchaseOrders.values()
-        .stream()
+    return storedPurchaseOrders.values().stream()
         .filter(x -> x.getComponentType().equals(componentType))
         .toList();
   }

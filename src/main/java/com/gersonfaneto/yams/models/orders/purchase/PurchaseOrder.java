@@ -39,14 +39,20 @@ public class PurchaseOrder {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
             ID: %s
             Type: %s
             Description: %s
             Amount: %d
             Cost: R$ %.2f
             Price: R$ %.2f
-            """, purchaseOrderID, componentType, componentDescription, boughtAmount, componentCost,
+            """,
+        purchaseOrderID,
+        componentType,
+        componentDescription,
+        boughtAmount,
+        componentCost,
         componentPrice);
   }
 
