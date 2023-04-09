@@ -30,11 +30,13 @@ public abstract class User {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Email: %s
         Password: %s
-        """, userID, userEmail, userPassword);
+        """,
+        userID, userEmail, userPassword);
   }
 
   public String getUserID() {

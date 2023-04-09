@@ -23,23 +23,20 @@ public class WorkReport {
   public WorkReport(WorkOrder workOrder) {
     this.workOrderID = workOrder.getWorkOrderID();
 
-    this.technicianName = DAO.fromTechnicians()
-        .findByID(workOrder.getTechnicianID())
-        .getTechnicianName();
+    this.technicianName =
+        DAO.fromTechnicians().findByID(workOrder.getTechnicianID()).getTechnicianName();
 
-    this.clientName = DAO.fromClients()
-        .findByID(workOrder.getClientID())
-        .getClientName();
+    this.clientName = DAO.fromClients().findByID(workOrder.getClientID()).getClientName();
 
-    this.waitTime = TimeConverter.convertToDuration(
-        workOrder.getCreatedAt().getTimeInMillis(),
-        workOrder.getClosedAt().getTimeInMillis()
-    );
+    this.waitTime =
+        TimeConverter.convertToDuration(
+            workOrder.getCreatedAt().getTimeInMillis(), workOrder.getClosedAt().getTimeInMillis());
 
-    this.averageRating = workOrder.getChosenServices()
-        .stream()
-        .map(Service::getClientRating)
-        .reduce(0.0, Double::sum) / workOrder.getChosenServices().size();
+    this.averageRating =
+        workOrder.getChosenServices().stream()
+                .map(Service::getClientRating)
+                .reduce(0.0, Double::sum)
+            / workOrder.getChosenServices().size();
 
     this.usedComponents = new HashMap<>();
 
@@ -47,8 +44,8 @@ public class WorkReport {
     for (Service currentService : performedServices) {
       if (currentService.getServiceType().equals(Assembly)) {
         for (Component currentComponent : currentService.getUsedComponents()) {
-          usedComponents.put(currentComponent.getComponentDescription(),
-              currentComponent.getComponentCost());
+          usedComponents.put(
+              currentComponent.getComponentDescription(), currentComponent.getComponentCost());
         }
       }
     }

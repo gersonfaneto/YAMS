@@ -27,7 +27,6 @@ public enum ServiceType {
       if (currentType.typeName.equals(typeName)) {
         return currentType;
       }
-
     }
     return null;
   }

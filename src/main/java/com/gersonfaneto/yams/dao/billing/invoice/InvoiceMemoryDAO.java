@@ -69,8 +69,7 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
 
   @Override
   public Invoice findByWorkOrder(String workOrderID) {
-    return storedInvoices.values()
-        .stream()
+    return storedInvoices.values().stream()
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .findFirst()
         .get();

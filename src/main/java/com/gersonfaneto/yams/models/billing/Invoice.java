@@ -16,9 +16,7 @@ public class Invoice {
   }
 
   public double calculatePaidValue() {
-    return DAO.fromPayments()
-        .findByInvoice(invoiceID)
-        .stream()
+    return DAO.fromPayments().findByInvoice(invoiceID).stream()
         .map(Payment::getPaidValue)
         .reduce(0.0, Double::sum);
   }
@@ -46,12 +44,14 @@ public class Invoice {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Work Order: %s
         Total Value: R$ %.2f
         Paid Value: R$ %.2f
-        """, invoiceID, workOrderID, totalValue, calculatePaidValue());
+        """,
+        invoiceID, workOrderID, totalValue, calculatePaidValue());
   }
 
   public String getInvoiceID() {
