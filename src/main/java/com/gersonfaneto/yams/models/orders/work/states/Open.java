@@ -1,7 +1,9 @@
 package com.gersonfaneto.yams.models.orders.work.states;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.reports.work.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 
 public class Open extends State {
@@ -11,21 +13,21 @@ public class Open extends State {
   }
 
   @Override
-  public boolean removeService(String technicianID, Service chosenService) {
-    if (technicianID.equals(getWorkOrder().getTechnicianID())) {
-      return DAO.fromService().deleteByID(chosenService.getServiceID());
-    }
+  public Service removeService(String serviceID) {
+    Service removedService = DAO.fromService().findByID(serviceID);
 
-    return false;
+    DAO.fromService().deleteByID(serviceID);
+
+    return removedService;
   }
 
   @Override
-  public boolean generateInvoice(String technicianID) {
-    return false;
+  public Invoice generateInvoice() {
+    return null;
   }
 
   @Override
-  public boolean generateReport(String technicianID) {
-    return false;
+  public WorkReport generateReport() {
+    return null;
   }
 }

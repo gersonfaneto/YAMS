@@ -1,11 +1,11 @@
 package com.gersonfaneto.yams.models.orders.work;
 
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.reports.work.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 import java.util.Calendar;
-import java.util.List;
 
 public class WorkOrder {
 
@@ -16,28 +16,24 @@ public class WorkOrder {
   private State workOrderState;
   private Calendar createdAt;
   private Calendar closedAt;
-
   private WorkReport workReport;
 
-  private List<Service> chosenServices;
-
-  public WorkOrder(String clientID, List<Service> chosenServices) {
+  public WorkOrder(String clientID) {
     this.clientID = clientID;
     this.workOrderState = new Created(this);
     this.createdAt = Calendar.getInstance();
-    this.chosenServices = chosenServices;
   }
 
-  public boolean removeService(String technicianID, Service chosenService) {
-    return workOrderState.removeService(technicianID, chosenService);
+  public Service removeService(String serviceID) {
+    return workOrderState.removeService(serviceID);
   }
 
-  public boolean generateInvoice(String technicianID) {
-    return workOrderState.generateInvoice(technicianID);
+  public Invoice generateInvoice() {
+    return workOrderState.generateInvoice();
   }
 
-  public boolean generateReport(String technicianID) {
-    return workOrderState.generateReport(technicianID);
+  public WorkReport generateReport() {
+    return workOrderState.generateReport();
   }
 
   @Override
@@ -132,13 +128,5 @@ public class WorkOrder {
 
   public void setWorkReport(WorkReport workReport) {
     this.workReport = workReport;
-  }
-
-  public List<Service> getChosenServices() {
-    return chosenServices;
-  }
-
-  public void setChosenServices(List<Service> chosenServices) {
-    this.chosenServices = chosenServices;
   }
 }

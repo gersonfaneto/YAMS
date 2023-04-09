@@ -74,4 +74,11 @@ public class ServiceMemoryDAO implements ServiceCRUD {
         .filter(x -> x.getServiceType().equals(serviceType))
         .toList();
   }
+
+  @Override
+  public List<Service> findByWorkOrder(String workOrderID) {
+    return storedServices.values().stream()
+        .filter(x -> x.getWorkOrderID().equals(workOrderID))
+        .toList();
+  }
 }

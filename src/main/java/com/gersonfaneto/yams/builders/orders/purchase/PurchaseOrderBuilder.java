@@ -5,20 +5,17 @@ import static com.gersonfaneto.yams.models.components.ComponentType.Others;
 import com.gersonfaneto.yams.builders.Builder;
 import com.gersonfaneto.yams.models.components.ComponentType;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
-import java.security.InvalidParameterException;
 
 public class PurchaseOrderBuilder implements Builder<PurchaseOrder> {
+
   private final ComponentType componentType;
   private String componentDescription;
   private int boughtAmount;
   private double componentCost;
   private double componentPrice;
 
-  public PurchaseOrderBuilder(String componentType) {
-    if (ComponentType.findByType(componentType) == null) {
-      throw new InvalidParameterException("Component type not known!");
-    }
-    this.componentType = ComponentType.findByType(componentType);
+  public PurchaseOrderBuilder(ComponentType componentType) {
+    this.componentType = componentType;
   }
 
   public PurchaseOrderBuilder componentDescription(String componentDescription) {

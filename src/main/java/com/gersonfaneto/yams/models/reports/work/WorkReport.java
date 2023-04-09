@@ -7,9 +7,7 @@ import com.gersonfaneto.yams.models.components.Component;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.utils.TimeConverter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WorkReport {
 
@@ -18,7 +16,7 @@ public class WorkReport {
   private final String clientName;
   private final String waitTime;
   private final double averageRating;
-  private final Map<String, Double> usedComponents;
+  private final String usedComponents;
 
   public WorkReport(WorkOrder workOrder) {
     this.workOrderID = workOrder.getWorkOrderID();
@@ -33,22 +31,26 @@ public class WorkReport {
             workOrder.getCreatedAt().getTimeInMillis(), workOrder.getClosedAt().getTimeInMillis());
 
     this.averageRating =
-        workOrder.getChosenServices().stream()
-                .map(Service::getClientRating)
-                .reduce(0.0, Double::sum)
-            / workOrder.getChosenServices().size();
+        DAO.fromService().findByWorkOrder(workOrderID).stream()
+            .mapToDouble(Service::getClientRating)
+            .average()
+            .orElse(0.0);
 
-    this.usedComponents = new HashMap<>();
+    StringBuilder stringBuilder = new StringBuilder();
 
-    List<Service> performedServices = workOrder.getChosenServices();
+    List<Service> performedServices = DAO.fromService().findByWorkOrder(workOrderID);
     for (Service currentService : performedServices) {
       if (currentService.getServiceType().equals(Assembly)) {
         for (Component currentComponent : currentService.getUsedComponents()) {
-          usedComponents.put(
-              currentComponent.getComponentDescription(), currentComponent.getComponentCost());
+          stringBuilder.append(
+              String.format(
+                  "%s - R$ %.2f\n",
+                  currentComponent.getComponentDescription(), currentComponent.getComponentCost()));
         }
       }
     }
+
+    this.usedComponents = stringBuilder.toString();
   }
 
   public String getWorkOrderID() {
@@ -71,7 +73,7 @@ public class WorkReport {
     return averageRating;
   }
 
-  public Map<String, Double> getUsedComponents() {
+  public String getUsedComponents() {
     return usedComponents;
   }
 }

@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.models.orders.work.states;
 
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.reports.work.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
@@ -11,19 +12,21 @@ public class Payed extends State {
   }
 
   @Override
-  public boolean removeService(String technicianID, Service chosenServices) {
-    return false;
+  public Service removeService(String serviceID) {
+    return null;
   }
 
   @Override
-  public boolean generateInvoice(String technicianID) {
-    return false;
+  public Invoice generateInvoice() {
+    return null;
   }
 
   @Override
-  public boolean generateReport(String technicianID) {
+  public WorkReport generateReport() {
     WorkReport workReport = new WorkReport(getWorkOrder());
+
     getWorkOrder().setWorkReport(workReport);
-    return true;
+
+    return workReport;
   }
 }

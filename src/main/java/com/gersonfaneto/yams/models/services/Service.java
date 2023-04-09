@@ -7,6 +7,7 @@ import java.util.List;
 public class Service {
 
   private String serviceID;
+  private String workOrderID;
   private ServiceType serviceType;
   private String serviceDescription;
   private double clientRating;
@@ -63,6 +64,10 @@ public class Service {
     this.serviceID = serviceID;
   }
 
+  public void setWorkOrderID(String workOrderID) {
+    this.workOrderID = workOrderID;
+  }
+
   public ServiceType getServiceType() {
     return serviceType;
   }
@@ -109,5 +114,9 @@ public class Service {
 
   public void setUsedComponents(List<Component> usedComponents) {
     this.usedComponents = usedComponents;
+  }
+
+  public String getWorkOrderID() {
+    return workOrderID;
   }
 }

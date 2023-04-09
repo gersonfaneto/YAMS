@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.models.entities.technician.states;
 
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Open;
@@ -33,7 +34,7 @@ public class Free extends State {
   }
 
   @Override
-  public boolean generateInvoice() {
-    return false;
+  public Invoice generateInvoice() {
+    return getWorkOrder().generateInvoice();
   }
 }

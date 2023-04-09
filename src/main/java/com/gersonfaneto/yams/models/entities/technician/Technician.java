@@ -1,13 +1,10 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
-import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.entities.Client;
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.services.Service;
-import java.util.List;
 
 public class Technician extends User {
 
@@ -18,18 +15,6 @@ public class Technician extends User {
     super(userEmail, userPassword);
     this.technicianName = technicianName;
     this.technicianState = new Free(this);
-  }
-
-  public Client registerClient(String clientName, String homeAddress, String phoneNumber) {
-    return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
-  }
-
-  public WorkOrder createWorkOrder(String clientID, List<Service> chosenServices) {
-    return DAO.fromWorkOrders().createOne(new WorkOrder(clientID, chosenServices));
-  }
-
-  public boolean removeService(WorkOrder workOrder, Service chosenService) {
-    return workOrder.removeService(getUserID(), chosenService);
   }
 
   public boolean openOrder(WorkOrder workOrder) {
@@ -44,7 +29,7 @@ public class Technician extends User {
     return technicianState.closeOrder();
   }
 
-  public boolean generateInvoice() {
+  public Invoice generateInvoice() {
     return technicianState.generateInvoice();
   }
 

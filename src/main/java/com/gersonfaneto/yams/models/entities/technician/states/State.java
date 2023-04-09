@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.models.entities.technician.states;
 
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 
@@ -19,7 +20,7 @@ public abstract class State {
 
   public abstract boolean closeOrder();
 
-  public abstract boolean generateInvoice();
+  public abstract Invoice generateInvoice();
 
   public Technician getTechnician() {
     return technician;
