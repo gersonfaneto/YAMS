@@ -32,12 +32,14 @@ public class Client {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Name: %s
         Address: %s
         Contact: %s
-        """, clientID, clientName, homeAddress, phoneNumber);
+        """,
+        clientID, clientName, homeAddress, phoneNumber);
   }
 
   public String getClientID() {

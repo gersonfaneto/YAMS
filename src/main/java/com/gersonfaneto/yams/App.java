@@ -19,13 +19,14 @@ public class App extends Application {
     primaryStage.setTitle("Hello, World!");
     Button primaryButton = new Button();
     primaryButton.setText("Say \"Hello, World!\"");
-    primaryButton.setOnAction(new EventHandler<ActionEvent>() {
+    primaryButton.setOnAction(
+        new EventHandler<ActionEvent>() {
 
-      @Override
-      public void handle(ActionEvent event) {
-        System.out.println("Hello World!");
-      }
-    });
+          @Override
+          public void handle(ActionEvent event) {
+            System.out.println("Hello World!");
+          }
+        });
 
     StackPane primaryPane = new StackPane();
     primaryPane.getChildren().add(primaryButton);

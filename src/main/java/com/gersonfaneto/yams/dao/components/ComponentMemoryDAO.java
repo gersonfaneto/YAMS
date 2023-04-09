@@ -70,8 +70,7 @@ public class ComponentMemoryDAO implements ComponentCRUD {
 
   @Override
   public List<Component> findByType(ComponentType componentType) {
-    return storedComponents.values()
-        .stream()
+    return storedComponents.values().stream()
         .filter(x -> x.getComponentType().equals(componentType))
         .toList();
   }

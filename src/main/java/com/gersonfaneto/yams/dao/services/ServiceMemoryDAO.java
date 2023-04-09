@@ -70,8 +70,7 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   @Override
   public List<Service> findByType(ServiceType serviceType) {
-    return storedServices.values()
-        .stream()
+    return storedServices.values().stream()
         .filter(x -> x.getServiceType().equals(serviceType))
         .toList();
   }

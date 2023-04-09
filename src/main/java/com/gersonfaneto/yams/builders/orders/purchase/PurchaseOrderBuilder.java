@@ -21,7 +21,6 @@ public class PurchaseOrderBuilder implements Builder<PurchaseOrder> {
     this.componentType = ComponentType.findByType(componentType);
   }
 
-
   public PurchaseOrderBuilder componentDescription(String componentDescription) {
     this.componentDescription = componentDescription;
     return this;

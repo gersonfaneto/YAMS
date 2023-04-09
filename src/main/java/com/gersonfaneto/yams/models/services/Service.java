@@ -2,7 +2,6 @@ package com.gersonfaneto.yams.models.services;
 
 import com.gersonfaneto.yams.builders.service.ServiceBuilder;
 import com.gersonfaneto.yams.models.components.Component;
-import java.security.Provider;
 import java.util.List;
 
 public class Service {
@@ -41,13 +40,18 @@ public class Service {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
             ID: %s
             Type: %s
             Description: %s
             Price: R$ %.2f
             Status: %s
-            """, serviceID, serviceType, serviceDescription, servicePrice,
+            """,
+        serviceID,
+        serviceType,
+        serviceDescription,
+        servicePrice,
         (isComplete) ? "Complete" : "Pending");
   }
 
@@ -103,8 +107,7 @@ public class Service {
     return usedComponents;
   }
 
-  public void setUsedComponents(
-      List<Component> usedComponents) {
+  public void setUsedComponents(List<Component> usedComponents) {
     this.usedComponents = usedComponents;
   }
 }
