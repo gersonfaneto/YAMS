@@ -6,7 +6,6 @@ import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.reports.work.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 import java.util.Calendar;
-import java.util.List;
 
 public class WorkOrder {
 

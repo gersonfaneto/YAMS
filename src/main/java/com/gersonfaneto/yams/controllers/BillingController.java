@@ -23,7 +23,10 @@ public abstract class BillingController {
 
     if (invoicePaidValue + paidValue >= foundInvoice.getTotalValue()) {
       throw new ValueExceededException(
-          "Payment of value R$ " + paidValue + "' exceeds total value from Invoice of ID '" + invoiceID
+          "Payment of value R$ "
+              + paidValue
+              + "' exceeds total value from Invoice of ID '"
+              + invoiceID
               + "' total value");
     }
 

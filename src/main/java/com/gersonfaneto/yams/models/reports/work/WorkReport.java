@@ -30,12 +30,11 @@ public class WorkReport {
         TimeConverter.convertToDuration(
             workOrder.getCreatedAt().getTimeInMillis(), workOrder.getClosedAt().getTimeInMillis());
 
-    this.averageRating = DAO.fromService()
-        .findByWorkOrder(workOrderID)
-        .stream()
-        .mapToDouble(Service::getClientRating)
-        .average()
-        .orElse(0.0);
+    this.averageRating =
+        DAO.fromService().findByWorkOrder(workOrderID).stream()
+            .mapToDouble(Service::getClientRating)
+            .average()
+            .orElse(0.0);
 
     StringBuilder stringBuilder = new StringBuilder();
 
@@ -44,11 +43,9 @@ public class WorkReport {
       if (currentService.getServiceType().equals(Assembly)) {
         for (Component currentComponent : currentService.getUsedComponents()) {
           stringBuilder.append(
-              String.format("%s - R$ %.2f\n",
-                  currentComponent.getComponentDescription(),
-                  currentComponent.getComponentCost()
-              )
-          );
+              String.format(
+                  "%s - R$ %.2f\n",
+                  currentComponent.getComponentDescription(), currentComponent.getComponentCost()));
         }
       }
     }

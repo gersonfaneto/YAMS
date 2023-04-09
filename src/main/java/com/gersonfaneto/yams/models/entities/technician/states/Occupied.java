@@ -6,7 +6,6 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Canceled;
 import com.gersonfaneto.yams.models.orders.work.states.Finished;
 import java.util.Calendar;
-import javafx.scene.effect.InnerShadow;
 
 public class Occupied extends State {
 

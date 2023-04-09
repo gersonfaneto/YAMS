@@ -1,13 +1,10 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
-import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.services.Service;
-import java.util.List;
 
 public class Technician extends User {
 

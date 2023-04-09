@@ -23,8 +23,7 @@ public class Finished extends State {
         .createOne(
             new Invoice(
                 getWorkOrder().getWorkOrderID(),
-                DAO.fromService().findByWorkOrder(getWorkOrder().getWorkOrderID())
-                    .stream()
+                DAO.fromService().findByWorkOrder(getWorkOrder().getWorkOrderID()).stream()
                     .map(Service::getServicePrice)
                     .reduce(0.0, Double::sum)));
   }

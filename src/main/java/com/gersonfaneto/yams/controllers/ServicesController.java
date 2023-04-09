@@ -38,15 +38,20 @@ public abstract class ServicesController {
     return workOrder;
   }
 
-  public static Service createService(String serviceType, String serviceDescription,
-      double servicePrice, List<Component> usedComponents) throws ServiceTypeNotFound {
+  public static Service createService(
+      String serviceType,
+      String serviceDescription,
+      double servicePrice,
+      List<Component> usedComponents)
+      throws ServiceTypeNotFound {
     if (ServiceType.findByName(serviceType) == null) {
       throw new ServiceTypeNotFound("Service type '" + serviceType + "' not found!");
     }
 
-    ServiceBuilder serviceBuilder = new ServiceBuilder(ServiceType.findByName(serviceType))
-        .defineDescription(serviceDescription)
-        .definePrice(servicePrice);
+    ServiceBuilder serviceBuilder =
+        new ServiceBuilder(ServiceType.findByName(serviceType))
+            .defineDescription(serviceDescription)
+            .definePrice(servicePrice);
 
     for (Component currentComponent : usedComponents) {
       serviceBuilder.addComponent(currentComponent);
@@ -73,8 +78,7 @@ public abstract class ServicesController {
 
     if (removedService == null) {
       throw new UnsupportedOperationException(
-          "Work Order current state doesn't support removal of service!"
-      );
+          "Work Order current state doesn't support removal of service!");
     }
   }
 
@@ -106,14 +110,13 @@ public abstract class ServicesController {
 
     Technician foundTechnician = DAO.fromTechnicians().findByID(technicianID);
 
-    WorkOrder foundWorkOrder = DAO.fromWorkOrders()
-        .findMany()
-        .stream()
-        .filter(x -> x.getClosedAt() == null)
-        .min(Comparator.comparing(WorkOrder::getCreatedAt))
-        .stream()
-        .findFirst()
-        .orElse(null);
+    WorkOrder foundWorkOrder =
+        DAO.fromWorkOrders().findMany().stream()
+            .filter(x -> x.getClosedAt() == null)
+            .min(Comparator.comparing(WorkOrder::getCreatedAt))
+            .stream()
+            .findFirst()
+            .orElse(null);
 
     if (foundWorkOrder == null) {
       throw new WorkOrderNotFound("No Work Order avaliable to open!");
@@ -121,8 +124,7 @@ public abstract class ServicesController {
 
     if (!foundTechnician.openOrder(foundWorkOrder)) {
       throw new UnsupportedOperationException(
-          "Technician with ID '" + technicianID + "' already has a Work Order!"
-      );
+          "Technician with ID '" + technicianID + "' already has a Work Order!");
     }
 
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);
@@ -141,8 +143,7 @@ public abstract class ServicesController {
 
     if (!foundTechnician.closeOrder()) {
       throw new UnsupportedOperationException(
-          "Technician with ID '" + technicianID + "' doesn't have a Work Order"
-      );
+          "Technician with ID '" + technicianID + "' doesn't have a Work Order");
     }
 
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);
@@ -161,8 +162,7 @@ public abstract class ServicesController {
 
     if (!foundTechnician.cancelOrder()) {
       throw new UnsupportedOperationException(
-          "Technician with ID '" + technicianID + "' doesn't have a Work Order"
-      );
+          "Technician with ID '" + technicianID + "' doesn't have a Work Order");
     }
 
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);

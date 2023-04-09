@@ -13,8 +13,7 @@ public abstract class ClientController {
       throws ClientAlreadyRegisteredException {
     if (DAO.fromClients().findByName(clientName) != null) {
       throw new ClientAlreadyRegisteredException(
-          "Client '" + clientName + "' is already registered!"
-      );
+          "Client '" + clientName + "' is already registered!");
     }
 
     return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
