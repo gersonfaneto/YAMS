@@ -16,12 +16,8 @@ public class ServiceBuilder implements Builder<Service> {
   private double servicePrice;
   private List<Component> usedComponents;
 
-  public ServiceBuilder(String serviceType) {
-    if (ServiceType.findByName(serviceType) == null) {
-      throw new InvalidParameterException("Service type not found!");
-    }
-
-    this.serviceType = ServiceType.findByName(serviceType);
+  public ServiceBuilder(ServiceType serviceType) {
+    this.serviceType = serviceType;
   }
 
   public ServiceBuilder defineDescription(String serviceDescription) {
