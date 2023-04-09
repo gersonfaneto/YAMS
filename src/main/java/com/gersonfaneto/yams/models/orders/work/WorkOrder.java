@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.models.orders.work;
 
+import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.reports.work.WorkReport;
@@ -28,16 +29,16 @@ public class WorkOrder {
     this.chosenServices = chosenServices;
   }
 
-  public boolean removeService(String technicianID, Service chosenService) {
-    return workOrderState.removeService(technicianID, chosenService);
+  public Service removeService(String serviceID) {
+    return workOrderState.removeService(serviceID);
   }
 
-  public boolean generateInvoice(String technicianID) {
-    return workOrderState.generateInvoice(technicianID);
+  public Invoice generateInvoice() {
+    return workOrderState.generateInvoice();
   }
 
-  public boolean generateReport(String technicianID) {
-    return workOrderState.generateReport(technicianID);
+  public WorkReport generateReport() {
+    return workOrderState.generateReport();
   }
 
   @Override
