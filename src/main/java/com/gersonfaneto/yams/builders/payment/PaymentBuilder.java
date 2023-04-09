@@ -10,12 +10,8 @@ public class PaymentBuilder implements Builder<Payment> {
   private String invoiceID;
   private double paidValue;
 
-  public PaymentBuilder(String paymentMethod) {
-    if (PaymentMethod.findByType(paymentMethod) == null) {
-      throw new InvalidParameterException("Payment method not found!");
-    }
-
-    this.paymentMethod = PaymentMethod.findByType(paymentMethod);
+  public PaymentBuilder(PaymentMethod paymentMethod) {
+    this.paymentMethod = paymentMethod;
   }
 
   public PaymentBuilder fromInvoice(String invoiceID) {
