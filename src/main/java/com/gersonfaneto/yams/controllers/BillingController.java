@@ -16,10 +16,11 @@ public abstract class BillingController {
       throw new PaymentMethodNotFound("Payment method '" + paymentMethod + "' not found!");
     }
 
-    Payment newPayment = new PaymentBuilder(PaymentMethod.findByType(paymentMethod))
-        .fromInvoice(invoiceID)
-        .ofValue(paidValue)
-        .Build();
+    Payment newPayment =
+        new PaymentBuilder(PaymentMethod.findByType(paymentMethod))
+            .fromInvoice(invoiceID)
+            .ofValue(paidValue)
+            .Build();
 
     return DAO.fromPayments().createOne(newPayment);
   }
@@ -29,9 +30,7 @@ public abstract class BillingController {
       throw new InvoiceNotFoundException("Invoice of ID '" + invoiceID + "' not found!");
     }
 
-    return DAO.fromPayments()
-        .findByInvoice(invoiceID)
-        .stream()
+    return DAO.fromPayments().findByInvoice(invoiceID).stream()
         .map(Payment::getPaidValue)
         .reduce(0.0, Double::sum);
   }

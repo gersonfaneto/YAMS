@@ -3,7 +3,6 @@ package com.gersonfaneto.yams.builders.payment;
 import com.gersonfaneto.yams.builders.Builder;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
-import java.security.InvalidParameterException;
 
 public class PaymentBuilder implements Builder<Payment> {
   private final PaymentMethod paymentMethod;
