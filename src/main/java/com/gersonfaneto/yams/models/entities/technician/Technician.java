@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.entities.Client;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;

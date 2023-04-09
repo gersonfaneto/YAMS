@@ -68,8 +68,7 @@ public class TechnicianMemoryDAO implements TechnicianCRUD {
 
   @Override
   public Technician findByEmail(String userEmail) {
-    return storedTechnicians.values()
-        .stream()
+    return storedTechnicians.values().stream()
         .filter(x -> x.getUserEmail().equals(userEmail))
         .findFirst()
         .orElse(null);

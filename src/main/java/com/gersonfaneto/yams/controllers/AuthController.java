@@ -8,8 +8,9 @@ import com.gersonfaneto.yams.models.entities.technician.Technician;
 
 public abstract class AuthController {
 
-  public static Technician registerUser(String userEmail, String userPassword,
-      String technicianName) throws UserAlreadyRegisteredException {
+  public static Technician registerUser(
+      String userEmail, String userPassword, String technicianName)
+      throws UserAlreadyRegisteredException {
     if (DAO.fromTechnicians().findByEmail(userEmail) != null) {
       throw new UserAlreadyRegisteredException("User '" + userEmail + "' already registered!");
     }
