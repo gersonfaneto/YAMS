@@ -10,7 +10,6 @@ public class Component {
   private double componentCost;
   private double componentPrice;
 
-
   public Component(ComponentBuilder componentBuilder) {
     this.componentType = componentBuilder.getComponentType();
     this.componentDescription = componentBuilder.getComponentDescription();
@@ -37,13 +36,15 @@ public class Component {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Type: %s
         Description: %s
         Cost: R$ %.2f
         Price: R$ %.2f
-        """, componentID, componentType, componentDescription, componentCost, componentPrice);
+        """,
+        componentID, componentType, componentDescription, componentCost, componentPrice);
   }
 
   public String getComponentID() {

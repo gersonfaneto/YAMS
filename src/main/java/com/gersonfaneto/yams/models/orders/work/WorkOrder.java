@@ -20,6 +20,7 @@ public class WorkOrder {
   private WorkReport workReport;
 
   private List<Service> chosenServices;
+
   public WorkOrder(String clientID, List<Service> chosenServices) {
     this.clientID = clientID;
     this.workOrderState = new Created(this);
@@ -58,13 +59,15 @@ public class WorkOrder {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Client: %s
         Technician: %s
         Invoice: %s
         Status: %s
-        """, workOrderID, clientID, technicianID, invoiceID, workOrderState.getClass().getName());
+        """,
+        workOrderID, clientID, technicianID, invoiceID, workOrderState.getClass().getName());
   }
 
   public String getWorkOrderID() {
@@ -135,8 +138,7 @@ public class WorkOrder {
     return chosenServices;
   }
 
-  public void setChosenServices(
-      List<Service> chosenServices) {
+  public void setChosenServices(List<Service> chosenServices) {
     this.chosenServices = chosenServices;
   }
 }

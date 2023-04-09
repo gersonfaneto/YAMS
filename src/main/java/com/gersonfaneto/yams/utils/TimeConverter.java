@@ -22,7 +22,8 @@ public abstract class TimeConverter {
 
     long totalSeconds = TimeUnit.MILLISECONDS.toSeconds(totalTime);
 
-    return String.format("%d Days %d Hours %d Minutes %d Seconds",
+    return String.format(
+        "%d Days %d Hours %d Minutes %d Seconds",
         totalDays, totalHours, totalMinutes, totalSeconds);
   }
 }
