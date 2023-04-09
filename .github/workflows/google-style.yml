@@ -14,6 +14,6 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--replace"
-          version: 1.14.0
+          version: "v1.16.0"
           skip-commit: false
           commit-message: "style: Apply `Google Syle` formatting."
