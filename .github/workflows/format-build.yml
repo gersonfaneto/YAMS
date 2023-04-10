@@ -1,0 +1,54 @@
+name: Format & Build
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Codebase.
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "oracle"
+
+      - name: Setup Formatter
+        uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--replace"
+          version: "v1.16.0"
+          commit-message: "style: Apply `Google Syle` formatting."
+
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "oracle"
+
+      - name: Caching Maven Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
