@@ -1,4 +1,4 @@
-name: Format & Build
+name: YAMS-CI
 
 on:
   pull_request:
@@ -28,6 +28,7 @@ jobs:
           commit-message: "style: Apply `Google Syle` formatting."
 
   Build:
+    if: success()
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Codebase
