@@ -34,5 +34,4 @@ jobs:
           token: ${{ secrets.PAT }}
           repository: ${{ github.repository }}
           event-type: trigger-build-workflow
-          client-payload: "{'ref': '${{ github.ref }}', 'sha': '${{ github.sha }}'}"
-
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
