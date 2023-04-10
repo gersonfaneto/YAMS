@@ -2,7 +2,7 @@ name: Maven-CI
 
 on:
   repository_dispatch:
-    types: [ "trigger-build-workflow" ]
+    types: [ trigger-build-workflow ]
 
 jobs:
   Build:
