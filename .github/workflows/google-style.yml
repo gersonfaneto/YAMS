@@ -27,11 +27,3 @@ jobs:
           version: "v1.16.0"
           commit-message: "style: Apply `Google Syle` formatting."
 
-      - name: Trigger Build Workflow
-        uses: peter-evans/repository-dispatch@v2
-        if: success()
-        with:
-          token: ${{ secrets.PAT }}
-          repository: ${{ github.repository }}
-          event-type: trigger-build-workflow
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
