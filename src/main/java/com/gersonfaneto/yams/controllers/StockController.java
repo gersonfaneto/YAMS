@@ -7,7 +7,6 @@ import com.gersonfaneto.yams.exceptions.ComponentTypeNotFound;
 import com.gersonfaneto.yams.models.components.Component;
 import com.gersonfaneto.yams.models.components.ComponentType;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class StockController {
@@ -40,44 +39,46 @@ public abstract class StockController {
       String componentType,
       String componentDescription,
       double componentPrice,
-      double componentCost)
-      throws ComponentTypeNotFound {
-
+      double componentCost,
+      int boughtAmount
+  ) throws ComponentTypeNotFound {
     if (ComponentType.findByType(componentType) == null) {
       throw new ComponentTypeNotFound("Component type '" + componentType + "' not found!");
     }
 
-    PurchaseOrder purchaseOrder =
-        new PurchaseOrderBuilder(ComponentType.findByType(componentType))
-            .componentDescription(componentDescription)
-            .priceOfEach(componentPrice)
-            .costOfEach(componentCost)
-            .Build();
-
-    DAO.fromPurchaseOrders().createOne(purchaseOrder);
+    PurchaseOrder purchaseOrder = new PurchaseOrderBuilder(ComponentType.findByType(componentType))
+        .componentDescription(componentDescription)
+        .priceOfEach(componentPrice)
+        .costOfEach(componentCost)
+        .boughtAmount(boughtAmount)
+        .Build();
 
     return DAO.fromPurchaseOrders().createOne(purchaseOrder);
   }
 
-  public static List<Component> storeBoughtComponents(PurchaseOrder purchaseOrder) {
-    ComponentBuilder componentBuilder =
-        new ComponentBuilder(purchaseOrder.getComponentType().getTypeName());
+  public static Component storeBoughtComponents(PurchaseOrder purchaseOrder) {
+    ComponentBuilder componentBuilder = new ComponentBuilder(purchaseOrder.getComponentType());
 
-    List<Component> receivedComponents = new LinkedList<>();
+    Component boughtComponent = componentBuilder
+        .defineDescription(purchaseOrder.getComponentDescription())
+        .defineCost(purchaseOrder.getComponentCost())
+        .definePrice(purchaseOrder.getComponentPrice())
+        .amountInStock(purchaseOrder.getBoughtAmount())
+        .Build();
 
-    for (int i = 0; i < purchaseOrder.getBoughtAmount(); i++) {
-      receivedComponents.add(
-          componentBuilder
-              .defineDescription(purchaseOrder.getComponentDescription())
-              .defineCost(purchaseOrder.getComponentCost())
-              .definePrice(purchaseOrder.getComponentPrice())
-              .Build());
+    if (DAO.fromComponents().findEquals(boughtComponent) == null) {
+      DAO.fromComponents().createOne(boughtComponent);
+    }
+    else {
+      Component foundComponent = DAO.fromComponents().findEquals(boughtComponent);
+      foundComponent.setAmountInStock(
+          foundComponent.getAmountInStock() + boughtComponent.getAmountInStock()
+      );
+      DAO.fromComponents().updateInformation(foundComponent);
+
+      return foundComponent;
     }
 
-    for (Component currentComponent : receivedComponents) {
-      DAO.fromComponents().createOne(currentComponent);
-    }
-
-    return receivedComponents;
+    return boughtComponent;
   }
 }

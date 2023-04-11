@@ -8,4 +8,5 @@ import java.util.List;
 public interface ComponentCRUD extends CRUD<Component> {
 
   List<Component> findByType(ComponentType componentType);
+  Component findEquals(Object otherObject);
 }

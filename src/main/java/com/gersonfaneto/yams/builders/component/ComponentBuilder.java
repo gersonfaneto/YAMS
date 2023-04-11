@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.builders.component;
 import static com.gersonfaneto.yams.models.components.ComponentType.Others;
 
 import com.gersonfaneto.yams.builders.Builder;
+import com.gersonfaneto.yams.exceptions.ComponentTypeNotFound;
 import com.gersonfaneto.yams.models.components.Component;
 import com.gersonfaneto.yams.models.components.ComponentType;
 import java.security.InvalidParameterException;
@@ -13,13 +14,10 @@ public class ComponentBuilder implements Builder<Component> {
   private String componentDescription;
   private double componentCost;
   private double componentPrice;
+  private int amountInStock;
 
-  public ComponentBuilder(String componentType) {
-    if (ComponentType.findByType(componentType) == null) {
-      throw new InvalidParameterException("Component type not known!");
-    }
-
-    this.componentType = ComponentType.findByType(componentType);
+  public ComponentBuilder(ComponentType componentType) {
+    this.componentType = componentType;
   }
 
   public ComponentBuilder defineDescription(String componentDescription) {
@@ -34,6 +32,11 @@ public class ComponentBuilder implements Builder<Component> {
 
   public ComponentBuilder definePrice(double componentPrice) {
     this.componentPrice = (componentType == Others) ? componentPrice : componentType.getTypeValue();
+    return this;
+  }
+
+  public ComponentBuilder amountInStock(int amountInStock) {
+    this.amountInStock = amountInStock;
     return this;
   }
 
@@ -55,5 +58,9 @@ public class ComponentBuilder implements Builder<Component> {
 
   public double getComponentPrice() {
     return componentPrice;
+  }
+
+  public int getAmountInStock() {
+    return amountInStock;
   }
 }

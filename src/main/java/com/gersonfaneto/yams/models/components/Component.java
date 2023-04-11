@@ -9,12 +9,14 @@ public class Component {
   private String componentDescription;
   private double componentCost;
   private double componentPrice;
+  private int amountInStock;
 
   public Component(ComponentBuilder componentBuilder) {
     this.componentType = componentBuilder.getComponentType();
     this.componentDescription = componentBuilder.getComponentDescription();
     this.componentCost = componentBuilder.getComponentCost();
     this.componentPrice = componentBuilder.getComponentPrice();
+    this.amountInStock = componentBuilder.getAmountInStock();
   }
 
   @Override
@@ -31,7 +33,10 @@ public class Component {
       return false;
     }
 
-    return componentID.equals(otherComponent.componentID);
+    return componentType.equals(otherComponent.componentType) &&
+        componentDescription.equals(otherComponent.componentDescription) &&
+        componentPrice == otherComponent.getComponentPrice() &&
+        componentCost == otherComponent.getComponentCost();
   }
 
   @Override
@@ -85,5 +90,13 @@ public class Component {
 
   public void setComponentPrice(double componentPrice) {
     this.componentPrice = componentPrice;
+  }
+
+  public int getAmountInStock() {
+    return amountInStock;
+  }
+
+  public void setAmountInStock(int amountInStock) {
+    this.amountInStock = amountInStock;
   }
 }
