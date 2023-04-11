@@ -8,6 +8,7 @@ import com.gersonfaneto.yams.exceptions.UserTypeNotFound;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
+import com.gersonfaneto.yams.utils.Authentication;
 
 public abstract class AuthController {
 
@@ -40,7 +41,7 @@ public abstract class AuthController {
 
     User foundUser = DAO.fromUsers().findByEmail(userEmail);
 
-    if (!foundUser.getUserPassword().equals(userPassword)) {
+    if (!Authentication.validateValue(userPassword, foundUser.getUserPassword())) {
       throw new InvalidPasswordException("Incorrect password for user '" + userEmail + "' !");
     }
 
@@ -71,7 +72,7 @@ public abstract class AuthController {
 
     User foundUser = DAO.fromUsers().findByEmail(userEmail);
 
-    if (!foundUser.getUserPassword().equals(userPassword)) {
+    if (!Authentication.validateValue(userPassword, foundUser.getUserPassword())) {
       throw new InvalidPasswordException("Incorrect password for '" + userEmail + "' !");
     }
 

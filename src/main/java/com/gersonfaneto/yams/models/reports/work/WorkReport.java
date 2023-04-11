@@ -7,7 +7,7 @@ import com.gersonfaneto.yams.models.components.Component;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.utils.TimeConverter;
+import com.gersonfaneto.yams.utils.Time;
 import java.util.List;
 
 public class WorkReport {
@@ -30,7 +30,7 @@ public class WorkReport {
         .findByID(workOrder.getClientID())
         .getClientName();
 
-    this.waitTime = TimeConverter.convertToDuration(
+    this.waitTime = Time.durationToString(
         workOrder.getCreatedAt().getTimeInMillis(),
         workOrder.getClosedAt().getTimeInMillis()
     );
