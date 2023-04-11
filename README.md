@@ -10,8 +10,8 @@
 
 </div>
 
-> *Y.A.M.S.* stands for "Yet Another Managements System" (no pun intended 😉). This project is being developed
-> for educational purposes, so don't expect much of it 🙃.
+> *Y.A.M.S.* stands for "Yet Another Managements System" (no pun intended 😉). This project is being
+> developed for educational purposes, so don't expect much of it 🙃.
 
 <h4 align="center">
   <a href="#about">About</a>
@@ -23,14 +23,27 @@
 
 ## About
 
-*Y.A.M.S* is a management system developed to make the day-to-day of a microcomputer assistance
-more practical and efficient. The final product should be capable of managing:
+*Y.A.M.S.* is a management system developed to make the day-to-day of a microcomputer assistance
+more practical and efficient. The final product should be capable of:
 
-- Clients.
-- Work Orders.
-- Payments.
-- Stock.
-- Reports.
+- Registering and keeping important information from the "Clients" of the assistance.
+    - Creation of "Work Orders" from the "Clients", which must be carried out in order of arrival.
+        - The "Work Orders" must contain one or more of the following "Services":
+            - Assembly/Component Installation:
+                - RAM - Price: R$ 20.00
+                - Motherboard - Price: R$ 100.00
+                - Power Supply - Price: R$ 30.00
+                - Graphics Card - Price: R$ 100.00
+                - HD/SSD - Price: R$ 30.00
+                - Others - Price: _To be defined!_
+            - Cleaning - Price: R$ 70.00
+            - Formatting - Price: R$ 50.00
+            - Programs Installation - Price: R$ 10.00
+- Generating "Invoices" referring to the "Work Orders" and receiving "Payments" for them from
+  different methods.
+- Creating "Purchase Orders" for the "Components" needed for the realization of the "Services".
+- Generating "Reports" for the "Services" containing relevant information, like: time waited, client
+  rating and used components.
 
 The development was divided in the following phases:
 
@@ -64,4 +77,5 @@ $ git clone https://github.com/gersonfaneto/YAMS
 
 ## License
 
-Released under [MIT](https://github.com/gersonfaneto/YAMS/blob/main/LICENSE) by [gersonfaneto](https://github.com/gersonfaneto).
+Released under [MIT](https://github.com/gersonfaneto/YAMS/blob/main/LICENSE)
+by [gersonfaneto](https://github.com/gersonfaneto).
