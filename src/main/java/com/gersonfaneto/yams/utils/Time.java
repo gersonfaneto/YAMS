@@ -2,9 +2,9 @@ package com.gersonfaneto.yams.utils;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class TimeConverter {
+public abstract class Time {
 
-  public static String convertToDuration(long startTime, long endTime) {
+  public static String durationToString(long startTime, long endTime) {
     long totalTime = endTime - startTime;
 
     if (totalTime < 0) {
