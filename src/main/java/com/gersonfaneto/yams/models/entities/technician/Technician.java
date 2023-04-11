@@ -4,6 +4,7 @@ import com.gersonfaneto.yams.models.billing.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
+import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 
 public class Technician extends User {
@@ -11,8 +12,8 @@ public class Technician extends User {
   private String technicianName;
   private State technicianState;
 
-  public Technician(String userEmail, String userPassword, String technicianName) {
-    super(userEmail, userPassword);
+  public Technician(String userEmail, String userPassword, UserType userType, String technicianName) {
+    super(userEmail, userPassword, userType);
     this.technicianName = technicianName;
     this.technicianState = new Free(this);
   }

@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
-import com.gersonfaneto.yams.models.entities.Client;
+import com.gersonfaneto.yams.models.entities.client.Client;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

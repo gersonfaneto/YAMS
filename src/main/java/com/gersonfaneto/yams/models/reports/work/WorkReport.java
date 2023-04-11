@@ -4,6 +4,7 @@ import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
 
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.components.Component;
+import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.utils.TimeConverter;
@@ -21,20 +22,25 @@ public class WorkReport {
   public WorkReport(WorkOrder workOrder) {
     this.workOrderID = workOrder.getWorkOrderID();
 
-    this.technicianName =
-        DAO.fromTechnicians().findByID(workOrder.getTechnicianID()).getTechnicianName();
+    this.technicianName = ((Technician) DAO.fromUsers()
+        .findByID(workOrder.getTechnicianID()))
+        .getTechnicianName();
 
-    this.clientName = DAO.fromClients().findByID(workOrder.getClientID()).getClientName();
+    this.clientName = DAO.fromClients()
+        .findByID(workOrder.getClientID())
+        .getClientName();
 
-    this.waitTime =
-        TimeConverter.convertToDuration(
-            workOrder.getCreatedAt().getTimeInMillis(), workOrder.getClosedAt().getTimeInMillis());
+    this.waitTime = TimeConverter.convertToDuration(
+        workOrder.getCreatedAt().getTimeInMillis(),
+        workOrder.getClosedAt().getTimeInMillis()
+    );
 
-    this.averageRating =
-        DAO.fromService().findByWorkOrder(workOrderID).stream()
-            .mapToDouble(Service::getClientRating)
-            .average()
-            .orElse(0.0);
+    this.averageRating = DAO.fromService()
+        .findByWorkOrder(workOrderID)
+        .stream()
+        .mapToDouble(Service::getClientRating)
+        .average()
+        .orElse(0.0);
 
     StringBuilder stringBuilder = new StringBuilder();
 
@@ -45,7 +51,9 @@ public class WorkReport {
           stringBuilder.append(
               String.format(
                   "%s - R$ %.2f\n",
-                  currentComponent.getComponentDescription(), currentComponent.getComponentCost()));
+                  currentComponent.getComponentDescription(), currentComponent.getComponentCost()
+              )
+          );
         }
       }
     }

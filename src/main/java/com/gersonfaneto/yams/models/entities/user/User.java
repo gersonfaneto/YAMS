@@ -5,10 +5,12 @@ public abstract class User {
   private String userID;
   private String userEmail;
   private String userPassword;
+  private UserType userType;
 
-  public User(String userEmail, String userPassword) {
+  public User(String userEmail, String userPassword, UserType userType) {
     this.userEmail = userEmail;
     this.userPassword = userPassword;
+    this.userType = userType;
   }
 
   @Override
@@ -61,5 +63,13 @@ public abstract class User {
 
   public void setUserPassword(String userPassword) {
     this.userPassword = userPassword;
+  }
+
+  public UserType getUserType() {
+    return userType;
+  }
+
+  public void setUserType(UserType userType) {
+    this.userType = userType;
   }
 }

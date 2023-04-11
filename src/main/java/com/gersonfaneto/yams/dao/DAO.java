@@ -8,8 +8,8 @@ import com.gersonfaneto.yams.dao.components.ComponentCRUD;
 import com.gersonfaneto.yams.dao.components.ComponentMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
 import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
-import com.gersonfaneto.yams.dao.entities.technician.TechnicianCRUD;
-import com.gersonfaneto.yams.dao.entities.technician.TechnicianMemoryDAO;
+import com.gersonfaneto.yams.dao.entities.user.UserCRUD;
+import com.gersonfaneto.yams.dao.entities.user.UserMemoryDAO;
 import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderCRUD;
 import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderMemoryDAO;
 import com.gersonfaneto.yams.dao.orders.work.WorkOrderCRUD;
@@ -20,7 +20,7 @@ import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 public abstract class DAO {
 
   private static ClientCRUD clientCRUD;
-  private static TechnicianCRUD technicianCRUD;
+  private static UserCRUD userCRUD;
   private static PaymentCRUD paymentCRUD;
   private static InvoiceCRUD invoiceCRUD;
   private static ComponentCRUD componentCRUD;
@@ -36,12 +36,12 @@ public abstract class DAO {
     return clientCRUD;
   }
 
-  public static TechnicianCRUD fromTechnicians() {
-    if (technicianCRUD == null) {
-      technicianCRUD = new TechnicianMemoryDAO();
+  public static UserCRUD fromUsers() {
+    if (userCRUD == null) {
+      userCRUD = new UserMemoryDAO();
     }
 
-    return technicianCRUD;
+    return userCRUD;
   }
 
   public static PaymentCRUD fromPayments() {

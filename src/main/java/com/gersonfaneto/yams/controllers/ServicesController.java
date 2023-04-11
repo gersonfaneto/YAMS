@@ -9,7 +9,7 @@ import com.gersonfaneto.yams.exceptions.UnsupportedOperationException;
 import com.gersonfaneto.yams.exceptions.UserNotFoundException;
 import com.gersonfaneto.yams.exceptions.WorkOrderNotFound;
 import com.gersonfaneto.yams.models.components.Component;
-import com.gersonfaneto.yams.models.entities.Client;
+import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
@@ -104,19 +104,20 @@ public abstract class ServicesController {
 
   public static WorkOrder openWorkOrder(String technicianID)
       throws UserNotFoundException, WorkOrderNotFound, UnsupportedOperationException {
-    if (DAO.fromTechnicians().findByID(technicianID) == null) {
+    if (DAO.fromUsers().findByID(technicianID) == null) {
       throw new UserNotFoundException("Technician with ID' " + technicianID + "' not found!");
     }
 
-    Technician foundTechnician = DAO.fromTechnicians().findByID(technicianID);
+    Technician foundTechnician = (Technician) DAO.fromUsers().findByID(technicianID);
 
-    WorkOrder foundWorkOrder =
-        DAO.fromWorkOrders().findMany().stream()
-            .filter(x -> x.getClosedAt() == null)
-            .min(Comparator.comparing(WorkOrder::getCreatedAt))
-            .stream()
-            .findFirst()
-            .orElse(null);
+    WorkOrder foundWorkOrder = DAO.fromWorkOrders()
+        .findMany()
+        .stream()
+        .filter(x -> x.getClosedAt() == null)
+        .min(Comparator.comparing(WorkOrder::getCreatedAt))
+        .stream()
+        .findFirst()
+        .orElse(null);
 
     if (foundWorkOrder == null) {
       throw new WorkOrderNotFound("No Work Order avaliable to open!");
@@ -124,7 +125,8 @@ public abstract class ServicesController {
 
     if (!foundTechnician.openOrder(foundWorkOrder)) {
       throw new UnsupportedOperationException(
-          "Technician with ID '" + technicianID + "' already has a Work Order!");
+          "Technician with ID '" + technicianID + "' already has a Work Order!"
+      );
     }
 
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);
@@ -134,16 +136,17 @@ public abstract class ServicesController {
 
   public static WorkOrder closeWorkOrder(String technicianID)
       throws WorkOrderNotFound, UserNotFoundException, UnsupportedOperationException {
-    if (DAO.fromTechnicians().findByID(technicianID) == null) {
+    if (DAO.fromUsers().findByID(technicianID) == null) {
       throw new UserNotFoundException("Technician with ID '" + technicianID + "' not found!");
     }
 
-    Technician foundTechnician = DAO.fromTechnicians().findByID(technicianID);
+    Technician foundTechnician = (Technician) DAO.fromUsers().findByID(technicianID);
     WorkOrder foundWorkOrder = foundTechnician.getTechnicianState().getWorkOrder();
 
     if (!foundTechnician.closeOrder()) {
       throw new UnsupportedOperationException(
-          "Technician with ID '" + technicianID + "' doesn't have a Work Order");
+          "Technician with ID '" + technicianID + "' doesn't have a Work Order"
+      );
     }
 
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);
@@ -153,11 +156,11 @@ public abstract class ServicesController {
 
   public static WorkOrder cancelWorkOrder(String technicianID)
       throws UserNotFoundException, UnsupportedOperationException {
-    if (DAO.fromTechnicians().findByID(technicianID) == null) {
+    if (DAO.fromUsers().findByID(technicianID) == null) {
       throw new UserNotFoundException("Technician with ID '" + technicianID + "' not found!");
     }
 
-    Technician foundTechnician = DAO.fromTechnicians().findByID(technicianID);
+    Technician foundTechnician = (Technician) DAO.fromUsers().findByID(technicianID);
     WorkOrder foundWorkOrder = foundTechnician.getTechnicianState().getWorkOrder();
 
     if (!foundTechnician.cancelOrder()) {

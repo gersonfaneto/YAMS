@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.models.entities;
+package com.gersonfaneto.yams.models.entities.client;
 
 public class Client {
 

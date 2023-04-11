@@ -3,7 +3,7 @@ package com.gersonfaneto.yams.controllers;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.ClientAlreadyRegisteredException;
 import com.gersonfaneto.yams.exceptions.ClientNotFoundException;
-import com.gersonfaneto.yams.models.entities.Client;
+import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import java.util.List;
 
