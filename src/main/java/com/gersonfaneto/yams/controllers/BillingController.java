@@ -1,6 +1,5 @@
 package com.gersonfaneto.yams.controllers;
 
-import com.gersonfaneto.yams.builders.payment.PaymentBuilder;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.InvoiceNotFoundException;
 import com.gersonfaneto.yams.exceptions.PaymentMethodNotFound;
@@ -30,11 +29,7 @@ public abstract class BillingController {
               + "' total value");
     }
 
-    Payment newPayment =
-        new PaymentBuilder(PaymentMethod.findByType(paymentMethod))
-            .fromInvoice(invoiceID)
-            .ofValue(paidValue)
-            .Build();
+    Payment newPayment = new Payment(invoiceID, PaymentMethod.findByType(paymentMethod), paidValue);
 
     return DAO.fromPayments().createOne(newPayment);
   }

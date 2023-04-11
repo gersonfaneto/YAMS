@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.controllers;
 
-import com.gersonfaneto.yams.builders.component.ComponentBuilder;
-import com.gersonfaneto.yams.builders.orders.purchase.PurchaseOrderBuilder;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.ComponentTypeNotFound;
 import com.gersonfaneto.yams.models.components.Component;
@@ -46,30 +44,29 @@ public abstract class StockController {
       throw new ComponentTypeNotFound("Component type '" + componentType + "' not found!");
     }
 
-    PurchaseOrder purchaseOrder = new PurchaseOrderBuilder(ComponentType.findByType(componentType))
-        .componentDescription(componentDescription)
-        .priceOfEach(componentPrice)
-        .costOfEach(componentCost)
-        .boughtAmount(boughtAmount)
-        .Build();
+    PurchaseOrder purchaseOrder = new PurchaseOrder(
+        ComponentType.findByType(componentType),
+        componentDescription,
+        boughtAmount,
+        componentPrice,
+        componentCost
+    );
 
     return DAO.fromPurchaseOrders().createOne(purchaseOrder);
   }
 
   public static Component storeBoughtComponents(PurchaseOrder purchaseOrder) {
-    ComponentBuilder componentBuilder = new ComponentBuilder(purchaseOrder.getComponentType());
-
-    Component boughtComponent = componentBuilder
-        .defineDescription(purchaseOrder.getComponentDescription())
-        .defineCost(purchaseOrder.getComponentCost())
-        .definePrice(purchaseOrder.getComponentPrice())
-        .amountInStock(purchaseOrder.getBoughtAmount())
-        .Build();
+    Component boughtComponent = new Component(
+        purchaseOrder.getComponentType(),
+        purchaseOrder.getComponentDescription(),
+        purchaseOrder.getBoughtAmount(),
+        purchaseOrder.getComponentCost(),
+        purchaseOrder.getComponentPrice()
+    );
 
     if (DAO.fromComponents().findEquals(boughtComponent) == null) {
       DAO.fromComponents().createOne(boughtComponent);
-    }
-    else {
+    } else {
       Component foundComponent = DAO.fromComponents().findEquals(boughtComponent);
       foundComponent.setAmountInStock(
           foundComponent.getAmountInStock() + boughtComponent.getAmountInStock()

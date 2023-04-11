@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.models.orders.purchase;
 
-import com.gersonfaneto.yams.builders.orders.purchase.PurchaseOrderBuilder;
+import static com.gersonfaneto.yams.models.components.ComponentType.Others;
+
 import com.gersonfaneto.yams.models.components.ComponentType;
 
 public class PurchaseOrder {
@@ -12,12 +13,18 @@ public class PurchaseOrder {
   private double componentCost;
   private double componentPrice;
 
-  public PurchaseOrder(PurchaseOrderBuilder purchaseOrderBuilder) {
-    this.componentType = purchaseOrderBuilder.getComponentType();
-    this.componentDescription = purchaseOrderBuilder.getComponentDescription();
-    this.boughtAmount = purchaseOrderBuilder.getBoughtAmount();
-    this.componentCost = purchaseOrderBuilder.getComponentCost();
-    this.componentPrice = purchaseOrderBuilder.getComponentPrice();
+  public PurchaseOrder(
+      ComponentType componentType,
+      String componentDescription,
+      int boughtAmount,
+      double componentCost,
+      double componentPrice
+  ) {
+    this.componentType = componentType;
+    this.componentDescription = componentDescription;
+    this.boughtAmount = boughtAmount;
+    this.componentCost = componentCost;
+    this.componentPrice = (componentType == Others) ? componentPrice : componentType.getTypeValue();
   }
 
   @Override

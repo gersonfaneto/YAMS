@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.models.components;
 
-import com.gersonfaneto.yams.builders.component.ComponentBuilder;
+import static com.gersonfaneto.yams.models.components.ComponentType.Others;
 
 public class Component {
 
@@ -11,12 +11,17 @@ public class Component {
   private double componentPrice;
   private int amountInStock;
 
-  public Component(ComponentBuilder componentBuilder) {
-    this.componentType = componentBuilder.getComponentType();
-    this.componentDescription = componentBuilder.getComponentDescription();
-    this.componentCost = componentBuilder.getComponentCost();
-    this.componentPrice = componentBuilder.getComponentPrice();
-    this.amountInStock = componentBuilder.getAmountInStock();
+  public Component(ComponentType componentType,
+      String componentDescription,
+      int amountInStock,
+      double componentCost,
+      double componentPrice
+  ) {
+    this.componentType = componentType;
+    this.componentDescription = componentDescription;
+    this.componentCost = componentCost;
+    this.componentPrice = (componentType == Others) ? componentPrice : componentType.getTypeValue();
+    this.amountInStock = amountInStock;
   }
 
   @Override
@@ -43,12 +48,12 @@ public class Component {
   public String toString() {
     return String.format(
         """
-        ID: %s
-        Type: %s
-        Description: %s
-        Cost: R$ %.2f
-        Price: R$ %.2f
-        """,
+            ID: %s
+            Type: %s
+            Description: %s
+            Cost: R$ %.2f
+            Price: R$ %.2f
+            """,
         componentID, componentType, componentDescription, componentCost, componentPrice);
   }
 

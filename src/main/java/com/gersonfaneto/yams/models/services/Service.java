@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.models.services;
 
-import com.gersonfaneto.yams.builders.service.ServiceBuilder;
+import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
+
 import com.gersonfaneto.yams.models.components.Component;
 import java.util.List;
 
@@ -12,14 +13,27 @@ public class Service {
   private String serviceDescription;
   private double clientRating;
   private double servicePrice;
-  private boolean isComplete = false;
+  private boolean isComplete;
   private List<Component> usedComponents;
 
-  public Service(ServiceBuilder serviceBuilder) {
-    this.serviceType = serviceBuilder.getServiceType();
-    this.serviceDescription = serviceBuilder.getServiceDescription();
-    this.servicePrice = serviceBuilder.getServicePrice();
-    this.usedComponents = serviceBuilder.getUsedComponents();
+  public Service(
+      ServiceType serviceType,
+      String serviceDescription,
+      List<Component> usedComponents
+  ) {
+    this.serviceType = serviceType;
+    this.serviceDescription = serviceDescription;
+
+    if (serviceType != Assembly) {
+      this.servicePrice = serviceType.getTypeValue();
+    } else {
+      this.servicePrice = usedComponents.stream()
+          .mapToDouble(Component::getComponentPrice)
+          .reduce(0.0, Double::sum);
+    }
+
+    this.isComplete = false;
+    this.usedComponents = usedComponents;
   }
 
   @Override
@@ -62,10 +76,6 @@ public class Service {
 
   public void setServiceID(String serviceID) {
     this.serviceID = serviceID;
-  }
-
-  public void setWorkOrderID(String workOrderID) {
-    this.workOrderID = workOrderID;
   }
 
   public ServiceType getServiceType() {
@@ -118,5 +128,9 @@ public class Service {
 
   public String getWorkOrderID() {
     return workOrderID;
+  }
+
+  public void setWorkOrderID(String workOrderID) {
+    this.workOrderID = workOrderID;
   }
 }

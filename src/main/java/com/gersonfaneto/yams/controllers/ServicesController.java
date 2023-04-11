@@ -1,6 +1,5 @@
 package com.gersonfaneto.yams.controllers;
 
-import com.gersonfaneto.yams.builders.service.ServiceBuilder;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.ClientNotFoundException;
 import com.gersonfaneto.yams.exceptions.ServiceNotFound;
@@ -28,36 +27,28 @@ public abstract class ServicesController {
     Client foundClient = DAO.fromClients().findByName(clientName);
     WorkOrder workOrder = new WorkOrder(foundClient.getClientID());
 
-    DAO.fromWorkOrders().createOne(workOrder);
-
     for (Service currentService : chosenServices) {
       currentService.setWorkOrderID(workOrder.getWorkOrderID());
-      DAO.fromService().createOne(currentService);
+      DAO.fromService().updateInformation(currentService);
     }
 
-    return workOrder;
+    return DAO.fromWorkOrders().createOne(workOrder);
   }
 
   public static Service createService(
       String serviceType,
       String serviceDescription,
-      double servicePrice,
-      List<Component> usedComponents)
-      throws ServiceTypeNotFound {
+      List<Component> usedComponents
+  ) throws ServiceTypeNotFound {
     if (ServiceType.findByName(serviceType) == null) {
       throw new ServiceTypeNotFound("Service type '" + serviceType + "' not found!");
     }
 
-    ServiceBuilder serviceBuilder =
-        new ServiceBuilder(ServiceType.findByName(serviceType))
-            .defineDescription(serviceDescription)
-            .definePrice(servicePrice);
-
-    for (Component currentComponent : usedComponents) {
-      serviceBuilder.addComponent(currentComponent);
-    }
-
-    Service newService = serviceBuilder.Build();
+    Service newService = new Service(
+        ServiceType.findByName(serviceType),
+        serviceDescription,
+        usedComponents
+    );
 
     return DAO.fromService().createOne(newService);
   }
@@ -78,7 +69,8 @@ public abstract class ServicesController {
 
     if (removedService == null) {
       throw new UnsupportedOperationException(
-          "Work Order current state doesn't support removal of service!");
+          "Work Order current state doesn't support removal of service!"
+      );
     }
   }
 

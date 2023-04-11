@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.models.billing.payments;
 
-import com.gersonfaneto.yams.builders.payment.PaymentBuilder;
-
 public class Payment {
 
   private String paymentID;
@@ -9,10 +7,10 @@ public class Payment {
   private PaymentMethod paymentMethod;
   private double paidValue;
 
-  public Payment(PaymentBuilder paymentBuilder) {
-    this.invoiceID = paymentBuilder.getInvoiceID();
-    this.paymentMethod = paymentBuilder.getPaymentMethod();
-    this.paidValue = paymentBuilder.getPaidValue();
+  public Payment(String invoiceID, PaymentMethod paymentMethod, double paidValue) {
+    this.invoiceID = invoiceID;
+    this.paymentMethod = paymentMethod;
+    this.paidValue = paidValue;
   }
 
   @Override
@@ -36,11 +34,11 @@ public class Payment {
   public String toString() {
     return String.format(
         """
-        ID: %s
-        Method: %s
-        Invoice: %s
-        Value: R$ %.2f
-        """,
+            ID: %s
+            Method: %s
+            Invoice: %s
+            Value: R$ %.2f
+            """,
         paymentID, paymentMethod, invoiceID, paidValue);
   }
 
