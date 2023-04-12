@@ -65,11 +65,15 @@ public abstract class ServicesController {
 
     WorkOrder workOrder = DAO.fromWorkOrders().findByID(workOrderID);
 
+    if (DAO.fromService().findByID(serviceID).isComplete()) {
+      throw new UnsupportedOperationException("Service is already complete!");
+    }
+
     Service removedService = workOrder.removeService(serviceID);
 
     if (removedService == null) {
       throw new UnsupportedOperationException(
-          "Work Order current state doesn't support removal of service!"
+          "Order current state doesn't support removal of service!"
       );
     }
   }
