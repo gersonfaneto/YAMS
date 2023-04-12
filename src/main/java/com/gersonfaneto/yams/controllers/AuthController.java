@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.InvalidPasswordException;
+import com.gersonfaneto.yams.exceptions.PermissionDeniedException;
 import com.gersonfaneto.yams.exceptions.UserAlreadyRegisteredException;
 import com.gersonfaneto.yams.exceptions.UserNotFoundException;
 import com.gersonfaneto.yams.exceptions.UserTypeNotFound;
@@ -9,12 +10,21 @@ import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.Authentication;
+import java.security.Permission;
 
 public abstract class AuthController {
 
   public static User registerUser(
-      String userEmail, String userPassword, String technicianName, String userType
-  ) throws UserAlreadyRegisteredException, UserTypeNotFound {
+      User loggedUser,
+      String userEmail,
+      String userPassword,
+      String technicianName,
+      String userType
+  ) throws UserAlreadyRegisteredException, UserTypeNotFound, PermissionDeniedException {
+    if (loggedUser.getUserType() != UserType.Administrator) {
+      throw new PermissionDeniedException("You don't have the needed privileges");
+    }
+
     if (DAO.fromUsers().findByEmail(userEmail) != null) {
       throw new UserAlreadyRegisteredException("User '" + userEmail + "' already registered!");
     }
@@ -64,8 +74,11 @@ public abstract class AuthController {
     return foundUser;
   }
 
-  public static User unregisterUser(String userEmail, String userPassword)
-      throws UserNotFoundException, InvalidPasswordException {
+  public static User unregisterUser(User loggedUser, String userEmail, String userPassword)
+      throws UserNotFoundException, InvalidPasswordException, PermissionDeniedException {
+    if (loggedUser.getUserType() != UserType.Administrator) {
+      throw new PermissionDeniedException("You don't have the needed privileges");
+    }
     if (DAO.fromUsers().findByEmail(userEmail) == null) {
       throw new UserNotFoundException("User '" + userEmail + "' not registered!");
     }
