@@ -1,16 +1,14 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.exceptions.InvalidPasswordException;
-import com.gersonfaneto.yams.exceptions.PermissionDeniedException;
-import com.gersonfaneto.yams.exceptions.UserAlreadyRegisteredException;
-import com.gersonfaneto.yams.exceptions.UserNotFoundException;
-import com.gersonfaneto.yams.exceptions.UserTypeNotFound;
+import com.gersonfaneto.yams.exceptions.users.InvalidPasswordException;
+import com.gersonfaneto.yams.exceptions.users.PermissionDeniedException;
+import com.gersonfaneto.yams.exceptions.users.UserAlreadyRegisteredException;
+import com.gersonfaneto.yams.exceptions.users.UserNotFoundException;
+import com.gersonfaneto.yams.exceptions.users.UserTypeNotFound;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
-import com.gersonfaneto.yams.utils.Authentication;
-import java.security.Permission;
 
 public abstract class AuthController {
 
@@ -26,10 +24,10 @@ public abstract class AuthController {
     }
 
     if (DAO.fromUsers().findByEmail(userEmail) != null) {
-      throw new UserAlreadyRegisteredException("User '" + userEmail + "' already registered!");
+      throw new UserAlreadyRegisteredException("User already registered!");
     }
     if (UserType.findByName(userType) == null) {
-      throw new UserTypeNotFound("User Type '" + userType + "' not found!");
+      throw new UserTypeNotFound("User type not found!");
     }
 
     Technician newUser = new Technician(
@@ -43,28 +41,32 @@ public abstract class AuthController {
     return newUser;
   }
 
-  public static User loginUser(String userEmail, String userPassword)
-      throws UserNotFoundException, InvalidPasswordException {
-    if (DAO.fromUsers().findByEmail(userEmail) == null) {
-      throw new UserNotFoundException("User '" + userEmail + "' not registered!");
-    }
-
+  public static User loginUser(
+      String userEmail,
+      String userPassword
+  ) throws UserNotFoundException, InvalidPasswordException {
     User foundUser = DAO.fromUsers().findByEmail(userEmail);
 
-    if (!Authentication.validateValue(userPassword, foundUser.getUserPassword())) {
-      throw new InvalidPasswordException("Incorrect password for user '" + userEmail + "' !");
+    if (foundUser == null) {
+      throw new UserNotFoundException("User not registered!");
+    }
+
+    if (!userPassword.equals(foundUser.getUserPassword())) {
+      throw new InvalidPasswordException("Password incorrect!");
     }
 
     return foundUser;
   }
 
-  public static User updateInfo(String userEmail, String userPassword)
-      throws UserNotFoundException {
-    if (DAO.fromUsers().findByEmail(userEmail) == null) {
-      throw new UserNotFoundException("User '" + userEmail + "' not registered!");
-    }
-
+  public static User updateInfo(
+      String userEmail,
+      String userPassword
+  ) throws UserNotFoundException {
     User foundUser = DAO.fromUsers().findByEmail(userEmail);
+
+    if (foundUser == null) {
+      throw new UserNotFoundException("User not registered!");
+    }
 
     foundUser.setUserEmail(userEmail);
     foundUser.setUserPassword(userPassword);
@@ -74,19 +76,23 @@ public abstract class AuthController {
     return foundUser;
   }
 
-  public static User unregisterUser(User loggedUser, String userEmail, String userPassword)
-      throws UserNotFoundException, InvalidPasswordException, PermissionDeniedException {
+  public static User unregisterUser(
+      User loggedUser,
+      String userEmail,
+      String userPassword
+  ) throws UserNotFoundException, InvalidPasswordException, PermissionDeniedException {
     if (loggedUser.getUserType() != UserType.Administrator) {
       throw new PermissionDeniedException("You don't have the needed privileges");
-    }
-    if (DAO.fromUsers().findByEmail(userEmail) == null) {
-      throw new UserNotFoundException("User '" + userEmail + "' not registered!");
     }
 
     User foundUser = DAO.fromUsers().findByEmail(userEmail);
 
-    if (!Authentication.validateValue(userPassword, foundUser.getUserPassword())) {
-      throw new InvalidPasswordException("Incorrect password for '" + userEmail + "' !");
+    if (foundUser == null) {
+      throw new UserNotFoundException("User not registered!");
+    }
+
+    if (!userPassword.equals(foundUser.getUserPassword())) {
+      throw new InvalidPasswordException("Password incorrect!");
     }
 
     DAO.fromUsers().deleteByID(foundUser.getUserID());

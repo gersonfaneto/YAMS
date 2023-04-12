@@ -1,9 +1,9 @@
-package com.gersonfaneto.yams.models.reports.work;
+package com.gersonfaneto.yams.models.reports;
 
 import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.components.Component;
+import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
@@ -45,13 +45,15 @@ public class WorkReport {
     StringBuilder stringBuilder = new StringBuilder();
 
     List<Service> performedServices = DAO.fromService().findByWorkOrder(workOrderID);
+
     for (Service currentService : performedServices) {
       if (currentService.getServiceType().equals(Assembly)) {
         for (Component currentComponent : currentService.getUsedComponents()) {
           stringBuilder.append(
               String.format(
                   "%s - R$ %.2f\n",
-                  currentComponent.getComponentDescription(), currentComponent.getComponentCost()
+                  currentComponent.getComponentDescription(),
+                  currentComponent.getComponentCost()
               )
           );
         }

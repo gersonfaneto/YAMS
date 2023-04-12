@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.models.entities.technician.states;
 
-import com.gersonfaneto.yams.models.billing.Invoice;
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Open;

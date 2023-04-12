@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.exceptions;
+package com.gersonfaneto.yams.exceptions.stock;
 
 public class ComponentTypeNotFound extends Exception {
 

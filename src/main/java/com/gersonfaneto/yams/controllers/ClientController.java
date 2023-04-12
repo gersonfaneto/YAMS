@@ -1,16 +1,19 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.exceptions.ClientAlreadyRegisteredException;
-import com.gersonfaneto.yams.exceptions.ClientNotFoundException;
+import com.gersonfaneto.yams.exceptions.client.ClientAlreadyRegisteredException;
+import com.gersonfaneto.yams.exceptions.client.ClientNotFoundException;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import java.util.List;
 
 public abstract class ClientController {
 
-  public static Client registerClient(String clientName, String homeAddress, String phoneNumber)
-      throws ClientAlreadyRegisteredException {
+  public static Client registerClient(
+      String clientName,
+      String homeAddress,
+      String phoneNumber
+  ) throws ClientAlreadyRegisteredException {
     if (DAO.fromClients().findByName(clientName) != null) {
       throw new ClientAlreadyRegisteredException(
           "Client '" + clientName + "' is already registered!");
@@ -20,31 +23,37 @@ public abstract class ClientController {
   }
 
   public static Client unregisterClient(String clientName) throws ClientNotFoundException {
-    if (DAO.fromClients().findByName(clientName) == null) {
-      throw new ClientNotFoundException("Client '" + clientName + "' not found!");
+    Client foundClient = DAO.fromClients().findByID(clientName);
+
+    if (foundClient == null) {
+      throw new ClientNotFoundException("Client not found!");
     }
 
-    Client foundClient = DAO.fromClients().findByName(clientName);
     DAO.fromClients().deleteByID(foundClient.getClientID());
 
     return foundClient;
   }
 
   public static Client findClient(String clientName) throws ClientNotFoundException {
-    if (DAO.fromClients().findByName(clientName) == null) {
-      throw new ClientNotFoundException("Client '" + clientName + "' not found!");
+    Client foundClient = DAO.fromClients().findByName(clientName);
+
+    if (foundClient == null) {
+      throw new ClientNotFoundException("Client not found!");
     }
 
-    return DAO.fromClients().findByName(clientName);
+    return foundClient;
   }
 
-  public static Client updateInfo(String clientName, String homeAddress, String phoneNumber)
-      throws ClientNotFoundException {
-    if (DAO.fromClients().findByName(clientName) == null) {
+  public static Client updateInfo(
+      String clientName,
+      String homeAddress,
+      String phoneNumber
+  ) throws ClientNotFoundException {
+    Client foundClient = DAO.fromClients().findByID(clientName);
+
+    if (foundClient == null) {
       throw new ClientNotFoundException("Client '" + clientName + "' not found!");
     }
-
-    Client foundClient = DAO.fromClients().findByName(clientName);
 
     foundClient.setClientName(clientName);
     foundClient.setHomeAddress(homeAddress);
@@ -55,13 +64,14 @@ public abstract class ClientController {
     return foundClient;
   }
 
-  public static List<WorkOrder> retrieveWorkOrders(String clientName)
-      throws ClientNotFoundException {
-    if (DAO.fromClients().findByName(clientName) == null) {
+  public static List<WorkOrder> retrieveWorkOrders(
+      String clientName
+  ) throws ClientNotFoundException {
+    Client foundClient = DAO.fromClients().findByName(clientName);
+
+    if (foundClient == null) {
       throw new ClientNotFoundException("Client '" + clientName + "' not found!");
     }
-
-    Client foundClient = DAO.fromClients().findByName(clientName);
 
     return DAO.fromWorkOrders().findByClient(foundClient.getClientID());
   }

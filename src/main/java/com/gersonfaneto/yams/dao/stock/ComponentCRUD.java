@@ -1,8 +1,8 @@
-package com.gersonfaneto.yams.dao.components;
+package com.gersonfaneto.yams.dao.stock;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.models.components.Component;
-import com.gersonfaneto.yams.models.components.ComponentType;
+import com.gersonfaneto.yams.models.stock.Component;
+import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.List;
 
 public interface ComponentCRUD extends CRUD<Component> {

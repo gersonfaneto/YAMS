@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.exceptions;
+package com.gersonfaneto.yams.exceptions.billing;
 
 public class PaymentMethodNotFound extends Exception {
 

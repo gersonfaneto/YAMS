@@ -69,7 +69,8 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findByInvoice(String invoiceID) {
-    return storedPayments.values().stream()
+    return storedPayments.values()
+        .stream()
         .filter(x -> x.getInvoiceID().equals(invoiceID))
         .toList();
   }

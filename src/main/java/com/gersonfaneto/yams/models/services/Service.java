@@ -2,7 +2,7 @@ package com.gersonfaneto.yams.models.services;
 
 import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
 
-import com.gersonfaneto.yams.models.components.Component;
+import com.gersonfaneto.yams.models.stock.Component;
 import java.util.List;
 
 public class Service {
@@ -55,8 +55,7 @@ public class Service {
 
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
             ID: %s
             Type: %s
             Description: %s
@@ -67,7 +66,8 @@ public class Service {
         serviceType,
         serviceDescription,
         servicePrice,
-        (isComplete) ? "Complete" : "Pending");
+        (isComplete) ? "Complete" : "Pending"
+    );
   }
 
   public String getServiceID() {

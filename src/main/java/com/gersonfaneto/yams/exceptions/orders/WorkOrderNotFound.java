@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.exceptions;
+package com.gersonfaneto.yams.exceptions.orders;
 
 public class WorkOrderNotFound extends Exception {
 

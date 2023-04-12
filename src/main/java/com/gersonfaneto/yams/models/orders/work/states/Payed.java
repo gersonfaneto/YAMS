@@ -1,8 +1,8 @@
 package com.gersonfaneto.yams.models.orders.work.states;
 
-import com.gersonfaneto.yams.models.billing.Invoice;
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.reports.work.WorkReport;
+import com.gersonfaneto.yams.models.reports.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 
 public class Payed extends State {

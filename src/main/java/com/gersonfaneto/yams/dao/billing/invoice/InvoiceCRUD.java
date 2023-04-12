@@ -1,7 +1,7 @@
 package com.gersonfaneto.yams.dao.billing.invoice;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.models.billing.Invoice;
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 
 public interface InvoiceCRUD extends CRUD<Invoice> {
 

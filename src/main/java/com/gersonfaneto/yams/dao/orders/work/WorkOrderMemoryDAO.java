@@ -69,14 +69,16 @@ public class WorkOrderMemoryDAO implements WorkOrderCRUD {
 
   @Override
   public List<WorkOrder> findByClient(String clientID) {
-    return storedWorkOrders.values().stream()
+    return storedWorkOrders.values()
+        .stream()
         .filter(x -> x.getClientID().equals(clientID))
         .toList();
   }
 
   @Override
   public List<WorkOrder> findByTechnician(String technicianID) {
-    return storedWorkOrders.values().stream()
+    return storedWorkOrders.values()
+        .stream()
         .filter(x -> x.getClientID().equals(technicianID))
         .toList();
   }

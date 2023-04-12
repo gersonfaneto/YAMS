@@ -1,9 +1,9 @@
 package com.gersonfaneto.yams.models.orders.work;
 
-import com.gersonfaneto.yams.models.billing.Invoice;
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
-import com.gersonfaneto.yams.models.reports.work.WorkReport;
+import com.gersonfaneto.yams.models.reports.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 import java.util.Calendar;
 
@@ -55,15 +55,12 @@ public class WorkOrder {
 
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
         ID: %s
         Client: %s
         Technician: %s
         Invoice: %s
-        Status: %s
-        """,
-        workOrderID, clientID, technicianID, invoiceID, workOrderState.getClass().getName());
+        """, workOrderID, clientID, technicianID, invoiceID);
   }
 
   public String getWorkOrderID() {

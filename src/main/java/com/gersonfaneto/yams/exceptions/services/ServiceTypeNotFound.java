@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.exceptions;
+package com.gersonfaneto.yams.exceptions.services;
 
 public class ServiceTypeNotFound extends Exception {
 

@@ -24,6 +24,7 @@ public abstract class Time {
 
     return String.format(
         "%d Days %d Hours %d Minutes %d Seconds",
-        totalDays, totalHours, totalMinutes, totalSeconds);
+        totalDays, totalHours, totalMinutes, totalSeconds
+    );
   }
 }

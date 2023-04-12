@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.dao.billing.invoice;
 
-import com.gersonfaneto.yams.models.billing.Invoice;
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +69,8 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
 
   @Override
   public Invoice findByWorkOrder(String workOrderID) {
-    return storedInvoices.values().stream()
+    return storedInvoices.values()
+        .stream()
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .findFirst()
         .get();

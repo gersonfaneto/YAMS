@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.exceptions;
+package com.gersonfaneto.yams.exceptions.users;
 
 public class UserNotFoundException extends Exception {
 

@@ -68,7 +68,8 @@ public class UserMemoryDAO implements UserCRUD {
 
   @Override
   public User findByEmail(String userEmail) {
-    return storedUsers.values().stream()
+    return storedUsers.values()
+        .stream()
         .filter(x -> x.getUserEmail().equals(userEmail))
         .findFirst()
         .orElse(null);

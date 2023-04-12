@@ -32,14 +32,14 @@ public class Payment {
 
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
             ID: %s
             Method: %s
             Invoice: %s
             Value: R$ %.2f
             """,
-        paymentID, paymentMethod, invoiceID, paidValue);
+        paymentID, paymentMethod, invoiceID, paidValue
+    );
   }
 
   public String getPaymentID() {

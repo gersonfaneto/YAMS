@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.orders.purchase;
 
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
+import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,8 +69,9 @@ public class PurchaseOrderMemoryDAO implements PurchaseOrderCRUD {
   }
 
   @Override
-  public List<PurchaseOrder> findByType(String componentType) {
-    return storedPurchaseOrders.values().stream()
+  public List<PurchaseOrder> findByType(ComponentType componentType) {
+    return storedPurchaseOrders.values()
+        .stream()
         .filter(x -> x.getComponentType().equals(componentType))
         .toList();
   }

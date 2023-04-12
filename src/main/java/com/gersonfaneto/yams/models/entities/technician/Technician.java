@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.models.entities.technician;
 
-import com.gersonfaneto.yams.models.billing.Invoice;
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.states.Free;
 import com.gersonfaneto.yams.models.entities.technician.states.State;
 import com.gersonfaneto.yams.models.entities.user.User;
@@ -12,7 +12,12 @@ public class Technician extends User {
   private String technicianName;
   private State technicianState;
 
-  public Technician(String userEmail, String userPassword, UserType userType, String technicianName) {
+  public Technician(
+      String userEmail,
+      String userPassword,
+      UserType userType,
+      String technicianName
+  ) {
     super(userEmail, userPassword, userType);
     this.technicianName = technicianName;
     this.technicianState = new Free(this);

@@ -1,6 +1,6 @@
-package com.gersonfaneto.yams.models.components;
+package com.gersonfaneto.yams.models.stock;
 
-import static com.gersonfaneto.yams.models.components.ComponentType.Others;
+import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
 
 public class Component {
 
@@ -46,15 +46,15 @@ public class Component {
 
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
             ID: %s
             Type: %s
             Description: %s
             Cost: R$ %.2f
             Price: R$ %.2f
             """,
-        componentID, componentType, componentDescription, componentCost, componentPrice);
+        componentID, componentType, componentDescription, componentCost, componentPrice
+    );
   }
 
   public String getComponentID() {

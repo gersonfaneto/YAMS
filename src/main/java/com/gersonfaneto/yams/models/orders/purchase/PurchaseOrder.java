@@ -1,8 +1,8 @@
 package com.gersonfaneto.yams.models.orders.purchase;
 
-import static com.gersonfaneto.yams.models.components.ComponentType.Others;
+import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
 
-import com.gersonfaneto.yams.models.components.ComponentType;
+import com.gersonfaneto.yams.models.stock.ComponentType;
 
 public class PurchaseOrder {
 
@@ -46,8 +46,7 @@ public class PurchaseOrder {
 
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
             ID: %s
             Type: %s
             Description: %s
@@ -60,7 +59,8 @@ public class PurchaseOrder {
         componentDescription,
         boughtAmount,
         componentCost,
-        componentPrice);
+        componentPrice
+    );
   }
 
   public String getPurchaseOrderID() {

@@ -1,8 +1,4 @@
-package com.gersonfaneto.yams.models.billing;
-
-import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.billing.payments.Payment;
-import java.util.List;
+package com.gersonfaneto.yams.models.billing.invoice;
 
 public class Invoice {
 
@@ -13,16 +9,6 @@ public class Invoice {
   public Invoice(String workOrderID, double totalValue) {
     this.workOrderID = workOrderID;
     this.totalValue = totalValue;
-  }
-
-  public double calculatePaidValue() {
-    return DAO.fromPayments().findByInvoice(invoiceID).stream()
-        .map(Payment::getPaidValue)
-        .reduce(0.0, Double::sum);
-  }
-
-  public List<Payment> retrievePayments() {
-    return DAO.fromPayments().findByInvoice(invoiceID);
   }
 
   @Override
@@ -44,14 +30,13 @@ public class Invoice {
 
   @Override
   public String toString() {
-    return String.format(
-        """
-        ID: %s
-        Work Order: %s
-        Total Value: R$ %.2f
-        Paid Value: R$ %.2f
-        """,
-        invoiceID, workOrderID, totalValue, calculatePaidValue());
+    return String.format("""
+            ID: %s
+            Work Order: %s
+            Total Value: R$ %.2f
+            """,
+        invoiceID, workOrderID, totalValue
+    );
   }
 
   public String getInvoiceID() {

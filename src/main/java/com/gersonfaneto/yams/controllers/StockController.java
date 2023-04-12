@@ -1,9 +1,9 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.exceptions.ComponentTypeNotFound;
-import com.gersonfaneto.yams.models.components.Component;
-import com.gersonfaneto.yams.models.components.ComponentType;
+import com.gersonfaneto.yams.exceptions.stock.ComponentTypeNotFound;
+import com.gersonfaneto.yams.models.stock.Component;
+import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public abstract class StockController {
 
   public static List<Component> listComponents(String componentType) throws ComponentTypeNotFound {
     if (ComponentType.findByType(componentType) == null) {
-      throw new ComponentTypeNotFound("Component type '" + componentType + " not found!");
+      throw new ComponentTypeNotFound("Component type not found!");
     }
 
     return DAO.fromComponents().findByType(ComponentType.findByType(componentType));
@@ -41,7 +41,7 @@ public abstract class StockController {
       int boughtAmount
   ) throws ComponentTypeNotFound {
     if (ComponentType.findByType(componentType) == null) {
-      throw new ComponentTypeNotFound("Component type '" + componentType + "' not found!");
+      throw new ComponentTypeNotFound("Component type not found!");
     }
 
     PurchaseOrder purchaseOrder = new PurchaseOrder(
@@ -64,10 +64,11 @@ public abstract class StockController {
         purchaseOrder.getComponentPrice()
     );
 
-    if (DAO.fromComponents().findEquals(boughtComponent) == null) {
+    Component foundComponent = DAO.fromComponents().findEquals(boughtComponent);
+
+    if (foundComponent == null) {
       DAO.fromComponents().createOne(boughtComponent);
     } else {
-      Component foundComponent = DAO.fromComponents().findEquals(boughtComponent);
       foundComponent.setAmountInStock(
           foundComponent.getAmountInStock() + boughtComponent.getAmountInStock()
       );

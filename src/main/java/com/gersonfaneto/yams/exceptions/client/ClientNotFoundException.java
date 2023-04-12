@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.exceptions;
+package com.gersonfaneto.yams.exceptions.client;
 
 public class ClientNotFoundException extends Exception {
 
