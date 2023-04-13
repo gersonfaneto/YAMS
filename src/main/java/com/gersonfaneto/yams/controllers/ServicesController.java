@@ -152,6 +152,15 @@ public abstract class ServicesController {
 
     WorkOrder foundWorkOrder = foundTechnician.getTechnicianState().getWorkOrder();
 
+    List<Service> relatedServices = DAO.fromService()
+        .findByWorkOrder(foundWorkOrder.getWorkOrderID());
+
+    for (Service currentService : relatedServices) {
+      if (!currentService.isComplete()) {
+        throw new UnsupportedOperationException("There are Services still pending!");
+      }
+    }
+
     if (!foundTechnician.closeOrder()) {
       throw new UnsupportedOperationException("You don't have an order open!");
     }
