@@ -19,10 +19,10 @@ import java.util.List;
 public abstract class ServicesController {
 
   public static WorkOrder createWorkOrder(
-      String clientName,
+      String clientID,
       List<Service> chosenServices
   ) throws ClientNotFoundException {
-    Client foundClient = DAO.fromClients().findByName(clientName);
+    Client foundClient = DAO.fromClients().findByID(clientID);
 
     if (foundClient == null) {
       throw new ClientNotFoundException("Client not found!");

@@ -68,13 +68,10 @@ public class ClientMemoryDAO implements ClientCRUD {
   }
 
   @Override
-  public Client findByName(String clientName) {
-    for (Client currentClient : storedClients.values()) {
-      if (currentClient.getClientName().equals(clientName)) {
-        return currentClient;
-      }
-    }
-
-    return null;
+  public List<Client> findByName(String clientName) {
+    return storedClients.values()
+        .stream()
+        .filter(x -> x.getClientName().equals(clientName))
+        .toList();
   }
 }
