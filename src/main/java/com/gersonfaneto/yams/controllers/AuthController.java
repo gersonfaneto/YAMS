@@ -78,9 +78,8 @@ public abstract class AuthController {
 
   public static User unregisterUser(
       User loggedUser,
-      String userEmail,
-      String userPassword
-  ) throws UserNotFoundException, InvalidPasswordException, PermissionDeniedException {
+      String userEmail
+  ) throws UserNotFoundException, PermissionDeniedException {
     if (loggedUser.getUserType() != UserType.Administrator) {
       throw new PermissionDeniedException("You don't have the needed privileges");
     }
@@ -89,10 +88,6 @@ public abstract class AuthController {
 
     if (foundUser == null) {
       throw new UserNotFoundException("User not registered!");
-    }
-
-    if (!userPassword.equals(foundUser.getUserPassword())) {
-      throw new InvalidPasswordException("Password incorrect!");
     }
 
     DAO.fromUsers().deleteByID(foundUser.getUserID());
