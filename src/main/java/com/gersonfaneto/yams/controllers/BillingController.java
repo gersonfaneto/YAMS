@@ -39,13 +39,11 @@ public abstract class BillingController {
       throw new InvoiceNotFoundException("Invoice not found!");
     }
 
-    double paidValue = DAO.fromPayments()
+    return DAO.fromPayments()
         .findByInvoice(invoiceID)
         .stream()
         .map(Payment::getPaidValue)
         .reduce(0.0, Double::sum);
-
-    return paidValue;
   }
 
   public static List<Payment> invoicePayments(String invoiceID) throws InvoiceNotFoundException {
