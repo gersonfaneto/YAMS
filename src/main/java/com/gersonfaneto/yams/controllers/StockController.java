@@ -24,12 +24,15 @@ public abstract class StockController {
   public static Component reserveComponent(String componentID) {
     Component chosenComponent = DAO.fromComponents().findByID(componentID);
 
-    DAO.fromComponents().deleteByID(componentID);
+    chosenComponent.setAmountInStock(chosenComponent.getAmountInStock() - 1);
+    DAO.fromComponents().updateInformation(chosenComponent);
 
     return chosenComponent;
   }
 
   public static Component restoreComponent(Component unusedComponent) {
+    unusedComponent.setAmountInStock(unusedComponent.getAmountInStock() + 1);
+
     return DAO.fromComponents().createOne(unusedComponent);
   }
 
