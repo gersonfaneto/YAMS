@@ -16,14 +16,14 @@ public abstract class ClientController {
     return DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
   }
 
-  public static Client unregisterClient(String clientName) throws ClientNotFoundException {
-    Client foundClient = DAO.fromClients().findByID(clientName);
+  public static Client unregisterClient(String clientID) throws ClientNotFoundException {
+    Client foundClient = DAO.fromClients().findByID(clientID);
 
     if (foundClient == null) {
       throw new ClientNotFoundException("Client not found!");
     }
 
-    DAO.fromClients().deleteByID(foundClient.getClientID());
+    DAO.fromClients().deleteByID(clientID);
 
     return foundClient;
   }
@@ -38,14 +38,8 @@ public abstract class ClientController {
     return foundClient;
   }
 
-  public static List<Client> findClients(String clientName) throws ClientNotFoundException {
-    List<Client> foundClient = DAO.fromClients().findByName(clientName);
-
-    if (foundClient.size() == 0) {
-      throw new ClientNotFoundException("No client found!");
-    }
-
-    return foundClient;
+  public static List<Client> findClients(String clientName) {
+    return DAO.fromClients().findByName(clientName);
   }
 
   public static Client updateInfo(
