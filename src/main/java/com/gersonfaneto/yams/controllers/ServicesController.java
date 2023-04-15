@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.exceptions.services.ServiceTypeNotFound;
 import com.gersonfaneto.yams.exceptions.orders.UnsupportedOperationException;
 import com.gersonfaneto.yams.exceptions.users.UserNotFoundException;
 import com.gersonfaneto.yams.exceptions.orders.WorkOrderNotFound;
+import com.gersonfaneto.yams.models.orders.work.states.Created;
+import com.gersonfaneto.yams.models.orders.work.states.Open;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
@@ -15,6 +17,7 @@ import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class ServicesController {
 
@@ -36,6 +39,16 @@ public abstract class ServicesController {
     }
 
     return DAO.fromWorkOrders().createOne(workOrder);
+  }
+
+  public static List<WorkOrder> listWorkOrders() {
+    return DAO.fromWorkOrders()
+        .findMany()
+        .stream()
+        .filter(x -> x.getWorkOrderState() instanceof Created)
+        .min(Comparator.comparing(WorkOrder::getCreatedAt))
+        .stream()
+        .toList();
   }
 
   public static Service createService(
@@ -122,7 +135,7 @@ public abstract class ServicesController {
     WorkOrder foundWorkOrder = DAO.fromWorkOrders()
         .findMany()
         .stream()
-        .filter(x -> x.getClosedAt() == null)
+        .filter(x -> x.getWorkOrderState() instanceof Created)
         .min(Comparator.comparing(WorkOrder::getCreatedAt))
         .stream()
         .findFirst()
