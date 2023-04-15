@@ -18,7 +18,7 @@ public class Administrator extends User {
     this.administratorName = administratorName;
   }
 
-  public Administrator retrieveInstance(
+  public static Administrator retrieveInstance(
       String userEmail,
       String userPassword,
       String administratorName
