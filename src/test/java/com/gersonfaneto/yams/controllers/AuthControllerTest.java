@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.users.InvalidPasswordException;
 import com.gersonfaneto.yams.exceptions.users.PermissionDeniedException;
@@ -9,7 +7,11 @@ import com.gersonfaneto.yams.exceptions.users.UserAlreadyRegisteredException;
 import com.gersonfaneto.yams.exceptions.users.UserNotFoundException;
 import com.gersonfaneto.yams.exceptions.users.UserTypeNotFound;
 import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
+import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
+import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
+import com.gersonfaneto.yams.models.entities.user.UserType;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,83 +19,148 @@ import org.junit.jupiter.api.Test;
 
 class AuthControllerTest {
 
-  private User systemAdministrator = Administrator.retrieveInstance(
+  private final User systemAdministrator = Administrator.retrieveInstance(
       "jsmith@gmail.com",
       "password",
       "John Smith"
   );
 
+  private final User randomUser = new Receptionist(
+      "jdoe@gmail.com",
+      "1234",
+      UserType.Technician,
+      "John Doe"
+  );
+
   @BeforeEach
   void setUp() {
-    try {
-      AuthController.registerUser(
-          systemAdministrator,
-          "sholmes@gmail.com",
-          "watson",
-          "Sherlock Holmes",
-          "Technician"
-      );
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
+    User newUser = new Technician(
+        "sholmes@gmail.com",
+        "watson",
+        UserType.Technician,
+        "Sherlock Holmes"
+    );
+
+    DAO.fromUsers().createOne(newUser);
   }
 
   @AfterEach
   void tearDown() {
-    try {
-      AuthController.unregisterUser(
+    DAO.fromUsers().deleteMany();
+  }
+
+  @Test
+  void registerUser() {
+    Assertions.assertDoesNotThrow(() -> {
+      AuthController.registerUser(
+          systemAdministrator,
+          "jwatson@gmail.com",
+          "holmes",
+          "John Watson",
+          "Technician"
+      );
+    });
+
+    Assertions.assertThrows(UserAlreadyRegisteredException.class, () -> {
+      AuthController.registerUser(
           systemAdministrator,
           "sholmes@gmail.com",
-          "watson"
+          "watson",
+          "Technician",
+          "Sherlock Holmes"
       );
-    } catch (Exception e) {
-      System.out.println(e.getMessage());;
-    }
-  }
+    });
 
-  @Test
-  void registerUser() throws UserTypeNotFound, PermissionDeniedException,
-      UserAlreadyRegisteredException {
-    AuthController.registerUser(
-        systemAdministrator,
-        "jwatson@gmail.com",
-        "holmes",
-        "John Watson",
-        "Technician"
-    );
+    Assertions.assertThrows(UserTypeNotFound.class, () -> {
+      AuthController.registerUser(
+          systemAdministrator,
+          "mholmes@gmail.com",
+          "eurus",
+          "Mycroft Holmes",
+          "Brother"
+      );
+    });
+
+    Assertions.assertThrows(PermissionDeniedException.class, () -> {
+      AuthController.registerUser(
+          randomUser,
+          "moriarty@gmail.com",
+          "stayingalive",
+          "Moriarty",
+          "Receptionist"
+      );
+    });
 
     User foundUser = DAO.fromUsers().findByEmail("jwatson@gmail.com");
+    List<User> registeredUsers = DAO.fromUsers().findMany();
 
-    assertNotNull(foundUser);
+    Assertions.assertNotNull(foundUser);
+    Assertions.assertEquals(registeredUsers.size(), 2);
   }
 
   @Test
-  void loginUser() throws UserNotFoundException, InvalidPasswordException {
-    User foundUser = AuthController.loginUser("sholmes@gmail.com", "watson");
+  void loginUser() {
+    Assertions.assertThrows(UserNotFoundException.class, () -> {
+      AuthController.loginUser(
+          "mholmes@gmail.com",
+          "eurus"
+      );
+    });
 
-    assertNotNull(foundUser);
+    Assertions.assertThrows(InvalidPasswordException.class, () -> {
+      AuthController.loginUser(
+          "sholmes@gmail.com",
+          "mycroft"
+      );
+    });
+
+    User foundUser = null;
+
+    try {
+      foundUser = AuthController.loginUser("sholmes@gmail.com", "watson");
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Assertions.assertNotNull(foundUser);
   }
 
   @Test
-  void updateInfo() throws UserNotFoundException {
-    User foundUser = AuthController.updateInfo("jwatson@gmail.com", "221b");
+  void updateInfo() {
+    Assertions.assertThrows(UserNotFoundException.class, () -> {
+      AuthController.updateInfo("mholmes@gmail.com", "eurus");
+    });
 
-    assertNotNull(foundUser);
+    User foundUser;
 
-    assertEquals(foundUser.getUserPassword(), "221b");
+    try {
+      foundUser = AuthController.updateInfo("sholmes@gmail.com", "221b");
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    Assertions.assertNotNull(foundUser);
+    Assertions.assertEquals(foundUser.getUserPassword(), "221b");
   }
 
   @Test
-  void unregisterUser()
-      throws UserNotFoundException, InvalidPasswordException, PermissionDeniedException {
-    AuthController.unregisterUser(
-        systemAdministrator,
-        "sholmes@gmail.com",
-        "watson"
-    );
+  void unregisterUser() {
+    Assertions.assertThrows(UserNotFoundException.class, () -> {
+      AuthController.unregisterUser(systemAdministrator, "mholmes@gmail.com");
+    });
+
+    Assertions.assertThrows(PermissionDeniedException.class, () -> {
+      AuthController.unregisterUser(randomUser, "mholmes@gmail.com");
+    });
+
+    try {
+      AuthController.unregisterUser(systemAdministrator, "sholmes@gmail.com");
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
 
     User foundUser = DAO.fromUsers().findByEmail("sholmes@gmail.com");
 
-    assertNull(foundUser);
+    Assertions.assertNull(foundUser);
   }
 }
