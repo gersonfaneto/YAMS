@@ -154,7 +154,7 @@ public abstract class ServicesController {
 
   public static WorkOrder closeWorkOrder(
       String technicianID
-  ) throws WorkOrderNotFoundException, UserNotFoundException, UnsupportedOperationException {
+  ) throws UserNotFoundException, UnsupportedOperationException {
     Technician foundTechnician = (Technician) DAO.fromUsers().findByID(technicianID);
 
     if (foundTechnician == null) {
@@ -163,17 +163,12 @@ public abstract class ServicesController {
 
     WorkOrder foundWorkOrder = foundTechnician.getTechnicianState().getWorkOrder();
 
-    List<Service> relatedServices = DAO.fromService()
-        .findByWorkOrder(foundWorkOrder.getWorkOrderID());
-
-    for (Service currentService : relatedServices) {
-      if (!currentService.isComplete()) {
-        throw new UnsupportedOperationException("There are Services still pending!");
-      }
+    if (foundWorkOrder == null) {
+      throw new UnsupportedOperationException("You don't have an order open!");
     }
 
     if (!foundTechnician.closeOrder()) {
-      throw new UnsupportedOperationException("You don't have an order open!");
+      throw new UnsupportedOperationException("There are services still pending!");
     }
 
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);
@@ -192,8 +187,12 @@ public abstract class ServicesController {
 
     WorkOrder foundWorkOrder = foundTechnician.getTechnicianState().getWorkOrder();
 
-    if (!foundTechnician.cancelOrder()) {
+    if (foundWorkOrder == null) {
       throw new UnsupportedOperationException("You don't have an order open!");
+    }
+
+    if (!foundTechnician.cancelOrder()) {
+      throw new UnsupportedOperationException("There are services still pending!");
     }
 
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);
