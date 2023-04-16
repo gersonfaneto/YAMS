@@ -1,21 +1,15 @@
 package com.gersonfaneto.yams.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.exceptions.stock.ComponentTypeNotFound;
+import com.gersonfaneto.yams.exceptions.stock.ComponentTypeNotFoundException;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.List;
-import java.util.SortedMap;
-import jdk.jfr.MemoryAddress;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.ClassNamePatternFilterUtils;
 
 class StockControllerTest {
 
@@ -51,7 +45,7 @@ class StockControllerTest {
         )
     );
   }
-g
+
   @AfterEach
   void tearDown() {
     DAO.fromComponents().deleteMany();
@@ -62,7 +56,7 @@ g
     List<Component> allComponents = StockController.listComponents();
     Assertions.assertEquals(2, allComponents.size());
 
-    Assertions.assertThrows(ComponentTypeNotFound.class, () -> {
+    Assertions.assertThrows(ComponentTypeNotFoundException.class, () -> {
       StockController.listComponents("Banana");
     });
 
@@ -100,7 +94,7 @@ g
 
   @Test
   void buyComponent() {
-    Assertions.assertThrows(ComponentTypeNotFound.class, () -> {
+    Assertions.assertThrows(ComponentTypeNotFoundException.class, () -> {
       StockController.buyComponent(
           "Grapes",
           "The green ones!",

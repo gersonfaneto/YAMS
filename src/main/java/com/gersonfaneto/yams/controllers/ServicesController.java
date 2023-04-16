@@ -2,13 +2,12 @@ package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.client.ClientNotFoundException;
-import com.gersonfaneto.yams.exceptions.services.ServiceNotFound;
-import com.gersonfaneto.yams.exceptions.services.ServiceTypeNotFound;
+import com.gersonfaneto.yams.exceptions.services.ServiceNotFoundException;
+import com.gersonfaneto.yams.exceptions.services.ServiceTypeNotFoundException;
 import com.gersonfaneto.yams.exceptions.orders.UnsupportedOperationException;
 import com.gersonfaneto.yams.exceptions.users.UserNotFoundException;
-import com.gersonfaneto.yams.exceptions.orders.WorkOrderNotFound;
+import com.gersonfaneto.yams.exceptions.orders.WorkOrderNotFoundException;
 import com.gersonfaneto.yams.models.orders.work.states.Created;
-import com.gersonfaneto.yams.models.orders.work.states.Open;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
@@ -17,7 +16,6 @@ import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class ServicesController {
 
@@ -55,9 +53,9 @@ public abstract class ServicesController {
       String serviceType,
       String serviceDescription,
       List<Component> usedComponents
-  ) throws ServiceTypeNotFound {
+  ) throws ServiceTypeNotFoundException {
     if (ServiceType.findByName(serviceType) == null) {
-      throw new ServiceTypeNotFound("Service type not found!");
+      throw new ServiceTypeNotFoundException("Service type not found!");
     }
 
     Service newService = new Service(
@@ -70,16 +68,16 @@ public abstract class ServicesController {
   }
 
   public static Service removeService(String workOrderID, String serviceID)
-      throws ServiceNotFound, WorkOrderNotFound, UnsupportedOperationException {
+      throws ServiceNotFoundException, WorkOrderNotFoundException, UnsupportedOperationException {
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(workOrderID);
     Service foundService = DAO.fromService().findByID(serviceID);
 
     if (foundWorkOrder == null) {
-      throw new WorkOrderNotFound("Order not found!");
+      throw new WorkOrderNotFoundException("Order not found!");
     }
 
     if (foundService == null) {
-      throw new ServiceNotFound("Service not found!");
+      throw new ServiceNotFoundException("Service not found!");
     }
 
     if (foundService.isComplete()) {
@@ -99,21 +97,21 @@ public abstract class ServicesController {
     return removedService;
   }
 
-  public static List<Service> listServices(String workOrderID) throws WorkOrderNotFound {
+  public static List<Service> listServices(String workOrderID) throws WorkOrderNotFoundException {
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(workOrderID);
 
     if (foundWorkOrder == null) {
-      throw new WorkOrderNotFound("Order not found!");
+      throw new WorkOrderNotFoundException("Order not found!");
     }
 
     return DAO.fromService().findByWorkOrder(workOrderID);
   }
 
-  public static Service markAsDone(String serviceID) throws ServiceNotFound {
+  public static Service markAsDone(String serviceID) throws ServiceNotFoundException {
     Service foundService = DAO.fromService().findByID(serviceID);
 
     if (foundService == null) {
-      throw new ServiceNotFound("Service not found!");
+      throw new ServiceNotFoundException("Service not found!");
     }
 
     foundService.setComplete(true);
@@ -125,7 +123,7 @@ public abstract class ServicesController {
 
   public static WorkOrder openWorkOrder(
       String technicianID
-  ) throws UserNotFoundException, WorkOrderNotFound, UnsupportedOperationException {
+  ) throws UserNotFoundException, WorkOrderNotFoundException, UnsupportedOperationException {
     Technician foundTechnician = (Technician) DAO.fromUsers().findByID(technicianID);
 
     if (DAO.fromUsers().findByID(technicianID) == null) {
@@ -142,7 +140,7 @@ public abstract class ServicesController {
         .orElse(null);
 
     if (foundWorkOrder == null) {
-      throw new WorkOrderNotFound("No order available at the moment!");
+      throw new WorkOrderNotFoundException("No order available at the moment!");
     }
 
     if (!foundTechnician.openOrder(foundWorkOrder)) {
@@ -156,7 +154,7 @@ public abstract class ServicesController {
 
   public static WorkOrder closeWorkOrder(
       String technicianID
-  ) throws WorkOrderNotFound, UserNotFoundException, UnsupportedOperationException {
+  ) throws WorkOrderNotFoundException, UserNotFoundException, UnsupportedOperationException {
     Technician foundTechnician = (Technician) DAO.fromUsers().findByID(technicianID);
 
     if (foundTechnician == null) {

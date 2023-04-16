@@ -79,7 +79,7 @@ public class WorkOrderMemoryDAO implements WorkOrderCRUD {
   public List<WorkOrder> findByTechnician(String technicianID) {
     return storedWorkOrders.values()
         .stream()
-        .filter(x -> x.getClientID().equals(technicianID))
+        .filter(x -> x.getTechnicianID().equals(technicianID))
         .toList();
   }
 }

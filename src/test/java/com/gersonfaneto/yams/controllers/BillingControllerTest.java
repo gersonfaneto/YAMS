@@ -1,19 +1,14 @@
 package com.gersonfaneto.yams.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.billing.InvoiceNotFoundException;
-import com.gersonfaneto.yams.exceptions.billing.PaymentMethodNotFound;
+import com.gersonfaneto.yams.exceptions.billing.PaymentMethodNotFoundException;
 import com.gersonfaneto.yams.exceptions.billing.ValueExceededException;
-import com.gersonfaneto.yams.exceptions.users.InvalidPasswordException;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import java.util.List;
 import java.util.UUID;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +39,7 @@ class BillingControllerTest {
       );
     });
 
-    Assertions.assertThrows(PaymentMethodNotFound.class, () -> {
+    Assertions.assertThrows(PaymentMethodNotFoundException.class, () -> {
       BillingController.receivePayment(
           "Banana",
           randomInvoice.getInvoiceID(),

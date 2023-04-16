@@ -2,7 +2,7 @@ package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.billing.InvoiceNotFoundException;
-import com.gersonfaneto.yams.exceptions.billing.PaymentMethodNotFound;
+import com.gersonfaneto.yams.exceptions.billing.PaymentMethodNotFoundException;
 import com.gersonfaneto.yams.exceptions.billing.ValueExceededException;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
@@ -15,9 +15,9 @@ public abstract class BillingController {
       String paymentMethod,
       String invoiceID,
       double paidValue
-  ) throws PaymentMethodNotFound, ValueExceededException, InvoiceNotFoundException {
+  ) throws PaymentMethodNotFoundException, ValueExceededException, InvoiceNotFoundException {
     if (PaymentMethod.findByType(paymentMethod) == null) {
-      throw new PaymentMethodNotFound("Payment method not found!");
+      throw new PaymentMethodNotFoundException("Payment method not found!");
     }
 
     Invoice foundInvoice = DAO.fromInvoices().findByID(invoiceID);

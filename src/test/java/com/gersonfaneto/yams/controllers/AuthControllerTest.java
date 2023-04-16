@@ -5,7 +5,7 @@ import com.gersonfaneto.yams.exceptions.users.InvalidPasswordException;
 import com.gersonfaneto.yams.exceptions.users.PermissionDeniedException;
 import com.gersonfaneto.yams.exceptions.users.UserAlreadyRegisteredException;
 import com.gersonfaneto.yams.exceptions.users.UserNotFoundException;
-import com.gersonfaneto.yams.exceptions.users.UserTypeNotFound;
+import com.gersonfaneto.yams.exceptions.users.UserTypeNotFoundException;
 import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
@@ -71,7 +71,7 @@ class AuthControllerTest {
       );
     });
 
-    Assertions.assertThrows(UserTypeNotFound.class, () -> {
+    Assertions.assertThrows(UserTypeNotFoundException.class, () -> {
       AuthController.registerUser(
           systemAdministrator,
           "mholmes@gmail.com",

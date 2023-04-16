@@ -5,7 +5,7 @@ import com.gersonfaneto.yams.exceptions.users.InvalidPasswordException;
 import com.gersonfaneto.yams.exceptions.users.PermissionDeniedException;
 import com.gersonfaneto.yams.exceptions.users.UserAlreadyRegisteredException;
 import com.gersonfaneto.yams.exceptions.users.UserNotFoundException;
-import com.gersonfaneto.yams.exceptions.users.UserTypeNotFound;
+import com.gersonfaneto.yams.exceptions.users.UserTypeNotFoundException;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
@@ -18,7 +18,7 @@ public abstract class AuthController {
       String userPassword,
       String technicianName,
       String userType
-  ) throws UserAlreadyRegisteredException, UserTypeNotFound, PermissionDeniedException {
+  ) throws UserAlreadyRegisteredException, UserTypeNotFoundException, PermissionDeniedException {
     if (loggedUser.getUserType() != UserType.Administrator) {
       throw new PermissionDeniedException("You don't have the needed privileges");
     }
@@ -27,7 +27,7 @@ public abstract class AuthController {
       throw new UserAlreadyRegisteredException("User already registered!");
     }
     if (UserType.findByName(userType) == null) {
-      throw new UserTypeNotFound("User type not found!");
+      throw new UserTypeNotFoundException("User type not found!");
     }
 
     Technician newUser = new Technician(
