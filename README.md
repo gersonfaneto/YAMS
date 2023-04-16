@@ -27,18 +27,18 @@
 more practical and efficient. The final product should be capable of:
 
 - Registering and keeping important information from the "Clients" of the assistance.
-    - Creation of "Work Orders" from the "Clients", which must be carried out in order of arrival.
-        - The "Work Orders" must contain one or more of the following "Services":
-            - Assembly/Component Installation:
-                - RAM - Price: R$ 20.00
-                - Motherboard - Price: R$ 100.00
-                - Power Supply - Price: R$ 30.00
-                - Graphics Card - Price: R$ 100.00
-                - HD/SSD - Price: R$ 30.00
-                - Others - Price: _To be defined!_
-            - Cleaning - Price: R$ 70.00
-            - Formatting - Price: R$ 50.00
-            - Programs Installation - Price: R$ 10.00
+- Creation of "Work Orders" from the "Clients", which must be carried out in order of arrival.
+    - The "Work Orders" must contain one or more of the following "Services":
+        - Assembly/Component Installation:
+            - RAM - Price: R$ 20.00
+            - Motherboard - Price: R$ 100.00
+            - Power Supply - Price: R$ 30.00
+            - Graphics Card - Price: R$ 100.00
+            - HD/SSD - Price: R$ 30.00
+            - Others - Price: _To be defined!_
+        - Cleaning - Price: R$ 70.00
+        - Formatting - Price: R$ 50.00
+        - Programs Installation - Price: R$ 10.00
 - Generating "Invoices" referring to the "Work Orders" and receiving "Payments" for them from
   different methods.
 - Creating "Purchase Orders" for the "Components" needed for the realization of the "Services".
@@ -48,7 +48,7 @@ more practical and efficient. The final product should be capable of:
 The development was divided in the following phases:
 
 - [x] Phase I: Modeling of the system trough Class and Use Case Diagrams.
-- [ ] Phase II: Implementation of the base models and DAOs for the CRUD operations,
+- [x] Phase II: Implementation of the base models and DAOs for the CRUD operations,
   as well as the creation of the unit tests.
 - [ ] Phase III: Assure the persistence of the system's information, through files or DB.
 - [ ] Phase IV: Construction of the GUI using JavaFX.
@@ -56,7 +56,7 @@ The development was divided in the following phases:
 ## Usage
 
 > **Warning**: _Y.A.S.M._ is currently under development, so you won't probably be able
-> to do much until I reach Phase IV 🙃.
+> to do much with it until I reach Phase IV 🙃.
 
 #### Dependencies
 
@@ -65,11 +65,7 @@ The development was divided in the following phases:
 - [Maven](https://maven.apache.org/download.cgi)
 - [Intellij IDEA](https://www.jetbrains.com/idea/download/)
 
-1. Clone this repository into your local machine.
-
-```bash
-$ git clone https://github.com/gersonfaneto/YAMS
-```
+1. Download the latest [release](https://github.com/gersonfaneto/YAMS/releases) of the project.
 
 2. Open it with Intellij and wait for the setup.
 
