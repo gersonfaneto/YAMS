@@ -5,6 +5,7 @@ import com.gersonfaneto.yams.models.services.ServiceType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ServiceMemoryDAO implements ServiceCRUD {
@@ -77,9 +78,10 @@ public class ServiceMemoryDAO implements ServiceCRUD {
   }
 
   @Override
-  public List<Service> findByWorkOrder(String workOrderID) {
+  public List<Service>  findByWorkOrder(String workOrderID) {
     return storedServices.values()
         .stream()
+        .filter(x -> Objects.nonNull(x.getWorkOrderID()))
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .toList();
   }
