@@ -1,4 +1,4 @@
-module com.gersonfaneto.techinfo {
+module com.gersonfaneto.yams {
   requires javafx.controls;
   requires javafx.fxml;
 

@@ -7,7 +7,7 @@
     <groupId>com.gersonfaneto</groupId>
     <artifactId>YAMS</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>TechInfo</name>
+    <name>YAMS</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.gersonfaneto.techinfo/com.gersonfaneto.yams.TechInfo</mainClass>
+                            <mainClass>com.gersonfaneto.yams/com.gersonfaneto.yams.App</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
