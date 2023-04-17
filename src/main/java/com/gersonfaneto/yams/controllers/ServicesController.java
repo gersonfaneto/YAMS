@@ -1,6 +1,8 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.services.ServiceCRUD;
+import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 import com.gersonfaneto.yams.exceptions.client.ClientNotFoundException;
 import com.gersonfaneto.yams.exceptions.services.ServiceNotFoundException;
 import com.gersonfaneto.yams.exceptions.services.ServiceTypeNotFoundException;
@@ -17,8 +19,33 @@ import com.gersonfaneto.yams.models.services.ServiceType;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Controller containing all the operations related with the <code>Service</code> and
+ * <code>WorkOrder</code> models on the System, such as creating, updating and retrieving
+ * information about them. Most of the operations relly on the CRUD operations accessed through the
+ * DAO.
+ *
+ * @see ServiceMemoryDAO
+ * @see ServiceCRUD
+ * @see Service
+ * @see WorkOrderMemoryDAO
+ * @see WorkOrderCRUD
+ * @see WorkOrder
+ */
 public abstract class ServicesController {
 
+  /**
+   * Generates a new <code>WorkOrder</code> with the <code>Service</code>s selected by the
+   * <code>Client</code>.
+   *
+   * @param clientID       The ID of the <code>Client</code>..
+   * @param chosenServices A list of <code>Service</code>s selected by the <code>Client</code>.
+   * @return The generated <code>WorkOrder</code>.
+   * @throws ClientNotFoundException If the <code>clientID</code> doesn't match any of the ones from
+   *                                 the registered <code>Client</code>s.
+   * @see Client
+   * @see WorkOrder
+   */
   public static WorkOrder createWorkOrder(
       String clientID,
       List<Service> chosenServices
@@ -39,6 +66,13 @@ public abstract class ServicesController {
     return DAO.fromWorkOrders().createOne(workOrder);
   }
 
+  /**
+   * Creates a "Queue" of the <code>WorkOrder</code>s on the System, by selecting only the ones at
+   * the <code>Created</code> <code>State</code> and sorting them by time of creation.
+   *
+   * @return A list of the found <code>WorkOrder</code>s.
+   * @see WorkOrder
+   */
   public static List<WorkOrder> listWorkOrders() {
     return DAO.fromWorkOrders()
         .findMany()
@@ -49,6 +83,20 @@ public abstract class ServicesController {
         .toList();
   }
 
+  /**
+   * Generates a new <code>Service</code> requested by the <code>Client</code>.
+   *
+   * @param serviceType        The type of the <code>Service</code>.
+   * @param serviceDescription The description of the <code>Service</code>.
+   * @param usedComponents     The list of the <code>Component</code>s to be used in the
+   *                           <code>Service</code>.
+   * @return The generated <code>Service</code>.
+   * @throws ServiceTypeNotFoundException If the <code>serviceType</code> doesn't match any of the
+   *                                      ones declared on the <code>ServiceType</code>
+   *                                      enumeration.
+   * @see Service
+   * @see ServiceType
+   */
   public static Service createService(
       String serviceType,
       String serviceDescription,
@@ -67,6 +115,23 @@ public abstract class ServicesController {
     return DAO.fromService().createOne(newService);
   }
 
+  /**
+   * Attempts to remove a <code>Service</code> from a <code>WorkOrder</code>.
+   *
+   * @param workOrderID The ID of the targeted <code>WorkOrder</code>.
+   * @param serviceID   The ID of the targeted <code>Service</code>.
+   * @return The removed <code>Service</code>.
+   * @throws ServiceNotFoundException      If the <code>serviceID</code> doesn't match any of the
+   *                                       ones from the registered <code>Service</code>s.
+   * @throws WorkOrderNotFoundException    If the <code>workOrderID</code> doesn't match any of the
+   *                                       ones from the registered <code>WorkOrders</code>.
+   * @throws UnsupportedOperationException If the targeted <code>Service</code> was already
+   *                                       completed or the current <code>State</code> of the
+   *                                       <code>WorkOrder</code> doesn't allow the removal of it.
+   * @see Service
+   * @see WorkOrder
+   * @see com.gersonfaneto.yams.models.orders.work.states.State
+   */
   public static Service removeService(String workOrderID, String serviceID)
       throws ServiceNotFoundException, WorkOrderNotFoundException, UnsupportedOperationException {
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(workOrderID);
@@ -97,7 +162,19 @@ public abstract class ServicesController {
     return removedService;
   }
 
-  public static List<Service> listServices(String workOrderID) throws WorkOrderNotFoundException {
+  /**
+   * Retrieves a list of all the <code>Service</code>s related to a given <code>WorkOrder</code>.
+   *
+   * @param workOrderID The ID of the targeted <code>WorkOrder</code>.
+   * @return A list of <code>Service</code>s.
+   * @throws WorkOrderNotFoundException If the <code>workOrderID</code> doesn't match any of the
+   *                                    ones from the registered <code>WorkOrder</code>s.
+   * @see Service
+   * @see WorkOrder
+   */
+  public static List<Service> listServices(
+      String workOrderID
+  ) throws WorkOrderNotFoundException {
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(workOrderID);
 
     if (foundWorkOrder == null) {
@@ -107,6 +184,16 @@ public abstract class ServicesController {
     return DAO.fromService().findByWorkOrder(workOrderID);
   }
 
+  /**
+   * Updates a <code>Service</code> by marking it as done, that is, setting its <code>isDone</code>
+   * attribute to <code>true</code>.
+   *
+   * @param serviceID The ID of the targeted <code>Service</code>.
+   * @return The updated <code>Service</code>.
+   * @throws ServiceNotFoundException If the <code>serviceID</code> doesn't match any of the ones
+   *                                  from the registered <code>Service</code>s.
+   * @see Service
+   */
   public static Service markAsDone(String serviceID) throws ServiceNotFoundException {
     Service foundService = DAO.fromService().findByID(serviceID);
 
@@ -121,6 +208,23 @@ public abstract class ServicesController {
     return foundService;
   }
 
+  /**
+   * Attempts to open a <code>WorkOrder</code> for a given <code>Technician</code>, depending on the
+   * current <code>State</code> of both of them.
+   *
+   * @param technicianID The ID of the <code>Technician</code>.
+   * @return The updated <code>WorkOrder</code>.
+   * @throws UserNotFoundException         If the <code>technicianID</code> doesn't match any of the
+   *                                       ones from the registered <code>Technician</code>s.
+   * @throws WorkOrderNotFoundException    If there's no <code>WorkOrder</code> available to be
+   *                                       opened.
+   * @throws UnsupportedOperationException If the current <code>Technician</code> already has a
+   *                                       <code>WorkOrder</code> opened.
+   * @see Technician
+   * @see com.gersonfaneto.yams.models.entities.technician.states.State
+   * @see WorkOrder
+   * @see com.gersonfaneto.yams.models.orders.work.states.State
+   */
   public static WorkOrder openWorkOrder(
       String technicianID
   ) throws UserNotFoundException, WorkOrderNotFoundException, UnsupportedOperationException {
@@ -152,6 +256,23 @@ public abstract class ServicesController {
     return foundWorkOrder;
   }
 
+  /**
+   * Attempts to close the <code>WorkOrder</code> of a given <code>Technician</code>, depending on
+   * the current <code>State</code> of both of them.
+   *
+   * @param technicianID The ID of the <code>Technician</code>.
+   * @return The updated <code>WorkOrder</code>.
+   * @throws UserNotFoundException         If the <code>technicianID</code> doesn't match any of the
+   *                                       ones from the registered <code>Technician</code>s.
+   * @throws UnsupportedOperationException If the <code>Technician</code> doesn't have an opened
+   *                                       <code>WorkOrder</code> or if there are any
+   *                                       <code>Service</code>s on the <code>WorkOrder</code>
+   *                                       still pending.
+   * @see Technician
+   * @see com.gersonfaneto.yams.models.entities.technician.states.State
+   * @see WorkOrder
+   * @see Service
+   */
   public static WorkOrder closeWorkOrder(
       String technicianID
   ) throws UserNotFoundException, UnsupportedOperationException {
@@ -176,6 +297,19 @@ public abstract class ServicesController {
     return foundWorkOrder;
   }
 
+  /**
+   * Attempts to cancel the <code>WorkOrder</code> of a given <code>Technician</code>, depending on
+   * the current <code>State</code> of both of them.
+   *
+   * @param technicianID The ID of the <code>Technician</code>.
+   * @return The updated <code>WorkOrder</code>.
+   * @throws UserNotFoundException         If the <code>technicianID</code> doesn't match any of the
+   *                                       ones from the registered <code>Technician</code>s.
+   * @throws UnsupportedOperationException If the <code>Technician</code> doesn't have an opened
+   *                                       <code>WorkOrder</code> or if there are any
+   *                                       <code>Service</code>s on the <code>WorkOrder</code>
+   *                                       still pending.
+   */
   public static WorkOrder cancelWorkOrder(
       String technicianID
   ) throws UserNotFoundException, UnsupportedOperationException {
