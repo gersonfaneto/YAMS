@@ -2,8 +2,23 @@ package com.gersonfaneto.yams.utils;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * <code>Time<code/> contains functions for dealing with: converting, formatting and operating with
+ * time units.
+ */
 public abstract class Time {
 
+  /**
+   * Converts a time duration in milliseconds to a more human-readable format as a
+   * <code>String</code>.
+   *
+   * @param startTime The starting time in milliseconds.
+   * @param endTime   The ending time in milliseconds.
+   * @return A properly formatted <code>String</code>.
+   * @throws IllegalArgumentException If the total time obtained by subtracting
+   *                                  <code>startTime</code> and <code>endTime</code> is lower than
+   *                                  0.
+   */
   public static String durationToString(long startTime, long endTime) {
     long totalTime = endTime - startTime;
 
