@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.controllers;
 
-import clcom.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.stock.ComponentTypeNotFoundException;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
 import com.gersonfaneto.yams.models.stock.Component;
