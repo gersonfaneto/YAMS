@@ -16,6 +16,8 @@
 <h4 align="center">
   <a href="#about">About</a>
   ·
+  <a href="https://gersonfaneto.github.io/YAMS/">Documentation</a>
+  ·
   <a href="#usage">Usage</a>
   ·
   <a href="#license">License</a>
