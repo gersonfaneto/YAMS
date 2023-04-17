@@ -10,6 +10,11 @@ import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.utils.Time;
 import java.util.List;
 
+/**
+ * Represents the Work Reports that can be generated once a Work Order is finished. It makes the
+ * most important information about it and its Services easily retrievable.
+ * @see WorkOrder
+ */
 public class WorkReport {
 
   private final String workOrderID;
@@ -19,6 +24,10 @@ public class WorkReport {
   private final double averageRating;
   private final String usedComponents;
 
+  /**
+   * Constructs a new <code>WorkReport</code>.
+   * @param workOrder The targeted <code>WorkOrder</code>.
+   */
   public WorkReport(WorkOrder workOrder) {
     this.workOrderID = workOrder.getWorkOrderID();
 

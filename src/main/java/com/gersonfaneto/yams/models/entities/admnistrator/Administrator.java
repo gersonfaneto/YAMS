@@ -3,11 +3,25 @@ package com.gersonfaneto.yams.models.entities.admnistrator;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 
+/**
+ * Represents the Administrator of the System using the "Singleton" pattern to ensure there is only
+ * one.
+ */
 public class Administrator extends User {
 
   private String administratorName;
   private static Administrator singleInstance;
 
+  /**
+   * Constructs the Administrator.
+   *
+   * @param userEmail         The <code>User</code> chosen email.
+   * @param userPassword      The <code>User</code> chosen password.
+   * @param userType          The type of the <code>User</code>.
+   * @param administratorName The name of the <code>Administrator</code>
+   * @see User
+   * @see UserType
+   */
   private Administrator(
       String userEmail,
       String userPassword,
@@ -18,6 +32,14 @@ public class Administrator extends User {
     this.administratorName = administratorName;
   }
 
+  /**
+   * Retrieves the <code>Administrator</code> instance, creating it if needed.
+   *
+   * @param userEmail         The <code>User</code> chosen email.
+   * @param userPassword      The <code>User</code> chosen password.
+   * @param administratorName The name of the <code>Administrator</code>.
+   * @return The unique instance of the Class.
+   */
   public static Administrator retrieveInstance(
       String userEmail,
       String userPassword,

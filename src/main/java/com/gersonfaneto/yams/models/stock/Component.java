@@ -2,6 +2,15 @@ package com.gersonfaneto.yams.models.stock;
 
 import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
 
+import com.gersonfaneto.yams.models.services.Service;
+
+/**
+ * Represents each Computer Component that the Assistance might have in Stock, that can be used on
+ * the Services.
+ *
+ * @see Service
+ * @see ComponentType
+ */
 public class Component {
 
   private String componentID;
@@ -11,6 +20,13 @@ public class Component {
   private double componentPrice;
   private int amountInStock;
 
+  /**
+   * @param componentType        The type of the <code>Component</code>.
+   * @param componentDescription The description of the <code>Component</code>.
+   * @param amountInStock        The amount currently in stock of the <code>Component</code>.
+   * @param componentCost        The cost of each <code>Component</code>.
+   * @param componentPrice       The price of each <code>Component</code>.
+   */
   public Component(ComponentType componentType,
       String componentDescription,
       int amountInStock,
@@ -24,26 +40,42 @@ public class Component {
     this.amountInStock = amountInStock;
   }
 
+  /**
+   * Compares an <code>Object</code> to the <code>Component</code>.
+   *
+   * @param otherObject The <code>Object</code> to be compared to.
+   * @return <code>true</code> if the objects match, or <code>false</code> if they don't.
+   */
   @Override
   public boolean equals(Object otherObject) {
+    // Checking if the Object passed isn't the Componet itself.
     if (this == otherObject) {
       return true;
     }
 
+    // Checking if the Object passed isn't null.
     if (otherObject == null) {
       return false;
     }
 
+    // Checking if the Object passed is from the Class Component and casting it.
     if (!(otherObject instanceof Component otherComponent)) {
       return false;
     }
 
+    // Comparing each of the Component attributes, besides its "componentID" and "amountInStock".
     return componentType.equals(otherComponent.componentType) &&
         componentDescription.equals(otherComponent.componentDescription) &&
         componentPrice == otherComponent.getComponentPrice() &&
         componentCost == otherComponent.getComponentCost();
   }
 
+  /**
+   * Generate a <code>String</code> from the most important information of the
+   * <code>Component</code>.
+   *
+   * @return Relevant information about the <code>Component</code>.
+   */
   @Override
   public String toString() {
     return String.format("""

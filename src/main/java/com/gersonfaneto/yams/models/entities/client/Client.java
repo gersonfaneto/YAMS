@@ -1,5 +1,8 @@
 package com.gersonfaneto.yams.models.entities.client;
 
+/**
+ * Represents the Clients of the Assistance.
+ */
 public class Client {
 
   private String clientID;
@@ -7,6 +10,12 @@ public class Client {
   private String homeAddress;
   private String phoneNumber;
 
+  /**
+   * Constructs a new <code>Client</code>.
+   * @param clientName The <code>Client</code> full name.
+   * @param homeAddress The <code>Client</code> home address.
+   * @param phoneNumber The <code>Client</code> phone number.
+   */
   public Client(String clientName, String homeAddress, String phoneNumber) {
     this.clientName = clientName;
     this.homeAddress = homeAddress;
