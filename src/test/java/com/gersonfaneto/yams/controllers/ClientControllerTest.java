@@ -15,16 +15,18 @@ import org.junit.jupiter.api.Test;
 
 class ClientControllerTest {
 
-  private final Client randomClient = DAO.fromClients().createOne(
-      new Client(
-          "Sherlock Holmes",
-          "221B, Baker Street, London",
-          "999-888-777"
-      )
-  );
+  private Client randomClient;
 
   @BeforeEach
   void setUp() {
+    randomClient =  DAO.fromClients().createOne(
+        new Client(
+            "Sherlock Holmes",
+            "221B, Baker Street, London",
+            "999-888-777"
+        )
+    );
+
     DAO.fromWorkOrders().createOne(
         new WorkOrder(
             randomClient.getClientID()

@@ -30,25 +30,28 @@ import org.junit.jupiter.api.Test;
 
 class ServicesControllerTest {
 
-  private final Client randomClient = DAO.fromClients().createOne(
-      new Client(
-          "John Smith",
-          "123, Lexington Avenue, New York",
-          "123-321-000"
-      )
-  );
-
-  private final Technician randomTechnician = (Technician) DAO.fromUsers().createOne(
-      new Technician(
-          "sholmes@gmail.com",
-          "watson",
-          UserType.Technician,
-          "Sherlock Holmes"
-      )
-  );
+  private Client randomClient;
+  private Technician randomTechnician;
 
   @BeforeEach
   void setUp() {
+    randomClient = DAO.fromClients().createOne(
+        new Client(
+            "John Smith",
+            "123, Lexington Avenue, New York",
+            "123-321-000"
+        )
+    );
+
+    randomTechnician = (Technician) DAO.fromUsers().createOne(
+        new Technician(
+            "sholmes@gmail.com",
+            "watson",
+            UserType.Technician,
+            "Sherlock Holmes"
+        )
+    );
+
     WorkOrder randomWorkOrder = DAO.fromWorkOrders().createOne(
         new WorkOrder(randomClient.getClientID())
     );

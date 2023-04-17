@@ -14,26 +14,30 @@ import com.gersonfaneto.yams.models.entities.user.UserType;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class AuthControllerTest {
 
-  private final User systemAdministrator = Administrator.retrieveInstance(
-      "jsmith@gmail.com",
-      "password",
-      "John Smith"
-  );
-
-  private final User randomUser = new Receptionist(
-      "jdoe@gmail.com",
-      "1234",
-      UserType.Technician,
-      "John Doe"
-  );
-
+  private User systemAdministrator;
+  private User randomUser;
+  
   @BeforeEach
   void setUp() {
+    systemAdministrator = Administrator.retrieveInstance(
+        "jsmith@gmail.com",
+        "password",
+        "John Smith"
+    );
+
+    randomUser = new Receptionist(
+        "jdoe@gmail.com",
+        "1234",
+        UserType.Technician,
+        "John Doe"
+    );
+
     User newUser = new Technician(
         "sholmes@gmail.com",
         "watson",

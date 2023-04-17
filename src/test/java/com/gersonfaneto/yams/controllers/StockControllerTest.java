@@ -13,28 +13,31 @@ import org.junit.jupiter.api.Test;
 
 class StockControllerTest {
 
-  private final Component randomComponent = DAO.fromComponents().createOne(
-      new Component(
-          ComponentType.Motherboard,
-          "Asus Prime H510M-E",
-          10,
-          40.00,
-          100.00
-      )
-  );
-
-  private final PurchaseOrder randomPurchaseOrder = DAO.fromPurchaseOrders().createOne(
-      new PurchaseOrder(
-          ComponentType.GraphicsCard,
-          "Nvidia RTX 3090 TI",
-          10,
-          80.00,
-          100.00
-      )
-  );
+  private Component randomComponent;
+  private PurchaseOrder randomPurchaseOrder;
 
   @BeforeEach
   void setUp() {
+    randomComponent = DAO.fromComponents().createOne(
+        new Component(
+            ComponentType.Motherboard,
+            "Asus Prime H510M-E",
+            10,
+            40.00,
+            100.00
+        )
+    );
+
+    randomPurchaseOrder = DAO.fromPurchaseOrders().createOne(
+        new PurchaseOrder(
+            ComponentType.GraphicsCard,
+            "Nvidia RTX 3090 TI",
+            10,
+            80.00,
+            100.00
+        )
+    );
+
     DAO.fromComponents().createOne(
         new Component(
             ComponentType.Others,

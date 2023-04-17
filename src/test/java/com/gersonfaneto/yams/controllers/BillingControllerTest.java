@@ -15,13 +15,14 @@ import org.junit.jupiter.api.Test;
 
 class BillingControllerTest {
 
-  private final Invoice randomInvoice = DAO.fromInvoices().createOne(new Invoice(
-      UUID.randomUUID().toString(),
-      125.50
-  ));
+  private Invoice randomInvoice;
 
   @BeforeEach
   void setUp() {
+    randomInvoice = DAO.fromInvoices().createOne(
+        new Invoice(UUID.randomUUID().toString(), 125.50)
+    );
+
     DAO.fromPayments().createOne(new Payment(
         randomInvoice.getInvoiceID(),
         PaymentMethod.Cash,
