@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.models.billing.invoice.Invoice;
  * Extends the <code>CRUD</code> interface by adding operations specific to the <code>Invoice</code>
  * models.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see CRUD
  * @see Invoice
  */

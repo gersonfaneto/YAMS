@@ -9,6 +9,8 @@ import java.util.List;
  * Extends the <code>CRUD</code> interface by adding opeations specific to the <code>Service</code>
  * models.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see CRUD
  * @see Service
  */

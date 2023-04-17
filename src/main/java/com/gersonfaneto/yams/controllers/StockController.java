@@ -14,9 +14,10 @@ import java.util.List;
 /**
  * Controller containing all the operations related with the <code>Component</code> and
  * <code>PurchaseOrder</code> models on the System, such as creating, updating and retrieving
- * information about them. Most of the operations relly on the CRUD operations accessed through the
- * DAO.
+ * information about them. Most of the operations relly on the CRUD operations accessed through the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see ComponentMemoryDAO
  * @see ComponentCRUD
  * @see Component

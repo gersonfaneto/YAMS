@@ -6,6 +6,8 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
  * Thrown when the <code>WorkOrder</code> current <code>State</code> doesn't support a attempt
  * operation.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see WorkOrder
  * @see com.gersonfaneto.yams.models.orders.work.states.State
  */

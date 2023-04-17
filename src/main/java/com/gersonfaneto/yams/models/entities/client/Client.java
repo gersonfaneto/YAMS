@@ -2,6 +2,9 @@ package com.gersonfaneto.yams.models.entities.client;
 
 /**
  * Represents the Clients of the Assistance.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  */
 public class Client {
 
@@ -12,7 +15,8 @@ public class Client {
 
   /**
    * Constructs a new <code>Client</code>.
-   * @param clientName The <code>Client</code> full name.
+   *
+   * @param clientName  The <code>Client</code> full name.
    * @param homeAddress The <code>Client</code> home address.
    * @param phoneNumber The <code>Client</code> phone number.
    */

@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.models.entities.user.User;
 /**
  * Thrown when a <code>User</code> isn't found by the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see UserMemoryDAO
  * @see UserCRUD
  * @see User

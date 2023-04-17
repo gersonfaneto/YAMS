@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 /**
  * Thrown when a <code>WorkOrder</code> isn't found by the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see WorkOrderMemoryDAO
  * @see WorkOrderCRUD
  * @see WorkOrder

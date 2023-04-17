@@ -6,6 +6,8 @@ import java.util.List;
  * Defines a generic <code>interface</code> for the basic <code>CRUD</code> operations.
  *
  * @param <T> The type to be manipulated in the <code>CRUD</code> operations.
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  */
 public interface CRUD<T> {
 

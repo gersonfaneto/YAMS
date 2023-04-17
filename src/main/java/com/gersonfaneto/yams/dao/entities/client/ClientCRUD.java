@@ -8,6 +8,8 @@ import java.util.List;
  * Extends the <code>CRUD</code> interface by adding the operations specific to the
  * <code>Client</code> models.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see CRUD
  * @see Client
  */

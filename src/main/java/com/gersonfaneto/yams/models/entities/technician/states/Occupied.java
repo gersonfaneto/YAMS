@@ -15,6 +15,8 @@ import java.util.List;
  * A concrete implementation of the <code>State</code> Class, representing the Occupied State of the
  * Technicians, that is, when they have an open <code>WorkOrder</code>.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Technician
  * @see WorkOrder
  * @see com.gersonfaneto.yams.models.entities.technician.states.State

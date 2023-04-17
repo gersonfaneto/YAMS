@@ -1,6 +1,8 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderCRUD;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderMemoryDAO;
 import com.gersonfaneto.yams.dao.services.ServiceCRUD;
 import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 import com.gersonfaneto.yams.exceptions.client.ClientNotFoundException;
@@ -22,9 +24,10 @@ import java.util.List;
 /**
  * Controller containing all the operations related with the <code>Service</code> and
  * <code>WorkOrder</code> models on the System, such as creating, updating and retrieving
- * information about them. Most of the operations relly on the CRUD operations accessed through the
- * DAO.
+ * information about them. Most of the operations relly on the CRUD operations accessed through the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see ServiceMemoryDAO
  * @see ServiceCRUD
  * @see Service

@@ -23,6 +23,8 @@ import com.gersonfaneto.yams.models.entities.user.UserType;
  * subclasses on the System, such as creating, updating and retrieving information about them. Most
  * of the operations relly on the CRUD operations accessed through the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see UserMemoryDAO
  * @see UserCRUD
  * @see User
@@ -147,7 +149,6 @@ public abstract class AuthController {
    *                                   from the registered <code>User</code>s.
    * @throws PermissionDeniedException If the <code>loggedUser</code> isn't the
    *                                   <code>Administrator</code> of the System.
-   *
    * @see User
    * @see UserType
    */

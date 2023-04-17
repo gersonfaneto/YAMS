@@ -8,6 +8,8 @@ import com.gersonfaneto.yams.models.entities.user.User;
  * Extends the <code>CRUD</code> interface by adding operations specific to the <code>User</code>
  * models.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see CRUD
  * @see User
  */

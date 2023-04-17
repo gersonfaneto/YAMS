@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 /**
  * Thrown when a <code>Invoice</code> isn't found in the by the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see InvoiceMemoryDAO
  * @see InvoiceCRUD
  * @see Invoice

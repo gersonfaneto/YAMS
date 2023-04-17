@@ -3,6 +3,8 @@ package com.gersonfaneto.yams.models.entities.user;
 /**
  * Represents the types of Users on the System.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see User
  */
 public enum UserType {

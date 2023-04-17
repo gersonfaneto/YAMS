@@ -9,6 +9,8 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
  * their basic capabilities/operations. See the implementations for more detail on each method
  * behavior.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Technician
  * @see WorkOrder
  * @see Free

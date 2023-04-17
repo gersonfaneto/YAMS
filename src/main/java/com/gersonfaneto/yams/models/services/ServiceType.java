@@ -3,6 +3,8 @@ package com.gersonfaneto.yams.models.services;
 /**
  * Represents the types of Services offered by the Assistance, including their base values.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Service
  */
 public enum ServiceType {

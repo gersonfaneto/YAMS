@@ -9,6 +9,8 @@ import com.gersonfaneto.yams.models.orders.work.states.Open;
  * A concrete implementation of the <code>State</code> Class, representing the Free State of the
  * Technicians, that is, when they don't have any open <code>WorkOrder</code>.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Technician
  * @see WorkOrder
  * @see com.gersonfaneto.yams.models.entities.technician.states.State;

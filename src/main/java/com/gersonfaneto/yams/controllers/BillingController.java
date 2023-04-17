@@ -18,6 +18,8 @@ import java.util.List;
  * <code>Invoice</code> models on the System, such as creating, updating and retrieving information
  * about them. Most of the operations relly on the CRUD operations accessed through the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see PaymentMemoryDAO
  * @see PaymentCRUD
  * @see Payment
@@ -28,7 +30,7 @@ import java.util.List;
 public abstract class BillingController {
 
   /**
-   * Attemps to generate a new <code>Payment</code> for a given <code>Invoice</code>.
+   * Attempts to generate a new <code>Payment</code> for a given <code>Invoice</code>.
    *
    * @param paymentMethod The method of the <code>Payment</code>.
    * @param invoiceID     The ID of the referred <code>Invoice</code>.

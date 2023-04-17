@@ -11,6 +11,8 @@ import com.gersonfaneto.yams.models.services.Service;
  * A concrete implementation of the <code>State</code> Class, representing the Finished State of the
  * WorkOrder, that is, when all its <code>Service</code>s have been completed.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Technician
  * @see WorkOrder
  * @see Invoice

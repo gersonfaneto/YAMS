@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.models.services.Service;
 /**
  * Thrown when a <code>Service</code> isn't found by the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see ServiceMemoryDAO
  * @see ServiceCRUD
  * @see Service

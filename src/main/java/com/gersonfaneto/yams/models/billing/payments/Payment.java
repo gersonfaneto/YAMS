@@ -2,6 +2,9 @@ package com.gersonfaneto.yams.models.billing.payments;
 
 /**
  * Represents the payments performed on an <code>Invoice</code>, after it's generated.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  */
 public class Payment {
 
@@ -29,9 +32,10 @@ public class Payment {
    *
    * @param otherObject The <code>Object</code> to be compared to.
    * @return <code>true</code> if the objects match, or <code>false</code> if they don't.
-   */@Override
+   */
+  @Override
   public boolean equals(Object otherObject) {
-     // Checking if the Object passed isn't the Payment itself.
+    // Checking if the Object passed isn't the Payment itself.
     if (this == otherObject) {
       return true;
     }

@@ -12,6 +12,8 @@ import java.util.List;
  * Represents the Services that can be requested by the Clients of the Assistance and performed by
  * its Technicians, after being grouped in a Work Order.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Client
  * @see Technician
  * @see WorkOrder
@@ -32,7 +34,7 @@ public class Service {
    *
    * @param serviceType        The type of the <code>Service</code>.
    * @param serviceDescription The description of the <code>Service</code>.
-   * @param usedComponents The list of <code>Component</code>s used on <code>Service</code>.
+   * @param usedComponents     The list of <code>Component</code>s used on <code>Service</code>.
    */
   public Service(
       ServiceType serviceType,

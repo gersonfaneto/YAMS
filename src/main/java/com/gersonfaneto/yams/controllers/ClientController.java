@@ -13,6 +13,7 @@ import java.util.List;
  * System, such as creating, updating and retrieving information about it. Most of the operations
  * relly on the CRUD operations accessed through the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
  * @see ClientMemoryDAO
  * @see ClientCRUD
  * @see Client

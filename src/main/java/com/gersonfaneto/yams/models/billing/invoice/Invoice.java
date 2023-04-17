@@ -3,6 +3,9 @@ package com.gersonfaneto.yams.models.billing.invoice;
 /**
  * Represent a Invoice generated after a <code>WorkOrder</code> is completed by a
  * <code>Technician</code>.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  */
 public class Invoice {
 

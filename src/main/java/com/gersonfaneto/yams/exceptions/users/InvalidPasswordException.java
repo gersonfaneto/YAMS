@@ -5,6 +5,8 @@ import com.gersonfaneto.yams.models.entities.user.User;
 /**
  * Thrown when a <code>User</code> tries to login using a invalid password.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see User
  */
 public class InvalidPasswordException extends Exception {

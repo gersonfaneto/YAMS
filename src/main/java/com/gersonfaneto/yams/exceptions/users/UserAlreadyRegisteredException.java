@@ -6,6 +6,8 @@ import com.gersonfaneto.yams.models.entities.user.User;
  * Thrown when is tried to create a new <code>User</code> with the same email of one already
  * registered.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see User
  */
 public class UserAlreadyRegisteredException extends Exception {

@@ -12,6 +12,8 @@ import java.util.Calendar;
  * Services requested by a Client, using the "State" pattern to encapsulate some of its mutable
  * behavior.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see com.gersonfaneto.yams.models.orders.work.states.State
  * @see Service
  */

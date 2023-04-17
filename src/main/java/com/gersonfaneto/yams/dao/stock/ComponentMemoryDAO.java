@@ -12,6 +12,8 @@ import java.util.UUID;
  * Implementations for the <code>ComponentCRUD</code> and <code>CRUD</code> operations. Uses a
  * <code>HashMap</code> to store all the <code>Component</code>s.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see CRUD
  * @see ComponentCRUD
  */

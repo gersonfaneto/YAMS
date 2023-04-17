@@ -11,6 +11,8 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
  * Represents the Technicians of the assistance as Users of the System, using the "State" pattern to
  * encapsulate some of its mutable behaviour.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see com.gersonfaneto.yams.models.entities.technician.states.State
  * @see User
  * @see UserType

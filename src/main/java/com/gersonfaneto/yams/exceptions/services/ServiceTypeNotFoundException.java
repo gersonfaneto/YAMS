@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.models.services.ServiceType;
  * Thrown when a <code>ServiceType</code> doesn't match any of the ones declared under the
  * <code>ServiceType</code> enumeration.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Service
  * @see ServiceType
  */

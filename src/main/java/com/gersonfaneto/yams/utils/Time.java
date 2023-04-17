@@ -5,6 +5,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * <code>Time<code/> contains functions for dealing with: converting, formatting and operating with
  * time units.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  */
 public abstract class Time {
 

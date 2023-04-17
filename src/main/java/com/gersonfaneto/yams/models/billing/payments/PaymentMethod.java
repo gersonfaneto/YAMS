@@ -3,6 +3,8 @@ package com.gersonfaneto.yams.models.billing.payments;
 /**
  * Represents the accepted payment methods by the assistance.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Payment
  */
 public enum PaymentMethod {

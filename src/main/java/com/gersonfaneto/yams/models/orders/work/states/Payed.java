@@ -10,6 +10,8 @@ import com.gersonfaneto.yams.models.services.Service;
  * A concrete implementation of the <code>State</code> Class, representing the Payed State of the
  * WorkOrder, that is, when the <code>Invoice</code> total has been completely paid.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see WorkOrder
  * @see Invoice
  * @see com.gersonfaneto.yams.models.entities.technician.states.State;

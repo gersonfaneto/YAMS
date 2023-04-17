@@ -4,6 +4,8 @@ package com.gersonfaneto.yams.models.stock;
  * Represents the types of Computer Components that the Assistance might have in Stock, including
  * their base values.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Component
  */
 public enum ComponentType {

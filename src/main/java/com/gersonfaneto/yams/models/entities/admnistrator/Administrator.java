@@ -6,6 +6,9 @@ import com.gersonfaneto.yams.models.entities.user.UserType;
 /**
  * Represents the Administrator of the System using the "Singleton" pattern to ensure there is only
  * one.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  */
 public class Administrator extends User {
 

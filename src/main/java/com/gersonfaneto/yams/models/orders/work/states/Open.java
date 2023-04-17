@@ -11,6 +11,8 @@ import com.gersonfaneto.yams.models.services.Service;
  * A concrete implementation of the <code>State</code> Class, representing the Open State of the
  * WorkOrder, that is, when a <code>Technician</code> is taking care of it.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Technician
  * @see WorkOrder
  * @see Invoice

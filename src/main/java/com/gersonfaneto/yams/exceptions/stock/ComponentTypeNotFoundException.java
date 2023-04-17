@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.models.stock.Component;
 /**
  * Thrown when a <code>Component</code> isn't found by the DAO.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see ComponentMemoryDAO
  * @see ComponentCRUD
  * @see Component

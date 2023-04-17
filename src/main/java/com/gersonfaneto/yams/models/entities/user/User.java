@@ -3,6 +3,8 @@ package com.gersonfaneto.yams.models.entities.user;
 /**
  * Represents the Users of the System.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see UserType
  */
 public abstract class User {

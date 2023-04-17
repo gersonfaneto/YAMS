@@ -11,6 +11,8 @@ import java.util.UUID;
  * Implementations for the <code>WorkOrderCRUD</code> and the <code>CRUD</code> operations. Uses a
  * <code>HashMap</code> to store all the <code>WorkOrder</code>s.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see CRUD
  * @see WorkOrderCRUD
  */

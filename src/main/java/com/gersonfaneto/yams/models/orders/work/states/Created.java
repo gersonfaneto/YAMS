@@ -11,6 +11,8 @@ import com.gersonfaneto.yams.models.services.Service;
  * A concrete implementation of the <code>State</code> Class, representing the Created State of the
  * WorkOrder, that is, when its just been registered by a <code>Technician</code>.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Technician
  * @see WorkOrder
  * @see Invoice

@@ -8,6 +8,8 @@ import com.gersonfaneto.yams.models.services.Service;
  * Represents each Computer Component that the Assistance might have in Stock, that can be used on
  * the Services.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see Service
  * @see ComponentType
  */

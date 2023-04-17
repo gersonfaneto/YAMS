@@ -21,6 +21,8 @@ import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
  * Defines a access point for the <code>DAO</code>s of each model in the System using the
  * "Singleton" pattern. Each <code>DAO</code> is accessed through a <code>static</code> method.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see ClientCRUD
  * @see UserCRUD
  * @see PaymentCRUD

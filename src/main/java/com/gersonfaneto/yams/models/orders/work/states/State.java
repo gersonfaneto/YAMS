@@ -13,6 +13,8 @@ import com.gersonfaneto.yams.models.services.Service;
  * their basic capabilities/operations. See the implementations for more detail on each method
  * behavior.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see WorkOrder
  * @see Invoice
  * @see WorkReport

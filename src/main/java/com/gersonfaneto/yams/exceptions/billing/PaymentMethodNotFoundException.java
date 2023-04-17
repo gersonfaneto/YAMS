@@ -6,6 +6,8 @@ import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
  * Thrown when a given <code>PaymentMethod</code> doesn't match any of the ones declared under the
  * <code>PaymentMethod</code> enumeration.
  *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
  * @see PaymentMethod
  */
 public class PaymentMethodNotFoundException extends Exception {
