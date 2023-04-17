@@ -1,9 +1,23 @@
 package com.gersonfaneto.yams.models.services;
 
-import com.gersonfaneto.yams.builders.service.ServiceBuilder;
-import com.gersonfaneto.yams.models.components.Component;
+import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
+
+import com.gersonfaneto.yams.models.entities.client.Client;
+import com.gersonfaneto.yams.models.entities.technician.Technician;
+import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.stock.Component;
 import java.util.List;
 
+/**
+ * Represents the Services that can be requested by the Clients of the Assistance and performed by
+ * its Technicians, after being grouped in a Work Order.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
+ * @see Client
+ * @see Technician
+ * @see WorkOrder
+ */
 public class Service {
 
   private String serviceID;
@@ -12,33 +26,66 @@ public class Service {
   private String serviceDescription;
   private double clientRating;
   private double servicePrice;
-  private boolean isComplete = false;
+  private boolean isComplete;
   private List<Component> usedComponents;
 
-  public Service(ServiceBuilder serviceBuilder) {
-    this.serviceType = serviceBuilder.getServiceType();
-    this.serviceDescription = serviceBuilder.getServiceDescription();
-    this.servicePrice = serviceBuilder.getServicePrice();
-    this.usedComponents = serviceBuilder.getUsedComponents();
+  /**
+   * Constructs a new <code>Service</code>.
+   *
+   * @param serviceType The type of the <code>Service</code>.
+   * @param serviceDescription The description of the <code>Service</code>.
+   * @param usedComponents The list of <code>Component</code>s used on <code>Service</code>.
+   */
+  public Service(
+      ServiceType serviceType, String serviceDescription, List<Component> usedComponents) {
+    this.serviceType = serviceType;
+    this.serviceDescription = serviceDescription;
+
+    if (serviceType != Assembly) {
+      this.servicePrice = serviceType.getTypeValue();
+    } else {
+      this.servicePrice =
+          usedComponents.stream()
+              .mapToDouble(Component::getComponentPrice)
+              .reduce(0.0, Double::sum);
+    }
+
+    this.isComplete = false;
+    this.usedComponents = usedComponents;
   }
 
+  /**
+   * Compares an <code>Object</code> to the <code>Service</code>.
+   *
+   * @param otherObject The <code>Object</code> to be compared to.
+   * @return <code>true</code> if the objects match, or <code>false</code> if they don't.
+   */
   @Override
   public boolean equals(Object otherObject) {
+    // Checking if the Object passed isn't the Service itself.
     if (this == otherObject) {
       return true;
     }
 
+    // Checkin if the Object passed isn't null.
     if (otherObject == null) {
       return false;
     }
 
+    // Checkin if the Object passed is from the Class Service and casting.
     if (!(otherObject instanceof Service otherService)) {
       return false;
     }
 
+    // Comparing by IDs.
     return serviceID.equals(otherService.serviceID);
   }
 
+  /**
+   * Generate a <code>String</code> from the most important information of the <code>Service</code>.
+   *
+   * @return Relevant information about the <code>Service</code>.
+   */
   @Override
   public String toString() {
     return String.format(
@@ -62,10 +109,6 @@ public class Service {
 
   public void setServiceID(String serviceID) {
     this.serviceID = serviceID;
-  }
-
-  public void setWorkOrderID(String workOrderID) {
-    this.workOrderID = workOrderID;
   }
 
   public ServiceType getServiceType() {
@@ -118,5 +161,9 @@ public class Service {
 
   public String getWorkOrderID() {
     return workOrderID;
+  }
+
+  public void setWorkOrderID(String workOrderID) {
+    this.workOrderID = workOrderID;
   }
 }

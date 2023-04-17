@@ -1,15 +1,27 @@
 package com.gersonfaneto.yams.dao.orders.purchase;
 
+import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
+import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Implementations for the <code>PurchaseOrderCRUD</code> and <code>CRUD</code> operations. Uses a
+ * <code>HashMap</code> to store all the <code>PurchaseOrder</code>s.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
+ * @see CRUD
+ * @see PurchaseOrderCRUD
+ */
 public class PurchaseOrderMemoryDAO implements PurchaseOrderCRUD {
 
   private final Map<String, PurchaseOrder> storedPurchaseOrders;
 
+  /** Initializes the <code>HashMap</code> used to store all the <code>PurchaseOrder</code>s. */
   public PurchaseOrderMemoryDAO() {
     this.storedPurchaseOrders = new HashMap<>();
   }
@@ -68,7 +80,7 @@ public class PurchaseOrderMemoryDAO implements PurchaseOrderCRUD {
   }
 
   @Override
-  public List<PurchaseOrder> findByType(String componentType) {
+  public List<PurchaseOrder> findByType(ComponentType componentType) {
     return storedPurchaseOrders.values().stream()
         .filter(x -> x.getComponentType().equals(componentType))
         .toList();
