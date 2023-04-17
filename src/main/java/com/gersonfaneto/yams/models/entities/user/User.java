@@ -17,9 +17,9 @@ public abstract class User {
   /**
    * Constructs a new <code>User</code>.
    *
-   * @param userEmail    The <code>User</code> chosen email.
+   * @param userEmail The <code>User</code> chosen email.
    * @param userPassword The <code>User</code> chose password.
-   * @param userType     The type of the <code>User</code>.
+   * @param userType The type of the <code>User</code>.
    * @see UserType
    */
   public User(String userEmail, String userPassword, UserType userType) {
@@ -56,20 +56,19 @@ public abstract class User {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the
-   * <code>User</code>.
+   * Generate a <code>String</code> from the most important information of the <code>User</code>.
    *
    * @return Relevant information about the <code>User</code>.
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
             ID: %s
             Email: %s
             Password: %s
             """,
-        userID, userEmail, userPassword
-    );
+        userID, userEmail, userPassword);
   }
 
   public String getUserID() {

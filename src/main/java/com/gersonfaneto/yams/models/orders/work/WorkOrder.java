@@ -29,8 +29,8 @@ public class WorkOrder {
   private WorkReport workReport;
 
   /**
-   * Constructs a new <code>WorkOrder</code> for a <code>Client</code>. The initial
-   * <code>State</code> of the <code>WorkOrder</code> is <code>Created</code>.
+   * Constructs a new <code>WorkOrder</code> for a <code>Client</code>. The initial <code>State
+   * </code> of the <code>WorkOrder</code> is <code>Created</code>.
    *
    * @param clientID The ID of the Client that requested the <code>Service</code>s.
    * @see Created
@@ -42,12 +42,12 @@ public class WorkOrder {
   }
 
   /**
-   * Removes a <code>Service</code> from the <code>WorkOrder</code> depending on its current
-   * <code>State</code>.
+   * Removes a <code>Service</code> from the <code>WorkOrder</code> depending on its current <code>
+   * State</code>.
    *
    * @param serviceID The ID of the targeted <code>Service</code>.
-   * @return <code>null</code> or the removed <code>Service</code>, depending on the current
-   * <code>State</code> of the <code>WorkOrder</code>.
+   * @return <code>null</code> or the removed <code>Service</code>, depending on the current <code>
+   *     State</code> of the <code>WorkOrder</code>.
    * @see com.gersonfaneto.yams.models.orders.work.states.State
    * @see Service
    */
@@ -60,7 +60,7 @@ public class WorkOrder {
    * current <code>State</code>.
    *
    * @return <code>null</code> or the generated <code>Invoice</code>, depending on the current
-   * <code>State</code> of the <code>WorkOrder</code>.
+   *     <code>State</code> of the <code>WorkOrder</code>.
    * @see com.gersonfaneto.yams.models.orders.work.states.State
    * @see Invoice
    */
@@ -73,7 +73,7 @@ public class WorkOrder {
    * its current <code>State</code>.
    *
    * @return <code>null</code> or the generated <code>WorkReport</code>, depending on the current
-   * <code>State</code> of the <code>WorkOrder</code>.
+   *     <code>State</code> of the <code>WorkOrder</code>.
    * @see com.gersonfaneto.yams.models.orders.work.states.State
    * @see WorkReport
    */
@@ -109,19 +109,21 @@ public class WorkOrder {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the
-   * <code>WorkOrder</code>.
+   * Generate a <code>String</code> from the most important information of the <code>WorkOrder
+   * </code>.
    *
    * @return Relevant information about the <code>User</code>.
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Client: %s
         Technician: %s
         Invoice: %s
-        """, workOrderID, clientID, technicianID, invoiceID);
+        """,
+        workOrderID, clientID, technicianID, invoiceID);
   }
 
   public String getWorkOrderID() {

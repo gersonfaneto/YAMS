@@ -38,9 +38,8 @@ class WorkOrderMemoryDAOTest {
 
   @Test
   void createOne() {
-    WorkOrder newWorkOrder = DAO.fromWorkOrders().createOne(
-        new WorkOrder(UUID.randomUUID().toString())
-    );
+    WorkOrder newWorkOrder =
+        DAO.fromWorkOrders().createOne(new WorkOrder(UUID.randomUUID().toString()));
 
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(newWorkOrder.getWorkOrderID());
 
@@ -83,7 +82,7 @@ class WorkOrderMemoryDAOTest {
 
   @Test
   void deleteMany() {
-    boolean hasDeleted =  DAO.fromWorkOrders().deleteMany();
+    boolean hasDeleted = DAO.fromWorkOrders().deleteMany();
 
     List<WorkOrder> foundWorkOrders = DAO.fromWorkOrders().findMany();
 

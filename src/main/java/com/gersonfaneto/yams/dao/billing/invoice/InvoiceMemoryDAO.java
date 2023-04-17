@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Implementations for the <code>InvoiceCRUD</code> and <code>CRUD</code> operations. Uses a
- * <code>HashMap</code> to store all the <code>Invoice</code>s.
+ * Implementations for the <code>InvoiceCRUD</code> and <code>CRUD</code> operations. Uses a <code>
+ * HashMap</code> to store all the <code>Invoice</code>s.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
@@ -20,9 +20,7 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
 
   private final Map<String, Invoice> storedInvoices;
 
-  /**
-   * Initializes the <code>HashMap</code> used to store all the <code>Invoice</code>s.
-   */
+  /** Initializes the <code>HashMap</code> used to store all the <code>Invoice</code>s. */
   public InvoiceMemoryDAO() {
     this.storedInvoices = new HashMap<>();
   }
@@ -82,8 +80,7 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
 
   @Override
   public Invoice findByWorkOrder(String workOrderID) {
-    return storedInvoices.values()
-        .stream()
+    return storedInvoices.values().stream()
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .findFirst()
         .get();

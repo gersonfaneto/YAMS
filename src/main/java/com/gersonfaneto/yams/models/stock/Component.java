@@ -23,18 +23,18 @@ public class Component {
   private int amountInStock;
 
   /**
-   * @param componentType        The type of the <code>Component</code>.
+   * @param componentType The type of the <code>Component</code>.
    * @param componentDescription The description of the <code>Component</code>.
-   * @param amountInStock        The amount currently in stock of the <code>Component</code>.
-   * @param componentCost        The cost of each <code>Component</code>.
-   * @param componentPrice       The price of each <code>Component</code>.
+   * @param amountInStock The amount currently in stock of the <code>Component</code>.
+   * @param componentCost The cost of each <code>Component</code>.
+   * @param componentPrice The price of each <code>Component</code>.
    */
-  public Component(ComponentType componentType,
+  public Component(
+      ComponentType componentType,
       String componentDescription,
       int amountInStock,
       double componentCost,
-      double componentPrice
-  ) {
+      double componentPrice) {
     this.componentType = componentType;
     this.componentDescription = componentDescription;
     this.componentCost = componentCost;
@@ -66,29 +66,29 @@ public class Component {
     }
 
     // Comparing each of the Component attributes, besides its "componentID" and "amountInStock".
-    return componentType.equals(otherComponent.componentType) &&
-        componentDescription.equals(otherComponent.componentDescription) &&
-        componentPrice == otherComponent.getComponentPrice() &&
-        componentCost == otherComponent.getComponentCost();
+    return componentType.equals(otherComponent.componentType)
+        && componentDescription.equals(otherComponent.componentDescription)
+        && componentPrice == otherComponent.getComponentPrice()
+        && componentCost == otherComponent.getComponentCost();
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the
-   * <code>Component</code>.
+   * Generate a <code>String</code> from the most important information of the <code>Component
+   * </code>.
    *
    * @return Relevant information about the <code>Component</code>.
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
             ID: %s
             Type: %s
             Description: %s
             Cost: R$ %.2f
             Price: R$ %.2f
             """,
-        componentID, componentType, componentDescription, componentCost, componentPrice
-    );
+        componentID, componentType, componentDescription, componentCost, componentPrice);
   }
 
   public String getComponentID() {

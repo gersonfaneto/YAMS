@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Implementations for the <code>ClientCRUD</code> and <code>CRUD</code> operations. Uses a
- * <code>HashMap</code> to store all the <code>Client</code>s.
+ * Implementations for the <code>ClientCRUD</code> and <code>CRUD</code> operations. Uses a <code>
+ * HashMap</code> to store all the <code>Client</code>s.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
@@ -20,9 +20,7 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   private final Map<String, Client> storedClients;
 
-  /**
-   * Initializes the <code>HashMap</code> used to store all the <code>Client</code>s.
-   */
+  /** Initializes the <code>HashMap</code> used to store all the <code>Client</code>s. */
   public ClientMemoryDAO() {
     this.storedClients = new HashMap<>();
   }
@@ -82,8 +80,7 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   @Override
   public List<Client> findByName(String clientName) {
-    return storedClients.values()
-        .stream()
+    return storedClients.values().stream()
         .filter(x -> x.getClientName().equals(clientName))
         .toList();
   }

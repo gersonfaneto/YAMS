@@ -16,9 +16,9 @@ public class Payment {
   /**
    * Constructs a new <code>Payment</code>.
    *
-   * @param invoiceID     The ID of the referent Invoice.
+   * @param invoiceID The ID of the referent Invoice.
    * @param paymentMethod The chosen payment method.
-   * @param paidValue     The paid value.
+   * @param paidValue The paid value.
    * @see PaymentMethod
    */
   public Payment(String invoiceID, PaymentMethod paymentMethod, double paidValue) {
@@ -55,21 +55,20 @@ public class Payment {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the
-   * <code>Payment</code>.
+   * Generate a <code>String</code> from the most important information of the <code>Payment</code>.
    *
    * @return Relevant information about the <code>Payment</code>.
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
             ID: %s
             Method: %s
             Invoice: %s
             Value: R$ %.2f
             """,
-        paymentID, paymentMethod, invoiceID, paidValue
-    );
+        paymentID, paymentMethod, invoiceID, paidValue);
   }
 
   public String getPaymentID() {

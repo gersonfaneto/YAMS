@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Implementations for the <code>PaymentCRUD</code> and <code>CRUD</code> operations. Uses a
- * <code>HashMap</code> to store all the <code>Payment</code>s.
+ * Implementations for the <code>PaymentCRUD</code> and <code>CRUD</code> operations. Uses a <code>
+ * HashMap</code> to store all the <code>Payment</code>s.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
@@ -20,9 +20,7 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   private final Map<String, Payment> storedPayments;
 
-  /**
-   * Initializes the <code>HashMap</code> used to store all the <code>Payment</code>s.
-   */
+  /** Initializes the <code>HashMap</code> used to store all the <code>Payment</code>s. */
   public PaymentMemoryDAO() {
     this.storedPayments = new HashMap<>();
   }
@@ -82,8 +80,7 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findByInvoice(String invoiceID) {
-    return storedPayments.values()
-        .stream()
+    return storedPayments.values().stream()
         .filter(x -> x.getInvoiceID().equals(invoiceID))
         .toList();
   }

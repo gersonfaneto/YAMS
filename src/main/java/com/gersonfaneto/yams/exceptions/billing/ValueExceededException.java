@@ -4,8 +4,8 @@ import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 
 /**
- * Thrown when a value of a <code>Payment</code> exceeds the total value of its
- * <code>Invoice</code>.
+ * Thrown when a value of a <code>Payment</code> exceeds the total value of its <code>Invoice</code>
+ * .
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0

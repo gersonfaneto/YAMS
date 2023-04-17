@@ -4,8 +4,6 @@ import com.gersonfaneto.yams.dao.billing.invoice.InvoiceCRUD;
 import com.gersonfaneto.yams.dao.billing.invoice.InvoiceMemoryDAO;
 import com.gersonfaneto.yams.dao.billing.paymet.PaymentCRUD;
 import com.gersonfaneto.yams.dao.billing.paymet.PaymentMemoryDAO;
-import com.gersonfaneto.yams.dao.stock.ComponentCRUD;
-import com.gersonfaneto.yams.dao.stock.ComponentMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
 import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
 import com.gersonfaneto.yams.dao.entities.user.UserCRUD;
@@ -16,6 +14,8 @@ import com.gersonfaneto.yams.dao.orders.work.WorkOrderCRUD;
 import com.gersonfaneto.yams.dao.orders.work.WorkOrderMemoryDAO;
 import com.gersonfaneto.yams.dao.services.ServiceCRUD;
 import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
+import com.gersonfaneto.yams.dao.stock.ComponentCRUD;
+import com.gersonfaneto.yams.dao.stock.ComponentMemoryDAO;
 
 /**
  * Defines a access point for the <code>DAO</code>s of each model in the System using the

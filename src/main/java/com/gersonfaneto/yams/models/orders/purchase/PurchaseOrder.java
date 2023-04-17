@@ -24,19 +24,18 @@ public class PurchaseOrder {
   /**
    * Constructs a new <code>PurchaseOrder</code> for a specific <code>Component</code>.
    *
-   * @param componentType        The <code>ComponentType</code> to be bought.
+   * @param componentType The <code>ComponentType</code> to be bought.
    * @param componentDescription The <code>Component</code> description.
-   * @param boughtAmount         The amount bought.
-   * @param componentCost        The cost of each <code>Component</code>.
-   * @param componentPrice       The price of each <code>Component</code>.
+   * @param boughtAmount The amount bought.
+   * @param componentCost The cost of each <code>Component</code>.
+   * @param componentPrice The price of each <code>Component</code>.
    */
   public PurchaseOrder(
       ComponentType componentType,
       String componentDescription,
       int boughtAmount,
       double componentCost,
-      double componentPrice
-  ) {
+      double componentPrice) {
     this.componentType = componentType;
     this.componentDescription = componentDescription;
     this.boughtAmount = boughtAmount;
@@ -72,14 +71,15 @@ public class PurchaseOrder {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the
-   * <code>PurchaseOrder</code>.
+   * Generate a <code>String</code> from the most important information of the <code>PurchaseOrder
+   * </code>.
    *
    * @return Relevant information about the <code>PurchaseOrder</code>.
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
             ID: %s
             Type: %s
             Description: %s
@@ -92,8 +92,7 @@ public class PurchaseOrder {
         componentDescription,
         boughtAmount,
         componentCost,
-        componentPrice
-    );
+        componentPrice);
   }
 
   public String getPurchaseOrderID() {

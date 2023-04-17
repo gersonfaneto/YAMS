@@ -32,8 +32,8 @@ public class Canceled extends State {
    * Attempts to remove a <code>Service</code> from the <code>WorkOrder</code>.
    *
    * @param serviceID The ID of the targeted <code>Service</code>.
-   * @return Always <code>null</code>, as a <code>Service</code> can't be removed from the
-   * <code>WorkOrder</code> once it has been canceled.
+   * @return Always <code>null</code>, as a <code>Service</code> can't be removed from the <code>
+   *     WorkOrder</code> once it has been canceled.
    */
   @Override
   public Service removeService(String serviceID) {
@@ -43,8 +43,8 @@ public class Canceled extends State {
   /**
    * Attempts to generate a <code>Invoice</code> for the <code>WorkOrder</code>.
    *
-   * @return Always <code>null</code>, as an <code>Invoice</code> can't be generated for a
-   * <code>WorkOrder</code> once it has been canceled.
+   * @return Always <code>null</code>, as an <code>Invoice</code> can't be generated for a <code>
+   *     WorkOrder</code> once it has been canceled.
    */
   @Override
   public Invoice generateInvoice() {
@@ -54,8 +54,8 @@ public class Canceled extends State {
   /**
    * Attempts to generate the <code>WorkReport</code> for the <code>WorkOrder</code>.
    *
-   * @return Always <code>null</code>, as a <code>WorkReport</code> can't be generated for a
-   * <code>WorkOrder</code> once it has been canceled.
+   * @return Always <code>null</code>, as a <code>WorkReport</code> can't be generated for a <code>
+   *     WorkOrder</code> once it has been canceled.
    */
   @Override
   public WorkReport generateReport() {

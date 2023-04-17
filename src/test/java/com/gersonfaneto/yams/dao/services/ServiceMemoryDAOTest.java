@@ -19,23 +19,14 @@ class ServiceMemoryDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomService = new Service(
-        ServiceType.Formatting,
-        "Format and install Windows 11 :(",
-        List.of()
-    );
+    randomService =
+        new Service(ServiceType.Formatting, "Format and install Windows 11 :(", List.of());
     randomService.setWorkOrderID(randomWorkOrderID);
     DAO.fromService().createOne(randomService);
 
-
     for (int i = 0; i < 10; i++) {
-      DAO.fromService().createOne(
-          new Service(
-              ServiceType.ProgramInstallation,
-              "Minecraft!",
-              List.of()
-          )
-      );
+      DAO.fromService()
+          .createOne(new Service(ServiceType.ProgramInstallation, "Minecraft!", List.of()));
     }
   }
 
@@ -46,13 +37,13 @@ class ServiceMemoryDAOTest {
 
   @Test
   void createOne() {
-    Service newService = DAO.fromService().createOne(
-        new Service(
-            ServiceType.Cleaning,
-            "The client dropped his computer in a honey bathtub!",
-            List.of()
-        )
-    );
+    Service newService =
+        DAO.fromService()
+            .createOne(
+                new Service(
+                    ServiceType.Cleaning,
+                    "The client dropped his computer in a honey bathtub!",
+                    List.of()));
 
     Service foundService = DAO.fromService().findByID(newService.getServiceID());
 
@@ -81,9 +72,8 @@ class ServiceMemoryDAOTest {
     Service foundService = DAO.fromService().findByID(randomService.getServiceID());
 
     Assertions.assertTrue(hasFound);
-    Assertions.assertEquals("Format and install Ubuntu LTS :)",
-        foundService.getServiceDescription());
-
+    Assertions.assertEquals(
+        "Format and install Ubuntu LTS :)", foundService.getServiceDescription());
   }
 
   @Test

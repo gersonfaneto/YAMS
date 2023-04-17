@@ -21,9 +21,7 @@ public class PurchaseOrderMemoryDAO implements PurchaseOrderCRUD {
 
   private final Map<String, PurchaseOrder> storedPurchaseOrders;
 
-  /**
-   * Initializes the <code>HashMap</code> used to store all the <code>PurchaseOrder</code>s.
-   */
+  /** Initializes the <code>HashMap</code> used to store all the <code>PurchaseOrder</code>s. */
   public PurchaseOrderMemoryDAO() {
     this.storedPurchaseOrders = new HashMap<>();
   }
@@ -83,8 +81,7 @@ public class PurchaseOrderMemoryDAO implements PurchaseOrderCRUD {
 
   @Override
   public List<PurchaseOrder> findByType(ComponentType componentType) {
-    return storedPurchaseOrders.values()
-        .stream()
+    return storedPurchaseOrders.values().stream()
         .filter(x -> x.getComponentType().equals(componentType))
         .toList();
   }

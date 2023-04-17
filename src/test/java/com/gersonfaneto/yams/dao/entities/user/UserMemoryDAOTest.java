@@ -18,24 +18,20 @@ class UserMemoryDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomUser = DAO.fromUsers().createOne(
-        new Receptionist(
-            "sholmes@gmail.com",
-            "watson",
-            UserType.Receptionist,
-            "Sherlock Holmes"
-        )
-    );
+    randomUser =
+        DAO.fromUsers()
+            .createOne(
+                new Receptionist(
+                    "sholmes@gmail.com", "watson", UserType.Receptionist, "Sherlock Holmes"));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromUsers().createOne(
-          new Technician(
-              "jdoe" + ((Integer) i).toString() + "@gmail.com",
-              "jdoe@" + ((Integer) i).toString(),
-              UserType.Technician,
-              "John Doe"
-          )
-      );
+      DAO.fromUsers()
+          .createOne(
+              new Technician(
+                  "jdoe" + ((Integer) i).toString() + "@gmail.com",
+                  "jdoe@" + ((Integer) i).toString(),
+                  UserType.Technician,
+                  "John Doe"));
     }
   }
 
@@ -46,14 +42,11 @@ class UserMemoryDAOTest {
 
   @Test
   void createOne() {
-    User randomUser = DAO.fromUsers().createOne(
-        new Technician(
-            "jsmith@gmail.com",
-            "jsmith@2023",
-            UserType.Technician,
-            "John Smith"
-        )
-    );
+    User randomUser =
+        DAO.fromUsers()
+            .createOne(
+                new Technician(
+                    "jsmith@gmail.com", "jsmith@2023", UserType.Technician, "John Smith"));
 
     User foundUser = DAO.fromUsers().findByID(randomUser.getUserID());
 

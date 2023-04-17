@@ -47,8 +47,8 @@ public class Created extends State {
   /**
    * Attempts to generate a <code>Invoice</code> for the <code>WorkOrder</code>.
    *
-   * @return Always <code>null</code>, as an <code>Invoice</code> can't be generated for a
-   * <code>WorkOrder</code> that has just been created.
+   * @return Always <code>null</code>, as an <code>Invoice</code> can't be generated for a <code>
+   *     WorkOrder</code> that has just been created.
    */
   @Override
   public Invoice generateInvoice() {
@@ -58,8 +58,8 @@ public class Created extends State {
   /**
    * Attempts to generate the <code>WorkReport</code> for the <code>WorkOrder</code>.
    *
-   * @return Always <code>null</code>, as a <code>WorkReport</code> can't be generated for a
-   * <code>WorkOrder</code> that has just been created.
+   * @return Always <code>null</code>, as a <code>WorkReport</code> can't be generated for a <code>
+   *     WorkOrder</code> that has just been created.
    */
   @Override
   public WorkReport generateReport() {

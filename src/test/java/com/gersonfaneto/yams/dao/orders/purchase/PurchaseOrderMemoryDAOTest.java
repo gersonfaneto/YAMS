@@ -17,26 +17,14 @@ class PurchaseOrderMemoryDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomPurchaseOrder = DAO.fromPurchaseOrders().createOne(
-        new PurchaseOrder(
-            ComponentType.Motherboard,
-            "ASUS Prime",
-            10,
-            30.00,
-            100.00
-        )
-    );
+    randomPurchaseOrder =
+        DAO.fromPurchaseOrders()
+            .createOne(
+                new PurchaseOrder(ComponentType.Motherboard, "ASUS Prime", 10, 30.00, 100.00));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromPurchaseOrders().createOne(
-          new PurchaseOrder(
-              ComponentType.RAM,
-              "Corsair Prime",
-              4,
-              15.00,
-              30.00
-          )
-      );
+      DAO.fromPurchaseOrders()
+          .createOne(new PurchaseOrder(ComponentType.RAM, "Corsair Prime", 4, 15.00, 30.00));
     }
   }
 
@@ -47,26 +35,22 @@ class PurchaseOrderMemoryDAOTest {
 
   @Test
   void createOne() {
-    PurchaseOrder newPurchaseOrder = DAO.fromPurchaseOrders().createOne(
-        new PurchaseOrder(
-            ComponentType.GraphicsCard,
-            "Nvidia RTX 3090 TI",
-            10,
-            40.00,
-            100.00
-        )
-    );
+    PurchaseOrder newPurchaseOrder =
+        DAO.fromPurchaseOrders()
+            .createOne(
+                new PurchaseOrder(
+                    ComponentType.GraphicsCard, "Nvidia RTX 3090 TI", 10, 40.00, 100.00));
 
-    PurchaseOrder foundPurchaseOrder = DAO.fromPurchaseOrders()
-        .findByID(newPurchaseOrder.getPurchaseOrderID());
+    PurchaseOrder foundPurchaseOrder =
+        DAO.fromPurchaseOrders().findByID(newPurchaseOrder.getPurchaseOrderID());
 
     Assertions.assertEquals(newPurchaseOrder, foundPurchaseOrder);
   }
 
   @Test
   void findByID() {
-    PurchaseOrder foundPurchaseOrder = DAO.fromPurchaseOrders()
-        .findByID(randomPurchaseOrder.getPurchaseOrderID());
+    PurchaseOrder foundPurchaseOrder =
+        DAO.fromPurchaseOrders().findByID(randomPurchaseOrder.getPurchaseOrderID());
 
     Assertions.assertEquals(randomPurchaseOrder, foundPurchaseOrder);
   }
@@ -83,8 +67,8 @@ class PurchaseOrderMemoryDAOTest {
     randomPurchaseOrder.setBoughtAmount(30);
 
     boolean hasFound = DAO.fromPurchaseOrders().updateInformation(randomPurchaseOrder);
-    PurchaseOrder foundPurchaseOrder = DAO.fromPurchaseOrders()
-        .findByID(randomPurchaseOrder.getPurchaseOrderID());
+    PurchaseOrder foundPurchaseOrder =
+        DAO.fromPurchaseOrders().findByID(randomPurchaseOrder.getPurchaseOrderID());
 
     Assertions.assertTrue(hasFound);
     Assertions.assertEquals(30, foundPurchaseOrder.getBoughtAmount());
@@ -92,11 +76,11 @@ class PurchaseOrderMemoryDAOTest {
 
   @Test
   void deleteByID() {
-    boolean hasDeleted = DAO.fromPurchaseOrders()
-        .deleteByID(randomPurchaseOrder.getPurchaseOrderID());
+    boolean hasDeleted =
+        DAO.fromPurchaseOrders().deleteByID(randomPurchaseOrder.getPurchaseOrderID());
 
-    PurchaseOrder foundPurchaseOrder = DAO.fromPurchaseOrders()
-        .findByID(randomPurchaseOrder.getPurchaseOrderID());
+    PurchaseOrder foundPurchaseOrder =
+        DAO.fromPurchaseOrders().findByID(randomPurchaseOrder.getPurchaseOrderID());
 
     Assertions.assertTrue(hasDeleted);
     Assertions.assertNull(foundPurchaseOrder);
@@ -114,8 +98,8 @@ class PurchaseOrderMemoryDAOTest {
 
   @Test
   void findByType() {
-    List<PurchaseOrder> foundPurchaseOrders = DAO.fromPurchaseOrders()
-        .findByType(ComponentType.RAM);
+    List<PurchaseOrder> foundPurchaseOrders =
+        DAO.fromPurchaseOrders().findByType(ComponentType.RAM);
 
     Assertions.assertEquals(10, foundPurchaseOrders.size());
   }
