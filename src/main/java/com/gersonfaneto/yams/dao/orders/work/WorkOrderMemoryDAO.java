@@ -1,15 +1,26 @@
 package com.gersonfaneto.yams.dao.orders.work;
 
+import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Implementations for the <code>WorkOrderCRUD</code> and the <code>CRUD</code> operations. Uses a
+ * <code>HashMap</code> to store all the <code>WorkOrder</code>s.
+ *
+ * @see CRUD
+ * @see WorkOrderCRUD
+ */
 public class WorkOrderMemoryDAO implements WorkOrderCRUD {
 
   private final Map<String, WorkOrder> storedWorkOrders;
 
+  /**
+   * Initializes the <code>HashMap</code> used to store all the <code>WorkOrder</code>s.
+   */
   public WorkOrderMemoryDAO() {
     this.storedWorkOrders = new HashMap<>();
   }

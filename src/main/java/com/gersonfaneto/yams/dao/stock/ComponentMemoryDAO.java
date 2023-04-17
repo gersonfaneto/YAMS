@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.dao.stock;
 
+import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.HashMap;
@@ -7,10 +8,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Implementations for the <code>ComponentCRUD</code> and <code>CRUD</code> operations. Uses a
+ * <code>HashMap</code> to store all the <code>Component</code>s.
+ *
+ * @see CRUD
+ * @see ComponentCRUD
+ */
 public class ComponentMemoryDAO implements ComponentCRUD {
 
   private final Map<String, Component> storedComponents;
 
+  /**
+   * Initializes the <code>HashMap</code> used to store all the <code>Component</code>s.
+   */
   public ComponentMemoryDAO() {
     this.storedComponents = new HashMap<>();
   }

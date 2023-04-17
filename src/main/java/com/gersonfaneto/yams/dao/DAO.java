@@ -17,6 +17,19 @@ import com.gersonfaneto.yams.dao.orders.work.WorkOrderMemoryDAO;
 import com.gersonfaneto.yams.dao.services.ServiceCRUD;
 import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
 
+/**
+ * Defines a access point for the <code>DAO</code>s of each model in the System using the
+ * "Singleton" pattern. Each <code>DAO</code> is accessed through a <code>static</code> method.
+ *
+ * @see ClientCRUD
+ * @see UserCRUD
+ * @see PaymentCRUD
+ * @see InvoiceCRUD
+ * @see ComponentCRUD
+ * @see ServiceCRUD
+ * @see PurchaseOrderCRUD
+ * @see WorkOrderCRUD
+ */
 public abstract class DAO {
 
   private static ClientCRUD clientCRUD;
@@ -28,6 +41,12 @@ public abstract class DAO {
   private static PurchaseOrderCRUD purchaseOrderCRUD;
   private static WorkOrderCRUD workOrderCRUD;
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>Client</code> model, instantiating it if
+   * necessary.
+   *
+   * @return The <code>DAO</code> for the <code>Client</code> model.
+   */
   public static ClientCRUD fromClients() {
     if (clientCRUD == null) {
       clientCRUD = new ClientMemoryDAO();
@@ -36,6 +55,11 @@ public abstract class DAO {
     return clientCRUD;
   }
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>User</code> model, instantiating it if necessary.
+   *
+   * @return The <code>DAO</code> for the <code>User</code> model.
+   */
   public static UserCRUD fromUsers() {
     if (userCRUD == null) {
       userCRUD = new UserMemoryDAO();
@@ -44,6 +68,12 @@ public abstract class DAO {
     return userCRUD;
   }
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>Payment</code> model, instantiating it if
+   * necessary.
+   *
+   * @return The <code>DAO</code> for the <code>Payment</code> model.
+   */
   public static PaymentCRUD fromPayments() {
     if (paymentCRUD == null) {
       paymentCRUD = new PaymentMemoryDAO();
@@ -52,6 +82,12 @@ public abstract class DAO {
     return paymentCRUD;
   }
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>Invoice</code> model, instantiating it if
+   * necessary.
+   *
+   * @return The <code>DAO</code> for the <code>Invoice</code> model.
+   */
   public static InvoiceCRUD fromInvoices() {
     if (invoiceCRUD == null) {
       invoiceCRUD = new InvoiceMemoryDAO();
@@ -60,6 +96,12 @@ public abstract class DAO {
     return invoiceCRUD;
   }
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>Component</code> model, instantiating it if
+   * necessary.
+   *
+   * @return The <code>DAO</code> for the <code>Component</code> model.
+   */
   public static ComponentCRUD fromComponents() {
     if (componentCRUD == null) {
       componentCRUD = new ComponentMemoryDAO();
@@ -68,6 +110,12 @@ public abstract class DAO {
     return componentCRUD;
   }
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>Service</code> model, instantiating it if
+   * necessary.
+   *
+   * @return The <code>DAO</code> for the <code>Service</code> model.
+   */
   public static ServiceCRUD fromService() {
     if (serviceCRUD == null) {
       serviceCRUD = new ServiceMemoryDAO();
@@ -76,6 +124,12 @@ public abstract class DAO {
     return serviceCRUD;
   }
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>PurchaseOrder</code> model, instantiating it if
+   * necessary.
+   *
+   * @return The <code>DAO</code> for the <code>PurchaseOrder</code> model.
+   */
   public static PurchaseOrderCRUD fromPurchaseOrders() {
     if (purchaseOrderCRUD == null) {
       purchaseOrderCRUD = new PurchaseOrderMemoryDAO();
@@ -84,6 +138,12 @@ public abstract class DAO {
     return purchaseOrderCRUD;
   }
 
+  /**
+   * Retrieves the <code>DAO</code> for the <code>WorkOrder</code> model, instantiating it if
+   * necessary.
+   *
+   * @return The <code>DAO</code> for the <code>WorkOrder</code> model.
+   */
   public static WorkOrderCRUD fromWorkOrders() {
     if (workOrderCRUD == null) {
       workOrderCRUD = new WorkOrderMemoryDAO();

@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.dao.services;
 
+import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import java.util.HashMap;
@@ -8,10 +9,20 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Implementations for all the <code>ServiceCRUD</code> and <code>CRUD</code> operations. Uses a
+ * <code>HashMap</code> to store all the <code>Service</code>s.
+ *
+ * @see CRUD
+ * @see ServiceCRUD
+ */
 public class ServiceMemoryDAO implements ServiceCRUD {
 
   private final Map<String, Service> storedServices;
 
+  /**
+   * Initializes the <code>HashMap</code> used to store all the <code>Service</code>s.
+   */
   public ServiceMemoryDAO() {
     this.storedServices = new HashMap<>();
   }
@@ -78,7 +89,7 @@ public class ServiceMemoryDAO implements ServiceCRUD {
   }
 
   @Override
-  public List<Service>  findByWorkOrder(String workOrderID) {
+  public List<Service> findByWorkOrder(String workOrderID) {
     return storedServices.values()
         .stream()
         .filter(x -> Objects.nonNull(x.getWorkOrderID()))

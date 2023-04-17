@@ -1,15 +1,26 @@
 package com.gersonfaneto.yams.dao.entities.user;
 
+import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.entities.user.User;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Implementations for the <code>UserCRUD</code> and <code>CRUD</code> operations. Uses a
+ * <code>HashMap</code> to store all the <code>User</code>s.
+ *
+ * @see CRUD
+ * @see UserCRUD
+ */
 public class UserMemoryDAO implements UserCRUD {
 
   private final Map<String, User> storedUsers;
 
+  /**
+   * Initializes the <code>HashMap</code> used to store all the <code>User</code>s.
+   */
   public UserMemoryDAO() {
     this.storedUsers = new HashMap<>();
   }

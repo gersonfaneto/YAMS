@@ -1,15 +1,26 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
+import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Implementations for the <code>ClientCRUD</code> and <code>CRUD</code> operations. Uses a
+ * <code>HashMap</code> to store all the <code>Client</code>s.
+ *
+ * @see CRUD
+ * @see ClientCRUD
+ */
 public class ClientMemoryDAO implements ClientCRUD {
 
   private final Map<String, Client> storedClients;
 
+  /**
+   * Initializes the <code>HashMap</code> used to store all the <code>Client</code>s.
+   */
   public ClientMemoryDAO() {
     this.storedClients = new HashMap<>();
   }
