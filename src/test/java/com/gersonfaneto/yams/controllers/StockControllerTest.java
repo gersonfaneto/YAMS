@@ -1,6 +1,6 @@
 package com.gersonfaneto.yams.controllers;
 
-import com.gersonfaneto.yams.dao.DAO;
+import clcom.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.exceptions.stock.ComponentTypeNotFoundException;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
 import com.gersonfaneto.yams.models.stock.Component;
@@ -56,22 +56,30 @@ class StockControllerTest {
 
   @Test
   void listComponents() {
-    List<Component> allComponents = StockController.listComponents();
-    Assertions.assertEquals(2, allComponents.size());
-
     Assertions.assertThrows(ComponentTypeNotFoundException.class, () -> {
       StockController.listComponents("Banana");
-    });
+    }, "listComponents(): Expected ComponentTypeNotFoundException wasn't thrown!");
 
-    List<Component> specificComponents;
+    List<Component> allComponents = StockController.listComponents();
+    Assertions.assertEquals(
+        2,
+        allComponents.size(),
+        "listComponents(): Amount of all Components found didn't match expected!"
+    );
+
+    List<Component> specificComponents = null;
 
     try {
       specificComponents = StockController.listComponents("Others");
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("listComponents(): Unexpected Exception was thrown!");
     }
 
-    Assertions.assertEquals(1, specificComponents.size());
+    Assertions.assertEquals(
+        1,
+        specificComponents.size(),
+        "listComponents(): Amount of specific Components didn't match expected!"
+    );
   }
 
   @Test
@@ -80,8 +88,16 @@ class StockControllerTest {
         randomComponent.getComponentID()
     );
 
-    Assertions.assertEquals(randomComponent, receivedComponent);
-    Assertions.assertEquals(9, randomComponent.getAmountInStock());
+    Assertions.assertEquals(
+        randomComponent,
+        receivedComponent,
+        "reserveComponent(): Failed to retrieve proper Component!"
+    );
+    Assertions.assertEquals(
+        9,
+        randomComponent.getAmountInStock(),
+        "reserveComponent(): Failed to update amount in stock!"
+    );
   }
 
   @Test
@@ -92,7 +108,11 @@ class StockControllerTest {
 
     StockController.restoreComponent(receivedComponent);
 
-    Assertions.assertEquals(10, receivedComponent.getAmountInStock());
+    Assertions.assertEquals(
+        10,
+        receivedComponent.getAmountInStock(),
+        "restoreComponent(): Failed to update amount in stock!"
+    );
   }
 
   @Test
@@ -105,7 +125,7 @@ class StockControllerTest {
           1.00,
           100
       );
-    });
+    }, "buyComponent(): Expected ComponentTypeNotFoundException wasn't thrown!");
 
     try {
       StockController.buyComponent(
@@ -116,12 +136,16 @@ class StockControllerTest {
           20
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("buyComponent(): Unexpected Exception was thrown!");
     }
 
     List<PurchaseOrder> foundPurchaseOrder = DAO.fromPurchaseOrders().findByType(ComponentType.SSD);
 
-    Assertions.assertEquals(1, foundPurchaseOrder.size());
+    Assertions.assertEquals(
+        1,
+        foundPurchaseOrder.size(),
+        "buyComponent(): Failed to create PurchaseOrder!"
+    );
   }
 
   @Test
@@ -131,6 +155,10 @@ class StockControllerTest {
     List<Component> foundComponents = DAO.fromComponents()
         .findByType(ComponentType.GraphicsCard);
 
-    Assertions.assertEquals(1, foundComponents.size());
+    Assertions.assertEquals(
+        1,
+        foundComponents.size(),
+        "storeBoughtComponents(): Failed to process PurchaseOrder!"
+    );
   }
 }

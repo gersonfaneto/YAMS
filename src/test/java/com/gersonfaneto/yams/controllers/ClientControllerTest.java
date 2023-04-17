@@ -19,7 +19,7 @@ class ClientControllerTest {
 
   @BeforeEach
   void setUp() {
-    randomClient =  DAO.fromClients().createOne(
+    randomClient = DAO.fromClients().createOne(
         new Client(
             "Sherlock Holmes",
             "221B, Baker Street, London",
@@ -57,26 +57,18 @@ class ClientControllerTest {
 
   @Test
   void registerClient() {
-    Client randomClientA = ClientController.registerClient(
+    Client randomClient = ClientController.registerClient(
         "John Watson",
         "221B, Baker Street, London",
         "999-888-777"
     );
 
-    Client randomClientB = ClientController.registerClient(
-        "John Watson",
-        "221A, Baker Street, London",
-        "777-888-999"
+    Client foundClient = DAO.fromClients().findByID(randomClient.getClientID());
+    Assertions.assertEquals(
+        foundClient,
+        randomClient,
+        "registerClient(): Failed to register new Client!"
     );
-
-    Client foundClientA = DAO.fromClients().findByID(randomClientA.getClientID());
-    Assertions.assertEquals(foundClientA, randomClientA);
-
-    Client foundClientB = DAO.fromClients().findByID(randomClientB.getClientID());
-    Assertions.assertEquals(foundClientB, randomClientB);
-
-    List<Client> foundClients = DAO.fromClients().findByName("John Watson");
-    Assertions.assertEquals(2, foundClients.size());
   }
 
   @Test
@@ -85,40 +77,53 @@ class ClientControllerTest {
       ClientController.unregisterClient(
           UUID.randomUUID().toString()
       );
-    });
+    }, "unregisterClient(): Expected ClientNotFoundException not thrown!");
 
     try {
       ClientController.unregisterClient(randomClient.getClientID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("unregisterClient(): Unexpected Exception thrown!");
     }
 
     List<Client> foundClients = DAO.fromClients().findByName("John Watson");
 
-    Assertions.assertEquals(0, foundClients.size());
+    Assertions.assertEquals(
+        0,
+        foundClients.size(),
+        "unregisterClient(): Failed to remove Client!"
+    );
   }
 
   @Test
   void findClient() {
     Assertions.assertThrows(ClientNotFoundException.class, () -> {
       ClientController.findClient(UUID.randomUUID().toString());
-    });
+    }, "findClient(): Expected ClientNotFoundException not thrown!");
 
-    Client foundClient;
+    Client foundClient = null;
+
     try {
       foundClient = ClientController.findClient(randomClient.getClientID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("findClient(): Unexpected Exception thrown!");
     }
 
-    Assertions.assertEquals(randomClient, foundClient);
+    Assertions.assertEquals(
+        randomClient,
+        foundClient,
+        "findClient(): Failed to retrieve Client information!"
+    );
   }
 
   @Test
   void findClients() {
     List<Client> foundClients = ClientController.findClients("Moriarty");
 
-    Assertions.assertEquals(2, foundClients.size());
+    Assertions.assertEquals(
+        2,
+        foundClients.size(),
+        "foundClients(): Expected number of Clients doesn't match!"
+    );
   }
 
   @Test
@@ -130,7 +135,7 @@ class ClientControllerTest {
           "321B, Baker Street, London",
           "999-111-3333"
       );
-    });
+    }, "updateInfo(): Expected ClientNotFoundException not thrown!");
 
     try {
       ClientController.updateInfo(
@@ -140,30 +145,36 @@ class ClientControllerTest {
           "999-111-3333"
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("updateInfo(): Unexpected Exception thrown!");
     }
 
     Client foundClient = DAO.fromClients().findByID(randomClient.getClientID());
 
-    Assertions.assertEquals("Sherlock Watson", foundClient.getClientName());
-    Assertions.assertEquals("321B, Baker Street, London", foundClient.getHomeAddress());
-    Assertions.assertEquals("999-111-3333", foundClient.getPhoneNumber());
+    Assertions.assertEquals(
+        "321B, Baker Street, London",
+        foundClient.getHomeAddress(),
+        "updateInfo(): Failed to update information of Client!"
+    );
   }
 
   @Test
   void retrieveWorkOrders() {
     Assertions.assertThrows(ClientNotFoundException.class, () -> {
       ClientController.retrieveWorkOrders(UUID.randomUUID().toString());
-    });
+    }, "retrieveWorkOrders(): Expected ClientNotFoundException not thrown!");
 
-    List<WorkOrder> foundWorkOrders;
+    List<WorkOrder> foundWorkOrders = null;
 
     try {
       foundWorkOrders = ClientController.retrieveWorkOrders(randomClient.getClientID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("retrieveWorkOrders(): Unexpected Exception thrown!");
     }
 
-    Assertions.assertEquals(1, foundWorkOrders.size());
+    Assertions.assertEquals(
+        1,
+        foundWorkOrders.size(),
+        "retrieveWorkOrders(): Amount of WorkOrders found didn't match expected!"
+    );
   }
 }

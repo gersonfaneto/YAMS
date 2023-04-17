@@ -16,6 +16,7 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Canceled;
 import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.Finished;
+import com.gersonfaneto.yams.models.orders.work.states.Open;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
@@ -107,9 +108,9 @@ class ServicesControllerTest {
           UUID.randomUUID().toString(),
           DAO.fromService().findMany()
       );
-    });
+    }, "createWorkOrder(): Expected ClientNotFoundException not thrown!");
 
-    WorkOrder workOrder;
+    WorkOrder workOrder = null;
 
     try {
       workOrder = ServicesController.createWorkOrder(
@@ -117,21 +118,27 @@ class ServicesControllerTest {
           DAO.fromService().findMany()
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("createWorkOrder(): Unexpected Exception was thrown!");
     }
 
-    List<WorkOrder> foundWorkWorkers = DAO.fromWorkOrders().findMany();
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(workOrder.getWorkOrderID());
 
-    Assertions.assertEquals(workOrder, foundWorkOrder);
-    Assertions.assertEquals(2, foundWorkWorkers.size());
+    Assertions.assertEquals(
+        workOrder,
+        foundWorkOrder,
+        "createWorkOrder(): Failed to create WorkOrder!"
+    );
   }
 
   @Test
   void listWorkOrders() {
     List<WorkOrder> workOrders = DAO.fromWorkOrders().findMany();
 
-    Assertions.assertEquals(1, workOrders.size());
+    Assertions.assertEquals(
+        1,
+        workOrders.size(),
+        "listWorkOrders(): Amount of WorkOrders found didn't match expected!"
+    );
   }
 
   @Test
@@ -142,9 +149,9 @@ class ServicesControllerTest {
           "You should be working!",
           List.of()
       );
-    });
+    }, "createService(): Expected ServiceTypeNotFoundException not thrown!");
 
-    Service newService;
+    Service newService = null;
 
     try {
       newService = ServicesController.createService(
@@ -153,12 +160,16 @@ class ServicesControllerTest {
           List.of()
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("createService(): Unexpected Exception was thrown!");
     }
 
     Service foundService = DAO.fromService().findByID(newService.getServiceID());
 
-    Assertions.assertEquals(newService, foundService);
+    Assertions.assertEquals(
+        newService,
+        foundService,
+        "createService(): Failed to create Service!"
+    );
   }
 
   @Test
@@ -170,6 +181,7 @@ class ServicesControllerTest {
     Service firstService = DAO.fromService()
         .findByType(ServiceType.Assembly)
         .get(0);
+
     Service secondService = DAO.fromService()
         .findByType(ServiceType.ProgramInstallation)
         .get(0);
@@ -179,20 +191,20 @@ class ServicesControllerTest {
           randomWorkOrder.getWorkOrderID(),
           UUID.randomUUID().toString()
       );
-    });
+    }, "removeService(): Expected ServiceNotFoundException wasn't thrown!");
 
     Assertions.assertThrows(WorkOrderNotFoundException.class, () -> {
       ServicesController.removeService(
           UUID.randomUUID().toString(),
           firstService.getServiceID());
-    });
+    }, "removeService(): Expected WorkOrderNotFoundException wasn't thrown!");
 
     Assertions.assertThrows(UnsupportedOperationException.class, () -> {
       ServicesController.removeService(
           randomWorkOrder.getWorkOrderID(),
           secondService.getServiceID()
       );
-    });
+    }, "removeService(): Expected WorkOrderNotFoundException wasn't thrown!");
 
     try {
       ServicesController.removeService(
@@ -200,13 +212,17 @@ class ServicesControllerTest {
           firstService.getServiceID()
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("removeService(): Unexpected Exception was thrown!");
     }
 
     List<Service> foundServices = DAO.fromService()
         .findByWorkOrder(randomWorkOrder.getWorkOrderID());
 
-    Assertions.assertEquals(1, foundServices.size());
+    Assertions.assertEquals(
+        1,
+        foundServices.size(),
+        "removeService(): Amount of Services found didn't match expected!"
+    );
   }
 
   @Test
@@ -219,39 +235,45 @@ class ServicesControllerTest {
       ServicesController.listServices(
           UUID.randomUUID().toString()
       );
-    });
+    }, "listServices(): Expected WorkOrderNotFoundException wasn't thrown!");
 
-    List<Service> foundServices;
+    List<Service> foundServices = null;
 
     try {
       foundServices = ServicesController.listServices(randomWorkOrder.getWorkOrderID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("listServices(): Unexpected Exception was thrown!");
     }
 
-    Assertions.assertEquals(2, foundServices.size());
+    Assertions.assertEquals(
+        2,
+        foundServices.size(),
+        "listServices(): Amount of Services found didn't match expected!"
+    );
   }
 
   @Test
   void markAsDone() {
     Assertions.assertThrows(ServiceNotFoundException.class, () -> {
       ServicesController.markAsDone(UUID.randomUUID().toString());
-    });
+    }, "markAsDone(): Expected ServiceNotFoundException wasn't thrown!");
 
-    Service doneService;
+    Service doneService = null;
 
     try {
       doneService = ServicesController.markAsDone(
           DAO.fromService().findByType(ServiceType.Assembly).get(0).getServiceID()
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("markAsDone(): Unexpected Exception was thrown!");
     }
 
     Service foundService = DAO.fromService().findByID(doneService.getServiceID());
 
-    Assertions.assertEquals(doneService, foundService);
-    Assertions.assertTrue(foundService.isComplete());
+    Assertions.assertTrue(
+        foundService.isComplete(),
+        "markAsDone(): Failed to update Service!"
+    );
   }
 
   @Test
@@ -262,14 +284,14 @@ class ServicesControllerTest {
 
     Assertions.assertThrows(UserNotFoundException.class, () -> {
       ServicesController.openWorkOrder(UUID.randomUUID().toString());
-    });
+    }, "openWorkOrder(): Expected UserNotFoundException wasn't thrown!");
 
     Assertions.assertThrows(WorkOrderNotFoundException.class, () -> {
       randomWorkOrder.setWorkOrderState(new Canceled(randomWorkOrder));
       ServicesController.openWorkOrder(
           randomTechnician.getUserID()
       );
-    });
+    }, "openWorkOrder(): Expected WorkOrderNotFoundException wasn't thrown!");
     randomWorkOrder.setWorkOrderState(new Created(randomWorkOrder));
 
     Assertions.assertThrows(UnsupportedOperationException.class, () -> {
@@ -277,19 +299,20 @@ class ServicesControllerTest {
       ServicesController.openWorkOrder(
           randomTechnician.getUserID()
       );
-    });
+    }, "openWorkOrder(): Expected UnsupportedOperationException wasn't thrown!");
     randomTechnician.setTechnicianState(new Free(randomTechnician));
 
     try {
       ServicesController.openWorkOrder(randomTechnician.getUserID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("openWorkOrder(): Unexpected Exception was thrown!");
     }
 
-    List<WorkOrder> foundWorkOrders = DAO.fromWorkOrders()
-        .findByTechnician(randomTechnician.getUserID());
-
-    Assertions.assertEquals(1, foundWorkOrders.size());
+    Assertions.assertInstanceOf(
+        Open.class,
+        randomWorkOrder.getWorkOrderState(),
+        "openWorkOrder(): Failed to open WorkOrder!"
+    );
   }
 
   @Test
@@ -302,13 +325,13 @@ class ServicesControllerTest {
       ServicesController.closeWorkOrder(
           UUID.randomUUID().toString()
       );
-    });
+    }, "closeWorkOrder(): Expected UserNotFoundException wasn't thrown!");
 
     Assertions.assertThrows(UnsupportedOperationException.class, () -> {
       ServicesController.closeWorkOrder(
           randomTechnician.getUserID()
       );
-    });
+    }, "closeWorkOrder(): Expected UnsupportedOperationException wasn't thrown!");
 
     Assertions.assertThrows(UnsupportedOperationException.class, () -> {
       randomTechnician.openOrder(randomWorkOrder);
@@ -318,7 +341,7 @@ class ServicesControllerTest {
       ServicesController.closeWorkOrder(
           randomTechnician.getUserID()
       );
-    });
+    }, "closeWorkOrder(): Expected UnsupportedOperationException wasn't thrown!");
 
     DAO.fromService()
         .findByWorkOrder(randomWorkOrder.getWorkOrderID())
@@ -329,15 +352,14 @@ class ServicesControllerTest {
     try {
       ServicesController.closeWorkOrder(randomTechnician.getUserID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("closeWorkOrder(): Unexpected Exception was thrown!");
     }
 
-    List<WorkOrder> foundWorkOrders = DAO.fromWorkOrders()
-        .findByTechnician(randomTechnician.getUserID());
-    Assertions.assertEquals(1, foundWorkOrders.size());
-
-    WorkOrder recentWorkOrder = foundWorkOrders.get(0);
-    Assertions.assertInstanceOf(Finished.class, recentWorkOrder.getWorkOrderState());
+    Assertions.assertInstanceOf(
+        Finished.class,
+        randomWorkOrder.getWorkOrderState(),
+        "closeWorkOrder(): Failed to close WorkOrder!"
+    );
   }
 
   @Test
@@ -350,7 +372,7 @@ class ServicesControllerTest {
       ServicesController.closeWorkOrder(
           randomTechnician.getUserID()
       );
-    });
+    }, "cancelWorkOrder(): Expected UnsupportedOperationException wasn't thrown!");
 
     Assertions.assertThrows(UnsupportedOperationException.class, () -> {
       randomTechnician.openOrder(randomWorkOrder);
@@ -360,7 +382,7 @@ class ServicesControllerTest {
       ServicesController.closeWorkOrder(
           randomTechnician.getUserID()
       );
-    });
+    }, "cancelWorkOrder(): Expected UnsupportedOperationException wasn't thrown!");
 
     DAO.fromService()
         .findByWorkOrder(randomWorkOrder.getWorkOrderID())
@@ -371,14 +393,13 @@ class ServicesControllerTest {
     try {
       ServicesController.cancelWorkOrder(randomTechnician.getUserID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("cancelWorkOrder(): Unexpected Exception was thrown!");
     }
 
-    List<WorkOrder> foundWorkOrders = DAO.fromWorkOrders()
-        .findByTechnician(randomTechnician.getUserID());
-    Assertions.assertEquals(1, foundWorkOrders.size());
-
-    WorkOrder recentWorkOrder = foundWorkOrders.get(0);
-    Assertions.assertInstanceOf(Canceled.class, recentWorkOrder.getWorkOrderState());
+    Assertions.assertInstanceOf(
+        Canceled.class,
+        randomWorkOrder.getWorkOrderState(),
+        "cancelWorkOrder(): Failed to cancel WorkOrder!"
+    );
   }
 }

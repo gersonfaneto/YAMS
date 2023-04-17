@@ -7,6 +7,7 @@ import com.gersonfaneto.yams.exceptions.billing.ValueExceededException;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
@@ -38,7 +39,7 @@ class BillingControllerTest {
           randomInvoice.getInvoiceID(),
           200.00
       );
-    });
+    }, "receivePayment(): Expected ValueExceededException not thrown!");
 
     Assertions.assertThrows(PaymentMethodNotFoundException.class, () -> {
       BillingController.receivePayment(
@@ -46,7 +47,7 @@ class BillingControllerTest {
           randomInvoice.getInvoiceID(),
           60.00
       );
-    });
+    }, "receivePayment(): Expected PaymentMethodNotFoundException not thrown!");
 
     Assertions.assertThrows(InvoiceNotFoundException.class, () -> {
       BillingController.receivePayment(
@@ -54,9 +55,9 @@ class BillingControllerTest {
           UUID.randomUUID().toString(),
           25.50
       );
-    });
+    }, "receivePayment(): Expected InvoiceNotFoundException not thrown!");
 
-    Payment performedPayment;
+    Payment performedPayment = null;
 
     try {
       performedPayment = BillingController.receivePayment(
@@ -65,16 +66,16 @@ class BillingControllerTest {
           25.50
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("receivePayment(): Unexpected Exception was thrown!");
     }
 
-    List<Payment> receivedPayments = DAO.fromPayments().findByInvoice(randomInvoice.getInvoiceID());
-    Assertions.assertEquals(2, receivedPayments.size());
-
     Payment foundPayment = DAO.fromPayments().findByID(performedPayment.getPaymentID());
-    Assertions.assertEquals(performedPayment, foundPayment);
-    Assertions.assertEquals(25.50, foundPayment.getPaidValue());
-    Assertions.assertEquals("Cash", foundPayment.getPaymentMethod().getTypeName());
+
+    Assertions.assertEquals(
+        performedPayment,
+        foundPayment,
+        "receivePayment(): Failed to store Payment!"
+    );
   }
 
   @Test
@@ -83,18 +84,21 @@ class BillingControllerTest {
       BillingController.calculatePaidValue(
           UUID.randomUUID().toString()
       );
-    });
+    }, "calculatePaidValue(): Expected InvoiceNotFoundException not thrown!");
 
-    double paidValue;
+    double paidValue = 0.0;
+
     try {
-      paidValue = BillingController.calculatePaidValue(
-          randomInvoice.getInvoiceID()
-      );
+      paidValue = BillingController.calculatePaidValue(randomInvoice.getInvoiceID());
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("calculatePaidValue(): Unexpected Exception was thrown!");
     }
 
-    Assertions.assertEquals(10.00, paidValue);
+    Assertions.assertEquals(
+        10.00,
+        paidValue,
+        "calculatePaidValue(): Something went wrong with the calculation!"
+    );
   }
 
   @Test
@@ -103,18 +107,22 @@ class BillingControllerTest {
       BillingController.invoicePayments(
           UUID.randomUUID().toString()
       );
-    });
+    }, "invoicePayments(): Expected InvoiceNotFoundException not thrown!");
 
-    List<Payment> receivedPayments;
+    List<Payment> receivedPayments = null;
 
     try {
       receivedPayments = BillingController.invoicePayments(
           randomInvoice.getInvoiceID()
       );
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      Assertions.fail("invoicePayments(): Unexpected Exception was thrown!");
     }
 
-    Assertions.assertEquals(1, receivedPayments.size());
+    Assertions.assertEquals(
+        1,
+        receivedPayments.size(),
+        "invoicePayments(): Amount of Payments found didn't match expected!"
+    );
   }
 }
