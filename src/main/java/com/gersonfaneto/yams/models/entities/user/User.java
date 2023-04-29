@@ -1,5 +1,7 @@
 package com.gersonfaneto.yams.models.entities.user;
 
+import java.io.Serializable;
+
 /**
  * Represents the Users of the System.
  *
@@ -7,7 +9,7 @@ package com.gersonfaneto.yams.models.entities.user;
  * @version 1.0.0
  * @see UserType
  */
-public abstract class User {
+public abstract class User implements Serializable {
 
   private String userID;
   private String userEmail;

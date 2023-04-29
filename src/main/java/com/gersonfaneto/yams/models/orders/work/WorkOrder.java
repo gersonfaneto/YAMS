@@ -5,6 +5,8 @@ import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.reports.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
+
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
@@ -17,7 +19,7 @@ import java.util.Calendar;
  * @see com.gersonfaneto.yams.models.orders.work.states.State
  * @see Service
  */
-public class WorkOrder {
+public class WorkOrder implements Serializable {
 
   private String workOrderID;
   private String clientID;

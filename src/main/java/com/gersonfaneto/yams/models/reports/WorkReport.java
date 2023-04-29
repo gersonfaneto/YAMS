@@ -8,6 +8,8 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.Time;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ import java.util.List;
  * @version 1.0.0
  * @see WorkOrder
  */
-public class WorkReport {
+public class WorkReport implements Serializable {
 
   private final String workOrderID;
   private final String technicianName;

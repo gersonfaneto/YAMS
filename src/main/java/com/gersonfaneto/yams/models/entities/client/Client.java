@@ -1,12 +1,14 @@
 package com.gersonfaneto.yams.models.entities.client;
 
+import java.io.Serializable;
+
 /**
  * Represents the Clients of the Assistance.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
  */
-public class Client {
+public class Client implements Serializable {
 
   private String clientID;
   private String clientName;

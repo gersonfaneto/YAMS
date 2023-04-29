@@ -6,6 +6,9 @@ import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.stock.Component;
+
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
  * @see Technician
  * @see WorkOrder
  */
-public class Service {
+public class Service implements Serializable {
 
   private String serviceID;
   private String workOrderID;

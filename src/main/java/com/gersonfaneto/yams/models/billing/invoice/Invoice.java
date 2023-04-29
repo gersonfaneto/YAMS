@@ -1,5 +1,7 @@
 package com.gersonfaneto.yams.models.billing.invoice;
 
+import java.io.Serializable;
+
 /**
  * Represent a Invoice generated after a <code>WorkOrder</code> is completed by a <code>Technician
  * </code>.
@@ -7,7 +9,7 @@ package com.gersonfaneto.yams.models.billing.invoice;
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
  */
-public class Invoice {
+public class Invoice implements Serializable {
 
   private String invoiceID;
   private String workOrderID;

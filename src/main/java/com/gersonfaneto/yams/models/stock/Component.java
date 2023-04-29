@@ -4,6 +4,8 @@ import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
 
 import com.gersonfaneto.yams.models.services.Service;
 
+import java.io.Serializable;
+
 /**
  * Represents each Computer Component that the Assistance might have in Stock, that can be used on
  * the Services.
@@ -13,7 +15,7 @@ import com.gersonfaneto.yams.models.services.Service;
  * @see Service
  * @see ComponentType
  */
-public class Component {
+public class Component implements Serializable {
 
   private String componentID;
   private ComponentType componentType;

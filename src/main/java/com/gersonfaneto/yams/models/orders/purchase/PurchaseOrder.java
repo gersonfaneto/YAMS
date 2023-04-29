@@ -5,6 +5,8 @@ import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 
+import java.io.Serializable;
+
 /**
  * Represent the Purchase Orders that can be made by the Technicians for restocking the Assistance.
  *
@@ -12,7 +14,7 @@ import com.gersonfaneto.yams.models.stock.ComponentType;
  * @version 1.0.0
  * @see Component
  */
-public class PurchaseOrder {
+public class PurchaseOrder implements Serializable {
 
   private String purchaseOrderID;
   private ComponentType componentType;
