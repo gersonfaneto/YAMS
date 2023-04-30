@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.utils;
+package com.gersonfaneto.yams.dao;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
