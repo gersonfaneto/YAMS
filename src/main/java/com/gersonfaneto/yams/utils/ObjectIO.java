@@ -21,16 +21,21 @@ public abstract class ObjectIO {
    *
    * @param targetObject The <code>Object</code> to be saved.
    * @param savePath     The path of the new file.
-   * @throws IOException If any file I/O error happens in the process.
    */
-  public static void savePerson(Object targetObject, String savePath) throws IOException {
-    FileOutputStream fileOut = new FileOutputStream(savePath);
-    ObjectOutputStream objectOutput = new ObjectOutputStream(fileOut);
+  public static boolean savePerson(Object targetObject, String savePath) {
+    try {
+      FileOutputStream fileOut = new FileOutputStream(savePath);
+      ObjectOutputStream objectOutput = new ObjectOutputStream(fileOut);
 
-    objectOutput.writeObject(targetObject);
+      objectOutput.writeObject(targetObject);
 
-    fileOut.close();
-    objectOutput.close();
+      fileOut.close();
+      objectOutput.close();
+    } catch (Exception e) {
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -39,19 +44,20 @@ public abstract class ObjectIO {
    *
    * @param savePath The path of the file to be read.
    * @return The retrieved <code>Object</code>.
-   * @throws IOException            If any file I/O error happens in the process.
-   * @throws ClassNotFoundException If the <code>savePath</code> data didn't match any of the known
-   *                                <code>Serializable</code> Objects.
    */
-  public static Object loadPerson(String savePath) throws IOException, ClassNotFoundException {
-    FileInputStream fileIn = new FileInputStream(savePath);
-    ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+  public static Object loadPerson(String savePath) {
+    try {
+      FileInputStream fileIn = new FileInputStream(savePath);
+      ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-    Object readObject = objectIn.readObject();
+      Object readObject = objectIn.readObject();
 
-    fileIn.close();
-    objectIn.close();
+      fileIn.close();
+      objectIn.close();
 
-    return readObject;
+      return readObject;
+    } catch (Exception e) {
+      return null;
+    }
   }
 }
