@@ -1,6 +1,5 @@
 package com.gersonfaneto.yams.utils;
 
-import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -22,7 +21,7 @@ public abstract class ObjectIO {
    * @param targetObject The <code>Object</code> to be saved.
    * @param savePath     The path of the new file.
    */
-  public static boolean savePerson(Object targetObject, String savePath) {
+  public static boolean saveObject(Object targetObject, String savePath) {
     try {
       FileOutputStream fileOut = new FileOutputStream(savePath);
       ObjectOutputStream objectOutput = new ObjectOutputStream(fileOut);
@@ -45,7 +44,7 @@ public abstract class ObjectIO {
    * @param savePath The path of the file to be read.
    * @return The retrieved <code>Object</code>.
    */
-  public static Object loadPerson(String savePath) {
+  public static Object loadObject(String savePath) {
     try {
       FileInputStream fileIn = new FileInputStream(savePath);
       ObjectInputStream objectIn = new ObjectInputStream(fileIn);
