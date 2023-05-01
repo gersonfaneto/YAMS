@@ -34,14 +34,6 @@ public class PaymentDiskDAO implements PaymentCRUD {
     this.paymentObjectIO = new ObjectIO<>(savePath);
   }
 
-  /**
-   * Saves all the contents stored in the <code>HashMap</code> into a file using the
-   * <code>ObjectIO</code>.
-   *
-   * @return <code>true</code> if the saving of the data was successful, or <code>false</code> if it
-   * wasn't.
-   * @see ObjectIO
-   */
   public boolean saveAll() {
     List<Payment> toSave = storedPayments.values()
         .stream()
@@ -50,12 +42,6 @@ public class PaymentDiskDAO implements PaymentCRUD {
     return paymentObjectIO.saveObjects(toSave);
   }
 
-  /**
-   * Loads all the contents of the save file into in to the <code>HashMap</code>.
-   *
-   * @return <code>true</code> if the <code>Invoice</code>s wore loaded from disk successfully, or
-   * <code>false</code> if they weren't.
-   */
   public boolean loadAll() {
     List<Payment> loadedPayments = paymentObjectIO.loadObjects();
 

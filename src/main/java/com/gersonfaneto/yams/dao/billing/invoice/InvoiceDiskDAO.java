@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.dao.billing.invoice;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.UUID;
  * @see InvoiceCRUD
  * @see ObjectIO
  */
-public class InvoiceDiskDAO implements InvoiceCRUD {
+public class InvoiceDiskDAO implements InvoiceCRUD, Persist {
 
   private final Map<String, Invoice> storedInvoices;
   private final ObjectIO<Invoice> invoiceObjectIO;
@@ -34,14 +35,6 @@ public class InvoiceDiskDAO implements InvoiceCRUD {
     this.storedInvoices = new HashMap<>();
   }
 
-  /**
-   * Saves all the contents stored in the <code>HashMap</code> into a file using the
-   * <code>ObjectIO</code>.
-   *
-   * @return <code>true</code> if the saving of the data was successful, or <code>false</code> if it
-   * wasn't.
-   * @see ObjectIO
-   */
   public boolean saveAll() {
     List<Invoice> toSave = storedInvoices.values()
         .stream()
@@ -50,12 +43,6 @@ public class InvoiceDiskDAO implements InvoiceCRUD {
     return invoiceObjectIO.saveObjects(toSave);
   }
 
-  /**
-   * Loads all the contents of the save file into in to the <code>HashMap</code>.
-   *
-   * @return <code>true</code> if the <code>Invoice</code>s wore loaded from disk successfully, or
-   * <code>false</code> if they weren't.
-   */
   public boolean loadAll() {
     List<Invoice> loadedInvoices = invoiceObjectIO.loadObjects();
 
