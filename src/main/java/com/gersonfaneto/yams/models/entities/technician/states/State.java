@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.models.entities.technician.states;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import java.io.Serializable;
 
 /**
  * Represents the base aspects of the State of the Technicians from the Assistance, by determining
@@ -16,7 +17,7 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
  * @see Free
  * @see Occupied
  */
-public abstract class State {
+public abstract class State implements Serializable {
 
   private final Technician technician;
   private final WorkOrder workOrder;

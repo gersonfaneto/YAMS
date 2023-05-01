@@ -4,6 +4,7 @@ import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.reports.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
+import java.io.Serializable;
 
 /**
  * Represents the base aspects of the State of the WorkOrders of the Assistance, by determining
@@ -21,7 +22,7 @@ import com.gersonfaneto.yams.models.services.Service;
  * @see Finished
  * @see Payed
  */
-public abstract class State {
+public abstract class State implements Serializable {
 
   private final WorkOrder workOrder;
 
