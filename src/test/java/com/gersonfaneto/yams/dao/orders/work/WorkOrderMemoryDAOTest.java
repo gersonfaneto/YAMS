@@ -40,13 +40,17 @@ class WorkOrderMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromWorkOrders()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromWorkOrders()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<WorkOrder> beforeDeletion = DAO.fromWorkOrders().findMany();
 
     DAO.fromPurchaseOrders().deleteMany();
 
-    ((Persist) DAO.fromWorkOrders()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromWorkOrders()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
     List<WorkOrder> loadedWordOrders = DAO.fromWorkOrders().findMany();
 

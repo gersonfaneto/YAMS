@@ -38,13 +38,17 @@ class ServiceMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromService()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromService()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<Service> beforeDeletion = DAO.fromService().findMany();
 
     DAO.fromService().deleteMany();
 
-    ((Persist) DAO.fromService()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromService()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
     List<Service> loadedServices = DAO.fromService().findMany();
 

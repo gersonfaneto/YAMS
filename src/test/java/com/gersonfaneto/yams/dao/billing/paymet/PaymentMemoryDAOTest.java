@@ -38,13 +38,17 @@ class PaymentMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromPayments()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromPayments()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<Payment> beforeDeletion = DAO.fromPayments().findMany();
 
     DAO.fromPayments().deleteMany();
 
-    ((Persist) DAO.fromPayments()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromPayments()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
     List<Payment> loadedPayments = DAO.fromPayments().findMany();
 

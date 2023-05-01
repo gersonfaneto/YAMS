@@ -32,13 +32,17 @@ class ClientMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromClients()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromClients()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<Client> beforeDeletion = DAO.fromClients().findMany();
 
     DAO.fromClients().deleteMany();
 
-    ((Persist) DAO.fromClients()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromClients()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
     List<Client> loadedClients = DAO.fromClients().findMany();
 

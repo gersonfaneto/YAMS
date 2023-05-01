@@ -36,13 +36,17 @@ class ComponentMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromComponents()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromComponents()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<Component> beforeDeletion = DAO.fromComponents().findMany();
 
     DAO.fromComponents().deleteMany();
 
-    ((Persist) DAO.fromComponents()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromComponents()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
     List<Component> loadedComponents = DAO.fromComponents().findMany();
 

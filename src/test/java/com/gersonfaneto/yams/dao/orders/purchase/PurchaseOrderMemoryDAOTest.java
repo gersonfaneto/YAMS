@@ -36,13 +36,17 @@ class PurchaseOrderMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromPurchaseOrders()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromPurchaseOrders()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<PurchaseOrder> beforeDeletion = DAO.fromPurchaseOrders().findMany();
 
     DAO.fromPurchaseOrders().deleteMany();
 
-    ((Persist) DAO.fromPurchaseOrders()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromPurchaseOrders()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
     List<PurchaseOrder> loadedPurchaseOrders = DAO.fromPurchaseOrders().findMany();
 

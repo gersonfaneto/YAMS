@@ -33,13 +33,17 @@ class InvoiceMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromInvoices()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromInvoices()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<Invoice> beforeDeletion = DAO.fromInvoices().findMany();
 
     DAO.fromInvoices().deleteMany();
 
-    ((Persist) DAO.fromInvoices()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromInvoices()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
     List<Invoice> loadedInvoices = DAO.fromInvoices().findMany();
 

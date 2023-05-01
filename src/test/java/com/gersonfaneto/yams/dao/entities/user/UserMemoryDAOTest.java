@@ -43,13 +43,17 @@ class UserMemoryDAOTest {
 
   @Test
   void dataPersistence() {
-    ((Persist) DAO.fromUsers()).saveAll();
+    boolean hasSaved = ((Persist) DAO.fromUsers()).saveAll();
+
+    Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<User> beforeDeletion = DAO.fromUsers().findMany();
 
     DAO.fromUsers().deleteMany();
 
-    ((Persist) DAO.fromUsers()).loadAll();
+    boolean hasLoaded = ((Persist) DAO.fromUsers()).loadAll();
+
+    Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to laod data!");
 
     List<User> loadedUsers = DAO.fromUsers().findMany();
 
