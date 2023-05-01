@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ServiceMemoryDAOTest {
+class ServiceDiskDAOTest {
 
   private final String randomWorkOrderID = Generators.randomID();
   private Service randomService;
