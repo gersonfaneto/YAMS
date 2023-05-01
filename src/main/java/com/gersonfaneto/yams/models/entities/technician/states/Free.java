@@ -32,7 +32,7 @@ public class Free extends State {
    *
    * @param workOrder The targeted <code>WorkOrder</code>.
    * @return <code>true</code> if the <code>WorkOrder</code> hadn't been opened yet, or <code>false
-   *     </code>, if it was.
+   * </code>, if it was.
    */
   @Override
   public boolean openOrder(WorkOrder workOrder) {
@@ -50,7 +50,7 @@ public class Free extends State {
    * Attempts to close a <code>WorkOrder</code>.
    *
    * @return Always <code>false</code>, as a <code>Technician</code> in this <code>State</code>
-   *     doesn't have any opened <code>WorkOrder</code>s.
+   * doesn't have any opened <code>WorkOrder</code>s.
    */
   @Override
   public boolean cancelOrder() {
@@ -61,7 +61,7 @@ public class Free extends State {
    * Attempts to cancel a <code>WorkOrder</code>.
    *
    * @return Always <code>false</code>, as a <code>Technician</code> in this <code>State</code>
-   *     doesn't have any opened <code>WorkOrder</code>s.
+   * doesn't have any opened <code>WorkOrder</code>s.
    */
   @Override
   public boolean closeOrder() {
@@ -72,7 +72,7 @@ public class Free extends State {
    * Attempts to generate a <code>Invoice</code> for the <code>WorkOrder</code>.
    *
    * @return Always <code>null</code>, as a <code>Technician</code> in this <code>State</code>
-   *     doesn't have any opened <code>WorkOrder</code>s.
+   * doesn't have any opened <code>WorkOrder</code>s.
    */
   @Override
   public Invoice generateInvoice() {

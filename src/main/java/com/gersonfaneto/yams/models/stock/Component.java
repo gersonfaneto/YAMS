@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.models.stock;
 import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
 
 import com.gersonfaneto.yams.models.services.Service;
+import java.io.Serializable;
 
 /**
  * Represents each Computer Component that the Assistance might have in Stock, that can be used on
@@ -13,7 +14,7 @@ import com.gersonfaneto.yams.models.services.Service;
  * @see Service
  * @see ComponentType
  */
-public class Component {
+public class Component implements Serializable {
 
   private String componentID;
   private ComponentType componentType;
@@ -23,18 +24,19 @@ public class Component {
   private int amountInStock;
 
   /**
-   * @param componentType The type of the <code>Component</code>.
+   * @param componentType        The type of the <code>Component</code>.
    * @param componentDescription The description of the <code>Component</code>.
-   * @param amountInStock The amount currently in stock of the <code>Component</code>.
-   * @param componentCost The cost of each <code>Component</code>.
-   * @param componentPrice The price of each <code>Component</code>.
+   * @param amountInStock        The amount currently in stock of the <code>Component</code>.
+   * @param componentCost        The cost of each <code>Component</code>.
+   * @param componentPrice       The price of each <code>Component</code>.
    */
   public Component(
       ComponentType componentType,
       String componentDescription,
       int amountInStock,
       double componentCost,
-      double componentPrice) {
+      double componentPrice
+  ) {
     this.componentType = componentType;
     this.componentDescription = componentDescription;
     this.componentCost = componentCost;
@@ -80,15 +82,13 @@ public class Component {
    */
   @Override
   public String toString() {
-    return String.format(
-        """
-            ID: %s
-            Type: %s
-            Description: %s
-            Cost: R$ %.2f
-            Price: R$ %.2f
-            """,
-        componentID, componentType, componentDescription, componentCost, componentPrice);
+    return String.format("""
+        ID: %s
+        Type: %s
+        Description: %s
+        Cost: R$ %.2f
+        Price: R$ %.2f
+        """, componentID, componentType, componentDescription, componentCost, componentPrice);
   }
 
   public String getComponentID() {

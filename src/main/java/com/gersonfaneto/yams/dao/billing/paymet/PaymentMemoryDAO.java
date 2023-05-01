@@ -2,10 +2,10 @@ package com.gersonfaneto.yams.dao.billing.paymet;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementations for the <code>PaymentCRUD</code> and <code>CRUD</code> operations. Uses a <code>
@@ -20,14 +20,16 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   private final Map<String, Payment> storedPayments;
 
-  /** Initializes the <code>HashMap</code> used to store all the <code>Payment</code>s. */
+  /**
+   * Constructs a new <code>{@link PaymentMemoryDAO}</code>
+   */
   public PaymentMemoryDAO() {
     this.storedPayments = new HashMap<>();
   }
 
   @Override
   public Payment createOne(Payment newPayment) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newPayment.setPaymentID(newID);
 
@@ -43,7 +45,9 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findMany() {
-    return storedPayments.values().stream().toList();
+    return storedPayments.values()
+        .stream()
+        .toList();
   }
 
   @Override
@@ -80,7 +84,8 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findByInvoice(String invoiceID) {
-    return storedPayments.values().stream()
+    return storedPayments.values()
+        .stream()
         .filter(x -> x.getInvoiceID().equals(invoiceID))
         .toList();
   }

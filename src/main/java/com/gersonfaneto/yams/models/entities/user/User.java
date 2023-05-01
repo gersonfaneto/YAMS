@@ -1,5 +1,7 @@
 package com.gersonfaneto.yams.models.entities.user;
 
+import java.io.Serializable;
+
 /**
  * Represents the Users of the System.
  *
@@ -7,7 +9,7 @@ package com.gersonfaneto.yams.models.entities.user;
  * @version 1.0.0
  * @see UserType
  */
-public abstract class User {
+public abstract class User implements Serializable {
 
   private String userID;
   private String userEmail;
@@ -17,9 +19,9 @@ public abstract class User {
   /**
    * Constructs a new <code>User</code>.
    *
-   * @param userEmail The <code>User</code> chosen email.
+   * @param userEmail    The <code>User</code> chosen email.
    * @param userPassword The <code>User</code> chose password.
-   * @param userType The type of the <code>User</code>.
+   * @param userType     The type of the <code>User</code>.
    * @see UserType
    */
   public User(String userEmail, String userPassword, UserType userType) {
@@ -62,13 +64,11 @@ public abstract class User {
    */
   @Override
   public String toString() {
-    return String.format(
-        """
-            ID: %s
-            Email: %s
-            Password: %s
-            """,
-        userID, userEmail, userPassword);
+    return String.format("""
+        ID: %s
+        Email: %s
+        Password: %s
+        """, userID, userEmail, userPassword);
   }
 
   public String getUserID() {

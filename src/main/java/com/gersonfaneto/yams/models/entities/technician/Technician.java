@@ -26,16 +26,20 @@ public class Technician extends User {
    * Constructs a new <code>Technician</code>. The initial <code>State</code> of <code>Technician
    * </code> is <code>Free</code>.
    *
-   * @param userEmail The <code>User</code> chosen email.
-   * @param userPassword The <code>User</code> chosen password.
-   * @param userType The type of the <code>User</code>.
+   * @param userEmail      The <code>User</code> chosen email.
+   * @param userPassword   The <code>User</code> chosen password.
+   * @param userType       The type of the <code>User</code>.
    * @param technicianName The name of the <code>Technician</code>.
    * @see Free
    * @see User
    * @see UserType
    */
   public Technician(
-      String userEmail, String userPassword, UserType userType, String technicianName) {
+      String userEmail,
+      String userPassword,
+      UserType userType,
+      String technicianName
+  ) {
     super(userEmail, userPassword, userType);
     this.technicianName = technicianName;
     this.technicianState = new Free(this);

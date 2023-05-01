@@ -1,21 +1,21 @@
 package com.gersonfaneto.yams.dao;
 
 import com.gersonfaneto.yams.dao.billing.invoice.InvoiceCRUD;
-import com.gersonfaneto.yams.dao.billing.invoice.InvoiceMemoryDAO;
+import com.gersonfaneto.yams.dao.billing.invoice.InvoiceDiskDAO;
 import com.gersonfaneto.yams.dao.billing.paymet.PaymentCRUD;
-import com.gersonfaneto.yams.dao.billing.paymet.PaymentMemoryDAO;
+import com.gersonfaneto.yams.dao.billing.paymet.PaymentDiskDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
-import com.gersonfaneto.yams.dao.entities.client.ClientMemoryDAO;
+import com.gersonfaneto.yams.dao.entities.client.ClientDiskDAO;
 import com.gersonfaneto.yams.dao.entities.user.UserCRUD;
-import com.gersonfaneto.yams.dao.entities.user.UserMemoryDAO;
+import com.gersonfaneto.yams.dao.entities.user.UserDiskDAO;
 import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderCRUD;
-import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderMemoryDAO;
+import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderDiskDAO;
 import com.gersonfaneto.yams.dao.orders.work.WorkOrderCRUD;
-import com.gersonfaneto.yams.dao.orders.work.WorkOrderMemoryDAO;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderDiskDAO;
 import com.gersonfaneto.yams.dao.services.ServiceCRUD;
-import com.gersonfaneto.yams.dao.services.ServiceMemoryDAO;
+import com.gersonfaneto.yams.dao.services.ServiceDiskDAO;
 import com.gersonfaneto.yams.dao.stock.ComponentCRUD;
-import com.gersonfaneto.yams.dao.stock.ComponentMemoryDAO;
+import com.gersonfaneto.yams.dao.stock.ComponentDiskDAO;
 
 /**
  * Defines a access point for the <code>DAO</code>s of each model in the System using the
@@ -51,7 +51,7 @@ public abstract class DAO {
    */
   public static ClientCRUD fromClients() {
     if (clientCRUD == null) {
-      clientCRUD = new ClientMemoryDAO();
+      clientCRUD = new ClientDiskDAO("clients.ser");
     }
 
     return clientCRUD;
@@ -64,7 +64,7 @@ public abstract class DAO {
    */
   public static UserCRUD fromUsers() {
     if (userCRUD == null) {
-      userCRUD = new UserMemoryDAO();
+      userCRUD = new UserDiskDAO("users.ser");
     }
 
     return userCRUD;
@@ -78,7 +78,7 @@ public abstract class DAO {
    */
   public static PaymentCRUD fromPayments() {
     if (paymentCRUD == null) {
-      paymentCRUD = new PaymentMemoryDAO();
+      paymentCRUD = new PaymentDiskDAO("payments.ser");
     }
 
     return paymentCRUD;
@@ -92,7 +92,7 @@ public abstract class DAO {
    */
   public static InvoiceCRUD fromInvoices() {
     if (invoiceCRUD == null) {
-      invoiceCRUD = new InvoiceMemoryDAO();
+      invoiceCRUD = new InvoiceDiskDAO("invoices.ser");
     }
 
     return invoiceCRUD;
@@ -106,7 +106,7 @@ public abstract class DAO {
    */
   public static ComponentCRUD fromComponents() {
     if (componentCRUD == null) {
-      componentCRUD = new ComponentMemoryDAO();
+      componentCRUD = new ComponentDiskDAO("components.ser");
     }
 
     return componentCRUD;
@@ -120,7 +120,7 @@ public abstract class DAO {
    */
   public static ServiceCRUD fromService() {
     if (serviceCRUD == null) {
-      serviceCRUD = new ServiceMemoryDAO();
+      serviceCRUD = new ServiceDiskDAO("services.ser");
     }
 
     return serviceCRUD;
@@ -134,7 +134,7 @@ public abstract class DAO {
    */
   public static PurchaseOrderCRUD fromPurchaseOrders() {
     if (purchaseOrderCRUD == null) {
-      purchaseOrderCRUD = new PurchaseOrderMemoryDAO();
+      purchaseOrderCRUD = new PurchaseOrderDiskDAO("purchase-orders.ser");
     }
 
     return purchaseOrderCRUD;
@@ -148,7 +148,7 @@ public abstract class DAO {
    */
   public static WorkOrderCRUD fromWorkOrders() {
     if (workOrderCRUD == null) {
-      workOrderCRUD = new WorkOrderMemoryDAO();
+      workOrderCRUD = new WorkOrderDiskDAO("work-orders.ser");
     }
 
     return workOrderCRUD;

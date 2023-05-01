@@ -24,7 +24,7 @@ public interface CRUD<T> {
    *
    * @param targetID The ID of the targeted <code>Object</code>.
    * @return The found <code>Object</code> or <code>null</code> if the <code>targetID</code> didn't
-   *     match any of the registered <code>Object</code>s.
+   * match any of the registered <code>Object</code>s.
    */
   T findByID(String targetID);
 
@@ -40,7 +40,7 @@ public interface CRUD<T> {
    *
    * @param updatedObject The updated <code>Object</code>.
    * @return <code>true</code> if the <code>Object</code> was found and updated, or <code>false
-   *     </code>, if it wasn't.
+   * </code>, if it wasn't.
    */
   boolean updateInformation(T updatedObject);
 
@@ -49,7 +49,7 @@ public interface CRUD<T> {
    *
    * @param targetID The ID of the targeted <code>Object</code>.
    * @return <code>true</code> if the <code>Object</code> was found and removed, or <code>false
-   *     </code>, if it wasn't.
+   * </code>, if it wasn't.
    */
   boolean deleteByID(String targetID);
 
@@ -57,7 +57,7 @@ public interface CRUD<T> {
    * <strong>Deletes all stored <code>Object</code>s!<strong/>
    *
    * @return <code>true</code> if there wore any stored <code>Object</code>s and they were deleted,
-   *     of <code>false</code> if there weren't any.
+   * of <code>false</code> if there weren't any.
    */
   boolean deleteMany();
 }

@@ -6,6 +6,7 @@ import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.stock.Component;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  * @see Technician
  * @see WorkOrder
  */
-public class Service {
+public class Service implements Serializable {
 
   private String serviceID;
   private String workOrderID;
@@ -32,22 +33,25 @@ public class Service {
   /**
    * Constructs a new <code>Service</code>.
    *
-   * @param serviceType The type of the <code>Service</code>.
+   * @param serviceType        The type of the <code>Service</code>.
    * @param serviceDescription The description of the <code>Service</code>.
-   * @param usedComponents The list of <code>Component</code>s used on <code>Service</code>.
+   * @param usedComponents     The list of <code>Component</code>s used on <code>Service</code>.
    */
   public Service(
-      ServiceType serviceType, String serviceDescription, List<Component> usedComponents) {
+      ServiceType serviceType,
+      String serviceDescription,
+      List<Component> usedComponents
+  ) {
     this.serviceType = serviceType;
     this.serviceDescription = serviceDescription;
 
     if (serviceType != Assembly) {
       this.servicePrice = serviceType.getTypeValue();
     } else {
-      this.servicePrice =
-          usedComponents.stream()
-              .mapToDouble(Component::getComponentPrice)
-              .reduce(0.0, Double::sum);
+      this.servicePrice = usedComponents
+          .stream()
+          .mapToDouble(Component::getComponentPrice)
+          .reduce(0.0, Double::sum);
     }
 
     this.isComplete = false;
@@ -82,14 +86,14 @@ public class Service {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the <code>Service</code>.
+   * Generate a <code>String</code> from the most important information of the
+   * <code>Service</code>.
    *
    * @return Relevant information about the <code>Service</code>.
    */
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
             ID: %s
             Type: %s
             Description: %s

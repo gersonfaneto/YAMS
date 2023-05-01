@@ -1,12 +1,14 @@
 package com.gersonfaneto.yams.models.entities.client;
 
+import java.io.Serializable;
+
 /**
  * Represents the Clients of the Assistance.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
  */
-public class Client {
+public class Client implements Serializable {
 
   private String clientID;
   private String clientName;
@@ -16,7 +18,7 @@ public class Client {
   /**
    * Constructs a new <code>Client</code>.
    *
-   * @param clientName The <code>Client</code> full name.
+   * @param clientName  The <code>Client</code> full name.
    * @param homeAddress The <code>Client</code> home address.
    * @param phoneNumber The <code>Client</code> phone number.
    */
@@ -45,14 +47,12 @@ public class Client {
 
   @Override
   public String toString() {
-    return String.format(
-        """
-            ID: %s
-            Name: %s
-            Address: %s
-            Contact: %s
-            """,
-        clientID, clientName, homeAddress, phoneNumber);
+    return String.format("""
+        ID: %s
+        Name: %s
+        Address: %s
+        Contact: %s
+        """, clientID, clientName, homeAddress, phoneNumber);
   }
 
   public String getClientID() {

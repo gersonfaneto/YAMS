@@ -1,5 +1,7 @@
 package com.gersonfaneto.yams.models.billing.invoice;
 
+import java.io.Serializable;
+
 /**
  * Represent a Invoice generated after a <code>WorkOrder</code> is completed by a <code>Technician
  * </code>.
@@ -7,7 +9,7 @@ package com.gersonfaneto.yams.models.billing.invoice;
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
  */
-public class Invoice {
+public class Invoice implements Serializable {
 
   private String invoiceID;
   private String workOrderID;
@@ -17,7 +19,7 @@ public class Invoice {
    * Constructs a new <code>Invoice</code>.
    *
    * @param workOrderID The ID referent to the <code>WorkOrder</code>.
-   * @param totalValue The total value of the services in the <code>WorkOrder</code>;
+   * @param totalValue  The total value of the services in the <code>WorkOrder</code>;
    */
   public Invoice(String workOrderID, double totalValue) {
     this.workOrderID = workOrderID;
@@ -52,19 +54,18 @@ public class Invoice {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the <code>Invoice</code>.
+   * Generate a <code>String</code> from the most important information of the
+   * <code>Invoice</code>.
    *
    * @return Relevant information about the <code>Invoice</code>.
    */
   @Override
   public String toString() {
-    return String.format(
-        """
-            ID: %s
-            Work Order: %s
-            Total Value: R$ %.2f
-            """,
-        invoiceID, workOrderID, totalValue);
+    return String.format("""
+        ID: %s
+        Work Order: %s
+        Total Value: R$ %.2f
+        """, invoiceID, workOrderID, totalValue);
   }
 
   public String getInvoiceID() {

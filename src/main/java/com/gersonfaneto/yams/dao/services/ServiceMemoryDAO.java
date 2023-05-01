@@ -3,11 +3,11 @@ package com.gersonfaneto.yams.dao.services;
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Implementations for all the <code>ServiceCRUD</code> and <code>CRUD</code> operations. Uses a
@@ -22,14 +22,16 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   private final Map<String, Service> storedServices;
 
-  /** Initializes the <code>HashMap</code> used to store all the <code>Service</code>s. */
+  /**
+   * Constructs a new <code>{@link ServiceMemoryDAO}</code>
+   */
   public ServiceMemoryDAO() {
     this.storedServices = new HashMap<>();
   }
 
   @Override
   public Service createOne(Service newService) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newService.setServiceID(newID);
 
@@ -45,7 +47,9 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   @Override
   public List<Service> findMany() {
-    return storedServices.values().stream().toList();
+    return storedServices.values()
+        .stream()
+        .toList();
   }
 
   @Override
@@ -82,14 +86,16 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   @Override
   public List<Service> findByType(ServiceType serviceType) {
-    return storedServices.values().stream()
+    return storedServices.values()
+        .stream()
         .filter(x -> x.getServiceType().equals(serviceType))
         .toList();
   }
 
   @Override
   public List<Service> findByWorkOrder(String workOrderID) {
-    return storedServices.values().stream()
+    return storedServices.values()
+        .stream()
         .filter(x -> Objects.nonNull(x.getWorkOrderID()))
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .toList();
