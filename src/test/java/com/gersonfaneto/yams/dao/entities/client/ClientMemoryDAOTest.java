@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.entities.client;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -27,6 +28,22 @@ class ClientMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromClients().deleteMany();
+  }
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromClients()).saveAll();
+
+    List<Client> beforeDeletion = DAO.fromClients().findMany();
+
+    DAO.fromClients().deleteMany();
+
+    ((Persist) DAO.fromClients()).loadAll();
+
+    List<Client> loadedClients = DAO.fromClients().findMany();
+
+    Assertions.assertEquals(11, loadedClients.size());
+    Assertions.assertEquals(beforeDeletion, loadedClients);
   }
 
   @Test

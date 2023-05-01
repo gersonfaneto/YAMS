@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.entities.user;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
@@ -38,6 +39,22 @@ class UserMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromUsers().deleteMany();
+  }
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromUsers()).saveAll();
+
+    List<User> beforeDeletion = DAO.fromUsers().findMany();
+
+    DAO.fromUsers().deleteMany();
+
+    ((Persist) DAO.fromUsers()).loadAll();
+
+    List<User> loadedUsers = DAO.fromUsers().findMany();
+
+    Assertions.assertEquals(11, loadedUsers.size());
+    Assertions.assertEquals(beforeDeletion, loadedUsers);
   }
 
   @Test

@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.billing.invoice;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +29,22 @@ class InvoiceMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromInvoices().deleteMany();
+  }
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromInvoices()).saveAll();
+
+    List<Invoice> beforeDeletion = DAO.fromInvoices().findMany();
+
+    DAO.fromInvoices().deleteMany();
+
+    ((Persist) DAO.fromInvoices()).loadAll();
+
+    List<Invoice> loadedInvoices = DAO.fromInvoices().findMany();
+
+    Assertions.assertEquals(11, loadedInvoices.size());
+    Assertions.assertEquals(beforeDeletion, loadedInvoices);
   }
 
   @Test

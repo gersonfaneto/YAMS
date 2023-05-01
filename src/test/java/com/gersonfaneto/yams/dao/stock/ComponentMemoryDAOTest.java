@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.stock;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.List;
@@ -31,6 +32,22 @@ class ComponentMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromComponents().deleteMany();
+  }
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromComponents()).saveAll();
+
+    List<Component> beforeDeletion = DAO.fromComponents().findMany();
+
+    DAO.fromComponents().deleteMany();
+
+    ((Persist) DAO.fromComponents()).loadAll();
+
+    List<Component> loadedComponents = DAO.fromComponents().findMany();
+
+    Assertions.assertEquals(11, loadedComponents.size());
+    Assertions.assertEquals(beforeDeletion, loadedComponents);
   }
 
   @Test

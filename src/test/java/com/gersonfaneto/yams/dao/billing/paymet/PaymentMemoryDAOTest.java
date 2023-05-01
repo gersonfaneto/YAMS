@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.billing.paymet;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
 import java.util.List;
@@ -33,6 +34,22 @@ class PaymentMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromPayments().deleteMany();
+  }
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromPayments()).saveAll();
+
+    List<Payment> beforeDeletion = DAO.fromPayments().findMany();
+
+    DAO.fromPayments().deleteMany();
+
+    ((Persist) DAO.fromPayments()).loadAll();
+
+    List<Payment> loadedPayments = DAO.fromPayments().findMany();
+
+    Assertions.assertEquals(11, loadedPayments.size());
+    Assertions.assertEquals(beforeDeletion, loadedPayments);
   }
 
   @Test

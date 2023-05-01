@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.services;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import java.util.List;
@@ -33,6 +34,22 @@ class ServiceMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromService().deleteMany();
+  }
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromService()).saveAll();
+
+    List<Service> beforeDeletion = DAO.fromService().findMany();
+
+    DAO.fromService().deleteMany();
+
+    ((Persist) DAO.fromService()).loadAll();
+
+    List<Service> loadedServices = DAO.fromService().findMany();
+
+    Assertions.assertEquals(11, loadedServices.size());
+    Assertions.assertEquals(beforeDeletion, loadedServices);
   }
 
   @Test

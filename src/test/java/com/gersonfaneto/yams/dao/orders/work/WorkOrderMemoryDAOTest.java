@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.orders.work;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Open;
 import java.util.List;
@@ -34,6 +35,23 @@ class WorkOrderMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromWorkOrders().deleteMany();
+  }
+
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromWorkOrders()).saveAll();
+
+    List<WorkOrder> beforeDeletion = DAO.fromWorkOrders().findMany();
+
+    DAO.fromPurchaseOrders().deleteMany();
+
+    ((Persist) DAO.fromWorkOrders()).loadAll();
+
+    List<WorkOrder> loadedWordOrders = DAO.fromWorkOrders().findMany();
+
+    Assertions.assertEquals(11, loadedWordOrders.size());
+    Assertions.assertEquals(beforeDeletion, loadedWordOrders);
   }
 
   @Test

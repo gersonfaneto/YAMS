@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.dao.orders.purchase;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.List;
@@ -31,6 +32,22 @@ class PurchaseOrderMemoryDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromPurchaseOrders().deleteMany();
+  }
+
+  @Test
+  void dataPersistence() {
+    ((Persist) DAO.fromPurchaseOrders()).saveAll();
+
+    List<PurchaseOrder> beforeDeletion = DAO.fromPurchaseOrders().findMany();
+
+    DAO.fromPurchaseOrders().deleteMany();
+
+    ((Persist) DAO.fromPurchaseOrders()).loadAll();
+
+    List<PurchaseOrder> loadedPurchaseOrders = DAO.fromPurchaseOrders().findMany();
+
+    Assertions.assertEquals(11, loadedPurchaseOrders.size());
+    Assertions.assertEquals(beforeDeletion, loadedPurchaseOrders);
   }
 
   @Test
