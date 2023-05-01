@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
@@ -12,16 +10,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ClientMemoryDAOTest {
+
   private Client randomClient;
 
   @BeforeEach
   void setUp() {
-    randomClient =
-        DAO.fromClients()
-            .createOne(new Client("Sherlock Holmes", "221B, Baker Street, London", "999-999-999"));
+    randomClient = DAO.fromClients().createOne(
+        new Client(
+            "Sherlock Holmes",
+            "221B, Baker Street, London",
+            "999-999-999"
+        )
+    );
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromClients().createOne(new Client("John Doe", "Who knows?", "Doesn't matter..."));
+      DAO.fromClients().createOne(
+          new Client(
+              "John Doe",
+              "Who knows?",
+              "Doesn't matter..."
+          )
+      );
     }
   }
 
@@ -52,9 +61,13 @@ class ClientMemoryDAOTest {
 
   @Test
   void createOne() {
-    Client newClient =
-        DAO.fromClients()
-            .createOne(new Client("John Watson", "221B, Baker Street, London", "999-999-999"));
+    Client newClient = DAO.fromClients().createOne(
+        new Client(
+            "John Watson",
+            "221B, Baker Street, London",
+            "999-999-999"
+        )
+    );
 
     Client foundClient = DAO.fromClients().findByID(newClient.getClientID());
 

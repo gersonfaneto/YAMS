@@ -18,15 +18,19 @@ public class Administrator extends User {
   /**
    * Constructs the Administrator.
    *
-   * @param userEmail The <code>User</code> chosen email.
-   * @param userPassword The <code>User</code> chosen password.
-   * @param userType The type of the <code>User</code>.
+   * @param userEmail         The <code>User</code> chosen email.
+   * @param userPassword      The <code>User</code> chosen password.
+   * @param userType          The type of the <code>User</code>.
    * @param administratorName The name of the <code>Administrator</code>
    * @see User
    * @see UserType
    */
   private Administrator(
-      String userEmail, String userPassword, UserType userType, String administratorName) {
+      String userEmail,
+      String userPassword,
+      UserType userType,
+      String administratorName
+  ) {
     super(userEmail, userPassword, userType);
     this.administratorName = administratorName;
   }
@@ -34,8 +38,8 @@ public class Administrator extends User {
   /**
    * Retrieves the <code>Administrator</code> instance, creating it if needed.
    *
-   * @param userEmail The <code>User</code> chosen email.
-   * @param userPassword The <code>User</code> chosen password.
+   * @param userEmail         The <code>User</code> chosen email.
+   * @param userPassword      The <code>User</code> chosen password.
    * @param administratorName The name of the <code>Administrator</code>.
    * @return The unique instance of the Class.
    */

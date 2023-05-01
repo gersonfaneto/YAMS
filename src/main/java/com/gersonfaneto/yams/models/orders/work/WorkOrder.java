@@ -5,7 +5,6 @@ import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.reports.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
-
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -49,7 +48,7 @@ public class WorkOrder implements Serializable {
    *
    * @param serviceID The ID of the targeted <code>Service</code>.
    * @return <code>null</code> or the removed <code>Service</code>, depending on the current <code>
-   *     State</code> of the <code>WorkOrder</code>.
+   * State</code> of the <code>WorkOrder</code>.
    * @see com.gersonfaneto.yams.models.orders.work.states.State
    * @see Service
    */
@@ -62,7 +61,7 @@ public class WorkOrder implements Serializable {
    * current <code>State</code>.
    *
    * @return <code>null</code> or the generated <code>Invoice</code>, depending on the current
-   *     <code>State</code> of the <code>WorkOrder</code>.
+   * <code>State</code> of the <code>WorkOrder</code>.
    * @see com.gersonfaneto.yams.models.orders.work.states.State
    * @see Invoice
    */
@@ -75,7 +74,7 @@ public class WorkOrder implements Serializable {
    * its current <code>State</code>.
    *
    * @return <code>null</code> or the generated <code>WorkReport</code>, depending on the current
-   *     <code>State</code> of the <code>WorkOrder</code>.
+   * <code>State</code> of the <code>WorkOrder</code>.
    * @see com.gersonfaneto.yams.models.orders.work.states.State
    * @see WorkReport
    */
@@ -118,14 +117,12 @@ public class WorkOrder implements Serializable {
    */
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
         ID: %s
         Client: %s
         Technician: %s
         Invoice: %s
-        """,
-        workOrderID, clientID, technicianID, invoiceID);
+        """, workOrderID, clientID, technicianID, invoiceID);
   }
 
   public String getWorkOrderID() {

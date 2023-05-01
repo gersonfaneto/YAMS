@@ -31,7 +31,7 @@ public class Payed extends State {
    *
    * @param serviceID The ID of the targeted <code>Service</code>.
    * @return Always <code>null</code>, as a <code>Service</code> can't be removed from the <code>
-   *     WorkOrder</code> once its finished and paid.
+   * WorkOrder</code> once its finished and paid.
    */
   @Override
   public Service removeService(String serviceID) {
@@ -42,7 +42,7 @@ public class Payed extends State {
    * Attempts to generate a <code>Invoice</code> for the <code>WorkOrder</code>.
    *
    * @return Always <code>null</code>, as an <code>Invoice</code> can't be generated for a <code>
-   *     WorkOrder</code> once its already paid.
+   * WorkOrder</code> once its already paid.
    */
   @Override
   public Invoice generateInvoice() {

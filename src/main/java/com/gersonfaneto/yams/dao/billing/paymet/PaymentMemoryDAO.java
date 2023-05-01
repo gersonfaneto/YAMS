@@ -45,7 +45,9 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findMany() {
-    return storedPayments.values().stream().toList();
+    return storedPayments.values()
+        .stream()
+        .toList();
   }
 
   @Override

@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.dao.entities.user;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
@@ -15,24 +13,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserMemoryDAOTest {
+
   private User randomUser;
 
   @BeforeEach
   void setUp() {
-    randomUser =
-        DAO.fromUsers()
-            .createOne(
-                new Receptionist(
-                    "sholmes@gmail.com", "watson", UserType.Receptionist, "Sherlock Holmes"));
+    randomUser = DAO.fromUsers().createOne(
+        new Receptionist(
+            "sholmes@gmail.com",
+            "watson",
+            UserType.Receptionist,
+            "Sherlock Holmes"
+        )
+    );
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromUsers()
-          .createOne(
-              new Technician(
-                  "jdoe" + ((Integer) i).toString() + "@gmail.com",
-                  "jdoe@" + ((Integer) i).toString(),
-                  UserType.Technician,
-                  "John Doe"));
+      DAO.fromUsers().createOne(
+          new Technician(
+              "jdoe" + ((Integer) i).toString() + "@gmail.com",
+              "jdoe@" + ((Integer) i).toString(),
+              UserType.Technician,
+              "John Doe"
+          )
+      );
     }
   }
 
@@ -63,11 +66,14 @@ class UserMemoryDAOTest {
 
   @Test
   void createOne() {
-    User randomUser =
-        DAO.fromUsers()
-            .createOne(
-                new Technician(
-                    "jsmith@gmail.com", "jsmith@2023", UserType.Technician, "John Smith"));
+    User randomUser = DAO.fromUsers().createOne(
+        new Technician(
+            "jsmith@gmail.com",
+            "jsmith@2023",
+            UserType.Technician,
+            "John Smith"
+        )
+    );
 
     User foundUser = DAO.fromUsers().findByID(randomUser.getUserID());
 

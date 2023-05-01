@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.dao.billing.invoice;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;

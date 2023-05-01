@@ -1,13 +1,11 @@
 package com.gersonfaneto.yams.dao.services;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.List;
-import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,19 +13,27 @@ import org.junit.jupiter.api.Test;
 
 class ServiceMemoryDAOTest {
 
-  private final String randomWorkOrderID = UUID.randomUUID().toString();
+  private final String randomWorkOrderID = Generators.randomID();
   private Service randomService;
 
   @BeforeEach
   void setUp() {
-    randomService =
-        new Service(ServiceType.Formatting, "Format and install Windows 11 :(", List.of());
+    randomService = new Service(
+        ServiceType.Formatting,
+        "Format and install Windows 11 :(",
+        List.of()
+    );
     randomService.setWorkOrderID(randomWorkOrderID);
     DAO.fromService().createOne(randomService);
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromService()
-          .createOne(new Service(ServiceType.ProgramInstallation, "Minecraft!", List.of()));
+      DAO.fromService().createOne(
+          new Service(
+              ServiceType.ProgramInstallation,
+              "Minecraft!",
+              List.of()
+          )
+      );
     }
   }
 
@@ -58,13 +64,13 @@ class ServiceMemoryDAOTest {
 
   @Test
   void createOne() {
-    Service newService =
-        DAO.fromService()
-            .createOne(
-                new Service(
-                    ServiceType.Cleaning,
-                    "The client dropped his computer in a honey bathtub!",
-                    List.of()));
+    Service newService = DAO.fromService().createOne(
+        new Service(
+            ServiceType.Cleaning,
+            "The client dropped his computer in a honey bathtub!",
+            List.of()
+        )
+    );
 
     Service foundService = DAO.fromService().findByID(newService.getServiceID());
 
@@ -94,7 +100,9 @@ class ServiceMemoryDAOTest {
 
     Assertions.assertTrue(hasFound);
     Assertions.assertEquals(
-        "Format and install Ubuntu LTS :)", foundService.getServiceDescription());
+        "Format and install Ubuntu LTS :)",
+        foundService.getServiceDescription()
+    );
   }
 
   @Test

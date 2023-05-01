@@ -1,13 +1,11 @@
 package com.gersonfaneto.yams.dao.orders.work;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Open;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.List;
-import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 class WorkOrderMemoryDAOTest {
 
-  private final String randomTechnicianID = UUID.randomUUID().toString();
-  private final String randomClientID = UUID.randomUUID().toString();
+  private final String randomTechnicianID = Generators.randomID();
+  private final String randomClientID = Generators.randomID();
   private WorkOrder randomWorkOrder;
 
   @BeforeEach
@@ -26,7 +24,7 @@ class WorkOrderMemoryDAOTest {
     DAO.fromWorkOrders().createOne(randomWorkOrder);
 
     for (int i = 0; i < 10; i++) {
-      WorkOrder newWorkOrder = new WorkOrder(UUID.randomUUID().toString());
+      WorkOrder newWorkOrder = new WorkOrder(Generators.randomID());
       newWorkOrder.setTechnicianID(randomTechnicianID);
       DAO.fromWorkOrders().createOne(newWorkOrder);
     }
@@ -60,8 +58,11 @@ class WorkOrderMemoryDAOTest {
 
   @Test
   void createOne() {
-    WorkOrder newWorkOrder =
-        DAO.fromWorkOrders().createOne(new WorkOrder(UUID.randomUUID().toString()));
+    WorkOrder newWorkOrder = DAO.fromWorkOrders().createOne(
+        new WorkOrder(
+            Generators.randomID()
+        )
+    );
 
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(newWorkOrder.getWorkOrderID());
 

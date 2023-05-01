@@ -48,7 +48,7 @@ public class Open extends State {
    * Attempts to generate a <code>Invoice</code> for the <code>WorkOrder</code>.
    *
    * @return Always <code>null</code>, as an <code>Invoice</code> can't be generated for a <code>
-   *     WorkOrder</code> that isn't finished yet.
+   * WorkOrder</code> that isn't finished yet.
    */
   @Override
   public Invoice generateInvoice() {
@@ -59,7 +59,7 @@ public class Open extends State {
    * Attempts to generate the <code>WorkReport</code> for the <code>WorkOrder</code>.
    *
    * @return Always <code>null</code>, as a <code>WorkReport</code> can't be generated for a <code>
-   *     WorkOrder</code> that isn't finished yet.
+   * WorkOrder</code> that isn't finished yet.
    */
   @Override
   public WorkReport generateReport() {

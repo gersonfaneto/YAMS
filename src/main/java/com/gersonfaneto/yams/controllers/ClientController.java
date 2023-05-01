@@ -23,7 +23,7 @@ public abstract class ClientController {
   /**
    * Registers a new <code>Client</code> in the System.
    *
-   * @param clientName The name of the <code>Client</code>.
+   * @param clientName  The name of the <code>Client</code>.
    * @param homeAddress The home address of the <code>Client</code>.
    * @param phoneNumber The phone number of the <code>Client</code>
    * @return The registered <code>Client</code>.
@@ -38,7 +38,7 @@ public abstract class ClientController {
    * @param clientID The ID of the targeted <code>Client</code>.
    * @return The removed <code>Client</code>.
    * @throws ClientNotFoundException If the <code>clientID</code> didn't match any of the ones from
-   *     the registered <code>Client</code>s.
+   *                                 the registered <code>Client</code>s.
    */
   public static Client unregisterClient(String clientID) throws ClientNotFoundException {
     Client foundClient = DAO.fromClients().findByID(clientID);
@@ -58,7 +58,7 @@ public abstract class ClientController {
    * @param clientID The ID of the targeted <code>Client</code>.
    * @return The found <code>Client</code>.
    * @throws ClientNotFoundException If the <code>clientID</code> didn't match any of the ones from
-   *     the registered <code>Client</code>s.
+   *                                 the registered <code>Client</code>s.
    */
   public static Client findClient(String clientID) throws ClientNotFoundException {
     Client foundClient = DAO.fromClients().findByID(clientID);
@@ -83,17 +83,20 @@ public abstract class ClientController {
   /**
    * Update the information of a given <code>Client</code>.
    *
-   * @param clientID The ID of the targeted <code>Client</code>.
-   * @param clientName The updated name of the <code>Client</code>.
+   * @param clientID    The ID of the targeted <code>Client</code>.
+   * @param clientName  The updated name of the <code>Client</code>.
    * @param homeAddress The updated home address of the <code>Client</code>.
    * @param phoneNumber The updated phone number of the <code>Client</code>.
    * @return The updated <code>Client</code>.
    * @throws ClientNotFoundException If the <code>clientID</code> didn't match any of the ones from
-   *     the registered <code>Client</code>s.
+   *                                 the registered <code>Client</code>s.
    */
   public static Client updateInfo(
-      String clientID, String clientName, String homeAddress, String phoneNumber)
-      throws ClientNotFoundException {
+      String clientID,
+      String clientName,
+      String homeAddress,
+      String phoneNumber
+  ) throws ClientNotFoundException {
     Client foundClient = DAO.fromClients().findByID(clientID);
 
     if (foundClient == null) {
@@ -115,7 +118,7 @@ public abstract class ClientController {
    * @param clientID The ID of the targeted <code>Client</code>.
    * @return The list of the found <code>WorkOrder</code>s.
    * @throws ClientNotFoundException If the <code>clientID</code> didn't match any of the ones from
-   *     the registered <code>Client</code>s.
+   *                                 the registered <code>Client</code>s.
    */
   public static List<WorkOrder> retrieveWorkOrders(String clientID) throws ClientNotFoundException {
     Client foundClient = DAO.fromClients().findByID(clientID);

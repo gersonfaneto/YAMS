@@ -19,7 +19,7 @@ public enum ServiceType {
   /**
    * Generates a new <code>enum</code> item based on its value and value.
    *
-   * @param typeName The name of the service type.
+   * @param typeName  The name of the service type.
    * @param typeValue The value for the service type.
    */
   ServiceType(String typeName, double typeValue) {

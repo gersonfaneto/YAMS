@@ -26,7 +26,7 @@ public class Occupied extends State {
    * Constructs a new <code>State</code> for a <code>Technician</code>.
    *
    * @param technician The targeted <code>Technician</code>.
-   * @param workOrder The targeted <code>WorkOrder</code>.
+   * @param workOrder  The targeted <code>WorkOrder</code>.
    * @see com.gersonfaneto.yams.models.entities.technician.states.State
    */
   public Occupied(Technician technician, WorkOrder workOrder) {
@@ -38,7 +38,7 @@ public class Occupied extends State {
    *
    * @param workOrder The targeted <code>WorkOrder</code>.
    * @return Always <code>false</code>, as the <code>Technician</code> can't have multiple <code>
-   *     WorkOrder</code>s open at the same time.
+   * WorkOrder</code>s open at the same time.
    */
   @Override
   public boolean openOrder(WorkOrder workOrder) {
@@ -49,8 +49,8 @@ public class Occupied extends State {
    * Attempts to close the current <code>WorkOrder</code>.
    *
    * @return <code>true</code> if all the <code>Service</code>s related to the <code>WorkOrder
-   *     </code> were completed, or <code>false</code>, if there is still at least one <code>Service
-   *     </code> pending.
+   * </code> were completed, or <code>false</code>, if there is still at least one <code>Service
+   * </code> pending.
    */
   @Override
   public boolean cancelOrder() {
@@ -74,8 +74,8 @@ public class Occupied extends State {
    * Attempts to close the current <code>WorkOrder</code>.
    *
    * @return <code>true</code> if all the <code>Service</code>s related to the <code>WorkOrder
-   *     </code> were completed, or <code>false</code>, if there is still at least one <code>Service
-   *     </code> pending.
+   * </code> were completed, or <code>false</code>, if there is still at least one <code>Service
+   * </code> pending.
    */
   @Override
   public boolean closeOrder() {
@@ -99,7 +99,7 @@ public class Occupied extends State {
    * Attempts to generate a <code>Invoice</code> for the <code>WorkOrder</code>.
    *
    * @return <code>true</code> if the <code>WorkOrder</code> is finished, or <code>false</code>, if
-   *     it wasn't.
+   * it wasn't.
    * @see com.gersonfaneto.yams.models.orders.work.states.State
    */
   @Override

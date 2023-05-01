@@ -4,7 +4,6 @@ import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
 
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
-
 import java.io.Serializable;
 
 /**
@@ -26,18 +25,19 @@ public class PurchaseOrder implements Serializable {
   /**
    * Constructs a new <code>PurchaseOrder</code> for a specific <code>Component</code>.
    *
-   * @param componentType The <code>ComponentType</code> to be bought.
+   * @param componentType        The <code>ComponentType</code> to be bought.
    * @param componentDescription The <code>Component</code> description.
-   * @param boughtAmount The amount bought.
-   * @param componentCost The cost of each <code>Component</code>.
-   * @param componentPrice The price of each <code>Component</code>.
+   * @param boughtAmount         The amount bought.
+   * @param componentCost        The cost of each <code>Component</code>.
+   * @param componentPrice       The price of each <code>Component</code>.
    */
   public PurchaseOrder(
       ComponentType componentType,
       String componentDescription,
       int boughtAmount,
       double componentCost,
-      double componentPrice) {
+      double componentPrice
+  ) {
     this.componentType = componentType;
     this.componentDescription = componentDescription;
     this.boughtAmount = boughtAmount;
@@ -80,8 +80,7 @@ public class PurchaseOrder implements Serializable {
    */
   @Override
   public String toString() {
-    return String.format(
-        """
+    return String.format("""
             ID: %s
             Type: %s
             Description: %s

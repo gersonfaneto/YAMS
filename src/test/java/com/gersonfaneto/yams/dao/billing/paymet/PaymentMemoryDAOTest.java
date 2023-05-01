@@ -1,13 +1,11 @@
 package com.gersonfaneto.yams.dao.billing.paymet;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.List;
-import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,19 +13,27 @@ import org.junit.jupiter.api.Test;
 
 class PaymentMemoryDAOTest {
 
-  private final String randomInvoiceID = UUID.randomUUID().toString();
+  private final String randomInvoiceID = Generators.randomID();
   private Payment randomPayment;
 
   @BeforeEach
   void setUp() {
-    randomPayment =
-        DAO.fromPayments().createOne(new Payment(randomInvoiceID, PaymentMethod.Cash, 25.50));
+    randomPayment = DAO.fromPayments().createOne(
+        new Payment(
+            randomInvoiceID,
+            PaymentMethod.Cash,
+            25.50
+        )
+    );
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromPayments()
-          .createOne(
-              new Payment(
-                  UUID.randomUUID().toString(), PaymentMethod.Cash, ((i * (i + 1)) * 11.11)));
+      DAO.fromPayments().createOne(
+          new Payment(
+              Generators.randomID(),
+              PaymentMethod.Cash,
+              42.00
+          )
+      );
     }
   }
 
@@ -58,8 +64,13 @@ class PaymentMemoryDAOTest {
 
   @Test
   void createOne() {
-    Payment newPayment =
-        DAO.fromPayments().createOne(new Payment(randomInvoiceID, PaymentMethod.CreditCard, 10.50));
+    Payment newPayment = DAO.fromPayments().createOne(
+        new Payment(
+            randomInvoiceID,
+            PaymentMethod.CreditCard,
+            10.50
+        )
+    );
 
     Payment foundPayment = DAO.fromPayments().findByID(newPayment.getPaymentID());
 

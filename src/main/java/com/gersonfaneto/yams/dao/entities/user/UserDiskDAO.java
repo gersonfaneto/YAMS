@@ -74,7 +74,9 @@ public class UserDiskDAO implements UserCRUD, Persist {
 
   @Override
   public List<User> findMany() {
-    return storedUsers.values().stream().toList();
+    return storedUsers.values()
+        .stream()
+        .toList();
   }
 
   @Override
@@ -111,7 +113,8 @@ public class UserDiskDAO implements UserCRUD, Persist {
 
   @Override
   public User findByEmail(String userEmail) {
-    return storedUsers.values().stream()
+    return storedUsers.values()
+        .stream()
         .filter(x -> x.getUserEmail().equals(userEmail))
         .findFirst()
         .orElse(null);

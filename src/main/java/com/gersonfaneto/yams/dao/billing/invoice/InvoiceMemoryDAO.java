@@ -45,7 +45,9 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
 
   @Override
   public List<Invoice> findMany() {
-    return storedInvoices.values().stream().toList();
+    return storedInvoices.values()
+        .stream()
+        .toList();
   }
 
   @Override

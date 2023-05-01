@@ -16,7 +16,7 @@ public interface Persist {
    * wasn't.
    * @see ObjectIO
    */
-  public boolean saveAll();
+  boolean saveAll();
 
   /**
    * Loads all the contents of the save file into in to the <code>HashMap</code>.
@@ -24,5 +24,5 @@ public interface Persist {
    * @return <code>true</code> if the <code>Invoice</code>s wore loaded from disk successfully, or
    * <code>false</code> if they weren't.
    */
-  public boolean loadAll();
+  boolean loadAll();
 }

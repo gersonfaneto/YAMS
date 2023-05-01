@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.dao.stock;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.stock.Component;
@@ -18,14 +16,26 @@ class ComponentMemoryDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomComponent =
-        DAO.fromComponents()
-            .createOne(
-                new Component(ComponentType.GraphicsCard, "Nvidia RTX 4090 TI", 10, 30.00, 100.00));
+    randomComponent = DAO.fromComponents().createOne(
+        new Component(
+            ComponentType.GraphicsCard,
+            "Nvidia RTX 4090 TI",
+            10,
+            30.00,
+            100.00
+        )
+    );
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromComponents()
-          .createOne(new Component(ComponentType.RAM, "Corsair Prime", 10, 15.00, 30.00));
+      DAO.fromComponents().createOne(
+          new Component(
+              ComponentType.RAM,
+              "Corsair Prime",
+              10,
+              15.00,
+              30.00
+          )
+      );
     }
   }
 
@@ -56,9 +66,15 @@ class ComponentMemoryDAOTest {
 
   @Test
   void createOne() {
-    Component newComponent =
-        DAO.fromComponents()
-            .createOne(new Component(ComponentType.Motherboard, "Asus Prime", 10, 30.00, 100.00));
+    Component newComponent = DAO.fromComponents().createOne(
+        new Component(
+            ComponentType.Motherboard,
+            "Asus Prime",
+            10,
+            30.00,
+            100.00
+        )
+    );
 
     Component foundComponent = DAO.fromComponents().findByID(newComponent.getComponentID());
 

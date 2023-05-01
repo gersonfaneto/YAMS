@@ -24,13 +24,25 @@ class AuthControllerTest {
 
   @BeforeEach
   void setUp() {
-    systemAdministrator =
-        Administrator.retrieveInstance("jsmith@gmail.com", "password", "John Smith");
+    systemAdministrator = Administrator.retrieveInstance(
+        "jsmith@gmail.com",
+        "password",
+        "John Smith"
+    );
 
-    randomUser = new Receptionist("jdoe@gmail.com", "1234", UserType.Technician, "John Doe");
+    randomUser = new Receptionist(
+        "jdoe@gmail.com",
+        "1234",
+        UserType.Technician,
+        "John Doe"
+    );
 
-    User newUser =
-        new Technician("sholmes@gmail.com", "watson", UserType.Technician, "Sherlock Holmes");
+    User newUser = new Technician(
+        "sholmes@gmail.com",
+        "watson",
+        UserType.Technician,
+        "Sherlock Holmes"
+    );
 
     DAO.fromUsers().createOne(newUser);
   }
@@ -42,33 +54,44 @@ class AuthControllerTest {
 
   @Test
   void registerUser() {
-    Assertions.assertThrows(
-        UserAlreadyRegisteredException.class,
-        () -> {
-          AuthController.registerUser(
-              systemAdministrator, "sholmes@gmail.com", "watson", "Technician", "Sherlock Holmes");
-        },
-        "registerUser(): Expected UserAlreadyRegisteredException not thrown!");
+    Assertions.assertThrows(UserAlreadyRegisteredException.class, () -> {
+      AuthController.registerUser(
+          systemAdministrator,
+          "sholmes@gmail.com",
+          "watson",
+          "Technician",
+          "Sherlock Holmes"
+      );
+    }, "registerUser(): Expected UserAlreadyRegisteredException not thrown!");
 
-    Assertions.assertThrows(
-        UserTypeNotFoundException.class,
-        () -> {
-          AuthController.registerUser(
-              systemAdministrator, "mholmes@gmail.com", "eurus", "Mycroft Holmes", "Brother");
-        },
-        "registerUser(): Expected UserTypeNotFoundException not thrown!");
+    Assertions.assertThrows(UserTypeNotFoundException.class, () -> {
+      AuthController.registerUser(
+          systemAdministrator,
+          "mholmes@gmail.com",
+          "eurus",
+          "Mycroft Holmes",
+          "Brother"
+      );
+    }, "registerUser(): Expected UserTypeNotFoundException not thrown!");
 
-    Assertions.assertThrows(
-        PermissionDeniedException.class,
-        () -> {
-          AuthController.registerUser(
-              randomUser, "moriarty@gmail.com", "stayingalive", "Moriarty", "Receptionist");
-        },
-        "registerUser(): Expected PermissionDeniedException not thrown!");
+    Assertions.assertThrows(PermissionDeniedException.class, () -> {
+      AuthController.registerUser(
+          randomUser,
+          "moriarty@gmail.com",
+          "stayingalive",
+          "Moriarty",
+          "Receptionist"
+      );
+    }, "registerUser(): Expected PermissionDeniedException not thrown!");
 
     try {
       AuthController.registerUser(
-          systemAdministrator, "jwatson@gmail.com", "holmes", "John Watson", "Technician");
+          systemAdministrator,
+          "jwatson@gmail.com",
+          "holmes",
+          "John Watson",
+          "Technician"
+      );
     } catch (Exception e) {
       Assertions.fail("registerUser(): Unexpected Exception was thrown!");
     }
@@ -76,25 +99,32 @@ class AuthControllerTest {
     User foundUser = DAO.fromUsers().findByEmail("jwatson@gmail.com");
     List<User> registeredUsers = DAO.fromUsers().findMany();
 
-    Assertions.assertNotNull(foundUser, "registerUser(): User not created!");
-    Assertions.assertEquals(2, registeredUsers.size(), "registerUser(): User not stored!");
+    Assertions.assertNotNull(
+        foundUser,
+        "registerUser(): User not created!"
+    );
+    Assertions.assertEquals(
+        2,
+        registeredUsers.size(),
+        "registerUser(): User not stored!"
+    );
   }
 
   @Test
   void loginUser() {
-    Assertions.assertThrows(
-        UserNotFoundException.class,
-        () -> {
-          AuthController.loginUser("mholmes@gmail.com", "eurus");
-        },
-        "loginUser(): Expected UserNotFoundException not thrown!");
+    Assertions.assertThrows(UserNotFoundException.class, () -> {
+      AuthController.loginUser(
+          "mholmes@gmail.com",
+          "eurus"
+      );
+    }, "loginUser(): Expected UserNotFoundException not thrown!");
 
-    Assertions.assertThrows(
-        InvalidPasswordException.class,
-        () -> {
-          AuthController.loginUser("sholmes@gmail.com", "mycroft");
-        },
-        "loginUser(): Expected InvalidPasswordException not thrown!");
+    Assertions.assertThrows(InvalidPasswordException.class, () -> {
+      AuthController.loginUser(
+          "sholmes@gmail.com",
+          "mycroft"
+      );
+    }, "loginUser(): Expected InvalidPasswordException not thrown!");
 
     User foundUser = null;
 
@@ -104,17 +134,17 @@ class AuthControllerTest {
       Assertions.fail("loginUser(): Unexpected Exception was thrown!");
     }
 
-    Assertions.assertNotNull(foundUser, "loginUser(): Failed to retrieve User!");
+    Assertions.assertNotNull(
+        foundUser,
+        "loginUser(): Failed to retrieve User!"
+    );
   }
 
   @Test
   void updateInfo() {
-    Assertions.assertThrows(
-        UserNotFoundException.class,
-        () -> {
-          AuthController.updateInfo("mholmes@gmail.com", "eurus");
-        },
-        "updateInfo(): Expected UserNotFoundException not thrown!");
+    Assertions.assertThrows(UserNotFoundException.class, () -> {
+      AuthController.updateInfo("mholmes@gmail.com", "eurus");
+    }, "updateInfo(): Expected UserNotFoundException not thrown!");
 
     User foundUser = null;
 
@@ -124,26 +154,26 @@ class AuthControllerTest {
       Assertions.fail("updateInfo(): Unexpected Exception was thrown!");
     }
 
-    Assertions.assertNotNull(foundUser, "updateInfo(): Failed to retrieve User!");
+    Assertions.assertNotNull(
+        foundUser,
+        "updateInfo(): Failed to retrieve User!"
+    );
     Assertions.assertEquals(
-        "221B", foundUser.getUserPassword(), "updateInfo(): Failed to update User information!");
+        "221B",
+        foundUser.getUserPassword(),
+        "updateInfo(): Failed to update User information!"
+    );
   }
 
   @Test
   void unregisterUser() {
-    Assertions.assertThrows(
-        UserNotFoundException.class,
-        () -> {
-          AuthController.unregisterUser(systemAdministrator, "mholmes@gmail.com");
-        },
-        "unregisterUser(): Expected UserNotFoundException not thrown!");
+    Assertions.assertThrows(UserNotFoundException.class, () -> {
+      AuthController.unregisterUser(systemAdministrator, "mholmes@gmail.com");
+    }, "unregisterUser(): Expected UserNotFoundException not thrown!");
 
-    Assertions.assertThrows(
-        PermissionDeniedException.class,
-        () -> {
-          AuthController.unregisterUser(randomUser, "mholmes@gmail.com");
-        },
-        "unregisterUser(): Expected PermissionDeniedException not thrown!");
+    Assertions.assertThrows(PermissionDeniedException.class, () -> {
+      AuthController.unregisterUser(randomUser, "mholmes@gmail.com");
+    }, "unregisterUser(): Expected PermissionDeniedException not thrown!");
 
     try {
       AuthController.unregisterUser(systemAdministrator, "sholmes@gmail.com");
@@ -153,6 +183,9 @@ class AuthControllerTest {
 
     User foundUser = DAO.fromUsers().findByEmail("sholmes@gmail.com");
 
-    Assertions.assertNull(foundUser, "unregisterUser(): Failed to remove User!");
+    Assertions.assertNull(
+        foundUser,
+        "unregisterUser(): Failed to remove User!"
+    );
   }
 }
