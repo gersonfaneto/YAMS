@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.dao.services;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.utils.Generators;
@@ -22,7 +23,7 @@ import java.util.Objects;
  * @see ServiceCRUD
  * @see ObjectIO
  */
-public class ServiceDiskDAO implements ServiceCRUD {
+public class ServiceDiskDAO implements ServiceCRUD, Persist {
 
   private final Map<String, Service> storedServices;
   private final ObjectIO<Service> serviceObjectIO;

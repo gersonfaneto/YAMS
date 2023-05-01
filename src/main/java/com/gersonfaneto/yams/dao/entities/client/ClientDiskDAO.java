@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @see ClientCRUD
  * @see ObjectIO
  */
-public class ClientDiskDAO implements ClientCRUD {
+public class ClientDiskDAO implements ClientCRUD, Persist {
 
   private final Map<String, Client> storedClients;
   private final ObjectIO<Client> clientObjectIO;

@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.dao.billing.paymet;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @see PaymentCRUD
  * @see ObjectIO
  */
-public class PaymentDiskDAO implements PaymentCRUD {
+public class PaymentDiskDAO implements PaymentCRUD, Persist {
 
   private final Map<String, Payment> storedPayments;
   private final ObjectIO<Payment> paymentObjectIO;

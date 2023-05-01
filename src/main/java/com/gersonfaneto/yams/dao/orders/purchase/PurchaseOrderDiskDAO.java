@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.dao.orders.purchase;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.Generators;
@@ -21,7 +22,7 @@ import java.util.Map;
  * @see PurchaseOrderCRUD
  * @see ObjectIO
  */
-public class PurchaseOrderDiskDAO implements PurchaseOrderCRUD {
+public class PurchaseOrderDiskDAO implements PurchaseOrderCRUD, Persist {
 
   private final Map<String, PurchaseOrder> storedPurchaseOrders;
   private final ObjectIO<PurchaseOrder> purchaseOrderObjectIO;

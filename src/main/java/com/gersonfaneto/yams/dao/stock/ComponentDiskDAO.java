@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.dao.stock;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.Generators;
@@ -21,7 +22,7 @@ import java.util.Map;
  * @see ComponentCRUD
  * @see ObjectIO
  */
-public class ComponentDiskDAO implements ComponentCRUD {
+public class ComponentDiskDAO implements ComponentCRUD, Persist {
 
   private final Map<String, Component> storedComponents;
   private final ObjectIO<Component> componentObjectIO;
