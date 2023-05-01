@@ -1,0 +1,135 @@
+package com.gersonfaneto.yams.dao.billing.paymet;
+
+import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.ObjectIO;
+import com.gersonfaneto.yams.models.billing.payments.Payment;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+/**
+ * Implementations for the <code>PaymentCRUD</code> and <code>CRUD</code> operations. Uses a <code>
+ * HashMap</code> as a cache to store all the <code>Payment</code>s during the execution of the
+ * program and loads or unloads the contents of it into a file using an <code>ObjectIO</code>.
+ *
+ * @author Gerson Ferreira dos Anjos Neto
+ * @version 1.0.0
+ * @see CRUD
+ * @see PaymentCRUD
+ * @see ObjectIO
+ */
+public class PaymentDiskDAO implements PaymentCRUD {
+
+  private final Map<String, Payment> storedPayments;
+  private final ObjectIO<Payment> paymentObjectIO;
+
+  /**
+   * Constructs a new <code>{@link PaymentDiskDAO}</code>.
+   *
+   * @param savePath The path of the file on which to save the data must be saved.
+   */
+  public PaymentDiskDAO(String savePath) {
+    this.storedPayments = new HashMap<>();
+    this.paymentObjectIO = new ObjectIO<>(savePath);
+  }
+
+  /**
+   * Saves all the contents stored in the <code>HashMap</code> into a file using the
+   * <code>ObjectIO</code>.
+   *
+   * @return <code>true</code> if the saving of the data was successful, or <code>false</code> if it
+   * wasn't.
+   * @see ObjectIO
+   */
+  public boolean saveAll() {
+    List<Payment> toSave = storedPayments.values()
+        .stream()
+        .toList();
+
+    return paymentObjectIO.saveObjects(toSave);
+  }
+
+  /**
+   * Loads all the contents of the save file into in to the <code>HashMap</code>.
+   *
+   * @return <code>true</code> if the <code>Invoice</code>s wore loaded from disk successfully, or
+   * <code>false</code> if they weren't.
+   */
+  public boolean loadAll() {
+    List<Payment> loadedPayments = paymentObjectIO.loadObjects();
+
+    if (loadedPayments == null) {
+      return false;
+    }
+
+    for (Payment currentPayment : loadedPayments) {
+      storedPayments.put(currentPayment.getInvoiceID(), currentPayment);
+    }
+
+    return true;
+  }
+
+  @Override
+  public Payment createOne(Payment newPayment) {
+    String newID = UUID.randomUUID().toString();
+
+    newPayment.setPaymentID(newID);
+
+    storedPayments.put(newID, newPayment);
+
+    return newPayment;
+  }
+
+  @Override
+  public Payment findByID(String targetID) {
+    return storedPayments.get(targetID);
+  }
+
+  @Override
+  public List<Payment> findMany() {
+    return storedPayments.values()
+        .stream()
+        .toList();
+  }
+
+  @Override
+  public boolean updateInformation(Payment updatedPayment) {
+    String paymentID = updatedPayment.getPaymentID();
+
+    if (storedPayments.containsKey(paymentID)) {
+      storedPayments.put(paymentID, updatedPayment);
+      return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public boolean deleteByID(String targetID) {
+    if (storedPayments.containsKey(targetID)) {
+      storedPayments.remove(targetID);
+      return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public boolean deleteMany() {
+    if (!storedPayments.isEmpty()) {
+      storedPayments.clear();
+      return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public List<Payment> findByInvoice(String invoiceID) {
+    return storedPayments.values()
+        .stream()
+        .filter(x -> x.getInvoiceID().equals(invoiceID))
+        .toList();
+  }
+}
