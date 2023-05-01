@@ -51,7 +51,7 @@ public class PaymentDiskDAO implements PaymentCRUD, Persist {
     }
 
     for (Payment currentPayment : loadedPayments) {
-      storedPayments.put(currentPayment.getInvoiceID(), currentPayment);
+      storedPayments.put(currentPayment.getPaymentID(), currentPayment);
     }
 
     return true;
