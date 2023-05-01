@@ -78,6 +78,8 @@ class ServicesControllerTest {
 
   @AfterEach
   void tearDown() {
+    DAO.fromClients().deleteMany();
+    DAO.fromUsers().deleteMany();
     DAO.fromWorkOrders().deleteMany();
     DAO.fromService().deleteMany();
     DAO.fromComponents().deleteMany();

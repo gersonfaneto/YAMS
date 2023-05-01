@@ -34,6 +34,7 @@ class ClientControllerTest {
 
   @AfterEach
   void tearDown() {
+    DAO.fromWorkOrders().deleteMany();
     DAO.fromClients().deleteMany();
   }
 

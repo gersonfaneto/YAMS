@@ -9,6 +9,7 @@ import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
 import java.util.List;
 import java.util.UUID;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,12 @@ class BillingControllerTest {
 
     DAO.fromPayments()
         .createOne(new Payment(randomInvoice.getInvoiceID(), PaymentMethod.Cash, 10.00));
+  }
+
+  @AfterEach
+  void tearDown() {
+    DAO.fromPayments().deleteMany();
+    DAO.fromInvoices().deleteMany();
   }
 
   @Test

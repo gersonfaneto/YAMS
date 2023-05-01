@@ -36,6 +36,7 @@ class StockControllerTest {
   @AfterEach
   void tearDown() {
     DAO.fromComponents().deleteMany();
+    DAO.fromPurchaseOrders().deleteMany();
   }
 
   @Test
