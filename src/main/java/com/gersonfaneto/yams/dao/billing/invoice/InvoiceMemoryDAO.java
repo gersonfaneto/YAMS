@@ -20,7 +20,9 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
 
   private final Map<String, Invoice> storedInvoices;
 
-  /** Initializes the <code>HashMap</code> used to store all the <code>Invoice</code>s. */
+  /**
+   * Constructs a new <code>{@link InvoiceMemoryDAO}</code>
+   */
   public InvoiceMemoryDAO() {
     this.storedInvoices = new HashMap<>();
   }
@@ -80,9 +82,10 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
 
   @Override
   public Invoice findByWorkOrder(String workOrderID) {
-    return storedInvoices.values().stream()
+    return storedInvoices.values()
+        .stream()
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .findFirst()
-        .get();
+        .orElse(null);
   }
 }

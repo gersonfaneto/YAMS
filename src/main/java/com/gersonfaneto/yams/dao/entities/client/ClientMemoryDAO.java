@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.billing.paymet.PaymentMemoryDAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,9 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   private final Map<String, Client> storedClients;
 
-  /** Initializes the <code>HashMap</code> used to store all the <code>Client</code>s. */
+  /**
+   * Constructs a new <code>{@link ClientMemoryDAO}</code>
+   */
   public ClientMemoryDAO() {
     this.storedClients = new HashMap<>();
   }
@@ -43,7 +46,9 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   @Override
   public List<Client> findMany() {
-    return storedClients.values().stream().toList();
+    return storedClients.values()
+        .stream()
+        .toList();
   }
 
   @Override
@@ -80,7 +85,8 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   @Override
   public List<Client> findByName(String clientName) {
-    return storedClients.values().stream()
+    return storedClients.values()
+        .stream()
         .filter(x -> x.getClientName().equals(clientName))
         .toList();
   }

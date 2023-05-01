@@ -20,7 +20,9 @@ public class WorkOrderMemoryDAO implements WorkOrderCRUD {
 
   private final Map<String, WorkOrder> storedWorkOrders;
 
-  /** Initializes the <code>HashMap</code> used to store all the <code>WorkOrder</code>s. */
+  /**
+   * Constructs a new <code>{@link WorkOrderMemoryDAO}</code>
+   */
   public WorkOrderMemoryDAO() {
     this.storedWorkOrders = new HashMap<>();
   }
@@ -43,7 +45,9 @@ public class WorkOrderMemoryDAO implements WorkOrderCRUD {
 
   @Override
   public List<WorkOrder> findMany() {
-    return storedWorkOrders.values().stream().toList();
+    return storedWorkOrders.values()
+        .stream()
+        .toList();
   }
 
   @Override
@@ -80,14 +84,16 @@ public class WorkOrderMemoryDAO implements WorkOrderCRUD {
 
   @Override
   public List<WorkOrder> findByClient(String clientID) {
-    return storedWorkOrders.values().stream()
+    return storedWorkOrders.values()
+        .stream()
         .filter(x -> x.getClientID().equals(clientID))
         .toList();
   }
 
   @Override
   public List<WorkOrder> findByTechnician(String technicianID) {
-    return storedWorkOrders.values().stream()
+    return storedWorkOrders.values()
+        .stream()
         .filter(x -> x.getTechnicianID().equals(technicianID))
         .toList();
   }

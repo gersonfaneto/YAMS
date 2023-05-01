@@ -20,7 +20,9 @@ public class UserMemoryDAO implements UserCRUD {
 
   private final Map<String, User> storedUsers;
 
-  /** Initializes the <code>HashMap</code> used to store all the <code>User</code>s. */
+  /**
+   * Constructs a new <code>{@link UserMemoryDAO}</code>
+   */
   public UserMemoryDAO() {
     this.storedUsers = new HashMap<>();
   }
@@ -42,7 +44,9 @@ public class UserMemoryDAO implements UserCRUD {
 
   @Override
   public List<User> findMany() {
-    return storedUsers.values().stream().toList();
+    return storedUsers.values()
+        .stream()
+        .toList();
   }
 
   @Override
@@ -79,7 +83,8 @@ public class UserMemoryDAO implements UserCRUD {
 
   @Override
   public User findByEmail(String userEmail) {
-    return storedUsers.values().stream()
+    return storedUsers.values()
+        .stream()
         .filter(x -> x.getUserEmail().equals(userEmail))
         .findFirst()
         .orElse(null);

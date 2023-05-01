@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.billing.paymet;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.billing.invoice.InvoiceMemoryDAO;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,9 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   private final Map<String, Payment> storedPayments;
 
-  /** Initializes the <code>HashMap</code> used to store all the <code>Payment</code>s. */
+  /**
+   * Constructs a new <code>{@link PaymentMemoryDAO}</code>
+   */
   public PaymentMemoryDAO() {
     this.storedPayments = new HashMap<>();
   }
@@ -80,7 +83,8 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findByInvoice(String invoiceID) {
-    return storedPayments.values().stream()
+    return storedPayments.values()
+        .stream()
         .filter(x -> x.getInvoiceID().equals(invoiceID))
         .toList();
   }
