@@ -2,10 +2,10 @@ package com.gersonfaneto.yams.dao.orders.work;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementations for the <code>WorkOrderCRUD</code> and the <code>CRUD</code> operations. Uses a
@@ -29,7 +29,7 @@ public class WorkOrderMemoryDAO implements WorkOrderCRUD {
 
   @Override
   public WorkOrder createOne(WorkOrder newWorkOrder) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newWorkOrder.setWorkOrderID(newID);
 

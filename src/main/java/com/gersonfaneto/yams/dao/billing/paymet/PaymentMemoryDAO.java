@@ -1,12 +1,11 @@
 package com.gersonfaneto.yams.dao.billing.paymet;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.billing.invoice.InvoiceMemoryDAO;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementations for the <code>PaymentCRUD</code> and <code>CRUD</code> operations. Uses a <code>
@@ -30,7 +29,7 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public Payment createOne(Payment newPayment) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newPayment.setPaymentID(newID);
 

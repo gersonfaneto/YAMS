@@ -4,10 +4,10 @@ import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementations for the <code>ComponentCRUD</code> and <code>CRUD</code> operations. Uses a
@@ -60,7 +60,7 @@ public class ComponentDiskDAO implements ComponentCRUD {
 
   @Override
   public Component createOne(Component newComponent) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newComponent.setComponentID(newID);
 

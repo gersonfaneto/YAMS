@@ -4,10 +4,10 @@ import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementations for the <code>InvoiceCRUD</code> and <code>CRUD</code> operations. Uses a <code>
@@ -59,7 +59,7 @@ public class InvoiceDiskDAO implements InvoiceCRUD, Persist {
 
   @Override
   public Invoice createOne(Invoice newInvoice) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newInvoice.setInvoiceID(newID);
 

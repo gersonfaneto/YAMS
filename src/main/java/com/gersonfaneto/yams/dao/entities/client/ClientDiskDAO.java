@@ -2,12 +2,11 @@ package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.ObjectIO;
-import com.gersonfaneto.yams.dao.billing.paymet.PaymentDiskDAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementations for the <code>ClientCRUD</code> and <code>CRUD</code> operations. Uses a <code>
@@ -59,7 +58,7 @@ public class ClientDiskDAO implements ClientCRUD {
 
   @Override
   public Client createOne(Client newClient) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newClient.setClientID(newID);
 

@@ -3,11 +3,11 @@ package com.gersonfaneto.yams.dao.services;
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Implementations for all the <code>ServiceCRUD</code> and <code>CRUD</code> operations. Uses a
@@ -31,7 +31,7 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   @Override
   public Service createOne(Service newService) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newService.setServiceID(newID);
 

@@ -4,10 +4,10 @@ import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.entities.user.UserMemoryDAO;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
 import com.gersonfaneto.yams.models.stock.ComponentType;
+import com.gersonfaneto.yams.utils.Generators;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementations for the <code>PurchaseOrderCRUD</code> and <code>CRUD</code> operations. Uses a
@@ -31,7 +31,7 @@ public class PurchaseOrderMemoryDAO implements PurchaseOrderCRUD {
 
   @Override
   public PurchaseOrder createOne(PurchaseOrder newPurchaseOrder) {
-    String newID = UUID.randomUUID().toString();
+    String newID = Generators.randomID();
 
     newPurchaseOrder.setPurchaseOrderID(newID);
 
