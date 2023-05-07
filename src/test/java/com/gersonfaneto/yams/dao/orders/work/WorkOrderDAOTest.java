@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class WorkOrderDiskDAOTest {
+class WorkOrderDAOTest {
 
   private final String randomTechnicianID = Generators.randomID();
   private final String randomClientID = Generators.randomID();

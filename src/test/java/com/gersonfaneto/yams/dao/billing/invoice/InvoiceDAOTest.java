@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class InvoiceDiskDAOTest {
+class InvoiceDAOTest {
 
   private final String randomWorkOrderID = UUID.randomUUID().toString();
   private Invoice randomInvoice;
