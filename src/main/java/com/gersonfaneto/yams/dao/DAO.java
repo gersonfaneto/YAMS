@@ -43,6 +43,8 @@ public abstract class DAO {
   private static PurchaseOrderCRUD purchaseOrderCRUD;
   private static WorkOrderCRUD workOrderCRUD;
 
+  private static final String SAVE_PATH = "data/";
+
   /**
    * Retrieves the <code>DAO</code> for the <code>Client</code> model, instantiating it if
    * necessary.
@@ -51,7 +53,7 @@ public abstract class DAO {
    */
   public static ClientCRUD fromClients() {
     if (clientCRUD == null) {
-      clientCRUD = new ClientDiskDAO("clients.ser");
+      clientCRUD = new ClientDiskDAO(SAVE_PATH + "clients.ser");
     }
 
     return clientCRUD;
@@ -64,7 +66,7 @@ public abstract class DAO {
    */
   public static UserCRUD fromUsers() {
     if (userCRUD == null) {
-      userCRUD = new UserDiskDAO("users.ser");
+      userCRUD = new UserDiskDAO(SAVE_PATH + "users.ser");
     }
 
     return userCRUD;
@@ -78,7 +80,7 @@ public abstract class DAO {
    */
   public static PaymentCRUD fromPayments() {
     if (paymentCRUD == null) {
-      paymentCRUD = new PaymentDiskDAO("payments.ser");
+      paymentCRUD = new PaymentDiskDAO(SAVE_PATH + "payments.ser");
     }
 
     return paymentCRUD;
@@ -92,7 +94,7 @@ public abstract class DAO {
    */
   public static InvoiceCRUD fromInvoices() {
     if (invoiceCRUD == null) {
-      invoiceCRUD = new InvoiceDiskDAO("invoices.ser");
+      invoiceCRUD = new InvoiceDiskDAO(SAVE_PATH + "invoices.ser");
     }
 
     return invoiceCRUD;
@@ -106,7 +108,7 @@ public abstract class DAO {
    */
   public static ComponentCRUD fromComponents() {
     if (componentCRUD == null) {
-      componentCRUD = new ComponentDiskDAO("components.ser");
+      componentCRUD = new ComponentDiskDAO(SAVE_PATH + "components.ser");
     }
 
     return componentCRUD;
@@ -120,7 +122,7 @@ public abstract class DAO {
    */
   public static ServiceCRUD fromService() {
     if (serviceCRUD == null) {
-      serviceCRUD = new ServiceDiskDAO("services.ser");
+      serviceCRUD = new ServiceDiskDAO(SAVE_PATH + "services.ser");
     }
 
     return serviceCRUD;
@@ -134,7 +136,7 @@ public abstract class DAO {
    */
   public static PurchaseOrderCRUD fromPurchaseOrders() {
     if (purchaseOrderCRUD == null) {
-      purchaseOrderCRUD = new PurchaseOrderDiskDAO("purchase-orders.ser");
+      purchaseOrderCRUD = new PurchaseOrderDiskDAO(SAVE_PATH + "purchase-orders.ser");
     }
 
     return purchaseOrderCRUD;
@@ -148,7 +150,7 @@ public abstract class DAO {
    */
   public static WorkOrderCRUD fromWorkOrders() {
     if (workOrderCRUD == null) {
-      workOrderCRUD = new WorkOrderDiskDAO("work-orders.ser");
+      workOrderCRUD = new WorkOrderDiskDAO(SAVE_PATH + "work-orders.ser");
     }
 
     return workOrderCRUD;
