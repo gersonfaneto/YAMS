@@ -2,8 +2,7 @@ module com.gersonfaneto.yams {
   requires javafx.controls;
   requires javafx.fxml;
 
-  opens com.gersonfaneto.yams to javafx.fxml;
-
+  // Needed for JUnit Test Suite.
   opens com.gersonfaneto.yams.dao;
   opens com.gersonfaneto.yams.dao.billing.invoice;
   opens com.gersonfaneto.yams.dao.billing.paymet;
@@ -14,9 +13,7 @@ module com.gersonfaneto.yams {
   opens com.gersonfaneto.yams.dao.services;
   opens com.gersonfaneto.yams.dao.stock;
 
-  exports com.gersonfaneto.yams;
-
-  // FIX: Needed for making JavaDoc see the whole project. 
+  // HACK: Needed for making JavaDoc see the whole project. 
   exports com.gersonfaneto.yams.dao;
   exports com.gersonfaneto.yams.dao.billing.invoice;
   exports com.gersonfaneto.yams.dao.billing.paymet;
@@ -54,4 +51,9 @@ module com.gersonfaneto.yams {
   exports com.gersonfaneto.yams.models.stock;
 
   exports com.gersonfaneto.yams.utils;
+
+  // Needed for JavaFX.
+  opens com.gersonfaneto.yams to javafx.fxml;
+
+  exports com.gersonfaneto.yams;
 }
