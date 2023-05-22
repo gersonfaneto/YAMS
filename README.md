@@ -87,7 +87,8 @@ git clone https://github.com/gersonfaneto/YAMS --branch V1.1.0 --depth 1
 2. Move into the project folder and build it using `maven`.
 
 ```bash
-maven package
+maven install
+maven compile 
 ```
 
 > **Note**: This will download all dependencies, compile the project as well
@@ -97,7 +98,7 @@ maven package
 3. Run the program using the following command and have fun 😄.
 
 ```bash
-maven javafx:run
+maven clean javafx:run
 ```
 
 > **Note**: Alternatively you can open the project using you preferred IDE
