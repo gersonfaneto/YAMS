@@ -1,6 +1,15 @@
-<h1 align="center">
-    Y.A.M.S.
-</h1>
+```markdown
+__     __                  __  __        _____     
+\ \   / /      /\         |  \/  |      / ____|        # Yet Another Management System.
+ \ \_/ /      /  \        | \  / |     | (___      
+  \   /      / /\ \       | |\/| |      \___ \         # Made for a microcomputer assistance. 
+   | |  _   / ____ \   _  | |  | |  _   ____) |  _ 
+   |_| (_) /_/    \_\ (_) |_|  |_| (_) |_____/  (_)    # by @gersonfaneto
+
+```
+
+> **Y.A.M.S.** stands for "Yet Another Managements System". This project is
+> being developed for educational purposes, so don't expect much of it 🙃.
 
 <div align="center">
 
@@ -11,9 +20,6 @@
 ![Version](https://img.shields.io/static/v1?label=VERSION&message=1.1.0&color=informational&style=for-the-badge)
 
 </div>
-
-> **Y.A.M.S.** stands for "Yet Another Managements System". This project is
-> being developed for educational purposes, so don't expect much of it 🙃.
 
 <h4 align="center">
   <a href="#about">About</a>
