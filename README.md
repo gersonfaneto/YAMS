@@ -1,10 +1,8 @@
 ```markdown
-__     __                  __  __        _____     
-\ \   / /      /\         |  \/  |      / ____|        # Yet Another Management System.
- \ \_/ /      /  \        | \  / |     | (___      
-  \   /      / /\ \       | |\/| |      \___ \         # Made for a microcomputer assistance. 
-   | |  _   / ____ \   _  | |  | |  _   ____) |  _ 
-   |_| (_) /_/    \_\ (_) |_|  |_| (_) |_____/  (_)    # by @gersonfaneto
+__   __        _         __  __       ___     
+\ \ / /       /_\       |  \/  |     / __|      # Yet Another Management System.
+ \ V /   _   / _ \   _  | |\/| |  _  \__ \  _   
+  |_|   (_) /_/ \_\ (_) |_|  |_| (_) |___/ (_)  # by @gersonfaneto
 
 ```
 
@@ -17,7 +15,7 @@ __     __                  __  __        _____
 [![License](https://img.shields.io/github/license/gersonfaneto/YAMS?color=blue&style=for-the-badge)](https://github.com/gersonfaneto/YAMS/blob/main/LICENSE)
 [![Stars](https://img.shields.io/github/stars/gersonfaneto/YAMS?style=for-the-badge&logo=github)](https://github.com/gersonfaneto/YAMS)
 ![Language](https://img.shields.io/static/v1?label=LANGUAGE&message=Java&color=informational&style=for-the-badge&logo=openjdk)
-![Version](https://img.shields.io/static/v1?label=VERSION&message=1.1.0&color=informational&style=for-the-badge)
+[![Version](https://img.shields.io/static/v1?label=VERSION&message=1.1.0&color=informational&style=for-the-badge)](https://github.com/gersonfaneto/YAMS/releases/latest)
 
 </div>
 
