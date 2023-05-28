@@ -93,8 +93,7 @@ git clone https://github.com/gersonfaneto/YAMS --branch V1.1.0 --depth 1
 2. Move into the project folder and build it using `maven`.
 
 ```bash
-maven install
-maven compile 
+maven clean install
 ```
 
 > **Note**: This will download all dependencies, compile the project as well
