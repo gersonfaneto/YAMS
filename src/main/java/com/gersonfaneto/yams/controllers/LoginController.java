@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.controllers;
 
 
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.user.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,6 +28,9 @@ public class LoginController {
 
   @FXML
   public void initialize() {
+    User sysAdm = Administrator.retrieveInstance("admin@gmail.com", "admin", "John Smith");
+    DAO.fromUsers().createOne(sysAdm);
+
     revealSecrets(null);
   }
 
