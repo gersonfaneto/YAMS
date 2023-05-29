@@ -25,13 +25,6 @@ module com.gersonfaneto.yams {
   exports com.gersonfaneto.yams.dao.services;
   exports com.gersonfaneto.yams.dao.stock;
 
-  exports com.gersonfaneto.yams.exceptions.billing;
-  exports com.gersonfaneto.yams.exceptions.client;
-  exports com.gersonfaneto.yams.exceptions.orders;
-  exports com.gersonfaneto.yams.exceptions.services;
-  exports com.gersonfaneto.yams.exceptions.stock;
-  exports com.gersonfaneto.yams.exceptions.users;
-
   exports com.gersonfaneto.yams.models.billing.invoice;
   exports com.gersonfaneto.yams.models.billing.payments;
   exports com.gersonfaneto.yams.models.entities.admnistrator;
