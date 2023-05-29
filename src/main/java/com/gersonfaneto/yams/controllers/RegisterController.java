@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.user.User;
 
 import javafx.fxml.FXML;
@@ -16,91 +15,100 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
-public class LoginController {
+public class RegisterController {
 
   @FXML private ImageView closeButton;
 
+  @FXML private ImageView backButton;
+
+  @FXML private PasswordField confirmPasswordField;
+
+  @FXML private TextField confirmPasswordText;
+
   @FXML private TextField emailField;
 
-  @FXML private Button loginButton;
+  @FXML private TextField nameField;
 
   @FXML private PasswordField passwordField;
 
   @FXML private TextField passwordText;
 
+  @FXML private Button registerButton;
+
   @FXML private CheckBox showPassword;
 
   @FXML private Label visualFeedback;
 
-  @FXML private AnchorPane loginArea;
-
-  @FXML private BorderPane mainWindow;
+  public static BorderPane mainWindow = null;
 
   @FXML
-  public void initialize() {
-    User sysAdm = Administrator.retrieveInstance("admin@gmail.com", "admin", "John Smith");
-    DAO.fromUsers().createOne(sysAdm);
-
-    revealSecrets();
-  }
-
-  @FXML
-  public void closeWindow() {
+  void closeWindow() {
     System.exit(0);
   }
 
   @FXML
-  public void revealSecrets() {
+  void revealSecrets() {
     if (showPassword.isSelected()) {
       passwordText.setText(passwordField.getText());
+      confirmPasswordText.setText(confirmPasswordField.getText());
       passwordText.setVisible(true);
+      confirmPasswordText.setVisible(true);
       passwordField.setVisible(false);
+      confirmPasswordField.setVisible(false);
       return;
     }
     passwordField.setText(passwordText.getText());
+    confirmPasswordField.setText(confirmPasswordText.getText());
     passwordField.setVisible(true);
+    confirmPasswordField.setVisible(true);
     passwordText.setVisible(false);
+    confirmPasswordText.setVisible(false);
   }
 
   @FXML
-  public void validateEntries() {
-    String passwordText = passwordValue();
+  void validateEntries() {
+    String nameText = nameField.getText();
     String emailText = emailField.getText();
+    String passwordText = passwordValue();
+    String confirmPasswordText = confirmPasswordValue();
+
     User foundUser = DAO.fromUsers().findByEmail(emailText);
 
-    if (passwordText.length() == 0 || emailText.length() == 0) {
+    if (nameText.length() == 0 || emailText.length() == 0 || passwordText.length() == 0) {
       visualFeedback.setText("Insira o seus dados!");
       visualFeedback.setTextFill(Color.RED);
       return;
-    } else if (foundUser == null) {
-      visualFeedback.setText("Usuário não encontrado!");
+    }
+    else if (foundUser != null) {
+      visualFeedback.setText("Email já cadastrado!");
       visualFeedback.setTextFill(Color.RED);
       return;
-    } else if (!foundUser.getUserPassword().equals(passwordText)) {
-      visualFeedback.setText("Senha incorreta!");
+    }
+    else if (!passwordText.equals(confirmPasswordText)) {
+      visualFeedback.setText("Senhas não conferem!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
 
     visualFeedback.setText("");
-    System.out.println("Welcome back!");
+    System.out.println("Registered with success!");
   }
 
   private String passwordValue() {
     return showPassword.isSelected() ? passwordText.getText() : passwordField.getText();
   }
 
+  private String confirmPasswordValue() {
+    return showPassword.isSelected() ? confirmPasswordText.getText() : confirmPasswordField.getText();
+  }
 
   @FXML
-  public void openRegistration() throws IOException {
-    Parent registerElements = FXMLLoader.load(App.class.getResource("views/register.fxml"));
+  public void openLogin() throws IOException {
+    Parent loginElements = FXMLLoader.load(App.class.getResource("views/login.fxml"));
 
-    RegisterController.mainWindow = mainWindow;
-    
-    mainWindow.setRight(registerElements);
+    mainWindow.getChildren().setAll(loginElements);
   }
 }

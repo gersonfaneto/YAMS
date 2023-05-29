@@ -11,20 +11,20 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../stylesheets/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.LoginController">
+<BorderPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../stylesheets/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.LoginController">
    <left>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
-         <center>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo-no-background.png" />
                </image>
             </ImageView>
-         </center>
-      </BorderPane>
+         </children>
+      </AnchorPane>
    </left>
-   <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
+   <right>
+      <AnchorPane fx:id="loginArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="emailField" layoutX="301.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Email" styleClass="text_field" stylesheets="@../stylesheets/login.css">
                <font>
@@ -64,9 +64,9 @@
             </ImageView>
             <TextField fx:id="passwordText" layoutX="301.0" layoutY="310.0" prefHeight="30.0" prefWidth="209.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/login.css" />
             <Label layoutX="300.0" layoutY="473.0" text="Ainda não tem conta?" textFill="#868e96" />
-            <Label layoutX="435.0" layoutY="473.0" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
+            <Label layoutX="435.0" layoutY="473.0" onMouseClicked="#openRegistration" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
             <Label fx:id="visualFeedback" layoutX="301.0" layoutY="205.0" prefHeight="18.0" prefWidth="210.0" />
          </children>
       </AnchorPane>
-   </center>
+   </right>
 </BorderPane>
