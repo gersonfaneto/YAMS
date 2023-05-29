@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -42,7 +43,17 @@ public class RegisterController {
 
   @FXML private Label visualFeedback;
 
+  @FXML private ComboBox<String> roleSelector;
+
   public static BorderPane mainWindow = null;
+
+  @FXML
+  public void initialize() {
+    revealSecrets();
+
+    roleSelector.getItems().add("Têcnico(a)");
+    roleSelector.getItems().add("Recepcionista");
+  }
 
   @FXML
   void closeWindow() {
@@ -74,6 +85,7 @@ public class RegisterController {
     String emailText = emailField.getText();
     String passwordText = passwordValue();
     String confirmPasswordText = confirmPasswordValue();
+    String roleText = roleSelector.getValue();
 
     User foundUser = DAO.fromUsers().findByEmail(emailText);
 
@@ -82,13 +94,20 @@ public class RegisterController {
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    else if (foundUser != null) {
+
+    if (foundUser != null) {
       visualFeedback.setText("Email já cadastrado!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    else if (!passwordText.equals(confirmPasswordText)) {
+
+    if (!passwordText.equals(confirmPasswordText)) {
       visualFeedback.setText("Senhas não conferem!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+    if (roleText == null) {
+      visualFeedback.setText("Selecione o seu cargo!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
