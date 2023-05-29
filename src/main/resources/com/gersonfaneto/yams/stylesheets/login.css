@@ -15,6 +15,10 @@
   -fx-border-color: #00d1cd;
 }
 
+.register_label:hover {
+  -fx-underline: true;
+}
+
 .login_button {
   -fx-background-color: #00d1cd;
   -fx-text-fill: #ffffff;
