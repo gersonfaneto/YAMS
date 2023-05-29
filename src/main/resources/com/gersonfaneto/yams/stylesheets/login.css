@@ -1,0 +1,32 @@
+.parent {
+  -fx-background-color: #e9ecef;
+}
+
+.sidebar {
+  -fx-background-color: #444444;
+}
+
+.text_field {
+  -fx-border-color: #dee2e6;
+  -fx-border-width: 0.5px;
+}
+
+.text_field:focused {
+  -fx-border-color: #00d1cd;
+}
+
+.login_button {
+  -fx-background-color: #00d1cd;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 3px;
+}
+
+.login_button:hover {
+  -fx-background-color: transparent;
+  -fx-background-radius: 3px;
+  -fx-text-fill: #00d1cd;
+  -fx-border-color: #00d1cd;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}

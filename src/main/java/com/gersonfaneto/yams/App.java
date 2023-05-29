@@ -1,12 +1,13 @@
 package com.gersonfaneto.yams;
 
+import java.io.IOException;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class App extends Application {
 
@@ -15,22 +16,15 @@ public class App extends Application {
   }
 
   @Override
-  public void start(Stage primaryStage) {
-    primaryStage.setTitle("Hello, World!");
-    Button primaryButton = new Button();
-    primaryButton.setText("Say \"Hello, World!\"");
-    primaryButton.setOnAction(
-        new EventHandler<ActionEvent>() {
+  public void start(Stage primaryStage) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
 
-          @Override
-          public void handle(ActionEvent event) {
-            System.out.println("Hello World!");
-          }
-        });
+    Scene loginScene = new Scene(root);
 
-    StackPane primaryPane = new StackPane();
-    primaryPane.getChildren().add(primaryButton);
-    primaryStage.setScene(new Scene(primaryPane, 300, 250));
+    primaryStage.setResizable(false);
+    primaryStage.initStyle(StageStyle.UNDECORATED);
+
+    primaryStage.setScene(loginScene);
     primaryStage.show();
   }
 }
