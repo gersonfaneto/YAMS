@@ -1,16 +1,18 @@
 package com.gersonfaneto.yams.controllers;
 
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.user.User;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class LoginController {
 
@@ -25,6 +27,8 @@ public class LoginController {
   @FXML private TextField passwordText;
 
   @FXML private CheckBox showPassword;
+
+  @FXML private Label visualFeedback;
 
   @FXML
   public void initialize() {
@@ -59,16 +63,20 @@ public class LoginController {
     User foundUser = DAO.fromUsers().findByEmail(emailText);
 
     if (passwordText.length() == 0 || emailText.length() == 0) {
-      System.out.println("Fill you credentials!");
+      visualFeedback.setText("Insira o seus dados!");
+      visualFeedback.setTextFill(Color.RED);
       return;
     } else if (foundUser == null) {
-      System.out.println("User not registered!");
+      visualFeedback.setText("Usuário não encontrado!");
+      visualFeedback.setTextFill(Color.RED);
       return;
     } else if (!foundUser.getUserPassword().equals(passwordText)) {
-      System.out.println("Incorrect password!");
+      visualFeedback.setText("Senha incorreta!");
+      visualFeedback.setTextFill(Color.RED);
       return;
     }
 
+    visualFeedback.setText("");
     System.out.println("Welcome back!");
   }
 

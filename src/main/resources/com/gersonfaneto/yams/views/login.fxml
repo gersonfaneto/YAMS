@@ -65,6 +65,7 @@
             <TextField fx:id="passwordText" layoutX="301.0" layoutY="310.0" prefHeight="30.0" prefWidth="209.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/login.css" />
             <Label layoutX="300.0" layoutY="473.0" text="Ainda não tem conta?" textFill="#868e96" />
             <Label layoutX="435.0" layoutY="473.0" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
+            <Label fx:id="visualFeedback" layoutX="301.0" layoutY="205.0" prefHeight="18.0" prefWidth="210.0" />
          </children>
       </AnchorPane>
    </center>
