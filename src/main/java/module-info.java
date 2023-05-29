@@ -1,4 +1,5 @@
 module com.gersonfaneto.yams {
+  requires javafx.graphics;
   requires javafx.controls;
   requires javafx.fxml;
 
@@ -53,7 +54,7 @@ module com.gersonfaneto.yams {
   exports com.gersonfaneto.yams.utils;
 
   // Needed for JavaFX.
-  opens com.gersonfaneto.yams to javafx.fxml;
+  opens com.gersonfaneto.yams.controllers to javafx.fxml, javafx.controls, javafx.graphics;
 
   exports com.gersonfaneto.yams;
 }
