@@ -7,6 +7,7 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.user.User;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ import javafx.scene.paint.Color;
 
 public class LoginController {
 
-  @FXML private ImageView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
   @FXML private TextField emailField;
 

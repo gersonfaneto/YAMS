@@ -6,6 +6,7 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,15 +15,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 public class RegisterController {
 
-  @FXML private ImageView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML private ImageView backButton;
+  @FXML private FontAwesomeIconView backButton;
 
   @FXML private PasswordField confirmPasswordField;
 

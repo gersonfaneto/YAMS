@@ -2,10 +2,6 @@
   -fx-background-color: #e9ecef;
 }
 
-.sidebar {
-  -fx-background-color: #444444;
-}
-
 .input_field {
   -fx-border-color: #dee2e6;
   -fx-border-width: 0.5px;
@@ -15,17 +11,13 @@
   -fx-border-color: #00d1cd;
 }
 
-.register_label:hover {
-  -fx-underline: true;
-}
-
-.login_button {
+.register_button {
   -fx-background-color: #00d1cd;
   -fx-text-fill: #ffffff;
   -fx-background-radius: 3px;
 }
 
-.login_button:hover {
+.register_button:hover {
   -fx-background-color: transparent;
   -fx-background-radius: 3px;
   -fx-text-fill: #00d1cd;

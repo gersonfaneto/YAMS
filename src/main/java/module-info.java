@@ -3,6 +3,9 @@ module com.gersonfaneto.yams {
   requires javafx.controls;
   requires javafx.fxml;
 
+  requires de.jensd.fx.glyphs.fontawesome;
+  requires de.jensd.fx.glyphs.commons;
+
   // Needed for JUnit Test Suite.
   opens com.gersonfaneto.yams.dao;
   opens com.gersonfaneto.yams.dao.billing.invoice;
