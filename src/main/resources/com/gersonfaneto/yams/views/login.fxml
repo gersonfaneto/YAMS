@@ -50,7 +50,7 @@
             <FontAwesomeIconView glyphName="USER" layoutX="421.0" layoutY="241.0" size="110" />
             <FontAwesomeIconView glyphName="ENVELOPE" layoutX="335.0" layoutY="350.0" size="20" />
             <FontAwesomeIconView glyphName="LOCK" layoutX="337.0" layoutY="421.0" size="25" />
-            <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="866.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" />
+            <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="866.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
          </children>
       </AnchorPane>
    </right>

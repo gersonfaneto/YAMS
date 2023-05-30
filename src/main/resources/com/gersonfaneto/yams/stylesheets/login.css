@@ -34,3 +34,7 @@
   -fx-border-style: solid;
   -fx-border-radius: 3px;
 }
+
+.close_button:hover {
+ -fx-fill: #e03131;
+}

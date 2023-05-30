@@ -30,3 +30,11 @@
   -fx-border-style: solid;
   -fx-border-radius: 3px;
 }
+
+.close_button:hover {
+ -fx-fill: #e03131;
+}
+
+.back_button:hover {
+  -fx-fill: #00d1cd;
+}
