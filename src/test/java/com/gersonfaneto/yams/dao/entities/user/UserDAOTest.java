@@ -6,7 +6,11 @@ import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
+
+import java.io.File;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +46,14 @@ class UserDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromUsers().deleteMany();
+  }
+
+  // HACK: Find a better way of cleaning up these!
+  @AfterAll
+  static void cleanUp() {
+    File dataFile = new File("data/users.ser");
+
+    dataFile.delete();
   }
 
   @Test

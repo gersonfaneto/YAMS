@@ -4,7 +4,11 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.purchase.PurchaseOrder;
 import com.gersonfaneto.yams.models.stock.ComponentType;
+
+import java.io.File;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +46,14 @@ class PurchaseOrderDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromPurchaseOrders().deleteMany();
+  }
+
+  // HACK: Find a better way of cleaning up these!
+  @AfterAll
+  static void cleanUp() {
+    File dataFile = new File("data/purchase-orders.ser");
+
+    dataFile.delete();
   }
 
   @Test

@@ -5,7 +5,11 @@ import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.states.Open;
 import com.gersonfaneto.yams.utils.Generators;
+
+import java.io.File;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +39,13 @@ class WorkOrderDAOTest {
     DAO.fromWorkOrders().deleteMany();
   }
 
+  // HACK: Find a better way of cleaning up these!
+  @AfterAll
+  static void cleanUp() {
+    File dataFile = new File("data/work-orders.ser");
+
+    dataFile.delete();
+  }
 
   @Test
   void dataPersistence() {

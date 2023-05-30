@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.9.1</junit.version>
+        <runTestSuite>**/TestSuite.class</runTestSuite>
     </properties>
 
     <dependencies>
@@ -70,6 +71,11 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.0</version>
+                <configuration>
+                  <includes>
+                    <include>${runTestSuite}</include>
+                  </includes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
