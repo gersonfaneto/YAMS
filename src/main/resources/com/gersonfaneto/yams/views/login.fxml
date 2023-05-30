@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" stylesheets="@../stylesheets/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.LoginController">
+<BorderPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../stylesheets/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.LoginController">
    <left>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" styleClass="sidebar" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="150.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="100.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo-no-background.png" />
                </image>
@@ -25,32 +25,32 @@
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane fx:id="loginArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" styleClass="parent" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="loginArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="emailField" layoutX="366.0" layoutY="328.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Email" styleClass="input_field" stylesheets="@../stylesheets/login.css">
+            <TextField fx:id="emailField" layoutX="311.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Email" styleClass="input_field" stylesheets="@../stylesheets/login.css">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" layoutX="366.0" layoutY="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/login.css">
+            <PasswordField fx:id="passwordField" layoutX="311.0" layoutY="335.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/login.css">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="365.0" layoutY="491.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="login_button" stylesheets="@../stylesheets/login.css" text="Login">
+            <Button fx:id="loginButton" layoutX="310.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="login_button" stylesheets="@../stylesheets/login.css" text="Login">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <CheckBox fx:id="showPassword" layoutX="365.0" layoutY="448.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#revealSecrets" prefWidth="125.0" text="Mostrar Senha" textFill="#868e96" />
-            <TextField fx:id="passwordText" layoutX="366.0" layoutY="398.0" prefHeight="30.0" prefWidth="209.0" promptText="Senha" styleClass="input_field" stylesheets="@../stylesheets/login.css" />
-            <Label layoutX="365.0" layoutY="561.0" text="Ainda não tem conta?" textFill="#868e96" />
-            <Label layoutX="500.0" layoutY="561.0" onMouseClicked="#openRegistration" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
-            <Label fx:id="visualFeedback" layoutX="366.0" layoutY="293.0" prefHeight="18.0" prefWidth="210.0" />
-            <FontAwesomeIconView glyphName="USER" layoutX="421.0" layoutY="241.0" size="110" />
-            <FontAwesomeIconView glyphName="ENVELOPE" layoutX="335.0" layoutY="350.0" size="20" />
-            <FontAwesomeIconView glyphName="LOCK" layoutX="337.0" layoutY="421.0" size="25" />
-            <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="866.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
+            <CheckBox fx:id="showPassword" layoutX="310.0" layoutY="385.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#revealSecrets" prefWidth="125.0" text="Mostrar Senha" textFill="#868e96" />
+            <TextField fx:id="passwordText" layoutX="311.0" layoutY="335.0" prefHeight="30.0" prefWidth="209.0" promptText="Senha" styleClass="input_field" stylesheets="@../stylesheets/login.css" />
+            <Label layoutX="310.0" layoutY="498.0" text="Ainda não tem conta?" textFill="#868e96" />
+            <Label layoutX="445.0" layoutY="498.0" onMouseClicked="#openRegistration" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
+            <Label fx:id="visualFeedback" layoutX="311.0" layoutY="230.0" prefHeight="18.0" prefWidth="210.0" />
+            <FontAwesomeIconView glyphName="USER" layoutX="366.0" layoutY="178.0" size="110" />
+            <FontAwesomeIconView glyphName="ENVELOPE" layoutX="280.0" layoutY="287.0" size="20" />
+            <FontAwesomeIconView glyphName="LOCK" layoutX="282.0" layoutY="358.0" size="25" />
+            <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
          </children>
       </AnchorPane>
    </right>
