@@ -16,7 +16,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -68,7 +67,7 @@ public class LoginController {
   }
 
   @FXML
-  public void validateEntries() {
+  public void validateEntries() throws IOException {
     String passwordText = passwordValue();
     String emailText = emailField.getText();
     User foundUser = DAO.fromUsers().findByEmail(emailText);
@@ -87,8 +86,13 @@ public class LoginController {
       return;
     }
 
-    visualFeedback.setText("");
-    System.out.println("Welcome back!");
+    Parent menuElements = FXMLLoader.load(App.class.getResource("views/menu.fxml"));
+    Parent homeElements = FXMLLoader.load(App.class.getResource("views/home.fxml"));
+    
+    MenuController.mainWindow = mainWindow;
+
+    mainWindow.setLeft(menuElements);
+    mainWindow.setRight(homeElements);
   }
 
   private String passwordValue() {
