@@ -12,13 +12,23 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 public class MenuController {
-  @FXML private FontAwesomeIconView backButton;
+  @FXML
+  private FontAwesomeIconView backButton;
 
-  @FXML private Button homeButton;
-  @FXML private Button clientsButton;
-  @FXML private Button servicesButton;
-  @FXML private Button stockButton;
-  @FXML private Button reportsButton;
+  @FXML
+  private Button homeButton;
+
+  @FXML
+  private Button clientsButton;
+
+  @FXML
+  private Button servicesButton;
+
+  @FXML
+  private Button stockButton;
+
+  @FXML
+  private Button reportsButton;
 
   public static BorderPane mainWindow = null;
 

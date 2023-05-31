@@ -8,9 +8,7 @@ public class HomeController {
   private FontAwesomeIconView closeButton;
   
   @FXML
-  public void initialize() {
-    System.out.println("Welcome, Home!");
-  }
+  public void initialize() {}
 
   @FXML
   public void closeWindow() {

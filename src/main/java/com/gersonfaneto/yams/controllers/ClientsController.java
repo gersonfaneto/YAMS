@@ -4,7 +4,8 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 
 public class ClientsController {
-  @FXML private FontAwesomeIconView closeButton;
+  @FXML
+  private FontAwesomeIconView closeButton;
 
   @FXML
   public void initialize() {}

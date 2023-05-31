@@ -22,23 +22,32 @@ import javafx.scene.paint.Color;
 
 public class LoginController {
 
-  @FXML private FontAwesomeIconView closeButton;
+  @FXML
+  private FontAwesomeIconView closeButton;
 
-  @FXML private TextField emailField;
+  @FXML
+  private TextField emailField;
 
-  @FXML private Button loginButton;
+  @FXML
+  private Button loginButton;
 
-  @FXML private PasswordField passwordField;
+  @FXML
+  private PasswordField passwordField;
 
-  @FXML private TextField passwordText;
+  @FXML
+  private TextField passwordText;
 
-  @FXML private CheckBox showPassword;
+  @FXML
+  private CheckBox showPassword;
 
-  @FXML private Label visualFeedback;
+  @FXML
+  private Label visualFeedback;
 
-  @FXML private AnchorPane loginArea;
+  @FXML
+  private AnchorPane loginArea;
 
-  @FXML private BorderPane mainWindow;
+  @FXML
+  private BorderPane mainWindow;
 
   @FXML
   public void initialize() {
