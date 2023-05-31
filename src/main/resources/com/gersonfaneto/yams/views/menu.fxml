@@ -7,14 +7,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="parent" stylesheets="@../stylesheets/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.MenuController">
    <children>
-      <Button layoutY="177.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Home" />
+      <Button fx:id="homeButton" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#openHomePane" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Home" />
       <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="93.0" layoutY="209.0" size="20" />
-      <Button layoutY="227.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Clientes" />
-      <Button layoutY="277.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Serviços" />
-      <Button layoutY="327.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Estoque" />
+      <Button fx:id="clientButton" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#openClientsPane" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Clientes" />
+      <Button fx:id="servicesButton" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#openServicesPane" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Serviços" />
+      <Button fx:id="stockButton" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#openStockPane" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Estoque" />
       <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="93.0" layoutY="259.0" size="20" text="" />
       <FontAwesomeIconView fill="WHITE" glyphName="CLIPBOARD" layoutX="93.0" layoutY="309.0" size="20" />
-      <Button layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Relatórios">
+      <Button fx:id="reportsButton" layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openReportsPane" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Relatórios">
          <padding>
             <Insets left="10.0" />
          </padding></Button>
