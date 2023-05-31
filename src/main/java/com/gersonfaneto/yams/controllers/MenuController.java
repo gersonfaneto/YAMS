@@ -53,6 +53,8 @@ public class MenuController {
   public void openClientsPane() throws IOException {
     Parent clientsPaneElements = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
 
+    ClientsController.mainWindow = mainWindow;
+
     mainWindow.setRight(clientsPaneElements);
   }
 
