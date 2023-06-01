@@ -2,13 +2,17 @@ package com.gersonfaneto.yams;
 
 import java.io.IOException;
 
+import com.gersonfaneto.yams.controllers.MainController;
+
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class App extends Application {
 
@@ -31,5 +35,12 @@ public class App extends Application {
 
     primaryStage.setScene(loginScene);
     primaryStage.show();
+
+    primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+      @Override
+      public void handle(WindowEvent windowEvent) {
+        MainController.saveData();
+      }
+    });
   }
 }
