@@ -17,6 +17,9 @@ public class MenuController {
   private FontAwesomeIconView backButton;
 
   @FXML
+  private FontAwesomeIconView employeesIcon;
+
+  @FXML
   private Button homeButton;
 
   @FXML
@@ -39,6 +42,7 @@ public class MenuController {
   public void initialize() {
     if (MainController.loggedUser.getUserType() != UserType.Administrator) {
       employeesButton.setVisible(false);
+      employeesIcon.setVisible(false);
     }
   }
 

@@ -26,6 +26,6 @@
             <Insets left="10.0" />
          </padding>
       </Button>
-      <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="93.0" layoutY="430.0" size="20" />
+      <FontAwesomeIconView fx:id="employeesIcon" fill="WHITE" glyphName="USERS" layoutX="93.0" layoutY="430.0" size="20" />
    </children>
 </AnchorPane>
