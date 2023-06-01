@@ -4,8 +4,11 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.user.User;
 
+import javafx.scene.layout.BorderPane;
+
 public abstract class MainController {
   public static User loggedUser;
+  public static BorderPane mainWindow;
 
   public static void saveData() {
     ((Persist) DAO.fromUsers()).saveAll();

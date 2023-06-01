@@ -18,7 +18,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 public class RegisterController {
@@ -58,8 +57,6 @@ public class RegisterController {
 
   @FXML
   private ComboBox<String> roleSelector;
-
-  public static BorderPane mainWindow = null;
 
   @FXML
   public void initialize() {
@@ -150,6 +147,6 @@ public class RegisterController {
   public void openLogin() throws IOException {
     Parent loginElements = FXMLLoader.load(App.class.getResource("views/login.fxml"));
 
-    mainWindow.getChildren().setAll(loginElements);
+    MainController.mainWindow.getChildren().setAll(loginElements);
   }
 }

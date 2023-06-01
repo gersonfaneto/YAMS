@@ -59,6 +59,10 @@ public class LoginController {
       DAO.fromUsers().createOne(sysAdm);
     }
 
+    if (MainController.mainWindow == null) {
+      MainController.mainWindow = mainWindow;
+    }
+
     revealSecrets();
   }
 
@@ -101,7 +105,6 @@ public class LoginController {
       return;
     }
 
-    MenuController.mainWindow = mainWindow;
     MainController.loggedUser = foundUser;
 
     Parent menuElements = FXMLLoader.load(App.class.getResource("views/menu.fxml"));
@@ -120,8 +123,6 @@ public class LoginController {
   public void openRegistration() throws IOException {
     Parent registerElements = FXMLLoader.load(App.class.getResource("views/register.fxml"));
 
-    RegisterController.mainWindow = mainWindow;
-    
     mainWindow.setRight(registerElements);
   }
 }

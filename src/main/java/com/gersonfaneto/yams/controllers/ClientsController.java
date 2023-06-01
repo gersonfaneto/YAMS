@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 
 public class ClientsController {
   @FXML
@@ -55,9 +54,6 @@ public class ClientsController {
   @FXML
   private TableColumn<Client, String> phoneColumn;
 
-  public static BorderPane mainWindow;
-
-
   @FXML
   public void initialize() {}
 
@@ -71,7 +67,7 @@ public class ClientsController {
   void openRegister() throws IOException {
     Parent clientRegisterElements = FXMLLoader.load(App.class.getResource("views/clients_register.fxml"));
 
-    mainWindow.setRight(clientRegisterElements);
+    MainController.mainWindow.setRight(clientRegisterElements);
   }
 
   @FXML
@@ -83,7 +79,7 @@ public class ClientsController {
   void cancelRegister() throws IOException {
     Parent clientsPaneElements = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
 
-    mainWindow.setRight(clientsPaneElements);
+    MainController.mainWindow.setRight(clientsPaneElements);
   }
 
   @FXML
