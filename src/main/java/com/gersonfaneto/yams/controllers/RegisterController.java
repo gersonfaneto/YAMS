@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
+import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -123,6 +125,13 @@ public class RegisterController {
       visualFeedback.setText("Selecione o seu cargo!");
       visualFeedback.setTextFill(Color.RED);
       return;
+    }
+
+    if (roleText.equals("Tẽcnico(a)")) {
+      DAO.fromUsers().createOne(new Technician(emailText, passwordText, nameText));
+    }
+    else {
+      DAO.fromUsers().createOne(new Receptionist(emailText, passwordText, nameText));
     }
 
     visualFeedback.setText("");
