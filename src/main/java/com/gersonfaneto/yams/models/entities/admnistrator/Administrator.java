@@ -28,10 +28,9 @@ public class Administrator extends User {
   private Administrator(
       String userEmail,
       String userPassword,
-      UserType userType,
       String administratorName
   ) {
-    super(userEmail, userPassword, userType);
+    super(userEmail, userPassword, UserType.Administrator);
     this.administratorName = administratorName;
   }
 
@@ -46,7 +45,7 @@ public class Administrator extends User {
   public static Administrator retrieveInstance(
       String userEmail, String userPassword, String administratorName) {
     if (singleInstance == null) {
-      return new Administrator(userEmail, userPassword, UserType.Administrator, administratorName);
+      return new Administrator(userEmail, userPassword, administratorName);
     }
 
     return singleInstance;

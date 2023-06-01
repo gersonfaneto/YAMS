@@ -25,10 +25,9 @@ public class Receptionist extends User {
   public Receptionist(
       String userEmail,
       String userPassword,
-      UserType userType,
       String receptionistName
   ) {
-    super(userEmail, userPassword, userType);
+    super(userEmail, userPassword, UserType.Receptionist);
     this.receptionistName = receptionistName;
   }
 

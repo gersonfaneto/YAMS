@@ -37,10 +37,9 @@ public class Technician extends User {
   public Technician(
       String userEmail,
       String userPassword,
-      UserType userType,
       String technicianName
   ) {
-    super(userEmail, userPassword, userType);
+    super(userEmail, userPassword, UserType.Technician);
     this.technicianName = technicianName;
     this.technicianState = new Free(this);
   }

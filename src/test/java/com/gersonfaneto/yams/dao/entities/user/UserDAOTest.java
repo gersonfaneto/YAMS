@@ -5,7 +5,6 @@ import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
-import com.gersonfaneto.yams.models.entities.user.UserType;
 
 import java.io.File;
 import java.util.List;
@@ -26,7 +25,6 @@ class UserDAOTest {
         new Receptionist(
             "sholmes@gmail.com",
             "watson",
-            UserType.Receptionist,
             "Sherlock Holmes"
         )
     );
@@ -36,7 +34,6 @@ class UserDAOTest {
           new Technician(
               "jdoe" + ((Integer) i).toString() + "@gmail.com",
               "jdoe@" + ((Integer) i).toString(),
-              UserType.Technician,
               "John Doe"
           )
       );
@@ -82,7 +79,6 @@ class UserDAOTest {
         new Technician(
             "jsmith@gmail.com",
             "jsmith@2023",
-            UserType.Technician,
             "John Smith"
         )
     );
