@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/employees.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.EmployeesController">
+   <children>
+      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
+      <TableView fx:id="clientsTable" layoutX="50.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="700.0">
+         <columns>
+            <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" text="Nome" />
+            <TableColumn fx:id="emailColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" text="Usuário" />
+            <TableColumn fx:id="statusColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" text="Status" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchField" layoutX="80.0" layoutY="13.0" prefHeight="30.0" prefWidth="450.0" promptText="Ex.: John Smith" styleClass="input_field" stylesheets="@../stylesheets/employees.css" />
+      <FontAwesomeIconView fx:id="searchButton" glyphName="SEARCH" layoutX="50.0" layoutY="33.0" onMouseClicked="#searchEmployee" size="20" styleClass="search_button" />
+      <ComboBox layoutX="540.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Categoria" styleClass="role_selector" stylesheets="@../stylesheets/employees.css" />
+   </children>
+</AnchorPane>
