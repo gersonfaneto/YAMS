@@ -101,11 +101,12 @@ public class LoginController {
       return;
     }
 
+    MenuController.mainWindow = mainWindow;
+    MainController.loggedUser = foundUser;
+
     Parent menuElements = FXMLLoader.load(App.class.getResource("views/menu.fxml"));
     Parent homeElements = FXMLLoader.load(App.class.getResource("views/home.fxml"));
     
-    MenuController.mainWindow = mainWindow;
-
     mainWindow.setLeft(menuElements);
     mainWindow.setRight(homeElements);
   }

@@ -2,8 +2,11 @@ package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
+import com.gersonfaneto.yams.models.entities.user.User;
 
 public abstract class MainController {
+  public static User loggedUser;
+
   public static void saveData() {
     ((Persist) DAO.fromUsers()).saveAll();
     ((Persist) DAO.fromUsers()).saveAll();

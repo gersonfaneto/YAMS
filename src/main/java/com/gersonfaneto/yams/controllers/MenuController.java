@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.controllers;
 import java.io.IOException;
 
 import com.gersonfaneto.yams.App;
+import com.gersonfaneto.yams.models.entities.user.UserType;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
@@ -30,9 +31,16 @@ public class MenuController {
   @FXML
   private Button reportsButton;
 
+  @FXML
+  private Button employeesButton;
+
   public static BorderPane mainWindow = null;
 
-  public void initialize() {}
+  public void initialize() {
+    if (MainController.loggedUser.getUserType() != UserType.Administrator) {
+      employeesButton.setVisible(false);
+    }
+  }
 
   @FXML
   public void resumeApp() throws IOException {
@@ -77,5 +85,12 @@ public class MenuController {
     Parent reporstPaneElements = FXMLLoader.load(App.class.getResource("views/reports.fxml"));
 
     mainWindow.setRight(reporstPaneElements);
+  }
+
+  @FXML
+  public void openEmployeesPane() throws IOException {
+    Parent employeesPaneElements = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
+
+    mainWindow.setRight(employeesPaneElements);
   }
 }
