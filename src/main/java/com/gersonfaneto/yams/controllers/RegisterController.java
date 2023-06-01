@@ -69,6 +69,7 @@ public class RegisterController {
 
   @FXML
   void closeWindow() {
+    MainController.saveData();
     System.exit(0);
   }
 

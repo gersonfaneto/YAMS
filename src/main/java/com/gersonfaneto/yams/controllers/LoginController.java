@@ -51,14 +51,20 @@ public class LoginController {
 
   @FXML
   public void initialize() {
-    User sysAdm = Administrator.retrieveInstance("admin@gmail.com", "admin", "John Smith");
-    DAO.fromUsers().createOne(sysAdm);
+    MainController.loadData();
+
+    if (DAO.fromUsers().findByEmail("admin") == null) {
+      System.out.println("First time, welcome!");
+      User sysAdm = Administrator.retrieveInstance("admin", "admin", "John Smith");
+      DAO.fromUsers().createOne(sysAdm);
+    }
 
     revealSecrets();
   }
 
   @FXML
   public void closeWindow() {
+    MainController.saveData();
     System.exit(0);
   }
 

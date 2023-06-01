@@ -11,6 +11,7 @@ public class ServicesController {
 
   @FXML
   public void closeWindow() {
+    MainController.saveData();
     System.exit(0);
   }
 }

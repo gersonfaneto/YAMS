@@ -12,6 +12,7 @@ public class HomeController {
 
   @FXML
   public void closeWindow() {
+    MainController.saveData();
     System.exit(0);
   }
 }
