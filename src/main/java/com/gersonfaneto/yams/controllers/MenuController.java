@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 
 public class MenuController {
   @FXML
-  private FontAwesomeIconView backButton;
+  private FontAwesomeIconView signOutButton;
 
   @FXML
   private FontAwesomeIconView employeesIcon;
@@ -57,7 +57,7 @@ public class MenuController {
   }
 
   @FXML
-  public void resumeApp() throws IOException {
+  public void signOut() throws IOException {
     Parent loginElements = FXMLLoader.load(App.class.getResource("views/login.fxml"));
 
     MainController.mainWindow.getChildren().removeAll();

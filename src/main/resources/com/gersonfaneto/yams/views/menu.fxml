@@ -20,7 +20,7 @@
          </padding></Button>
       <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" layoutX="93.0" layoutY="334.0" size="20" />
       <FontAwesomeIconView fill="WHITE" glyphName="ARCHIVE" layoutX="94.0" layoutY="380.0" size="20" />
-      <FontAwesomeIconView fx:id="backButton" fill="WHITE" glyphName="ARROW_LEFT" layoutX="14.0" layoutY="31.0" onMouseClicked="#resumeApp" size="20" styleClass="back_button" />
+      <FontAwesomeIconView fx:id="signOutButon" fill="WHITE" glyphName="SIGN_OUT" layoutX="14.0" layoutY="31.0" onMouseClicked="#signOut" size="20" styleClass="back_button" />
       <Button fx:id="employeesButton" layoutY="152.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openEmployeesPane" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/menu.css" text="Funcionários">
          <padding>
             <Insets left="10.0" />
