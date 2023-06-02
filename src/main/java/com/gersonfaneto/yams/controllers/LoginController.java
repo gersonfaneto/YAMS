@@ -6,6 +6,7 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.user.User;
+import com.gersonfaneto.yams.models.entities.user.UserType;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
@@ -107,10 +108,23 @@ public class LoginController {
     MainController.loggedUser = foundUser;
 
     Parent menuElements = FXMLLoader.load(App.class.getResource("views/menu.fxml"));
-    Parent homeElements = FXMLLoader.load(App.class.getResource("views/home.fxml"));
     
+    String baseViewPath = null;
+
+    if (foundUser.getUserType() == UserType.Administrator) {
+      baseViewPath = "views/employees.fxml";
+    }
+    else if (foundUser.getUserType() == UserType.Technician) {
+      baseViewPath = "views/home.fxml";
+    }
+    else {
+      baseViewPath = "views/clients.fxml";
+    }
+
+    Parent userBaseView = FXMLLoader.load(App.class.getResource(baseViewPath));
+
+    mainWindow.setRight(userBaseView);
     mainWindow.setLeft(menuElements);
-    mainWindow.setRight(homeElements);
   }
 
   private String passwordValue() {
