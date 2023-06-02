@@ -124,7 +124,7 @@ public class RegisterController {
       return;
     }
 
-    if (roleText.equals("Tẽcnico(a)")) {
+    if (roleText.equals("Têcnico(a)")) {
       DAO.fromUsers().createOne(new Technician(emailText, passwordText, nameText));
     }
     else {
