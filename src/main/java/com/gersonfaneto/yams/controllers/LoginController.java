@@ -54,7 +54,6 @@ public class LoginController {
     MainController.loadData();
 
     if (DAO.fromUsers().findByEmail("admin") == null) {
-      System.out.println("First time, welcome!");
       User sysAdm = Administrator.retrieveInstance("admin", "admin", "John Smith");
       DAO.fromUsers().createOne(sysAdm);
     }

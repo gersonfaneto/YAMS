@@ -41,19 +41,16 @@ public class MenuController {
 
   public void initialize() {
     if (MainController.loggedUser.getUserType() == UserType.Administrator) {
-      System.out.println("Admin");
       homeButton.setVisible(false);
       homeIcon.setVisible(false);
     }
     else if (MainController.loggedUser.getUserType() == UserType.Receptionist) {
-      System.out.println("Recep");
       homeButton.setVisible(false);
       homeIcon.setVisible(false);
       employeesButton.setVisible(false);
       employeesIcon.setVisible(false);
     }
     else {
-      System.out.println("Tech");
       employeesButton.setVisible(false);
       employeesIcon.setVisible(false);
     }

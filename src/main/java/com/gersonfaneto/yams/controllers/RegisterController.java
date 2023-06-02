@@ -131,8 +131,8 @@ public class RegisterController {
       DAO.fromUsers().createOne(new Receptionist(emailText, passwordText, nameText));
     }
 
-    visualFeedback.setText("");
-    System.out.println("Registered with success!");
+    visualFeedback.setText("Registrado com sucesso!");
+    visualFeedback.setTextFill(Color.GREEN);
   }
 
   private String passwordValue() {
