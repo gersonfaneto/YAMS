@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import com.gersonfaneto.yams.App;
+import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -179,6 +181,48 @@ public class PurchaseComponentController {
     // TODO: Find a way to clear the ComboBoxes after. The following code doesn't work.
     // typeSelector.getSelectionModel().clearSelection();
     // typeSelector.getSelectionModel().clearSelection();
+
+    ComponentType typeValue = null;
+
+    // TODO: Move to a util class.
+    switch(componentType) {
+      case "RAM":
+        typeValue = ComponentType.RAM;
+        break;
+      case "Fonte":
+        typeValue = ComponentType.PowerSupply;
+        break;
+      case "Placa de Vídeo":
+        typeValue = ComponentType.GraphicsCard;
+        break;
+      case "Placa Mãe":
+        typeValue = ComponentType.Motherboard;
+        break;
+      case "SSD":
+        typeValue = ComponentType.SSD;
+        break;
+      case "HD":
+        typeValue = ComponentType.HD;
+        break;
+      default:
+        break;
+    }
+
+    Component boughtComponent = new Component(
+      typeValue,
+      componentDescription,
+      amountBought,
+      componentCost,
+      componentPrice
+    );
+
+    if (DAO.fromComponents().findEquals(boughtComponent) != null) {
+      visualFeedback.setText("Produto já registrado, favor atualizar quantidade!");
+      visualFeedback.setTextFill(Color.ORANGE);
+      return;
+    }
+
+    DAO.fromComponents().createOne(boughtComponent);
 
     visualFeedback.setText("Compra registrada com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);
