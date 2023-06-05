@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../stylesheets/login.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.LoginController">
+<BorderPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../stylesheets/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.LoginController">
    <left>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
          <children>
@@ -27,23 +27,23 @@
    <right>
       <AnchorPane fx:id="loginArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/login.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="emailField" layoutX="311.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Email" styleClass="input_field" stylesheets="@../stylesheets/login.css">
+            <TextField fx:id="emailField" layoutX="311.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#validateEntries" prefHeight="30.0" prefWidth="210.0" promptText="Email" styleClass="input_field" stylesheets="@../stylesheets/login.css">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" layoutX="311.0" layoutY="335.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="210.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/login.css">
+            <PasswordField fx:id="passwordField" layoutX="311.0" layoutY="335.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#validateEntries" prefHeight="30.0" prefWidth="210.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/login.css">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="310.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="login_button" stylesheets="@../stylesheets/login.css" text="Login">
+            <Button fx:id="loginButton" layoutX="310.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="login_button" stylesheets="@../stylesheets/login.css" text="Login">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
             <CheckBox fx:id="showPassword" layoutX="310.0" layoutY="385.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#revealSecrets" prefWidth="125.0" text="Mostrar Senha" textFill="#868e96" />
-            <TextField fx:id="passwordText" layoutX="311.0" layoutY="335.0" prefHeight="30.0" prefWidth="209.0" promptText="Senha" styleClass="input_field" stylesheets="@../stylesheets/login.css" />
+            <TextField fx:id="passwordText" layoutX="311.0" layoutY="335.0" onAction="#validateEntries" prefHeight="30.0" prefWidth="209.0" promptText="Senha" styleClass="input_field" stylesheets="@../stylesheets/login.css" />
             <Label layoutX="310.0" layoutY="498.0" text="Ainda não tem conta?" textFill="#868e96" />
             <Label layoutX="445.0" layoutY="498.0" onMouseClicked="#openRegistration" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
             <Label fx:id="visualFeedback" layoutX="311.0" layoutY="230.0" prefHeight="18.0" prefWidth="210.0" />
