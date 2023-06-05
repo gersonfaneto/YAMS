@@ -20,6 +20,9 @@ public class ClientsRegisterController {
   private FontAwesomeIconView closeButton;
 
   @FXML
+  private FontAwesomeIconView backButton;
+
+  @FXML
   private Button cancelButton;
 
   @FXML

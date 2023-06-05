@@ -15,6 +15,10 @@
  -fx-fill: #e03131;
 }
 
+.back_button:hover {
+ -fx-fill: #00d1cd;
+}
+
 .confirm_button {
   -fx-background-color: #2f9e44;
   -fx-text-fill: #ffffff;
