@@ -54,11 +54,9 @@ public class EmployeesController {
     roleFilter.getItems().add("Todos");
     roleFilter.getItems().add("Têcnico(a)");
     roleFilter.getItems().add("Recepcionista");
+    roleFilter.getItems().add("Administrador");
 
-    List<User> allEmployees = DAO.fromUsers().findMany()
-      .stream()
-      .filter(x -> !x.getUserEmail().equals("admin"))
-      .toList();
+    List<User> allEmployees = DAO.fromUsers().findMany();
 
     employeesList.addAll(allEmployees);
 
@@ -102,6 +100,8 @@ public class EmployeesController {
         case "Têcnico(a)":
           userType = UserType.Technician;
           break;
+        case "Administrador":
+          userType = UserType.Administrator;
         default:
           break;
       }
