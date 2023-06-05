@@ -179,6 +179,7 @@ public class PurchaseComponentController {
 
     ComponentType typeValue = null;
 
+    System.out.println(componentType);
     // TODO: Move to a util class.
     switch(componentType) {
       case "RAM":
@@ -200,6 +201,7 @@ public class PurchaseComponentController {
         typeValue = ComponentType.HD;
         break;
       default:
+        typeValue = ComponentType.Others;
         break;
     }
 
