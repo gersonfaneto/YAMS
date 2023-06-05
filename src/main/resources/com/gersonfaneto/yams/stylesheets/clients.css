@@ -27,10 +27,6 @@
   -fx-border-radius: 3px;
 }
 
-.search_button:hover {
-  -fx-fill: #00d1cd;
-}
-
 .close_button:hover {
  -fx-fill: #e03131;
 }
