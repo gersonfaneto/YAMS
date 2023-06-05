@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/purchase_component.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.PurchaseComponentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/purchase_component.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.PurchaseComponentController">
    <children>
       <Label fx:id="visualFeedback" layoutX="230.0" layoutY="98.0" prefHeight="26.0" prefWidth="341.0" />
       <TextField fx:id="descriptionField" layoutX="230.0" layoutY="155.0" onAction="#confirmPurchase" prefHeight="26.0" prefWidth="341.0" promptText="Descrição" styleClass="input_field" stylesheets="@../stylesheets/purchase_component.css" />
