@@ -12,7 +12,7 @@ public abstract class MainController {
 
   public static void saveData() {
     ((Persist) DAO.fromUsers()).saveAll();
-    ((Persist) DAO.fromUsers()).saveAll();
+    ((Persist) DAO.fromClients()).saveAll();
     ((Persist) DAO.fromPayments()).saveAll();
     ((Persist) DAO.fromComponents()).saveAll();
     ((Persist) DAO.fromService()).saveAll();
@@ -22,7 +22,7 @@ public abstract class MainController {
 
   public static void loadData() {
     ((Persist) DAO.fromUsers()).loadAll();
-    ((Persist) DAO.fromUsers()).loadAll();
+    ((Persist) DAO.fromClients()).loadAll();
     ((Persist) DAO.fromPayments()).loadAll();
     ((Persist) DAO.fromComponents()).loadAll();
     ((Persist) DAO.fromService()).loadAll();
