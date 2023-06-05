@@ -40,6 +40,9 @@ public class ClientsRegisterController {
   @FXML
   private TextField phoneField;
 
+  private boolean doUpdate;
+  private String clientID;
+
   @FXML
   public void initialize() {
 
@@ -64,19 +67,44 @@ public class ClientsRegisterController {
       return;
     }
 
-    DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
+    if (doUpdate) {
+      Client targetClient = DAO.fromClients().findByID(clientID);
+
+      targetClient.setClientName(clientName);
+      targetClient.setHomeAddress(homeAddress);
+      targetClient.setPhoneNumber(phoneNumber);
+
+      DAO.fromClients().updateInformation(targetClient);
+
+      visualFeedback.setText("Cadastro atualizado com sucesso!");
+      visualFeedback.setTextFill(Color.GREEN);
+    }
+    else {
+      DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
+
+      visualFeedback.setText("Registrado com sucesso!");
+      visualFeedback.setTextFill(Color.GREEN);
+    }
 
     nameField.clear();
     phoneField.clear();
     addressField.clear();
-
-    visualFeedback.setText("Registrado com sucesso!");
-    visualFeedback.setTextFill(Color.GREEN);
   }
 
   @FXML
   public void closeWindow() {
     MainController.saveData();
     System.exit(0);
+  }
+
+  public void updateClient(boolean doUpdate) {
+    this.doUpdate = doUpdate;
+  }
+
+  public void setTextField(String clientID, String clientName, String homeAddress, String phoneNumber) {
+    this.clientID = clientID;
+    nameField.setText(clientName);
+    addressField.setText(homeAddress);
+    phoneField.setText(phoneNumber);
   }
 }
