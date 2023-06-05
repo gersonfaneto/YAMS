@@ -38,7 +38,7 @@ public class WorkReport implements Serializable {
 
     this.technicianName = ((Technician) DAO.fromUsers()
         .findByID(workOrder.getTechnicianID()))
-        .getTechnicianName();
+        .getUserName();
 
     this.clientName = DAO.fromClients()
         .findByID(workOrder.getClientID())

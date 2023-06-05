@@ -11,8 +11,6 @@ import com.gersonfaneto.yams.models.entities.user.UserType;
  */
 public class Receptionist extends User {
 
-  private String receptionistName;
-
   /**
    * Constructs a new <code>Receptionist</code>.
    *
@@ -27,15 +25,6 @@ public class Receptionist extends User {
       String userPassword,
       String receptionistName
   ) {
-    super(userEmail, userPassword, UserType.Receptionist);
-    this.receptionistName = receptionistName;
-  }
-
-  public String getReceptionistName() {
-    return receptionistName;
-  }
-
-  public void setReceptionistName(String receptionistName) {
-    this.receptionistName = receptionistName;
+    super(receptionistName, userEmail, userPassword, UserType.Receptionist);
   }
 }

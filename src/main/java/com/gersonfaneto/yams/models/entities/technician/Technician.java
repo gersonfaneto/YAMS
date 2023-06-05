@@ -19,7 +19,6 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
  */
 public class Technician extends User {
 
-  private String technicianName;
   private State technicianState;
 
   /**
@@ -39,8 +38,7 @@ public class Technician extends User {
       String userPassword,
       String technicianName
   ) {
-    super(userEmail, userPassword, UserType.Technician);
-    this.technicianName = technicianName;
+    super(technicianName, userEmail, userPassword, UserType.Technician);
     this.technicianState = new Free(this);
   }
 
@@ -89,14 +87,6 @@ public class Technician extends User {
    */
   public Invoice generateInvoice() {
     return technicianState.generateInvoice();
-  }
-
-  public String getTechnicianName() {
-    return technicianName;
-  }
-
-  public void setTechnicianName(String technicianName) {
-    this.technicianName = technicianName;
   }
 
   public State getTechnicianState() {

@@ -12,7 +12,6 @@ import com.gersonfaneto.yams.models.entities.user.UserType;
  */
 public class Administrator extends User {
 
-  private String administratorName;
   private static Administrator singleInstance;
 
   /**
@@ -30,8 +29,7 @@ public class Administrator extends User {
       String userPassword,
       String administratorName
   ) {
-    super(userEmail, userPassword, UserType.Administrator);
-    this.administratorName = administratorName;
+    super(administratorName, userEmail, userPassword, UserType.Administrator);
   }
 
   /**
@@ -49,13 +47,5 @@ public class Administrator extends User {
     }
 
     return singleInstance;
-  }
-
-  public String getAdministratorName() {
-    return administratorName;
-  }
-
-  public void setAdministratorName(String administratorName) {
-    this.administratorName = administratorName;
   }
 }
