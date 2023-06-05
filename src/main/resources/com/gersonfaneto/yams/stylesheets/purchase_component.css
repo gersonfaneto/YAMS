@@ -35,6 +35,10 @@
   -fx-border-radius: 3px;
 }
 
+.amount_selector, .type_selector {
+  -fx-background-color: #dee2e6;
+}
+
 .cancel_button {
   -fx-background-color: #e03131;
   -fx-text-fill: #ffffff;
