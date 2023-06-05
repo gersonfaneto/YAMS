@@ -90,16 +90,16 @@ public class ClientsController {
             editIcon.setOnMouseClicked((MouseEvent event) -> {
               Client selectedClient = clientsTable.getSelectionModel().getSelectedItem();
 
-              FXMLLoader registerFXML = new FXMLLoader();
-              registerFXML.setLocation(App.class.getResource("views/clients_register.fxml"));
+              FXMLLoader fxmlLoader = new FXMLLoader();
+              fxmlLoader.setLocation(App.class.getResource("views/clients_register.fxml"));
 
               try {
-                registerFXML.load();
+                fxmlLoader.load();
               } catch (IOException e) {
                 e.printStackTrace();
               }
 
-              ClientsRegisterController registerController = registerFXML.getController();
+              ClientsRegisterController registerController = fxmlLoader.getController();
 
               registerController.updateClient(true);
               registerController.setTextField(
@@ -109,8 +109,12 @@ public class ClientsController {
                 selectedClient.getPhoneNumber()
               );
 
-              Parent registerElements = registerFXML.getRoot();
-              MainController.mainWindow.setRight(registerElements);
+              Parent parent = fxmlLoader.getRoot();
+              Stage stage = new Stage();
+              stage.setScene(new Scene(parent));
+              stage.initStyle(StageStyle.UNDECORATED);
+              stage.show();
+              MainController.modalWindow = stage;
             });
 
             HBox managebtn = new HBox(editIcon, deleteIcon);

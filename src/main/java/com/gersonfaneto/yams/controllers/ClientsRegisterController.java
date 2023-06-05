@@ -53,6 +53,10 @@ public class ClientsRegisterController {
     Parent clientsPaneElements = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
 
     MainController.mainWindow.setRight(clientsPaneElements);
+
+    if (doUpdate) {
+      MainController.modalWindow.close();
+    }
   }
 
   @FXML
@@ -92,9 +96,17 @@ public class ClientsRegisterController {
   }
 
   @FXML
-  public void closeWindow() {
+  public void closeWindow() throws IOException {
     MainController.saveData();
-    System.exit(0);
+
+    if (doUpdate) {
+      Parent clientsPaneElements = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+      MainController.modalWindow.close();
+      MainController.mainWindow.setRight(clientsPaneElements);
+    }
+    else {
+      System.exit(0);
+    }
   }
 
   public void updateClient(boolean doUpdate) {
