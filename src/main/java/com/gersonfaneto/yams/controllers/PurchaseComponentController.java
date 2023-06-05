@@ -171,6 +171,15 @@ public class PurchaseComponentController {
       return;
     }
 
+    descriptionField.clear();
+    typeField.clear();
+    amountField.clear();
+    costField.clear();
+    priceField.clear();
+    // TODO: Find a way to clear the ComboBoxes after. The following code doesn't work.
+    // typeSelector.getSelectionModel().clearSelection();
+    // typeSelector.getSelectionModel().clearSelection();
+
     visualFeedback.setText("Compra registrada com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);
   }
