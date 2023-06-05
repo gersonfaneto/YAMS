@@ -33,9 +33,6 @@ public class EmployeesController {
   private TableColumn<User, String> nameColumn;
 
   @FXML
-  private TableColumn<User, String> roleColumn;
-
-  @FXML
   private ComboBox<String> roleFilter;
 
   @FXML
@@ -48,8 +45,6 @@ public class EmployeesController {
   public void initialize() {
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("userEmail"));
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
-    // TODO: Translate on view!
-    roleColumn.setCellValueFactory(new PropertyValueFactory<>("userType"));
 
     roleFilter.getItems().add("Todos");
     roleFilter.getItems().add("Têcnico(a)");
