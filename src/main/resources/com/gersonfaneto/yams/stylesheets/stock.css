@@ -2,6 +2,19 @@
   -fx-background-color: #e9ecef;
 }
 
+.input_field {
+  -fx-border-color: #dee2e6;
+  -fx-border-width: 0.5px;
+}
+
+.input_field:focused {
+  -fx-border-color: #00d1cd;
+}
+
+.role_selector {
+  -fx-background-color: #dee2e6;
+}
+
 .close_button:hover {
  -fx-fill: #e03131;
 }

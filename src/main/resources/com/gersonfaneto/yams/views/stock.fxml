@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/stock.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/stock.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.StockController">
    <children>
-      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
-      <Label layoutX="14.0" layoutY="17.0" text="Estoque" />
+      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="36.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
+      <TableView fx:id="componentsTable" layoutX="50.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="700.0">
+         <columns>
+            <TableColumn fx:id="amountColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Quantidade" />
+            <TableColumn fx:id="priceColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Preço" />
+            <TableColumn fx:id="costColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Custo" />
+            <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="400.0" text="Descrição" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchField" layoutX="80.0" layoutY="14.0" prefHeight="30.0" prefWidth="450.0" promptText="Ex.: Procesador Intel" styleClass="input_field" stylesheets="@../stylesheets/stock.css" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="34.0" size="20" styleClass="search_button" />
+      <ComboBox fx:id="typeFilter" layoutX="540.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="210.0" promptText="Tipo" styleClass="role_selector" stylesheets="@../stylesheets/stock.css" />
    </children>
 </AnchorPane>
