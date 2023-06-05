@@ -142,11 +142,6 @@ public class PurchaseComponentController {
     double componentCost = getCost();
     double componentPrice = getCost();
 
-    System.out.println(componentType);
-    System.out.println(amountBought);
-    System.out.println(componentCost);
-    System.out.println(componentPrice);
-
     if (componentDescription.isEmpty()) {
       visualFeedback.setText("Descrição inválida!");
       visualFeedback.setTextFill(Color.RED);
