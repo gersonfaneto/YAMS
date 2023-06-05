@@ -93,15 +93,15 @@ public class RegisterController {
 
   @FXML
   void validateEntries() {
-    String nameText = nameField.getText();
-    String emailText = emailField.getText();
-    String passwordText = passwordValue();
-    String confirmPasswordText = confirmPasswordValue();
-    String roleText = roleSelector.getValue();
+    String nameValue = nameField.getText();
+    String emailValue = emailField.getText();
+    String passwordValue = passwordValue();
+    String confirmPasswordValue = confirmPasswordValue();
+    String roleValue = roleSelector.getValue();
 
-    User foundUser = DAO.fromUsers().findByEmail(emailText);
+    User foundUser = DAO.fromUsers().findByEmail(emailValue);
 
-    if (nameText.length() == 0 || emailText.length() == 0 || passwordText.length() == 0) {
+    if (nameValue.length() == 0 || emailValue.length() == 0 || passwordValue.length() == 0) {
       visualFeedback.setText("Insira o seus dados!");
       visualFeedback.setTextFill(Color.RED);
       return;
@@ -113,23 +113,30 @@ public class RegisterController {
       return;
     }
 
-    if (!passwordText.equals(confirmPasswordText)) {
+    if (!passwordValue.equals(confirmPasswordValue)) {
       visualFeedback.setText("Senhas não conferem!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    if (roleText == null) {
+    if (roleValue == null) {
       visualFeedback.setText("Selecione o seu cargo!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
 
-    if (roleText.equals("Têcnico(a)")) {
-      DAO.fromUsers().createOne(new Technician(emailText, passwordText, nameText));
+    if (roleValue.equals("Têcnico(a)")) {
+      DAO.fromUsers().createOne(new Technician(emailValue, passwordValue, nameValue));
     }
     else {
-      DAO.fromUsers().createOne(new Receptionist(emailText, passwordText, nameText));
+      DAO.fromUsers().createOne(new Receptionist(emailValue, passwordValue, nameValue));
     }
+
+    nameField.clear();
+    emailField.clear();
+    passwordField.clear();
+    passwordText.clear();
+    confirmPasswordField.clear();
+    confirmPasswordText.clear();
 
     visualFeedback.setText("Registrado com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);
