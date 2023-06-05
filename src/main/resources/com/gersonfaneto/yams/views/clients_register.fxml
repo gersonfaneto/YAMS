@@ -8,16 +8,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/clients_register.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.ClientsRegisterController">
    <children>
-      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="770.0" layoutY="31.0" onMouseClicked="#closeWindow" size="20" styleClass="close_button" />
+      <Label fx:id="visualFeedback" layoutX="266.0" layoutY="114.0" prefHeight="30.0" prefWidth="300.0" />
       <TextField fx:id="nameField" layoutX="266.0" layoutY="161.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmRegister" prefHeight="30.0" prefWidth="300.0" promptText="Nome" styleClass="input_field" stylesheets="@../stylesheets/clients_register.css" />
       <TextField fx:id="addressField" layoutX="266.0" layoutY="216.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmRegister" prefHeight="30.0" prefWidth="300.0" promptText="Endereço" styleClass="input_field" stylesheets="@../stylesheets/clients_register.css" />
       <TextField fx:id="phoneField" layoutX="266.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmRegister" prefHeight="30.0" prefWidth="300.0" promptText="Telefone" styleClass="input_field" stylesheets="@../stylesheets/clients_register.css" />
+      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="770.0" layoutY="31.0" onMouseClicked="#closeWindow" size="20" styleClass="close_button" />
+      <FontAwesomeIconView fx:id="backButton" glyphName="ARROW_LEFT" layoutX="14.0" layoutY="30.0" onMouseClicked="#cancelRegister" size="20" styleClass="back_button" />
       <FontAwesomeIconView glyphName="USER" layoutX="235.0" layoutY="183.0" size="20" />
       <FontAwesomeIconView glyphName="HOME" layoutX="235.0" layoutY="238.0" size="20" />
       <FontAwesomeIconView glyphName="PHONE" layoutX="235.0" layoutY="292.0" size="20" />
       <Button fx:id="confirmButton" layoutX="466.0" layoutY="447.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#confirmRegister" prefHeight="30.0" prefWidth="100.0" styleClass="confirm_button" stylesheets="@../stylesheets/clients_register.css" text="Confirmar" />
       <Button fx:id="cancelButton" layoutX="235.0" layoutY="447.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#cancelRegister" prefHeight="30.0" prefWidth="100.0" styleClass="cancel_button" stylesheets="@../stylesheets/clients_register.css" text="Cancelar" />
-      <Label fx:id="visualFeedback" layoutX="266.0" layoutY="114.0" prefHeight="30.0" prefWidth="300.0" />
-      <FontAwesomeIconView fx:id="backButton" glyphName="ARROW_LEFT" layoutX="14.0" layoutY="30.0" onMouseClicked="#cancelRegister" size="20" styleClass="back_button" />
    </children>
 </AnchorPane>

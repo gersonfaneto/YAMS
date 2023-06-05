@@ -10,7 +10,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/stock.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.StockController">
    <children>
-      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="36.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
       <TableView fx:id="componentsTable" layoutX="50.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="700.0">
          <columns>
             <TableColumn fx:id="amountColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Quantidade" />
@@ -20,8 +19,9 @@
          </columns>
       </TableView>
       <TextField fx:id="searchField" layoutX="80.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Ex.: Procesador Intel" styleClass="input_field" stylesheets="@../stylesheets/stock.css" />
-      <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="34.0" size="20" styleClass="search_button" />
       <ComboBox fx:id="typeFilter" layoutX="490.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="100.0" promptText="Tipo" styleClass="role_selector" stylesheets="@../stylesheets/stock.css" />
       <Button fx:id="purchaseButton" layoutX="600.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openPurchase" prefHeight="30.0" prefWidth="150.0" styleClass="purchase_button" stylesheets="@../stylesheets/stock.css" text="Nova Compra" />
+      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="36.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="34.0" size="20" styleClass="search_button" />
    </children>
 </AnchorPane>
