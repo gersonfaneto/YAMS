@@ -1,9 +1,14 @@
 package com.gersonfaneto.yams.controllers;
 
+import java.io.IOException;
+
+import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.models.stock.Component;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,8 +50,15 @@ public class StockController {
   }
 
   @FXML
-  void filterSearch() {
+  public void filterSearch() {
 
+  }
+
+  @FXML
+  public void openPurchase() throws IOException {
+    Parent purchaseComponentElements = FXMLLoader.load(App.class.getResource("views/purchase_component.fxml"));
+
+    MainController.mainWindow.setRight(purchaseComponentElements);
   }
 
   @FXML

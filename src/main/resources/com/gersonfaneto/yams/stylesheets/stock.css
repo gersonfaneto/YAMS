@@ -11,6 +11,22 @@
   -fx-border-color: #00d1cd;
 }
 
+.purchase_button {
+  -fx-background-color: #00d1cd;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 3px;
+}
+
+.purchase_button:hover {
+  -fx-background-color: transparent;
+  -fx-background-radius: 3px;
+  -fx-text-fill: #00d1cd;
+  -fx-border-color: #00d1cd;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}
+
 .role_selector {
   -fx-background-color: #dee2e6;
 }

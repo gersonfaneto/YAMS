@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,8 +19,9 @@
             <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="400.0" text="Descrição" />
          </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="80.0" layoutY="14.0" prefHeight="30.0" prefWidth="450.0" promptText="Ex.: Procesador Intel" styleClass="input_field" stylesheets="@../stylesheets/stock.css" />
+      <TextField fx:id="searchField" layoutX="80.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Ex.: Procesador Intel" styleClass="input_field" stylesheets="@../stylesheets/stock.css" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="34.0" size="20" styleClass="search_button" />
-      <ComboBox fx:id="typeFilter" layoutX="540.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="210.0" promptText="Tipo" styleClass="role_selector" stylesheets="@../stylesheets/stock.css" />
+      <ComboBox fx:id="typeFilter" layoutX="490.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="100.0" promptText="Tipo" styleClass="role_selector" stylesheets="@../stylesheets/stock.css" />
+      <Button fx:id="purchaseButton" layoutX="600.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openPurchase" prefHeight="30.0" prefWidth="150.0" styleClass="purchase_button" stylesheets="@../stylesheets/stock.css" text="Nova Compra" />
    </children>
 </AnchorPane>
