@@ -5,6 +5,7 @@ import java.util.List;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
+import com.gersonfaneto.yams.utils.TypeParser;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -89,20 +90,8 @@ public class EmployeesController {
   public void filterSearch() {
     employeesTable.setItems(filteredEmployees.filtered(user -> {
       String roleValue = roleFilter.getValue();
-      UserType userType = null;
 
-      switch (roleValue) {
-        case "Recepcionista":
-          userType = UserType.Receptionist;
-          break;
-        case "Têcnico(a)":
-          userType = UserType.Technician;
-          break;
-        case "Administrador":
-          userType = UserType.Administrator;
-        default:
-          break;
-      }
+      UserType userType = TypeParser.parseUserType(roleValue);
 
       return userType == null || user.getUserType() == userType;
     }));

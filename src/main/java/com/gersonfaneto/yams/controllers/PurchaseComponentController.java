@@ -7,6 +7,7 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
+import com.gersonfaneto.yams.utils.TypeParser;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
@@ -95,36 +96,16 @@ public class PurchaseComponentController {
 
   @FXML
   public void injectPrice() {
-    String typeValue = typeSelector.getValue();
+    String typeName = typeSelector.getValue();
 
-    if (typeValue.equals("Outro")) {
+    if (typeName.equals("Outro")) {
       return;
     }
 
     priceField.setDisable(true);
 
-    switch (typeValue) {
-      case "RAM":
-        priceField.setText(Double.toString(ComponentType.RAM.getTypeValue()));
-        break;
-      case "Placa Mãe":
-        priceField.setText(Double.toString(ComponentType.Motherboard.getTypeValue()));
-        break;
-      case "Fonte":
-        priceField.setText(Double.toString(ComponentType.PowerSupply.getTypeValue()));
-        break;
-      case "Placa de Vídeo":
-        priceField.setText(Double.toString(ComponentType.GraphicsCard.getTypeValue()));
-        break;
-      case "HD":
-        priceField.setText(Double.toString(ComponentType.HD.getTypeValue()));
-        break;
-      case "SSD":
-        priceField.setText(Double.toString(ComponentType.SSD.getTypeValue()));
-        break;
-      default:
-        break;
-    }
+    double typeValue = TypeParser.parseComponentType(typeName).getTypeValue();
+    priceField.setText(Double.toString(typeValue));
   }
 
   @FXML
@@ -137,7 +118,7 @@ public class PurchaseComponentController {
   @FXML
   public void confirmPurchase() {
     String componentDescription = descriptionField.getText();
-    String componentType = getType();
+    String typeName = getType();
     int amountBought = getAmmount();
     double componentCost = getCost();
     double componentPrice = getCost();
@@ -147,7 +128,7 @@ public class PurchaseComponentController {
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    if (typeSelector.getValue() == null || typeField.isVisible() && componentType.isEmpty()) {
+    if (typeSelector.getValue() == null || typeField.isVisible() && typeName.isEmpty()) {
       visualFeedback.setText("Tipo inválido!");
       visualFeedback.setTextFill(Color.RED);
       return;
@@ -177,33 +158,7 @@ public class PurchaseComponentController {
     // typeSelector.getSelectionModel().clearSelection();
     // typeSelector.getSelectionModel().clearSelection();
 
-    ComponentType typeValue = null;
-
-    System.out.println(componentType);
-    // TODO: Move to a util class.
-    switch(componentType) {
-      case "RAM":
-        typeValue = ComponentType.RAM;
-        break;
-      case "Fonte":
-        typeValue = ComponentType.PowerSupply;
-        break;
-      case "Placa de Vídeo":
-        typeValue = ComponentType.GraphicsCard;
-        break;
-      case "Placa Mãe":
-        typeValue = ComponentType.Motherboard;
-        break;
-      case "SSD":
-        typeValue = ComponentType.SSD;
-        break;
-      case "HD":
-        typeValue = ComponentType.HD;
-        break;
-      default:
-        typeValue = ComponentType.Others;
-        break;
-    }
+    ComponentType typeValue = TypeParser.parseComponentType(typeName);
 
     Component boughtComponent = new Component(
       typeValue,

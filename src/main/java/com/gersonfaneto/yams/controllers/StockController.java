@@ -7,6 +7,7 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
+import com.gersonfaneto.yams.utils.TypeParser;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -93,32 +94,8 @@ public class StockController {
   public void filterSearch() {
     componentsTable.setItems(filteredComponents.filtered(component -> {
       String typeValue = typeFilter.getValue();
-      ComponentType componentType = null;
 
-      switch (typeValue) {
-        case "RAM":
-          componentType = ComponentType.RAM;
-          break;
-        case "Fonte":
-          componentType = ComponentType.PowerSupply;
-          break;
-        case "Placa de Vídeo":
-          componentType = ComponentType.GraphicsCard;
-          break;
-        case "Placa Mãe":
-          componentType = ComponentType.Motherboard;
-          break;
-        case "SSD":
-          componentType = ComponentType.SSD;
-          break;
-        case "HD":
-          componentType = ComponentType.HD;
-          break;
-        case "Outros":
-          componentType = ComponentType.Others;
-        default:
-          break;
-      }
+      ComponentType componentType = TypeParser.parseComponentType(typeValue);
 
       return componentType == null || component.getComponentType() == componentType;
     }));
