@@ -17,6 +17,6 @@
       <FontAwesomeIconView glyphName="HOME" layoutX="135.0" layoutY="179.0" size="20" />
       <FontAwesomeIconView glyphName="PHONE" layoutX="135.0" layoutY="233.0" size="20" />
       <Button fx:id="confirmButton" layoutX="366.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="100.0" styleClass="confirm_button" stylesheets="@../stylesheets/clients_register.css" text="Confirmar" />
-      <Button fx:id="cancelButton" layoutX="135.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#closeWindow" prefHeight="30.0" prefWidth="100.0" styleClass="cancel_button" stylesheets="@../stylesheets/clients_register.css" text="Cancelar" />
+      <Button fx:id="cancelButton" layoutX="135.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="100.0" styleClass="cancel_button" stylesheets="@../stylesheets/clients_register.css" text="Cancelar" />
    </children>
 </AnchorPane>

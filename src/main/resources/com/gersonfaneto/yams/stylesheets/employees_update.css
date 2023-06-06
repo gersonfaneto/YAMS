@@ -1,0 +1,52 @@
+.parent {
+  -fx-background-color: #e9ecef;
+}
+
+.input_field {
+  -fx-border-color: #dee2e6;
+  -fx-border-width: 0.5px;
+}
+
+.input_field:focused {
+  -fx-border-color: #00d1cd;
+}
+
+.role_selector {
+  -fx-background-color: #dee2e6;
+}
+
+.close_button:hover {
+ -fx-fill: #e03131;
+}
+
+.confirm_button {
+  -fx-background-color: #2f9e44;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 3px;
+}
+
+.confirm_button:hover {
+  -fx-background-color: transparent;
+  -fx-text-fill: #2f9e44;
+  -fx-background-radius: 3px;
+  -fx-border-color: #2f9e44;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}
+
+.cancel_button {
+  -fx-background-color: #e03131;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 3px;
+}
+
+.cancel_button:hover {
+  -fx-background-color: transparent;
+  -fx-text-fill: #e03131;
+  -fx-background-radius: 3px;
+  -fx-border-color: #e03131;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}
