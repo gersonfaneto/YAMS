@@ -85,6 +85,8 @@ public class MenuController {
 
   @FXML
   public void signOut() throws IOException {
+    MainController.saveData();
+
     Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
 
     MainController.mainWindow.getChildren().setAll(loginView);
