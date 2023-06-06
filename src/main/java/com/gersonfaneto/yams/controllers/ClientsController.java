@@ -94,31 +94,32 @@ public class ClientsController {
             editIcon.setOnMouseClicked((MouseEvent event) -> {
               Client selectedClient = clientsTable.getSelectionModel().getSelectedItem();
 
-              FXMLLoader fxmlLoader = new FXMLLoader();
-              fxmlLoader.setLocation(App.class.getResource("views/clients_register.fxml"));
+              FXMLLoader loaderFXML = new FXMLLoader();
+              loaderFXML.setLocation(App.class.getResource("views/clients_update.fxml"));
 
               try {
-                fxmlLoader.load();
+                loaderFXML.load();
               } catch (IOException e) {
                 e.printStackTrace();
               }
 
-              ClientsRegisterController registerController = fxmlLoader.getController();
+              ClientsUpdateController updateController = loaderFXML.getController();
 
-              registerController.updateClient(true);
-              registerController.setTextField(
+              updateController.injectFields(
                 selectedClient.getClientID(),
                 selectedClient.getClientName(),
                 selectedClient.getHomeAddress(),
                 selectedClient.getPhoneNumber()
               );
 
-              Parent parent = fxmlLoader.getRoot();
-              Stage stage = new Stage();
-              stage.setScene(new Scene(parent));
-              stage.initStyle(StageStyle.UNDECORATED);
-              stage.show();
-              MainController.modalWindow = stage;
+              Parent updateView = loaderFXML.getRoot();
+              Stage modalStage = new Stage();
+
+              modalStage.setScene(new Scene(updateView));
+              modalStage.initStyle(StageStyle.UNDECORATED);
+              modalStage.show();
+
+              MainController.modalWindow = modalStage;
             });
 
             HBox managebtn = new HBox(editIcon, deleteIcon);

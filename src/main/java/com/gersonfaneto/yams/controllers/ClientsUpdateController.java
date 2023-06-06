@@ -15,21 +15,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-public class ClientsRegisterController {
+public class ClientsUpdateController {
   @FXML
   private FontAwesomeIconView closeButton;
-
-  @FXML
-  private FontAwesomeIconView backButton;
 
   @FXML
   private Label visualFeedback;
 
   @FXML
-  private TextField nameField;
+  private TextField addressField;
 
   @FXML
-  private TextField addressField;
+  private TextField nameField;
 
   @FXML
   private TextField phoneField;
@@ -40,20 +37,10 @@ public class ClientsRegisterController {
   @FXML
   private Button confirmButton;
 
-  @FXML
-  public void initialize() {
-
-  }
+  private String clientID;
 
   @FXML
-  public void cancelRegister() throws IOException {
-    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
-
-    MainController.mainWindow.setRight(clientsView);
-  }
-
-  @FXML
-  public void confirmRegister() {
+  public void confirmUpdate() {
     String clientName = nameField.getText();
     String homeAddress = addressField.getText();
     String phoneNumber = phoneField.getText();
@@ -64,19 +51,37 @@ public class ClientsRegisterController {
       return;
     }
 
-    DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
+    Client targetClient = DAO.fromClients().findByID(clientID);
 
-    visualFeedback.setText("Registrado com sucesso!");
+    targetClient.setClientName(clientName);
+    targetClient.setHomeAddress(homeAddress);
+    targetClient.setPhoneNumber(phoneNumber);
+
+    DAO.fromClients().updateInformation(targetClient);
+
+    visualFeedback.setText("Cadastro atualizado com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);
 
-    nameField.clear();
-    phoneField.clear();
-    addressField.clear();
   }
 
   @FXML
   public void closeWindow() throws IOException {
-    MainController.saveData();
-    System.exit(0);
+    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+
+    MainController.mainWindow.setRight(clientsView);
+
+    MainController.modalWindow.close();
+  }
+
+  public void injectFields(
+      String clientID,
+      String clientName,
+      String homeAddress,
+      String phoneNumber
+  ) {
+    this.clientID = clientID;
+    nameField.setText(clientName);
+    addressField.setText(homeAddress);
+    phoneField.setText(phoneNumber);
   }
 }
