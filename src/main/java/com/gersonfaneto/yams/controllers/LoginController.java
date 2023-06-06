@@ -17,11 +17,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 public class LoginController {
+
+  @FXML
+  private BorderPane mainWindow;
 
   @FXML
   private FontAwesomeIconView closeButton;
@@ -30,13 +32,10 @@ public class LoginController {
   private TextField emailField;
 
   @FXML
-  private Button loginButton;
+  private TextField passwordText;
 
   @FXML
   private PasswordField passwordField;
-
-  @FXML
-  private TextField passwordText;
 
   @FXML
   private CheckBox showPassword;
@@ -45,10 +44,7 @@ public class LoginController {
   private Label visualFeedback;
 
   @FXML
-  private AnchorPane loginArea;
-
-  @FXML
-  private BorderPane mainWindow;
+  private Button loginButton;
 
   @FXML
   public void initialize() {
@@ -67,12 +63,6 @@ public class LoginController {
   }
 
   @FXML
-  public void closeWindow() {
-    MainController.saveData();
-    System.exit(0);
-  }
-
-  @FXML
   public void revealSecrets() {
     if (showPassword.isSelected()) {
       passwordText.setText(passwordField.getText());
@@ -87,11 +77,12 @@ public class LoginController {
 
   @FXML
   public void validateEntries() throws IOException {
-    String passwordText = passwordValue();
-    String emailText = emailField.getText();
-    User foundUser = DAO.fromUsers().findByEmail(emailText);
+    String userPassword = passwordValue();
+    String userEmail = emailField.getText();
 
-    if (passwordText.length() == 0 || emailText.length() == 0) {
+    User foundUser = DAO.fromUsers().findByEmail(userEmail);
+
+    if (userPassword.length() == 0 || userEmail.length() == 0) {
       visualFeedback.setText("Insira o seus dados!");
       visualFeedback.setTextFill(Color.RED);
       return;
@@ -99,7 +90,7 @@ public class LoginController {
       visualFeedback.setText("Usuário não encontrado!");
       visualFeedback.setTextFill(Color.RED);
       return;
-    } else if (!foundUser.getUserPassword().equals(passwordText)) {
+    } else if (!foundUser.getUserPassword().equals(userPassword)) {
       visualFeedback.setText("Senha incorreta!");
       visualFeedback.setTextFill(Color.RED);
       return;
@@ -107,7 +98,7 @@ public class LoginController {
 
     MainController.loggedUser = foundUser;
 
-    Parent menuElements = FXMLLoader.load(App.class.getResource("views/menu.fxml"));
+    Parent menuView = FXMLLoader.load(App.class.getResource("views/menu.fxml"));
     
     String baseViewPath = null;
 
@@ -124,7 +115,7 @@ public class LoginController {
     Parent userBaseView = FXMLLoader.load(App.class.getResource(baseViewPath));
 
     mainWindow.setRight(userBaseView);
-    mainWindow.setLeft(menuElements);
+    mainWindow.setLeft(menuView);
   }
 
   private String passwordValue() {
@@ -133,9 +124,15 @@ public class LoginController {
 
 
   @FXML
-  public void openRegistration() throws IOException {
-    Parent registerElements = FXMLLoader.load(App.class.getResource("views/register.fxml"));
+  public void registerUser() throws IOException {
+    Parent registerView = FXMLLoader.load(App.class.getResource("views/register.fxml"));
 
-    mainWindow.setRight(registerElements);
+    mainWindow.setRight(registerView);
+  }
+
+  @FXML
+  public void closeWindow() {
+    MainController.saveData();
+    System.exit(0);
   }
 }

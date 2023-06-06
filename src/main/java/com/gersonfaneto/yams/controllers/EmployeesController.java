@@ -21,10 +21,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class EmployeesController {
 
   @FXML
-  private TableView<User> employeesTable;
+  private FontAwesomeIconView closeButton;
 
   @FXML
-  private FontAwesomeIconView closeButton;
+  private TableView<User> employeesTable;
 
   @FXML
   private TableColumn<User, String> emailColumn;
@@ -38,11 +38,14 @@ public class EmployeesController {
   @FXML
   private TextField searchField;
 
-  private final ObservableList<User> employeesList = FXCollections.observableArrayList();
-  private final FilteredList<User> filteredEmployees = new FilteredList<>(employeesList, x -> true);
+  private ObservableList<User> employeesList;
+  private FilteredList<User> filteredEmployees;
 
   @FXML
   public void initialize() {
+    employeesList = FXCollections.observableArrayList();
+    filteredEmployees = new FilteredList<>(employeesList, x -> true);
+
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("userEmail"));
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
 

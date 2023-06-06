@@ -128,14 +128,14 @@ public class PurchaseComponentController {
   }
 
   @FXML
-  void cancelRegister() throws IOException {
-    Parent stockElements = FXMLLoader.load(App.class.getResource("views/stock.fxml"));
+  public void cancelPurchase() throws IOException {
+    Parent stockView = FXMLLoader.load(App.class.getResource("views/stock.fxml"));
 
-    MainController.mainWindow.setRight(stockElements);
+    MainController.mainWindow.setRight(stockView);
   }
 
   @FXML
-  void confirmPurchase() {
+  public void confirmPurchase() {
     String componentDescription = descriptionField.getText();
     String componentType = getType();
     int amountBought = getAmmount();
@@ -226,7 +226,7 @@ public class PurchaseComponentController {
   }
 
   @FXML
-  void closeWindow() {
+  public void closeWindow() {
     MainController.saveData();
     System.exit(0);
   }

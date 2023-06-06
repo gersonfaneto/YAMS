@@ -67,31 +67,6 @@ public class RegisterController {
   }
 
   @FXML
-  void closeWindow() {
-    MainController.saveData();
-    System.exit(0);
-  }
-
-  @FXML
-  void revealSecrets() {
-    if (showPassword.isSelected()) {
-      passwordText.setText(passwordField.getText());
-      confirmPasswordText.setText(confirmPasswordField.getText());
-      passwordText.setVisible(true);
-      confirmPasswordText.setVisible(true);
-      passwordField.setVisible(false);
-      confirmPasswordField.setVisible(false);
-      return;
-    }
-    passwordField.setText(passwordText.getText());
-    confirmPasswordField.setText(confirmPasswordText.getText());
-    passwordField.setVisible(true);
-    confirmPasswordField.setVisible(true);
-    passwordText.setVisible(false);
-    confirmPasswordText.setVisible(false);
-  }
-
-  @FXML
   void validateEntries() {
     String nameValue = nameField.getText();
     String emailValue = emailField.getText();
@@ -142,18 +117,43 @@ public class RegisterController {
     visualFeedback.setTextFill(Color.GREEN);
   }
 
+  @FXML
+  void revealSecrets() {
+    if (showPassword.isSelected()) {
+      passwordText.setText(passwordField.getText());
+      confirmPasswordText.setText(confirmPasswordField.getText());
+      passwordText.setVisible(true);
+      confirmPasswordText.setVisible(true);
+      passwordField.setVisible(false);
+      confirmPasswordField.setVisible(false);
+      return;
+    }
+    passwordField.setText(passwordText.getText());
+    confirmPasswordField.setText(confirmPasswordText.getText());
+    passwordField.setVisible(true);
+    confirmPasswordField.setVisible(true);
+    passwordText.setVisible(false);
+    confirmPasswordText.setVisible(false);
+  }
+
+  @FXML
+  public void openLogin() throws IOException {
+    Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
+
+    MainController.mainWindow.getChildren().setAll(loginView);
+  }
+
+  @FXML
+  public void closeWindow() {
+    MainController.saveData();
+    System.exit(0);
+  }
+
   private String passwordValue() {
     return showPassword.isSelected() ? passwordText.getText() : passwordField.getText();
   }
 
   private String confirmPasswordValue() {
     return showPassword.isSelected() ? confirmPasswordText.getText() : confirmPasswordField.getText();
-  }
-
-  @FXML
-  public void openLogin() throws IOException {
-    Parent loginElements = FXMLLoader.load(App.class.getResource("views/login.fxml"));
-
-    MainController.mainWindow.getChildren().setAll(loginElements);
   }
 }

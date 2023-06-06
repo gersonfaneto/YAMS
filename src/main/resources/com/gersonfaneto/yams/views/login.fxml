@@ -46,7 +46,7 @@
                </font>
             </Button>
             <Label layoutX="310.0" layoutY="498.0" text="Ainda não tem conta?" textFill="#868e96" />
-            <Label layoutX="445.0" layoutY="498.0" onMouseClicked="#openRegistration" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
+            <Label layoutX="445.0" layoutY="498.0" onMouseClicked="#registerUser" styleClass="register_label" stylesheets="@../stylesheets/login.css" text="Cadastre-se!" textFill="#00d1cd" />
             <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
             <FontAwesomeIconView glyphName="USER" layoutX="366.0" layoutY="178.0" size="110" />
             <FontAwesomeIconView glyphName="ENVELOPE" layoutX="280.0" layoutY="287.0" size="20" />

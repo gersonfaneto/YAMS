@@ -35,12 +35,6 @@ public class ClientsController {
   private TableView<Client> clientsTable;
 
   @FXML
-  private Button registerButton;
-
-  @FXML
-  private TextField searchField;
-
-  @FXML
   private TableColumn<Client, String> nameColumn;
 
   @FXML
@@ -52,11 +46,20 @@ public class ClientsController {
   @FXML
   private TableColumn<Client, String> editColumn;
 
-  private final ObservableList<Client> clientsList = FXCollections.observableArrayList();
-  private final FilteredList<Client> filteredClients = new FilteredList<>(clientsList, x -> true);
+  @FXML
+  private Button registerButton;
+
+  @FXML
+  private TextField searchField;
+
+  private ObservableList<Client> clientsList;
+  private FilteredList<Client> filteredClients;
 
   @FXML
   public void initialize() {
+    clientsList = FXCollections.observableArrayList();
+    filteredClients = new FilteredList<>(clientsList, x -> true);
+
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("clientName"));
     addressColumn.setCellValueFactory(new PropertyValueFactory<>("homeAddress"));
     phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
@@ -87,6 +90,7 @@ public class ClientsController {
 
               refreshTable();
             });
+
             editIcon.setOnMouseClicked((MouseEvent event) -> {
               Client selectedClient = clientsTable.getSelectionModel().getSelectedItem();
 
@@ -170,10 +174,10 @@ public class ClientsController {
   }
 
   @FXML
-  public void openRegister() throws IOException {
-    Parent clientRegisterElements = FXMLLoader.load(App.class.getResource("views/clients_register.fxml"));
+  public void registerClient() throws IOException {
+    Parent clientRegisterView = FXMLLoader.load(App.class.getResource("views/clients_register.fxml"));
 
-    MainController.mainWindow.setRight(clientRegisterElements);
+    MainController.mainWindow.setRight(clientRegisterView);
   }
 
   @FXML

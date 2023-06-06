@@ -23,12 +23,6 @@ public class ClientsRegisterController {
   private FontAwesomeIconView backButton;
 
   @FXML
-  private Button cancelButton;
-
-  @FXML
-  private Button confirmButton;
-
-  @FXML
   private Label visualFeedback;
 
   @FXML
@@ -40,6 +34,12 @@ public class ClientsRegisterController {
   @FXML
   private TextField phoneField;
 
+  @FXML
+  private Button cancelButton;
+
+  @FXML
+  private Button confirmButton;
+
   private boolean doUpdate;
   private String clientID;
 
@@ -50,9 +50,9 @@ public class ClientsRegisterController {
 
   @FXML
   public void cancelRegister() throws IOException {
-    Parent clientsPaneElements = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
 
-    MainController.mainWindow.setRight(clientsPaneElements);
+    MainController.mainWindow.setRight(clientsView);
 
     if (doUpdate) {
       MainController.modalWindow.close();
@@ -100,9 +100,9 @@ public class ClientsRegisterController {
     MainController.saveData();
 
     if (doUpdate) {
-      Parent clientsPaneElements = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+      Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
       MainController.modalWindow.close();
-      MainController.mainWindow.setRight(clientsPaneElements);
+      MainController.mainWindow.setRight(clientsView);
     }
     else {
       System.exit(0);

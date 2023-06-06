@@ -17,13 +17,16 @@ public class MenuController {
   private FontAwesomeIconView signOutButton;
 
   @FXML
-  private FontAwesomeIconView employeesIcon;
-
-  @FXML
   private FontAwesomeIconView homeIcon;
 
   @FXML
   private Button homeButton;
+
+  @FXML
+  private FontAwesomeIconView employeesIcon;
+
+  @FXML
+  private Button employeesButton;
 
   @FXML
   private Button clientsButton;
@@ -36,9 +39,6 @@ public class MenuController {
 
   @FXML
   private Button reportsButton;
-
-  @FXML
-  private Button employeesButton;
 
   public void initialize() {
     if (MainController.loggedUser.getUserType() == UserType.Administrator) {
@@ -85,9 +85,8 @@ public class MenuController {
 
   @FXML
   public void signOut() throws IOException {
-    Parent loginElements = FXMLLoader.load(App.class.getResource("views/login.fxml"));
+    Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
 
-    MainController.mainWindow.getChildren().removeAll();
-    MainController.mainWindow.getChildren().setAll(loginElements);
+    MainController.mainWindow.getChildren().setAll(loginView);
   }
 }
