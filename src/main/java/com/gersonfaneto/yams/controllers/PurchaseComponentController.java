@@ -168,13 +168,15 @@ public class PurchaseComponentController {
       componentPrice
     );
 
-    if (DAO.fromComponents().findEquals(boughtComponent) != null) {
-      visualFeedback.setText("Produto já registrado, favor atualizar quantidade!");
-      visualFeedback.setTextFill(Color.ORANGE);
-      return;
-    }
+    Component foundComponent = DAO.fromComponents().findEquals(boughtComponent);
 
-    DAO.fromComponents().createOne(boughtComponent);
+    if (foundComponent == null) {
+      DAO.fromComponents().createOne(boughtComponent);
+    }
+    else {
+      foundComponent.setAmountInStock(foundComponent.getAmountInStock() + amountBought);
+      DAO.fromComponents().updateInformation(foundComponent);
+    }
 
     visualFeedback.setText("Compra registrada com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);
