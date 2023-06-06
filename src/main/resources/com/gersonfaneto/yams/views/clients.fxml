@@ -14,7 +14,7 @@
             <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" text="Nome" />
             <TableColumn fx:id="addressColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" text="Endereço" />
             <TableColumn fx:id="phoneColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" text="Telefone" />
-            <TableColumn fx:id="editColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
+            <TableColumn fx:id="editColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Opções" />
          </columns>
       </TableView>
       <TextField fx:id="searchField" layoutX="80.0" layoutY="13.0" prefHeight="30.0" prefWidth="580.0" promptText="Ex.: John Smith" styleClass="input_field" stylesheets="@../stylesheets/clients.css" />
