@@ -58,6 +58,7 @@ public class StockController {
     priceColumn.setCellValueFactory(new PropertyValueFactory<>("componentPrice"));
     descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("componentDescription"));
 
+    typeFilter.getItems().add("Todos");
     for (ComponentType componentType : ComponentType.values()) {
       typeFilter.getItems().add(TypeParser.parseComponentType(componentType));
     }
@@ -94,6 +95,10 @@ public class StockController {
   public void filterSearch() {
     componentsTable.setItems(filteredComponents.filtered(component -> {
       String typeValue = typeFilter.getValue();
+
+      if (typeValue.equals("Todos")) {
+        return true;
+      }
 
       ComponentType componentType = TypeParser.parseComponentType(typeValue);
 

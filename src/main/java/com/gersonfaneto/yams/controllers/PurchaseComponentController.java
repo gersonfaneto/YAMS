@@ -84,7 +84,7 @@ public class PurchaseComponentController {
 
   @FXML
   public void checkType() {
-    if (typeSelector.getValue().equals("Outro")) {
+    if (typeSelector.getValue().equals("Outros")) {
       typeField.setVisible(true);
       priceField.setDisable(false);
       priceField.clear();

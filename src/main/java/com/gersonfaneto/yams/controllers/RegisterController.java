@@ -111,7 +111,7 @@ public class RegisterController {
       return;
     }
 
-    if (userType.equals("Têcnico(a)")) {
+    if (userType.equals("Têcnico")) {
       DAO.fromUsers().createOne(new Technician(userEmail, userPassword, userName));
     }
     else {

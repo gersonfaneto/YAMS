@@ -71,7 +71,7 @@ public abstract class TypeParser {
       case "Recepcionista":
         userType = UserType.Receptionist;
         break;
-      case "Têcnico(a)":
+      case "Têcnico":
         userType = UserType.Technician;
         break;
       case "Administrador":
@@ -91,10 +91,10 @@ public abstract class TypeParser {
         typeName = "Recepcionista";
         break;
       case Technician:
-        typeName = "Têcnico(a)";
+        typeName = "Têcnico";
         break;
       case Administrator:
-        typeName = "Administrador(a)";
+        typeName = "Administrador";
       default:
         typeName = "Todos";
         break;
