@@ -207,7 +207,9 @@ public class PurchaseComponentController {
 
   public double getCost() {
     try {
-      double costValue = Double.parseDouble(costField.getText());
+      double costValue = Double.parseDouble(
+        costField.getText().replaceFirst(",", ".")
+      );
       
       return (costValue > 0) ? costValue : -1;
     }
@@ -218,7 +220,9 @@ public class PurchaseComponentController {
 
   public double getPrice() {
     try {
-      double priceValue = Double.parseDouble(priceField.getText());
+      double priceValue = Double.parseDouble(
+        priceField.getText().replaceFirst(",", ".")
+      );
 
       return (priceValue > 0) ? priceValue : -1;
     }
