@@ -128,17 +128,17 @@ public class PurchaseComponentController {
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    if (typeSelector.getValue() == null || typeField.isVisible() && typeName.isEmpty()) {
+    if (typeName.isEmpty()) {
       visualFeedback.setText("Tipo inválido!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    if (amountSelector.getValue() == null || amountField.isVisible() && amountBought == -1) {
+    if (amountBought == -1) {
       visualFeedback.setText("Quantida inválida!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    if (typeField.isVisible() && componentPrice == -1) {
+    if (componentPrice == -1) {
       visualFeedback.setText("Preço inválido!");
       visualFeedback.setTextFill(Color.RED);
       return;
@@ -188,6 +188,23 @@ public class PurchaseComponentController {
     System.exit(0);
   }
 
+  public String getType() {
+    return (typeField.isVisible()) ? typeField.getText() : typeSelector.getValue();
+  }
+
+  public int getAmmount() {
+    try {
+      int amountValue = Integer.parseInt(
+          (amountField.isVisible()) ? amountField.getText() : amountSelector.getValue()
+      );
+
+      return (amountValue > 0) ? amountValue : -1;
+    }
+    catch (NumberFormatException nfe) {
+      return -1;
+    }
+  }
+
   public double getCost() {
     try {
       double costValue = Double.parseDouble(costField.getText());
@@ -204,34 +221,6 @@ public class PurchaseComponentController {
       double priceValue = Double.parseDouble(priceField.getText());
 
       return (priceValue > 0) ? priceValue : -1;
-    }
-    catch (NumberFormatException nfe) {
-      return -1;
-    }
-  }
-
-  public String getType() {
-    if (typeField.isVisible()) {
-      return typeField.getText();
-    }
-    return typeSelector.getValue();
-  }
-
-  public int getAmmount() {
-    if (amountField.isVisible()) {
-      try {
-        int amountValue = Integer.parseInt(amountField.getText());
-
-        return (amountValue > 0) ? amountValue : -1;
-      }
-      catch (NumberFormatException nfe) {
-        return -1;
-      }
-    }
-    try {
-      int amountValue = Integer.parseInt(amountSelector.getValue());
-
-      return (amountValue > 0) ? amountValue : -1;
     }
     catch (NumberFormatException nfe) {
       return -1;
