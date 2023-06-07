@@ -59,7 +59,7 @@ public class ClientsRegisterController {
     String phoneNumber = phoneField.getText();
 
     if (clientName.length() == 0 || homeAddress.length() == 0 || phoneNumber.length() == 0) {
-      visualFeedback.setText("Insira o seus dados!");
+      visualFeedback.setText("Favor, preencher todos os campos!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }

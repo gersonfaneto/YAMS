@@ -7,6 +7,8 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
+import com.gersonfaneto.yams.models.entities.user.UserType;
+import com.gersonfaneto.yams.utils.TypeParser;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
@@ -62,8 +64,11 @@ public class RegisterController {
   public void initialize() {
     revealSecrets();
 
-    roleSelector.getItems().add("Têcnico(a)");
-    roleSelector.getItems().add("Recepcionista");
+    for (UserType userType : UserType.values()) {
+      if (userType != UserType.Administrator) {
+        roleSelector.getItems().add(TypeParser.parseUserType(userType));
+      }
+    } 
   }
 
   @FXML
@@ -83,7 +88,7 @@ public class RegisterController {
     }
 
     if (foundUser != null) {
-      visualFeedback.setText("Email já cadastrado!");
+      visualFeedback.setText("Usuário já cadastrado!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }

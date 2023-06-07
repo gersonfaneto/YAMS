@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
-import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.TypeParser;
@@ -66,8 +64,11 @@ public class EmployeesUpdateController {
   public void initialize() {
     revealSecrets();
 
-    roleSelector.getItems().add("Têcnico(a)");
-    roleSelector.getItems().add("Recepcionista");
+    for (UserType userType : UserType.values()) {
+      if (userType != UserType.Administrator) {
+        roleSelector.getItems().add(TypeParser.parseUserType(userType));
+      }
+    } 
   }
 
   @FXML
@@ -87,7 +88,7 @@ public class EmployeesUpdateController {
     }
 
     if (foundUser != null && foundUser.getUserID() != employeeID) {
-      visualFeedback.setText("Email já cadastrado!");
+      visualFeedback.setText("Usuário já cadastrado!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
@@ -161,15 +162,7 @@ public class EmployeesUpdateController {
     emailField.setText(userEmail);
     passwordField.setText(userPassword);
     confirmPasswordField.setText(userPassword);
-    if (userType == UserType.Administrator) {
-      roleSelector.setValue("Administrador");
-    }
-    else if (userType == UserType.Receptionist) {
-      roleSelector.setValue("Recepcionista");
-    }
-    else {
-      roleSelector.setValue("Têcnico(a)");
-    }
+    roleSelector.setValue(TypeParser.parseUserType(userType));
   }
 
   private String passwordValue() {

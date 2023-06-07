@@ -58,9 +58,9 @@ public class StockController {
     priceColumn.setCellValueFactory(new PropertyValueFactory<>("componentPrice"));
     descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("componentDescription"));
 
-    typeFilter.getItems().addAll(
-      List.of("Todos", "RAM", "Placa Mãe", "Fonte", "Placa de Vídeo", "HD", "SSD", "Outros")
-    );
+    for (ComponentType componentType : ComponentType.values()) {
+      typeFilter.getItems().add(TypeParser.parseComponentType(componentType));
+    }
 
     List<Component> allComponents = DAO.fromComponents().findMany();
 
