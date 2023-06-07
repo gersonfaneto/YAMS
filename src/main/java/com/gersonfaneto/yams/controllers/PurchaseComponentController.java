@@ -65,9 +65,10 @@ public class PurchaseComponentController {
     );
     amountField.setVisible(false);
 
-    typeSelector.getItems().addAll(
-      List.of("RAM", "Placa Mãe", "Fonte", "Placa de Vídeo", "HD", "SSD", "Outro")
-    );
+    for (ComponentType componentType : ComponentType.values()) {
+      typeSelector.getItems().add(TypeParser.parseComponentType(componentType));
+    }
+
     typeField.setVisible(false);
   }
 
