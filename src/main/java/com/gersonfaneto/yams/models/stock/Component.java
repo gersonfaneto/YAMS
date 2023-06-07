@@ -40,7 +40,7 @@ public class Component implements Serializable {
     this.componentType = componentType;
     this.componentDescription = componentDescription;
     this.componentCost = componentCost;
-    this.componentPrice = (componentType == Others) ? componentPrice : componentType.getTypeValue();
+    this.componentPrice = componentPrice;
     this.amountInStock = amountInStock;
   }
 
