@@ -73,15 +73,15 @@ public class RegisterController {
 
   @FXML
   void validateEntries() {
-    String nameValue = nameField.getText();
-    String emailValue = emailField.getText();
-    String passwordValue = passwordValue();
-    String confirmPasswordValue = confirmPasswordValue();
-    String roleValue = roleSelector.getValue();
+    String userName = nameField.getText();
+    String userEmail = emailField.getText();
+    String userPassword = passwordValue();
+    String userConfirmPassword = confirmPasswordValue();
+    String userType = roleSelector.getValue();
 
-    User foundUser = DAO.fromUsers().findByEmail(emailValue);
+    User foundUser = DAO.fromUsers().findByEmail(userEmail);
 
-    if (nameValue.length() == 0 || emailValue.length() == 0 || passwordValue.length() == 0) {
+    if (userName.length() == 0 || userEmail.length() == 0 || userPassword.length() == 0) {
       visualFeedback.setText("Insira o seus dados!");
       visualFeedback.setTextFill(Color.RED);
       return;
@@ -93,22 +93,29 @@ public class RegisterController {
       return;
     }
 
-    if (!passwordValue.equals(confirmPasswordValue)) {
+    if (!userPassword.equals(userConfirmPassword)) {
       visualFeedback.setText("Senhas não conferem!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    if (roleValue == null) {
+    
+    if (userPassword.length() < 4) {
+      visualFeedback.setText("Senha muito curta!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    if (userType == null) {
       visualFeedback.setText("Selecione o seu cargo!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
 
-    if (roleValue.equals("Têcnico(a)")) {
-      DAO.fromUsers().createOne(new Technician(emailValue, passwordValue, nameValue));
+    if (userType.equals("Têcnico(a)")) {
+      DAO.fromUsers().createOne(new Technician(userEmail, userPassword, userName));
     }
     else {
-      DAO.fromUsers().createOne(new Receptionist(emailValue, passwordValue, nameValue));
+      DAO.fromUsers().createOne(new Receptionist(userEmail, userPassword, userName));
     }
 
     nameField.clear();

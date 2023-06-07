@@ -98,6 +98,13 @@ public class EmployeesUpdateController {
       visualFeedback.setTextFill(Color.RED);
       return;
     }
+
+    if (userPassword.length() < 4) {
+      visualFeedback.setText("Senha muito curta!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
     if (userType == null) {
       visualFeedback.setText("Selecione o seu cargo!");
       visualFeedback.setTextFill(Color.RED);
