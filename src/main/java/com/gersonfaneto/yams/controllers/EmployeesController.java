@@ -145,9 +145,11 @@ public class EmployeesController {
 
     editColumn.setCellFactory(cellFoctory);
 
-    roleFilter.getItems().add("Todos");
-    roleFilter.getItems().add("Têcnico(a)");
-    roleFilter.getItems().add("Recepcionista");
+    for (UserType userType : UserType.values()) {
+      if (userType != UserType.Administrator) {
+        roleFilter.getItems().add(TypeParser.parseUserType(userType));
+      }
+    }
 
     List<User> allEmployees = DAO.fromUsers().findMany()
       .stream()

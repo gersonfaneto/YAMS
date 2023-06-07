@@ -96,6 +96,7 @@ public abstract class TypeParser {
       case Administrator:
         typeName = "Administrador(a)";
       default:
+        typeName = "Todos";
         break;
     }
 
