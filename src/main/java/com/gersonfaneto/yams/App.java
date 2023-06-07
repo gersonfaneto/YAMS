@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class App extends Application {
+  private double xCoord, yCoord;
 
   public static void main(String[] args) {
     launch(args);
@@ -22,9 +23,19 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
+    Parent rootView = FXMLLoader.load(getClass().getResource("views/login.fxml"));
 
-    Scene loginScene = new Scene(root);
+    rootView.setOnMousePressed(event -> {
+      xCoord = event.getSceneX();
+      yCoord = event.getSceneY();
+    });
+
+    rootView.setOnMouseDragged(event -> {
+      primaryStage.setX(event.getScreenX() - xCoord);
+      primaryStage.setY(event.getScreenY() - yCoord);
+    });
+
+    Scene loginScene = new Scene(rootView);
 
     Image appIcon = new Image(getClass().getResourceAsStream("images/logo-color.png"));
 
