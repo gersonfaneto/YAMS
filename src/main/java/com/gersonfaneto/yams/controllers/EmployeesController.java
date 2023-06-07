@@ -148,9 +148,11 @@ public class EmployeesController {
     roleFilter.getItems().add("Todos");
     roleFilter.getItems().add("Têcnico(a)");
     roleFilter.getItems().add("Recepcionista");
-    roleFilter.getItems().add("Administrador");
 
-    List<User> allEmployees = DAO.fromUsers().findMany();
+    List<User> allEmployees = DAO.fromUsers().findMany()
+      .stream()
+      .filter(user -> user.getUserType() != UserType.Administrator)
+      .toList();
 
     employeesList.addAll(allEmployees);
 
