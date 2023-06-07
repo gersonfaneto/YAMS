@@ -121,7 +121,7 @@ public class PurchaseComponentController {
     String typeName = getType();
     int amountBought = getAmmount();
     double componentCost = getCost();
-    double componentPrice = getCost();
+    double componentPrice = getPrice();
 
     if (componentDescription.isEmpty()) {
       visualFeedback.setText("Descrição inválida!");
