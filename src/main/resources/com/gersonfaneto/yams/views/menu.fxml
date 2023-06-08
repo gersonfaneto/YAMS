@@ -7,21 +7,21 @@
 
 <AnchorPane fx:id="sideBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.MenuController">
    <children>
-      <Button fx:id="homeButton" layoutY="152.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/global.css" text="Home" />
+      <Button fx:id="homeButton" layoutY="152.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../stylesheets/global.css" text="Home" />
       <FontAwesomeIconView fx:id="homeIcon" fill="WHITE" glyphName="HOME" layoutX="93.0" layoutY="184.0" size="20" />
-      <Button fx:id="clientsButton" layoutY="202.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/global.css" text="Clientes" />
-      <Button fx:id="servicesButton" layoutY="252.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/global.css" text="Serviços" />
-      <Button fx:id="stockButton" layoutY="302.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/global.css" text="Estoque" />
+      <Button fx:id="clientsButton" layoutY="202.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../stylesheets/global.css" text="Clientes" />
+      <Button fx:id="servicesButton" layoutY="252.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../stylesheets/global.css" text="Serviços" />
+      <Button fx:id="stockButton" layoutY="302.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../stylesheets/global.css" text="Estoque" />
       <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="93.0" layoutY="234.0" size="20" text="" />
       <FontAwesomeIconView fill="WHITE" glyphName="CLIPBOARD" layoutX="93.0" layoutY="284.0" size="20" />
-      <Button fx:id="reportsButton" layoutY="348.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/global.css" text="Relatórios">
+      <Button fx:id="reportsButton" layoutY="348.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../stylesheets/global.css" text="Relatórios">
          <padding>
             <Insets left="10.0" />
          </padding></Button>
       <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" layoutX="93.0" layoutY="334.0" size="20" />
       <FontAwesomeIconView fill="WHITE" glyphName="ARCHIVE" layoutX="94.0" layoutY="380.0" size="20" />
-      <FontAwesomeIconView fx:id="signOutButon" fill="WHITE" glyphName="SIGN_OUT" layoutX="14.0" layoutY="31.0" onMouseClicked="#signOut" size="20" styleClass="back_button" />
-      <Button fx:id="employeesButton" layoutY="152.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav_buttons" stylesheets="@../stylesheets/global.css" text="Funcionários">
+      <FontAwesomeIconView fx:id="signOutButon" fill="WHITE" glyphName="SIGN_OUT" layoutX="14.0" layoutY="31.0" onMouseClicked="#signOut" size="20" styleClass="back-button" />
+      <Button fx:id="employeesButton" layoutY="152.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../stylesheets/global.css" text="Funcionários">
          <padding>
             <Insets left="10.0" />
          </padding>

@@ -78,10 +78,10 @@ public class ClientsController {
             FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
 
             deleteIcon.getStyleClass().clear();
-            deleteIcon.setStyleClass("delete_icon");
+            deleteIcon.setStyleClass("delete-icon");
 
             editIcon.getStyleClass().clear();
-            editIcon.setStyleClass("edit_icon");
+            editIcon.setStyleClass("edit-icon");
 
             deleteIcon.setOnMouseClicked((MouseEvent event) -> {
               Client selectedClient = clientsTable.getSelectionModel().getSelectedItem();

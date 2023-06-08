@@ -17,9 +17,9 @@
             <TableColumn fx:id="editColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Opções" />
          </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="80.0" layoutY="13.0" prefHeight="30.0" prefWidth="580.0" promptText="Ex.: John Smith" styleClass="input_field" stylesheets="@../stylesheets/global.css" />
-      <Button fx:id="registerButton" layoutX="672.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClient" prefHeight="30.0" prefWidth="80.0" styleClass="normal_button" stylesheets="@../stylesheets/global.css" text="Cadastrar" />
-      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
-      <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="33.0" size="20" styleClass="search_button" />
+      <TextField fx:id="searchField" layoutX="80.0" layoutY="13.0" prefHeight="30.0" prefWidth="580.0" promptText="Ex.: John Smith" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
+      <Button fx:id="registerButton" layoutX="672.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClient" prefHeight="30.0" prefWidth="80.0" styleClass="normal-button" stylesheets="@../stylesheets/global.css" text="Cadastrar" />
+      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close-button" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="33.0" size="20" styleClass="search-button" />
    </children>
 </AnchorPane>
