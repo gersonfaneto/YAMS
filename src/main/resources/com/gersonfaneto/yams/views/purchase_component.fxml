@@ -20,7 +20,7 @@
       <Button fx:id="confirmButton" layoutX="471.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#confirmPurchase" prefHeight="30.0" prefWidth="100.0" styleClass="confirm-button" stylesheets="@../stylesheets/global.css" text="Confirmar" />
       <Button fx:id="cancelButton" layoutX="230.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelPurchase" prefHeight="30.0" prefWidth="100.0" styleClass="cancel-button" stylesheets="@../stylesheets/global.css" text="Cancelar" />
       <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="770.0" layoutY="32.0" onMouseClicked="#closeWindow" size="20" styleClass="close-button" />
-      <FontAwesomeIconView fx:id="backButton" glyphName="ARROW-LEFT" layoutX="14.0" layoutY="31.0" onMouseClicked="#cancelPurchase" size="20" styleClass="back-button" />
+      <FontAwesomeIconView fx:id="backButton" glyphName="ARROW_LEFT" layoutX="14.0" layoutY="31.0" onMouseClicked="#cancelPurchase" size="20" styleClass="back-button" />
       <FontAwesomeIconView glyphName="USER" layoutX="707.0" layoutY="87.0" size="2" />
    </children>
 </AnchorPane>

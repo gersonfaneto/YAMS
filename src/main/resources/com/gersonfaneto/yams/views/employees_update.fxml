@@ -23,21 +23,21 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="passwordText" layoutX="166.0" layoutY="167.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="text-field" stylesheets="@../stylesheets/global.css" />
-      <PasswordField fx:id="passwordField" layoutX="166.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="input-field" stylesheets="@../stylesheets/global.css">
+      <TextField fx:id="passwordText" layoutX="165.0" layoutY="167.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
+      <PasswordField fx:id="passwordField" layoutX="164.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="input-field" stylesheets="@../stylesheets/global.css">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="confirmPasswordText" layoutX="165.0" layoutY="213.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
-      <PasswordField fx:id="confirmPasswordField" layoutX="165.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="text-field" stylesheets="@../stylesheets/global.css">
+      <TextField fx:id="confirmPasswordText" layoutX="164.0" layoutY="213.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="164.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="input-field" stylesheets="@../stylesheets/global.css">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </PasswordField>
       <ComboBox fx:id="roleSelector" layoutX="165.0" layoutY="255.0" prefWidth="150.0" promptText="Cargo" styleClass="role-selector" stylesheets="@../stylesheets/global.css" />
       <CheckBox fx:id="showPassword" layoutX="166.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#revealSecrets" prefWidth="125.0" text="Mostrar Senha" textFill="#868e96" />
-      <Button fx:id="cancelButton" layoutX="85.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelUpdate" prefHeight="30.0" prefWidth="210.0" styleClass="cancel-button" stylesheets="@../stylesheets/register.css" text="Cancelar">
+      <Button fx:id="cancelButton" layoutX="85.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelUpdate" prefHeight="30.0" prefWidth="210.0" styleClass="cancel-button" stylesheets="@../stylesheets/global.css" text="Cancelar">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -52,6 +52,6 @@
       <FontAwesomeIconView glyphName="ENVELOPE" layoutX="125.0" layoutY="137.0" size="20" />
       <FontAwesomeIconView glyphName="LOCK" layoutX="127.0" layoutY="186.0" size="25" />
       <FontAwesomeIconView glyphName="LOCK" layoutX="127.0" layoutY="232.0" size="25" />
-      <FontAwesomeIconView glyphName="ID-CARD" layoutX="123.0" layoutY="275.0" size="20" />
+      <FontAwesomeIconView glyphName="ID_CARD" layoutX="123.0" layoutY="275.0" size="20" />
    </children>
 </AnchorPane>
