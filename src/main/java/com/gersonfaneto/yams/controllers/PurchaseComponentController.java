@@ -106,7 +106,7 @@ public class PurchaseComponentController {
     priceField.setDisable(true);
 
     double typeValue = TypeParser.parseComponentType(typeName).getTypeValue();
-    priceField.setText(Double.toString(typeValue));
+    priceField.setText(formatMoney(typeValue));
   }
 
   @FXML
@@ -231,4 +231,8 @@ public class PurchaseComponentController {
       return -1;
     }
   }
+
+  public String formatMoney(double moneyInput) {
+    return String.format("%.2f", moneyInput).replace(".", ",");
+  } 
 }

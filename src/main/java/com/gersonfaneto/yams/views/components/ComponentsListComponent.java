@@ -125,7 +125,7 @@ public class ComponentsListComponent extends AnchorPane {
 
   }
 
-  public String formatMoney(double priceInput) {
-    return String.format("%.2f", priceInput);
+  public String formatMoney(double moneyInput) {
+    return String.format("%.2f", moneyInput).replace(".", ",");
   } 
 }
