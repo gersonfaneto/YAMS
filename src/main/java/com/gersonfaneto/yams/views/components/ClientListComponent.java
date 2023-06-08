@@ -68,11 +68,11 @@ public class ClientListComponent extends AnchorPane {
     deleteButton.setGraphic(deleteIcon);
 
     deleteButton.setOnMouseClicked((MouseEvent event) -> {
-      deleteClient(targetClient, clientsList);
+      deleteClient();
     });
 
     editButton.setOnMouseClicked((MouseEvent event) -> {
-      updateClient(targetClient);
+      updateClient();
     });
 
     Label nameField = new Label(targetClient.getClientName());
@@ -101,14 +101,14 @@ public class ClientListComponent extends AnchorPane {
     super.getChildren().addAll(nameField, addressField, phoneNumberField);
   }
 
-  private void deleteClient(Client targetClient, ObservableList<Client> clientsList) {
+  private void deleteClient() {
     DAO.fromClients().deleteByID(targetClient.getClientID());
 
     clientsList.clear();
     clientsList.addAll(DAO.fromClients().findMany());
   }
 
-  private void updateClient(Client targetClient) {
+  private void updateClient() {
     FXMLLoader loaderFXML = new FXMLLoader();
     loaderFXML.setLocation(App.class.getResource("views/clients_update.fxml"));
 

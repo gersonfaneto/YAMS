@@ -49,6 +49,6 @@
       <FontAwesomeIconView glyphName="ENVELOPE" layoutX="281.0" layoutY="298.0" size="20" />
       <FontAwesomeIconView glyphName="LOCK" layoutX="283.0" layoutY="347.0" size="25" />
       <FontAwesomeIconView glyphName="LOCK" layoutX="283.0" layoutY="393.0" size="25" />
-      <FontAwesomeIconView glyphName="ID-CARD" layoutX="279.0" layoutY="436.0" size="20" />
+      <FontAwesomeIconView glyphName="ID_CARD" layoutX="279.0" layoutY="436.0" size="20" />
    </children>
 </AnchorPane>

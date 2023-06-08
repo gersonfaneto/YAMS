@@ -1,40 +1,22 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
 import java.util.List;
 
-import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.TypeParser;
-import com.gersonfaneto.yams.views.components.ClientListComponent;
 import com.gersonfaneto.yams.views.components.UsersListComponent;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Callback;
 
 public class EmployeesController {
 
@@ -122,10 +104,5 @@ public class EmployeesController {
   public void closeWindow() {
     MainController.saveData();
     System.exit(0);
-  }
-
-  public void refreshTable() {
-    employeesList.clear();
-    employeesList.addAll(DAO.fromUsers().findMany());
   }
 }
