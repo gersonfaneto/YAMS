@@ -102,7 +102,7 @@
   -fx-fill:#2F9E44;
 }
 
-.client-item {
+.client-item, .user-item {
   -fx-background-color: transparent;
 }
 

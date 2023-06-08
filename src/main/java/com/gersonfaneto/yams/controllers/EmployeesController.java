@@ -8,6 +8,8 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.TypeParser;
+import com.gersonfaneto.yams.views.components.ClientListComponent;
+import com.gersonfaneto.yams.views.components.UsersListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -21,6 +23,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,19 +39,7 @@ import javafx.util.Callback;
 public class EmployeesController {
 
   @FXML
-  private FontAwesomeIconView closeButton;
-
-  @FXML
-  private TableView<User> employeesTable;
-
-  @FXML
-  private TableColumn<User, String> emailColumn;
-
-  @FXML
-  private TableColumn<User, String> nameColumn;
-
-  @FXML
-  private TableColumn<User, String> editColumn;
+  private ListView<User> listView;
 
   @FXML
   private ComboBox<String> roleFilter;
@@ -63,87 +55,21 @@ public class EmployeesController {
     employeesList = FXCollections.observableArrayList();
     filteredEmployees = new FilteredList<>(employeesList, x -> true);
 
-    emailColumn.setCellValueFactory(new PropertyValueFactory<>("userEmail"));
-    nameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
+    listView.setCellFactory(listView -> new ListCell<User>() {
+      @Override
+      protected void updateItem(User user, boolean empty) {
+        super.updateItem(user, empty);
 
-    Callback<TableColumn<User, String>, TableCell<User, String>> cellFoctory = (TableColumn<User, String> param) -> {
-      final TableCell<User, String> cell = new TableCell<User, String>() {
-        @Override
-        public void updateItem(String item, boolean empty) {
-          super.updateItem(item, empty);
-
-          if (empty) {
-            setGraphic(null);
-            setText(null);
-          }
-          else {
-            FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
-            FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
-
-            deleteIcon.getStyleClass().clear();
-            deleteIcon.setStyleClass("delete-icon");
-
-            editIcon.getStyleClass().clear();
-            editIcon.setStyleClass("edit-icon");
-
-            deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-              User selectedUser = employeesTable.getSelectionModel().getSelectedItem();
-
-              DAO.fromUsers().deleteByID(selectedUser.getUserID());
-
-              refreshTable();
-            });
-
-            editIcon.setOnMouseClicked((MouseEvent event) -> {
-              User selectedUser = employeesTable.getSelectionModel().getSelectedItem();
-
-              FXMLLoader loaderFXML = new FXMLLoader();
-              loaderFXML.setLocation(App.class.getResource("views/employees_update.fxml"));
-
-              try {
-                loaderFXML.load();
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
-
-              EmployeesUpdateController updateController = loaderFXML.getController();
-
-              updateController.injectFields(
-                selectedUser.getUserID(),
-                selectedUser.getUserName(),
-                selectedUser.getUserEmail(),
-                selectedUser.getUserPassword(),
-                selectedUser.getUserType()
-              );
-
-              Parent updateView = loaderFXML.getRoot();
-              Stage modalStage = new Stage();
-
-              modalStage.setScene(new Scene(updateView));
-              modalStage.initStyle(StageStyle.UNDECORATED);
-              modalStage.show();
-
-              MainController.modalWindow = modalStage;
-
-            });
-
-            HBox managebtn = new HBox(editIcon, deleteIcon);
-            managebtn.setStyle("-fx-alignment:center");
-            managebtn.setSpacing(5);
-            HBox.setMargin(deleteIcon, new Insets(2, 2, 2, 5));
-            HBox.setMargin(editIcon, new Insets(2, 5, 2, 2));
-
-            setGraphic(managebtn);
-
-            setText(null);
-          }
+        if (user == null || empty) {
+          setGraphic(null);
         }
-      };
+        else {
+          UsersListComponent clientComponent = new UsersListComponent(user, employeesList);
 
-      return cell;
-    };
-
-    editColumn.setCellFactory(cellFoctory);
+          setGraphic(clientComponent);
+        }
+      }
+    });
 
     roleFilter.getItems().add("Todos");
     for (UserType userType : UserType.values()) {
@@ -170,9 +96,6 @@ public class EmployeesController {
         if (user.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
           return true;
         }
-        else if (user.getUserEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        }
         else {
           return false;
         }
@@ -181,14 +104,12 @@ public class EmployeesController {
 
     SortedList<User> sortedEmployees = new SortedList<>(filteredEmployees);
 
-    sortedEmployees.comparatorProperty().bind(employeesTable.comparatorProperty());
-
-    employeesTable.setItems(sortedEmployees);
+    listView.setItems(sortedEmployees);
   }
 
   @FXML
   public void filterSearch() {
-    employeesTable.setItems(filteredEmployees.filtered(user -> {
+    listView.setItems(filteredEmployees.filtered(user -> {
       String roleValue = roleFilter.getValue();
 
       UserType userType = TypeParser.parseUserType(roleValue);
