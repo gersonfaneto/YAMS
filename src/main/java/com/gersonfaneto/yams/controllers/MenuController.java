@@ -9,8 +9,10 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
 public class MenuController {
   @FXML
@@ -40,20 +42,34 @@ public class MenuController {
   @FXML
   private Button reportsButton;
 
+  @FXML
+  private AnchorPane sideBar;
+
+  private Button activeButton;
+
   public void initialize() {
     if (MainController.loggedUser.getUserType() == UserType.Administrator) {
       homeButton.setVisible(false);
       homeIcon.setVisible(false);
+      setActiveButton(employeesButton);
     }
     else if (MainController.loggedUser.getUserType() == UserType.Receptionist) {
       homeButton.setVisible(false);
       homeIcon.setVisible(false);
       employeesButton.setVisible(false);
       employeesIcon.setVisible(false);
+      setActiveButton(clientsButton);
     }
     else {
       employeesButton.setVisible(false);
       employeesIcon.setVisible(false);
+      setActiveButton(homeButton);
+    }
+
+    for (Node currentNode : sideBar.getChildren()) {
+      if (currentNode instanceof Button currentButton) {
+        currentButton.setOnMouseClicked(event -> setActiveButton(currentButton));
+      } 
     }
   }
 
@@ -90,5 +106,14 @@ public class MenuController {
     Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
 
     MainController.mainWindow.getChildren().setAll(loginView);
+  }
+
+  private void setActiveButton(Button sourceButton) {
+    if (this.activeButton != null) {
+      this.activeButton.getStyleClass().removeAll("active");
+    }
+
+    sourceButton.getStyleClass().add("active");
+    this.activeButton = sourceButton;
   }
 }

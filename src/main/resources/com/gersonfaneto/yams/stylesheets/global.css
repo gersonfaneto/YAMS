@@ -21,7 +21,7 @@
   -fx-font-size: 16px;
 }
 
-.nav_buttons:hover {
+.nav_buttons:hover, .nav_buttons.active {
   -fx-background-color: #333333;
   -fx-text-fill: #ffffff;
   -fx-font-weight: bold;
