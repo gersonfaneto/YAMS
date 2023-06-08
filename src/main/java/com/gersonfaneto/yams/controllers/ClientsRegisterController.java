@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.controllers;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
@@ -40,6 +41,10 @@ public class ClientsRegisterController {
   @FXML
   private Button confirmButton;
 
+  private static final String PHONE_REGEX = "^\\(?(\\d{2})\\)?[-.\\s]?(\\d{4,5})[-.\\s]?(\\d{4})$";
+  private static final Pattern PHONE_PATTERN = Pattern.compile(PHONE_REGEX);
+  private static final String MASK = "($1) $2-$3";
+
   @FXML
   public void initialize() {
 
@@ -64,7 +69,13 @@ public class ClientsRegisterController {
       return;
     }
 
-    DAO.fromClients().createOne(new Client(clientName, homeAddress, phoneNumber));
+    if (!isValidPhoneNumber(phoneNumber)) {
+      visualFeedback.setText("Número de telefone inválido!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    DAO.fromClients().createOne(new Client(clientName, homeAddress, applyMaskToPhoneNumber(phoneNumber)));
 
     visualFeedback.setText("Registrado com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);
@@ -78,5 +89,13 @@ public class ClientsRegisterController {
   public void closeWindow() throws IOException {
     MainController.saveData();
     System.exit(0);
+  }
+
+  public boolean isValidPhoneNumber(String phoneNumber) {
+    return PHONE_PATTERN.matcher(phoneNumber).matches();
+  }
+
+  public String applyMaskToPhoneNumber(String phoneNumber) {
+    return phoneNumber.replaceAll(PHONE_REGEX, MASK);
   }
 }
