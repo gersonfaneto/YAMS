@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/employees.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.EmployeesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.EmployeesController">
    <children>
       <TableView fx:id="employeesTable" layoutX="50.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="700.0">
          <columns>
@@ -16,8 +16,8 @@
             <TableColumn fx:id="editColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Opções" />
          </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="80.0" layoutY="13.0" prefHeight="30.0" prefWidth="450.0" promptText="Ex.: John Smith" styleClass="input_field" stylesheets="@../stylesheets/employees.css" />
-      <ComboBox fx:id="roleFilter" layoutX="540.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="210.0" promptText="Cargo" styleClass="role_selector" stylesheets="@../stylesheets/employees.css" />
+      <TextField fx:id="searchField" layoutX="80.0" layoutY="13.0" prefHeight="30.0" prefWidth="450.0" promptText="Ex.: John Smith" styleClass="input_field" stylesheets="@../stylesheets/global.css" />
+      <ComboBox fx:id="roleFilter" layoutX="540.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="210.0" promptText="Cargo" styleClass="role_selector" stylesheets="@../stylesheets/global.css" />
       <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close_button" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="33.0" size="20" styleClass="search_button" />
    </children>

@@ -1,0 +1,101 @@
+.parent {
+  -fx-background-color: #e9ecef;
+}
+
+.close_button:hover {
+ -fx-fill: #e03131;
+}
+
+.back_button:hover {
+ -fx-fill: #00d1cd;
+}
+
+.nav_buttons {
+  -fx-background-color: #444444;
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: bold;
+  -fx-font-size: 16px;
+}
+
+.nav_buttons:hover {
+  -fx-background-color: #333333;
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: bold;
+  -fx-font-size: 16px;
+}
+
+.input_field {
+  -fx-border-color: #dee2e6;
+  -fx-border-width: 0.5px;
+}
+
+.input_field:focused {
+  -fx-border-color: #00d1cd;
+}
+
+.role_selector, .amount_selector,
+.type_selector {
+  -fx-background-color: #dee2e6;
+}
+
+.register_label:hover {
+  -fx-underline: true;
+}
+
+.register_button {
+  -fx-background-color: #00d1cd;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 3px;
+}
+
+.register_button:hover {
+  -fx-background-color: transparent;
+  -fx-background-radius: 3px;
+  -fx-text-fill: #00d1cd;
+  -fx-border-color: #00d1cd;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}
+
+.delete_icon {
+  -glyph-size:15px;
+  -fx-fill:#E03131;
+}
+
+.edit_icon {
+  -glyph-size:15px;
+  -fx-fill:#2F9E44;
+}
+
+.confirm_button {
+  -fx-background-color: #2f9e44;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 3px;
+}
+
+.confirm_button:hover {
+  -fx-background-color: transparent;
+  -fx-text-fill: #2f9e44;
+  -fx-background-radius: 3px;
+  -fx-border-color: #2f9e44;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}
+
+.cancel_button {
+  -fx-background-color: #e03131;
+  -fx-text-fill: #ffffff;
+  -fx-background-radius: 3px;
+}
+
+.cancel_button:hover {
+  -fx-background-color: transparent;
+  -fx-text-fill: #e03131;
+  -fx-background-radius: 3px;
+  -fx-border-color: #e03131;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}

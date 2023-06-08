@@ -10,39 +10,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@../stylesheets/employees_update.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.EmployeesUpdateController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.EmployeesUpdateController">
    <children>
       <Label fx:id="visualFeedback" layoutX="165.0" layoutY="37.0" prefHeight="18.0" prefWidth="300.0" />
-      <TextField fx:id="nameField" layoutX="165.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Nome" styleClass="input_field" stylesheets="@../stylesheets/employees_update.css">
+      <TextField fx:id="nameField" layoutX="165.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Nome" styleClass="input_field" stylesheets="@../stylesheets/global.css">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="emailField" layoutX="164.0" layoutY="117.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Email" styleClass="input_field" stylesheets="@../stylesheets/employees_update.css">
+      <TextField fx:id="emailField" layoutX="164.0" layoutY="117.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Email" styleClass="input_field" stylesheets="@../stylesheets/global.css">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="passwordText" layoutX="166.0" layoutY="167.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/employees_update.css" />
-      <PasswordField fx:id="passwordField" layoutX="166.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="input_field" stylesheets="@../stylesheets/employees_update.css">
+      <TextField fx:id="passwordText" layoutX="166.0" layoutY="167.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="text_field" stylesheets="@../stylesheets/global.css" />
+      <PasswordField fx:id="passwordField" layoutX="166.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Senha" styleClass="input_field" stylesheets="@../stylesheets/global.css">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="confirmPasswordText" layoutX="165.0" layoutY="213.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="input_field" stylesheets="@../stylesheets/employees_update.css" />
-      <PasswordField fx:id="confirmPasswordField" layoutX="165.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="text_field" stylesheets="@../stylesheets/employees_update.css">
+      <TextField fx:id="confirmPasswordText" layoutX="165.0" layoutY="213.0" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="input_field" stylesheets="@../stylesheets/global.css" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="165.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="300.0" promptText="Confirmar Senha" styleClass="text_field" stylesheets="@../stylesheets/global.css">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </PasswordField>
-      <ComboBox fx:id="roleSelector" layoutX="165.0" layoutY="255.0" prefWidth="150.0" promptText="Cargo" styleClass="role_selector" stylesheets="@../stylesheets/employees_update.css" />
+      <ComboBox fx:id="roleSelector" layoutX="165.0" layoutY="255.0" prefWidth="150.0" promptText="Cargo" styleClass="role_selector" stylesheets="@../stylesheets/global.css" />
       <CheckBox fx:id="showPassword" layoutX="166.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#revealSecrets" prefWidth="125.0" text="Mostrar Senha" textFill="#868e96" />
       <Button fx:id="cancelButton" layoutX="85.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelUpdate" prefHeight="30.0" prefWidth="210.0" styleClass="cancel_button" stylesheets="@../stylesheets/register.css" text="Cancelar">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="confirmUpdate" layoutX="318.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="210.0" styleClass="confirm_button" stylesheets="@../stylesheets/employees_update.css" text="Confirmar">
+      <Button fx:id="confirmUpdate" layoutX="318.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#confirmUpdate" prefHeight="30.0" prefWidth="210.0" styleClass="confirm_button" stylesheets="@../stylesheets/global.css" text="Confirmar">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
