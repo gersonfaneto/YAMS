@@ -37,9 +37,9 @@
   -fx-border-color: #00d1cd;
 }
 
-.role-selector, .amount-selector,
-.type-selector {
+.combo-box {
   -fx-background-color: #dee2e6;
+  -fx-padding: -5 5 -5 5;
 }
 
 .register-label:hover {
