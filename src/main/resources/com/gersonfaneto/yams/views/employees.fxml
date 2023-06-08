@@ -12,6 +12,6 @@
       <ComboBox fx:id="roleFilter" layoutX="540.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="210.0" promptText="Cargo" styleClass="type-selector" stylesheets="@../stylesheets/global.css" />
       <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close-button" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="33.0" size="20" styleClass="search-button" />
-      <ListView id="listView" fx:id="listView" layoutX="64.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="700.0" stylesheets="@../stylesheets/global.css" />
+      <ListView id="listView" fx:id="listView" layoutX="50.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="700.0" stylesheets="@../stylesheets/global.css" />
    </children>
 </AnchorPane>
