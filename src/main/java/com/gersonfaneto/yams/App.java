@@ -37,7 +37,7 @@ public class App extends Application {
 
     Scene loginScene = new Scene(rootView);
 
-    Image appIcon = new Image(getClass().getResourceAsStream("images/logo-color.png"));
+    Image appIcon = new Image(getClass().getResourceAsStream("assets/logo-color.png"));
 
     primaryStage.setResizable(false);
     primaryStage.initStyle(StageStyle.UNDECORATED);

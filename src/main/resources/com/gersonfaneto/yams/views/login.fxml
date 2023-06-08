@@ -40,7 +40,7 @@
                </font>
             </PasswordField>
             <CheckBox fx:id="showPassword" layoutX="310.0" layoutY="385.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#revealSecrets" prefWidth="125.0" text="Mostrar Senha" textFill="#868e96" />
-            <Button fx:id="loginButton" layoutX="310.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="login_button" stylesheets="@../stylesheets/global.css" text="Login">
+            <Button fx:id="loginButton" layoutX="310.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="normal_button" stylesheets="@../stylesheets/global.css" text="Login">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
