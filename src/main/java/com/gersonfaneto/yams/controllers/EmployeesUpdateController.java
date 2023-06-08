@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.controllers;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
@@ -60,6 +61,9 @@ public class EmployeesUpdateController {
 
   private String employeeID;
 
+  private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+  private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
   @FXML
   public void initialize() {
     revealSecrets();
@@ -89,6 +93,12 @@ public class EmployeesUpdateController {
 
     if (foundUser != null && foundUser.getUserID() != employeeID) {
       visualFeedback.setText("Usuário já cadastrado!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    if (!isValidEmail(userEmail)) {
+      visualFeedback.setText("Email inváido!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
@@ -178,5 +188,9 @@ public class EmployeesUpdateController {
 
   private String confirmPasswordValue() {
     return showPassword.isSelected() ? confirmPasswordText.getText() : confirmPasswordField.getText();
+  }
+
+  public static boolean isValidEmail(String userEmail) {
+    return EMAIL_PATTERN.matcher(userEmail).matches();
   }
 }
