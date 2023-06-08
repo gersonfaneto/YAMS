@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="100.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo-no-background.png" />
+                  <Image url="@../assets/logo-no-background.png" />
                </image>
             </ImageView>
          </children>
