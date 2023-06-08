@@ -102,7 +102,11 @@
   -fx-fill:#2F9E44;
 }
 
-.client-item, .user-item {
+.update-icon:hover {
+  -fx-fill: #00d1cd;
+}
+
+.client-item, .user-item, .component-item {
   -fx-background-color: transparent;
 }
 

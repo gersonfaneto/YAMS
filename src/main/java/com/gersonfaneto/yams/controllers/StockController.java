@@ -5,9 +5,12 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;
+import com.gersonfaneto.yams.views.components.ClientsListComponent;
+import com.gersonfaneto.yams.views.components.ComponentsListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -18,6 +21,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -28,19 +33,7 @@ public class StockController {
   private FontAwesomeIconView closeButton;
 
   @FXML
-  private TableView<Component> componentsTable;
-
-  @FXML
-  private TableColumn<Component, Integer> amountColumn;
-
-  @FXML
-  private TableColumn<Component, Double> costColumn;
-
-  @FXML
-  private TableColumn<Component, Double> priceColumn;
-
-  @FXML
-  private TableColumn<Component, String> descriptionColumn;
+  private ListView<Component> listView;
 
   @FXML
   private TextField searchField;
@@ -48,20 +41,34 @@ public class StockController {
   @FXML
   private ComboBox<String> typeFilter;
 
-  private final ObservableList<Component> componentsLists = FXCollections.observableArrayList();
-  private final FilteredList<Component> filteredComponents = new FilteredList<>(componentsLists);
+  private ObservableList<Component> componentsLists;
+  private FilteredList<Component> filteredComponents;
 
   @FXML
   public void initialize() {
-    amountColumn.setCellValueFactory(new PropertyValueFactory<>("amountInStock"));
-    costColumn.setCellValueFactory(new PropertyValueFactory<>("componentCost"));
-    priceColumn.setCellValueFactory(new PropertyValueFactory<>("componentPrice"));
-    descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("componentDescription"));
+    componentsLists = FXCollections.observableArrayList();
+    filteredComponents = new FilteredList<>(componentsLists);
 
     typeFilter.getItems().add("Todos");
     for (ComponentType componentType : ComponentType.values()) {
       typeFilter.getItems().add(TypeParser.parseComponentType(componentType));
     }
+
+    listView.setCellFactory(listView -> new ListCell<Component>() {
+      @Override
+      protected void updateItem(Component component, boolean empty) {
+        super.updateItem(component, empty);
+
+        if (component == null || empty) {
+          setGraphic(null);
+        }
+        else {
+          ComponentsListComponent clientComponent = new ComponentsListComponent(component, componentsLists);
+
+          setGraphic(clientComponent);
+        }
+      }
+    });
 
     List<Component> allComponents = DAO.fromComponents().findMany();
 
@@ -86,14 +93,12 @@ public class StockController {
 
     SortedList<Component> sortedComponents = new SortedList<>(filteredComponents);
 
-    sortedComponents.comparatorProperty().bind(componentsTable.comparatorProperty());
-
-    componentsTable.setItems(sortedComponents);
+    listView.setItems(sortedComponents);
   }
 
   @FXML
   public void filterSearch() {
-    componentsTable.setItems(filteredComponents.filtered(component -> {
+    listView.setItems(filteredComponents.filtered(component -> {
       String typeValue = typeFilter.getValue();
 
       if (typeValue.equals("Todos")) {
