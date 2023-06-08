@@ -41,9 +41,9 @@ public class ClientsRegisterController {
   @FXML
   private Button confirmButton;
 
-  private static final String PHONE_REGEX = "^\\(?(\\d{2})\\)?[-.\\s]?(\\d{4,5})[-.\\s]?(\\d{4})$";
-  private static final Pattern PHONE_PATTERN = Pattern.compile(PHONE_REGEX);
-  private static final String MASK = "($1) $2-$3";
+  private final String PHONE_REGEX = "^\\(?(\\d{2})\\)?[-.\\s]?(\\d{4,5})[-.\\s]?(\\d{4})$";
+  private final Pattern PHONE_PATTERN = Pattern.compile(PHONE_REGEX);
+  private final String MASK = "($1) $2-$3";
 
   @FXML
   public void initialize() {

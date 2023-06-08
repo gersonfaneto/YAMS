@@ -61,8 +61,8 @@ public class RegisterController {
   @FXML
   private ComboBox<String> roleSelector;
 
-  private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-  private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+  private final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+  private final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
   @FXML
   public void initialize() {
@@ -179,7 +179,7 @@ public class RegisterController {
     return showPassword.isSelected() ? confirmPasswordText.getText() : confirmPasswordField.getText();
   }
 
-  public static boolean isValidEmail(String userEmail) {
+  public boolean isValidEmail(String userEmail) {
     return EMAIL_PATTERN.matcher(userEmail).matches();
   }
 }
