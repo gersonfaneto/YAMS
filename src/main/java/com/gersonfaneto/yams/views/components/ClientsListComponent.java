@@ -21,11 +21,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ClientListComponent extends AnchorPane {
+public class ClientsListComponent extends AnchorPane {
   private Client targetClient;
   private ObservableList<Client> clientsList;
 
-  public ClientListComponent(Client targetClient, ObservableList<Client> clientsList) {
+  public ClientsListComponent(Client targetClient, ObservableList<Client> clientsList) {
     this.targetClient = targetClient;
     this.clientsList = clientsList;
 

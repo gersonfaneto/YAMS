@@ -6,7 +6,7 @@ import java.util.List;
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
-import com.gersonfaneto.yams.views.components.ClientListComponent;
+import com.gersonfaneto.yams.views.components.ClientsListComponent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,7 +47,7 @@ public class ClientsController {
           setGraphic(null);
         }
         else {
-          ClientListComponent clientComponent = new ClientListComponent(client, clientsList);
+          ClientsListComponent clientComponent = new ClientsListComponent(client, clientsList);
 
           setGraphic(clientComponent);
         }
