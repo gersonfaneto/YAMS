@@ -7,11 +7,11 @@
 }
 
 .close-button:hover {
- -fx-fill: #e03131;
+  -fx-fill: #e03131;
 }
 
 .back-button:hover {
- -fx-fill: #00d1cd;
+  -fx-fill: #00d1cd;
 }
 
 .nav-buttons {
@@ -21,7 +21,8 @@
   -fx-font-size: 16px;
 }
 
-.nav-buttons:hover, .nav-buttons.active {
+.nav-buttons:hover,
+.nav-buttons.active {
   -fx-background-color: #333333;
   -fx-text-fill: #ffffff;
   -fx-font-weight: bold;
@@ -94,19 +95,25 @@
   -fx-border-radius: 3px;
 }
 
+.transparent-button {
+  -fx-background-color: transparent;
+}
+
 .delete-icon:hover {
-  -fx-fill:#E03131;
+  -fx-fill: #e03131;
 }
 
 .edit-icon:hover {
-  -fx-fill:#2F9E44;
+  -fx-fill: #2f9e44;
 }
 
 .update-icon:hover {
   -fx-fill: #00d1cd;
 }
 
-.client-item, .user-item, .component-item {
+.client-item,
+.user-item,
+.component-item {
   -fx-background-color: transparent;
 }
 
@@ -123,39 +130,35 @@
   -fx-padding: 10px;
 }
 
-.scroll-bar:horizontal {
-  -fx-pref-height: 6px;
+.scroll-bar:vertical {
+  -fx-pref-width: 6px;
   -fx-background-color: transparent;
 }
 
-.scroll-bar:horizontal .increment-button,
-.scroll-bar:horizontal .decrement-button,
-.scroll-bar:horizontal .increment-arrow,
-.scroll-bar:horizontal .decrement-arrow {
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button,
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
   -fx-background-color: transparent;
 }
 
-.scroll-bar:horizontal .thumb {
+.scroll-bar:vertical .thumb {
   -fx-background-color: #00d1cd;
   -fx-background-radius: 3px;
 }
 
-.scroll-bar:horizontal:pressed .thumb {
+.scroll-bar:vertical:pressed .thumb {
   -fx-background-color: #009c98;
 }
 
-.scroll-bar:horizontal:hover .thumb {
+.scroll-bar:vertical:hover .thumb {
   -fx-background-color: #00b6b2;
 }
 
-.scroll-bar:horizontal .thumb:hover {
+.scroll-bar:vertical .thumb:hover {
   -fx-background-color: #00b6b2;
 }
 
-.scroll-bar:horizontal .thumb:pressed {
+.scroll-bar:vertical .thumb:pressed {
   -fx-background-color: #009c98;
-}
-
-.transparent-button {
-  -fx-background-color: transparent;
 }
