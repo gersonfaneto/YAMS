@@ -120,9 +120,9 @@
 .list-view {
   -fx-control-inner-background: #e9ecef;
   -fx-background-color: #e9ecef;
-  -fx-selection-bar: #888888;
-  -fx-selection-bar-non-focused: #888888;
-  -fx-accent: #888888;
+  -fx-selection-bar: #cfcfcf;
+  -fx-selection-bar-non-focused: #cfcfcf;
+  -fx-accent: #cfcfcf;
   -fx-text-fill: #444444;
 }
 
