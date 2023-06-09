@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -177,9 +178,11 @@ public class ComponentsListComponent extends AnchorPane {
 
     modalStage.setScene(new Scene(updateView));
     modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
     modalStage.show();
 
-    MainController.modalWindow = modalStage;
+    MainController.modalStage = modalStage;
   }
 
   public String formatMoney(double moneyInput) {

@@ -145,7 +145,7 @@ public class EmployeesUpdateController {
 
     MainController.mainWindow.setRight(employeesView);
 
-    MainController.modalWindow.close();
+    MainController.modalStage.close();
   }
 
   @FXML

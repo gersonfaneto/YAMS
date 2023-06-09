@@ -81,7 +81,7 @@ public class ClientsUpdateController {
 
     MainController.mainWindow.setRight(clientsView);
 
-    MainController.modalWindow.close();
+    MainController.modalStage.close();
   }
 
   public void injectFields(

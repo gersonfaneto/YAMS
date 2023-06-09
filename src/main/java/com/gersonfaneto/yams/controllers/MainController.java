@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 public abstract class MainController {
   public static User loggedUser;
   public static BorderPane mainWindow;
-  public static Stage modalWindow;
+  public static Stage modalStage;
+  public static Stage primaryStage;
 
   public static void saveData() {
     ((Persist) DAO.fromUsers()).saveAll();

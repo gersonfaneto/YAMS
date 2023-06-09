@@ -49,7 +49,7 @@ public class ComponentUpdateController {
 
     MainController.mainWindow.setRight(stockView);
 
-    MainController.modalWindow.close();
+    MainController.modalStage.close();
   }
 
   @FXML

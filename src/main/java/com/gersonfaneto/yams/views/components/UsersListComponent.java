@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -134,8 +135,10 @@ public class UsersListComponent extends AnchorPane {
 
     modalStage.setScene(new Scene(updateView));
     modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
     modalStage.show();
 
-    MainController.modalWindow = modalStage;
+    MainController.modalStage = modalStage;
   }
 }

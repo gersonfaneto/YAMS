@@ -53,5 +53,7 @@ public class App extends Application {
         MainController.saveData();
       }
     });
+
+    MainController.primaryStage = primaryStage;
   }
 }
