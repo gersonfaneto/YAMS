@@ -1,18 +1,28 @@
 package com.gersonfaneto.yams.views.components;
 
+import java.io.IOException;
+
 import com.gersonfaneto.yams.App;
+import com.gersonfaneto.yams.controllers.ComponentUpdateController;
+import com.gersonfaneto.yams.controllers.MainController;
+import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.TypeParser;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ComponentsListComponent extends AnchorPane {
   private Component targetComponent;
@@ -34,8 +44,10 @@ public class ComponentsListComponent extends AnchorPane {
     super.setMaxSize(650, 100);
 
     FontAwesomeIconView updateIcon = new FontAwesomeIconView(FontAwesomeIcon.WRENCH);
+    FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
 
     Button updateButton = new Button();
+    Button deleteButton = new Button();
 
     updateButton.setLayoutX(620);
     updateButton.setLayoutY(10);
@@ -45,6 +57,19 @@ public class ComponentsListComponent extends AnchorPane {
     updateIcon.getStyleClass().add("update-icon");
 
     updateButton.setGraphic(updateIcon);
+
+    deleteButton.setLayoutX(620);
+    deleteButton.setLayoutY(50);
+    deleteButton.getStyleClass().add("transparent-button");
+
+    deleteIcon.setSize("20");
+    deleteIcon.getStyleClass().add("delete-icon");
+
+    deleteButton.setGraphic(deleteIcon);
+
+    deleteButton.setOnMouseClicked((MouseEvent event) -> {
+      deleteComponent();
+    });
 
     updateButton.setOnMouseClicked((MouseEvent event) -> {
       updateComponent();
@@ -116,13 +141,45 @@ public class ComponentsListComponent extends AnchorPane {
     typeIcon.setImage(typeImage);
 
     super.getChildren().add(typeIcon);
-    super.getChildren().addAll(updateButton);
+    super.getChildren().addAll(updateButton, deleteButton);
     super.getChildren().addAll(descriptionField, priceField, costField, amountField, typeField);
     super.getChildren().addAll(priceFieldIndicator, costFieldIndicator, amountFieldIndicator, typeFieldIndicator);
   }
 
-  public void updateComponent() {
+  private void deleteComponent() {
+    DAO.fromComponents().deleteByID(targetComponent.getComponentID());
 
+    componentsList.clear();
+    componentsList.addAll(DAO.fromComponents().findMany());
+  }
+
+  private void updateComponent() {
+    FXMLLoader loaderFXML = new FXMLLoader();
+    loaderFXML.setLocation(App.class.getResource("views/component_update.fxml"));
+
+    try {
+      loaderFXML.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    ComponentUpdateController updateController = loaderFXML.getController();
+
+    updateController.injectFields(
+      targetComponent.getComponentID(),
+      targetComponent.getComponentDescription(),
+      targetComponent.getComponentPrice(),
+      targetComponent.getAmountInStock()
+    );
+
+    Parent updateView = loaderFXML.getRoot();
+    Stage modalStage = new Stage();
+
+    modalStage.setScene(new Scene(updateView));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.show();
+
+    MainController.modalWindow = modalStage;
   }
 
   public String formatMoney(double moneyInput) {

@@ -5,11 +5,9 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;
-import com.gersonfaneto.yams.views.components.ClientsListComponent;
 import com.gersonfaneto.yams.views.components.ComponentsListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -23,10 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class StockController {
   @FXML
