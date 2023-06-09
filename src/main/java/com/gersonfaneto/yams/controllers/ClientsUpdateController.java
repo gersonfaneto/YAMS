@@ -85,10 +85,10 @@ public class ClientsUpdateController {
   }
 
   public void injectFields(
-      String clientID,
-      String clientName,
-      String homeAddress,
-      String phoneNumber
+    String clientID,
+    String clientName,
+    String homeAddress,
+    String phoneNumber
   ) {
     this.clientID = clientID;
     nameField.setText(clientName);

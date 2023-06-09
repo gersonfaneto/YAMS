@@ -86,11 +86,15 @@ public class LoginController {
       visualFeedback.setText("Insira o seus dados!");
       visualFeedback.setTextFill(Color.RED);
       return;
-    } else if (foundUser == null) {
+    }
+
+    if (foundUser == null) {
       visualFeedback.setText("Usuário não encontrado!");
       visualFeedback.setTextFill(Color.RED);
       return;
-    } else if (!foundUser.getUserPassword().equals(userPassword)) {
+    }
+
+    if (!foundUser.getUserPassword().equals(userPassword)) {
       visualFeedback.setText("Senha incorreta!");
       visualFeedback.setTextFill(Color.RED);
       return;

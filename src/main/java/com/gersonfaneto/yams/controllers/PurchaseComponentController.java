@@ -129,21 +129,25 @@ public class PurchaseComponentController {
       visualFeedback.setTextFill(Color.RED);
       return;
     }
+
     if (typeName.isEmpty()) {
       visualFeedback.setText("Tipo inválido!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
+
     if (amountBought == -1) {
       visualFeedback.setText("Quantida inválida!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
+
     if (componentPrice == -1) {
       visualFeedback.setText("Preço inválido!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
+
     if (componentCost == -1) {
       visualFeedback.setText("Custo inválido!");
       visualFeedback.setTextFill(Color.RED);

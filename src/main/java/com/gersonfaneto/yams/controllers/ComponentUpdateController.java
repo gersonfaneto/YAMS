@@ -5,15 +5,12 @@ import java.io.IOException;
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
-import com.gersonfaneto.yams.models.stock.ComponentType;
-import com.gersonfaneto.yams.utils.TypeParser;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -63,11 +60,13 @@ public class ComponentUpdateController {
       visualFeedback.setTextFill(Color.RED);
       return;
     }
+
     if (amountInStock == -1) {
       visualFeedback.setText("Quantida inválida!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
+
     if (componentPrice == -1) {
       visualFeedback.setText("Preço inválido!");
       visualFeedback.setTextFill(Color.RED);

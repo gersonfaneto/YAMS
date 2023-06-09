@@ -168,11 +168,11 @@ public class EmployeesUpdateController {
   }
 
   public void injectFields(
-      String userID,
-      String userName,
-      String userEmail,
-      String userPassword,
-      UserType userType
+    String userID,
+    String userName,
+    String userEmail,
+    String userPassword,
+    UserType userType
   ) {
     this.employeeID = userID;
     nameField.setText(userName);

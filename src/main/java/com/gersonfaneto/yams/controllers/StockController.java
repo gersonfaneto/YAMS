@@ -104,7 +104,6 @@ public class StockController {
 
       return componentType == null || component.getComponentType() == componentType;
     }));
-
   }
 
   @FXML

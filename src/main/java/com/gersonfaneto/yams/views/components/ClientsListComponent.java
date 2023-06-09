@@ -122,11 +122,11 @@ public class ClientsListComponent extends AnchorPane {
     ClientsUpdateController updateController = loaderFXML.getController();
 
     updateController.injectFields(
-        targetClient.getClientID(),
-        targetClient.getClientName(),
-        targetClient.getHomeAddress(),
-        targetClient.getPhoneNumber()
-        );
+      targetClient.getClientID(),
+      targetClient.getClientName(),
+      targetClient.getHomeAddress(),
+      targetClient.getPhoneNumber()
+    );
 
     Parent updateView = loaderFXML.getRoot();
     Stage modalStage = new Stage();
