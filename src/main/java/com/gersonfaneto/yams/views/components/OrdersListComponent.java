@@ -4,6 +4,7 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.utils.Time;
+import com.gersonfaneto.yams.utils.TypeParser;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -81,7 +82,7 @@ public class OrdersListComponent extends AnchorPane {
     statusField.setLayoutY(65);
     statusField.setPrefSize(90, 20);
     statusField.setText(
-        workOrder.getWorkOrderState().getClass().getSimpleName()
+        TypeParser.parseWorkOrderState(workOrder.getWorkOrderState())
     );
 
     Label openingDateFieldIndicator = new Label("Abertura:");
