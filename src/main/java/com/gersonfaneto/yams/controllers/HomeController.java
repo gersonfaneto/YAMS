@@ -4,11 +4,13 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 
 public class HomeController {
+
   @FXML
   private FontAwesomeIconView closeButton;
-  
+
   @FXML
-  public void initialize() {}
+  public void initialize() {
+  }
 
   @FXML
   public void closeWindow() {

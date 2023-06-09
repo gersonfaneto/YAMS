@@ -1,8 +1,5 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.regex.Pattern;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
@@ -10,8 +7,9 @@ import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.TypeParser;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -72,7 +70,7 @@ public class RegisterController {
       if (userType != UserType.Administrator) {
         roleSelector.getItems().add(TypeParser.parseUserType(userType));
       }
-    } 
+    }
   }
 
   @FXML
@@ -108,7 +106,7 @@ public class RegisterController {
       visualFeedback.setTextFill(Color.RED);
       return;
     }
-    
+
     if (userPassword.length() < 4) {
       visualFeedback.setText("Senha muito curta!");
       visualFeedback.setTextFill(Color.RED);
@@ -123,8 +121,7 @@ public class RegisterController {
 
     if (userType.equals("Têcnico")) {
       DAO.fromUsers().createOne(new Technician(userEmail, userPassword, userName));
-    }
-    else {
+    } else {
       DAO.fromUsers().createOne(new Receptionist(userEmail, userPassword, userName));
     }
 
@@ -176,7 +173,9 @@ public class RegisterController {
   }
 
   private String confirmPasswordValue() {
-    return showPassword.isSelected() ? confirmPasswordText.getText() : confirmPasswordField.getText();
+    return showPassword.isSelected()
+        ? confirmPasswordText.getText()
+        : confirmPasswordField.getText();
   }
 
   public boolean isValidEmail(String userEmail) {

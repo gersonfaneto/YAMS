@@ -1,12 +1,10 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,7 +50,7 @@ public class ComponentUpdateController {
   @FXML
   public void confirmUpdate() {
     String componentDescription = descriptionField.getText();
-    int amountInStock = getAmmount();
+    int amountInStock = getAmount();
     double componentPrice = getPrice();
 
     if (componentDescription.isEmpty()) {
@@ -90,10 +88,10 @@ public class ComponentUpdateController {
   }
 
   public void injectFields(
-    String componentID,
-    String componentDescription,
-    double componentPrice,
-    int amountInStock
+      String componentID,
+      String componentDescription,
+      double componentPrice,
+      int amountInStock
   ) {
     this.componentID = componentID;
     descriptionField.setText(componentDescription);
@@ -103,18 +101,17 @@ public class ComponentUpdateController {
 
   public String formatMoney(double moneyInput) {
     return String.format("%.2f", moneyInput).replace(".", ",");
-  } 
+  }
 
 
-  public int getAmmount() {
+  public int getAmount() {
     try {
       int amountValue = Integer.parseInt(
-        amountField.getText()
+          amountField.getText()
       );
 
       return (amountValue > 0) ? amountValue : -1;
-    }
-    catch (NumberFormatException nfe) {
+    } catch (NumberFormatException nfe) {
       return -1;
     }
   }
@@ -122,12 +119,11 @@ public class ComponentUpdateController {
   public double getPrice() {
     try {
       double priceValue = Double.parseDouble(
-        priceField.getText().replaceFirst(",", ".")
+          priceField.getText().replaceFirst(",", ".")
       );
 
       return (priceValue > 0) ? priceValue : -1;
-    }
-    catch (NumberFormatException nfe) {
+    } catch (NumberFormatException nfe) {
       return -1;
     }
   }

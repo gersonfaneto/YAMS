@@ -40,7 +40,7 @@ module com.gersonfaneto.yams {
   exports com.gersonfaneto.yams.models.orders.work;
   exports com.gersonfaneto.yams.models.orders.work.states;
   exports com.gersonfaneto.yams.models.orders.purchase;
-  
+
   exports com.gersonfaneto.yams.models.reports;
 
   exports com.gersonfaneto.yams.models.services;

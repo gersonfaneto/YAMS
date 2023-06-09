@@ -1,16 +1,14 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.ComponentsListComponent;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -24,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class StockController {
+
   @FXML
   private FontAwesomeIconView closeButton;
 
@@ -56,9 +55,9 @@ public class StockController {
 
         if (component == null || empty) {
           setGraphic(null);
-        }
-        else {
-          ComponentsListComponent clientComponent = new ComponentsListComponent(component, componentsLists);
+        } else {
+          ComponentsListComponent clientComponent = new ComponentsListComponent(component,
+              componentsLists);
 
           setGraphic(clientComponent);
         }
@@ -77,10 +76,9 @@ public class StockController {
 
         String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getComponentDescription().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+        if (user.getComponentDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
           return true;
-        }
-        else {
+        } else {
           return false;
         }
       });
@@ -108,7 +106,9 @@ public class StockController {
 
   @FXML
   public void openPurchase() throws IOException {
-    Parent purchaseComponentElements = FXMLLoader.load(App.class.getResource("views/purchase_component.fxml"));
+    Parent purchaseComponentElements = FXMLLoader.load(
+        App.class.getResource("views/purchase_component.fxml")
+    );
 
     MainController.mainWindow.setRight(purchaseComponentElements);
   }

@@ -1,15 +1,13 @@
 package com.gersonfaneto.yams.views.components;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.ClientsUpdateController;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClientsListComponent extends AnchorPane {
+
   private Client targetClient;
   private ObservableList<Client> clientsList;
 
@@ -79,7 +78,7 @@ public class ClientsListComponent extends AnchorPane {
     Label nameField = new Label(targetClient.getClientName());
     Label addressField = new Label(targetClient.getHomeAddress());
     Label phoneNumberField = new Label(targetClient.getPhoneNumber());
-    
+
     nameField.setLayoutX(100);
     nameField.setLayoutY(13);
     nameField.setMinSize(450, 20);
@@ -103,7 +102,8 @@ public class ClientsListComponent extends AnchorPane {
   }
 
   private void deleteClient() {
-    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(targetClient.getClientName());
+    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(
+        targetClient.getClientName());
 
     ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
 
@@ -136,10 +136,10 @@ public class ClientsListComponent extends AnchorPane {
     ClientsUpdateController updateController = loaderFXML.getController();
 
     updateController.injectFields(
-      targetClient.getClientID(),
-      targetClient.getClientName(),
-      targetClient.getHomeAddress(),
-      targetClient.getPhoneNumber()
+        targetClient.getClientID(),
+        targetClient.getClientName(),
+        targetClient.getHomeAddress(),
+        targetClient.getPhoneNumber()
     );
 
     Parent updateView = loaderFXML.getRoot();

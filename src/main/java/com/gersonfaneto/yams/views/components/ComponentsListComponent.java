@@ -1,16 +1,14 @@
 package com.gersonfaneto.yams.views.components;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.ComponentUpdateController;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.TypeParser;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,12 +24,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ComponentsListComponent extends AnchorPane {
+
   private Component targetComponent;
   private ObservableList<Component> componentsList;
 
   public ComponentsListComponent(
-    Component targetComponent,
-    ObservableList<Component> componentsList
+      Component targetComponent,
+      ObservableList<Component> componentsList
   ) {
     this.targetComponent = targetComponent;
     this.componentsList = componentsList;
@@ -134,8 +133,9 @@ public class ComponentsListComponent extends AnchorPane {
     typeIcon.setFitHeight(50);
     typeIcon.setLayoutX(15);
     typeIcon.setLayoutY(25);
-  
-    String typeIconPath = "assets/%s.png".formatted(targetComponent.getComponentType().getTypeName().replace(" ", ""));
+
+    String typeIconPath = "assets/%s.png".formatted(
+        targetComponent.getComponentType().getTypeName().replace(" ", ""));
 
     Image typeImage = new Image(App.class.getResourceAsStream(typeIconPath));
 
@@ -144,11 +144,14 @@ public class ComponentsListComponent extends AnchorPane {
     super.getChildren().add(typeIcon);
     super.getChildren().addAll(updateButton, deleteButton);
     super.getChildren().addAll(descriptionField, priceField, costField, amountField, typeField);
-    super.getChildren().addAll(priceFieldIndicator, costFieldIndicator, amountFieldIndicator, typeFieldIndicator);
+    super.getChildren()
+        .addAll(priceFieldIndicator, costFieldIndicator, amountFieldIndicator, typeFieldIndicator);
   }
 
   private void deleteComponent() {
-    String confirmationMessage = "Deseja excluir o item %s?".formatted(targetComponent.getComponentDescription());
+    String confirmationMessage = "Deseja excluir o item %s?".formatted(
+        targetComponent.getComponentDescription()
+    );
 
     ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
 
@@ -181,10 +184,10 @@ public class ComponentsListComponent extends AnchorPane {
     ComponentUpdateController updateController = loaderFXML.getController();
 
     updateController.injectFields(
-      targetComponent.getComponentID(),
-      targetComponent.getComponentDescription(),
-      targetComponent.getComponentPrice(),
-      targetComponent.getAmountInStock()
+        targetComponent.getComponentID(),
+        targetComponent.getComponentDescription(),
+        targetComponent.getComponentPrice(),
+        targetComponent.getAmountInStock()
     );
 
     Parent updateView = loaderFXML.getRoot();
@@ -201,5 +204,5 @@ public class ComponentsListComponent extends AnchorPane {
 
   public String formatMoney(double moneyInput) {
     return String.format("%.2f", moneyInput).replace(".", ",");
-  } 
+  }
 }

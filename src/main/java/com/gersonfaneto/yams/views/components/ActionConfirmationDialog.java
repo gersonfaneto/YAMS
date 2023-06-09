@@ -2,7 +2,6 @@ package com.gersonfaneto.yams.views.components;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.MainController;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.scene.control.Button;
@@ -10,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
 public class ActionConfirmationDialog extends AnchorPane {
+
   private Button confirmButton;
   private Button cancelButton;
 
@@ -23,7 +23,7 @@ public class ActionConfirmationDialog extends AnchorPane {
     super.setMaxSize(500, 250);
 
     TextArea messageField = new TextArea();
-    
+
     messageField.setLayoutX(100);
     messageField.setLayoutY(50);
     messageField.setPrefSize(300, 80);

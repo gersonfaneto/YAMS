@@ -3,11 +3,9 @@ package com.gersonfaneto.yams.dao.billing.invoice;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
-
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

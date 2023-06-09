@@ -1,14 +1,12 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -103,16 +101,14 @@ public class LoginController {
     MainController.loggedUser = foundUser;
 
     Parent menuView = FXMLLoader.load(App.class.getResource("views/menu.fxml"));
-    
+
     String baseViewPath = null;
 
     if (foundUser.getUserType() == UserType.Administrator) {
       baseViewPath = "views/employees.fxml";
-    }
-    else if (foundUser.getUserType() == UserType.Technician) {
+    } else if (foundUser.getUserType() == UserType.Technician) {
       baseViewPath = "views/home.fxml";
-    }
-    else {
+    } else {
       baseViewPath = "views/clients.fxml";
     }
 

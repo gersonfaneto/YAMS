@@ -1,9 +1,7 @@
 package com.gersonfaneto.yams;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.controllers.MainController;
-
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +13,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class App extends Application {
+
   private double xCoord, yCoord;
 
   public static void main(String[] args) {

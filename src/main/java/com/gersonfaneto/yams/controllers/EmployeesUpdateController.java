@@ -1,15 +1,13 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.regex.Pattern;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.TypeParser;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -72,7 +70,7 @@ public class EmployeesUpdateController {
       if (userType != UserType.Administrator) {
         roleSelector.getItems().add(TypeParser.parseUserType(userType));
       }
-    } 
+    }
   }
 
   @FXML
@@ -168,11 +166,11 @@ public class EmployeesUpdateController {
   }
 
   public void injectFields(
-    String userID,
-    String userName,
-    String userEmail,
-    String userPassword,
-    UserType userType
+      String userID,
+      String userName,
+      String userEmail,
+      String userPassword,
+      UserType userType
   ) {
     this.employeeID = userID;
     nameField.setText(userName);
@@ -183,11 +181,15 @@ public class EmployeesUpdateController {
   }
 
   private String passwordValue() {
-    return showPassword.isSelected() ? passwordText.getText() : passwordField.getText();
+    return showPassword.isSelected()
+        ? passwordText.getText()
+        : passwordField.getText();
   }
 
   private String confirmPasswordValue() {
-    return showPassword.isSelected() ? confirmPasswordText.getText() : confirmPasswordField.getText();
+    return showPassword.isSelected()
+        ? confirmPasswordText.getText()
+        : confirmPasswordField.getText();
   }
 
   public boolean isValidEmail(String userEmail) {

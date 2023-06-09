@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.models.stock;
 
-import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
-
 import com.gersonfaneto.yams.models.services.Service;
 import java.io.Serializable;
 

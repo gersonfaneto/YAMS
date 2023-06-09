@@ -1,13 +1,11 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.views.components.ClientsListComponent;
-
+import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class ClientsController {
+
   @FXML
   private ListView<Client> listView;
 
@@ -45,8 +44,7 @@ public class ClientsController {
 
         if (client == null || empty) {
           setGraphic(null);
-        }
-        else {
+        } else {
           ClientsListComponent clientComponent = new ClientsListComponent(client, clientsList);
 
           setGraphic(clientComponent);
@@ -66,23 +64,24 @@ public class ClientsController {
 
         String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+        if (user.getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
           return true;
-        }
-        else {
+        } else {
           return false;
         }
       });
     });
 
-    SortedList<Client> sortedClients  = new SortedList<>(filteredClients);
+    SortedList<Client> sortedClients = new SortedList<>(filteredClients);
 
     listView.setItems(sortedClients);
   }
 
   @FXML
   public void registerClient() throws IOException {
-    Parent clientRegisterView = FXMLLoader.load(App.class.getResource("views/clients_register.fxml"));
+    Parent clientRegisterView = FXMLLoader.load(
+        App.class.getResource("views/clients_register.fxml")
+    );
 
     MainController.mainWindow.setRight(clientRegisterView);
   }

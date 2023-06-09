@@ -1,13 +1,11 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.util.List;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.UsersListComponent;
-
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -44,8 +42,7 @@ public class EmployeesController {
 
         if (user == null || empty) {
           setGraphic(null);
-        }
-        else {
+        } else {
           UsersListComponent clientComponent = new UsersListComponent(user, employeesList);
 
           setGraphic(clientComponent);
@@ -61,9 +58,9 @@ public class EmployeesController {
     }
 
     List<User> allEmployees = DAO.fromUsers().findMany()
-      .stream()
-      .filter(user -> user.getUserType() != UserType.Administrator)
-      .toList();
+        .stream()
+        .filter(user -> user.getUserType() != UserType.Administrator)
+        .toList();
 
     employeesList.addAll(allEmployees);
 
@@ -75,10 +72,9 @@ public class EmployeesController {
 
         String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+        if (user.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
           return true;
-        }
-        else {
+        } else {
           return false;
         }
       });

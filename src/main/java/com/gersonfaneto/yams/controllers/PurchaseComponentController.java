@@ -1,15 +1,13 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,12 +54,11 @@ public class PurchaseComponentController {
 
   @FXML
   private Button confirmButton;
-
-
+  
   @FXML
   public void initialize() {
     amountSelector.getItems().addAll(
-      List.of("5", "10", "15", "20", "Outro")
+        List.of("5", "10", "15", "20", "Outro")
     );
     amountField.setVisible(false);
 
@@ -76,8 +73,7 @@ public class PurchaseComponentController {
   public void checkAmount() {
     if (amountSelector.getValue().equals("Outro")) {
       amountField.setVisible(true);
-    }
-    else {
+    } else {
       amountField.setVisible(false);
     }
   }
@@ -88,8 +84,7 @@ public class PurchaseComponentController {
       typeField.setVisible(true);
       priceField.setDisable(false);
       priceField.clear();
-    }
-    else {
+    } else {
       typeField.setVisible(false);
       injectPrice();
     }
@@ -166,19 +161,18 @@ public class PurchaseComponentController {
     ComponentType typeValue = TypeParser.parseComponentType(typeName);
 
     Component boughtComponent = new Component(
-      typeValue,
-      componentDescription,
-      amountBought,
-      componentCost,
-      componentPrice
+        typeValue,
+        componentDescription,
+        amountBought,
+        componentCost,
+        componentPrice
     );
 
     Component foundComponent = DAO.fromComponents().findEquals(boughtComponent);
 
     if (foundComponent == null) {
       DAO.fromComponents().createOne(boughtComponent);
-    }
-    else {
+    } else {
       foundComponent.setAmountInStock(foundComponent.getAmountInStock() + amountBought);
       DAO.fromComponents().updateInformation(foundComponent);
     }
@@ -204,8 +198,7 @@ public class PurchaseComponentController {
       );
 
       return (amountValue > 0) ? amountValue : -1;
-    }
-    catch (NumberFormatException nfe) {
+    } catch (NumberFormatException nfe) {
       return -1;
     }
   }
@@ -213,12 +206,11 @@ public class PurchaseComponentController {
   public double getCost() {
     try {
       double costValue = Double.parseDouble(
-        costField.getText().replaceFirst(",", ".")
+          costField.getText().replaceFirst(",", ".")
       );
-      
+
       return (costValue > 0) ? costValue : -1;
-    }
-    catch (NumberFormatException nfe) {
+    } catch (NumberFormatException nfe) {
       return -1;
     }
   }
@@ -226,17 +218,16 @@ public class PurchaseComponentController {
   public double getPrice() {
     try {
       double priceValue = Double.parseDouble(
-        priceField.getText().replaceFirst(",", ".")
+          priceField.getText().replaceFirst(",", ".")
       );
 
       return (priceValue > 0) ? priceValue : -1;
-    }
-    catch (NumberFormatException nfe) {
+    } catch (NumberFormatException nfe) {
       return -1;
     }
   }
 
   public String formatMoney(double moneyInput) {
     return String.format("%.2f", moneyInput).replace(".", ",");
-  } 
+  }
 }

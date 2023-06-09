@@ -5,10 +5,8 @@ import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
-
 import java.io.File;
 import java.util.List;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

@@ -1,16 +1,14 @@
 package com.gersonfaneto.yams.views.components;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.EmployeesUpdateController;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.utils.TypeParser;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class UsersListComponent extends AnchorPane {
+
   private User targetUser;
   private ObservableList<User> usersList;
 
@@ -80,7 +79,7 @@ public class UsersListComponent extends AnchorPane {
     Label nameField = new Label(targetUser.getUserName());
     Label emailField = new Label(targetUser.getUserEmail());
     Label typeField = new Label(TypeParser.parseUserType(targetUser.getUserType()));
-    
+
     nameField.setLayoutX(100);
     nameField.setLayoutY(13);
     nameField.setMinSize(450, 20);
@@ -104,7 +103,9 @@ public class UsersListComponent extends AnchorPane {
   }
 
   private void deleteUser() {
-    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(targetUser.getUserName());
+    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(
+        targetUser.getUserName()
+    );
 
     ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
 
@@ -137,11 +138,11 @@ public class UsersListComponent extends AnchorPane {
     EmployeesUpdateController updateController = loaderFXML.getController();
 
     updateController.injectFields(
-      targetUser.getUserID(),
-      targetUser.getUserName(),
-      targetUser.getUserEmail(),
-      targetUser.getUserPassword(),
-      targetUser.getUserType()
+        targetUser.getUserID(),
+        targetUser.getUserName(),
+        targetUser.getUserEmail(),
+        targetUser.getUserPassword(),
+        targetUser.getUserType()
     );
 
     Parent updateView = loaderFXML.getRoot();

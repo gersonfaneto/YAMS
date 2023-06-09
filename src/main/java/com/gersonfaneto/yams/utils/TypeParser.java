@@ -4,6 +4,7 @@ import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 
 public abstract class TypeParser {
+
   public static ComponentType parseComponentType(String typeName) {
     ComponentType componentType = null;
 

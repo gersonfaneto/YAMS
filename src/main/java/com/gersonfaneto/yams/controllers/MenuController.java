@@ -1,13 +1,10 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
-import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.views.components.ActionConfirmationDialog;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MenuController {
+
   @FXML
   private FontAwesomeIconView signOutButton;
 
@@ -58,15 +56,13 @@ public class MenuController {
       homeButton.setVisible(false);
       homeIcon.setVisible(false);
       setActiveButton(employeesButton);
-    }
-    else if (MainController.loggedUser.getUserType() == UserType.Receptionist) {
+    } else if (MainController.loggedUser.getUserType() == UserType.Receptionist) {
       homeButton.setVisible(false);
       homeIcon.setVisible(false);
       employeesButton.setVisible(false);
       employeesIcon.setVisible(false);
       setActiveButton(clientsButton);
-    }
-    else {
+    } else {
       employeesButton.setVisible(false);
       employeesIcon.setVisible(false);
       setActiveButton(homeButton);
@@ -75,7 +71,7 @@ public class MenuController {
     for (Node currentNode : sideBar.getChildren()) {
       if (currentNode instanceof Button currentButton) {
         currentButton.setOnMouseClicked(event -> setActiveButton(currentButton));
-      } 
+      }
     }
   }
 
@@ -85,20 +81,15 @@ public class MenuController {
 
     if (actionEvent.getSource() == homeButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
-    }
-    else if (actionEvent.getSource() == clientsButton) {
+    } else if (actionEvent.getSource() == clientsButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
-    }
-    else if (actionEvent.getSource() == servicesButton) {
+    } else if (actionEvent.getSource() == servicesButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
-    }
-    else if (actionEvent.getSource() == stockButton) {
+    } else if (actionEvent.getSource() == stockButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/stock.fxml"));
-    }
-    else if (actionEvent.getSource() == reportsButton) {
+    } else if (actionEvent.getSource() == reportsButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/reports.fxml"));
-    }
-    else if (actionEvent.getSource() == employeesButton) {
+    } else if (actionEvent.getSource() == employeesButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
     }
 

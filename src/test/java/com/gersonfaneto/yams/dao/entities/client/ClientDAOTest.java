@@ -3,10 +3,8 @@ package com.gersonfaneto.yams.dao.entities.client;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
-
 import java.io.File;
 import java.util.List;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

@@ -1,13 +1,11 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.regex.Pattern;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 public class ClientsUpdateController {
+
   @FXML
   private FontAwesomeIconView closeButton;
 
@@ -72,7 +71,6 @@ public class ClientsUpdateController {
 
     visualFeedback.setText("Cadastro atualizado com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);
-
   }
 
   @FXML
@@ -85,10 +83,10 @@ public class ClientsUpdateController {
   }
 
   public void injectFields(
-    String clientID,
-    String clientName,
-    String homeAddress,
-    String phoneNumber
+      String clientID,
+      String clientName,
+      String homeAddress,
+      String phoneNumber
   ) {
     this.clientID = clientID;
     nameField.setText(clientName);
