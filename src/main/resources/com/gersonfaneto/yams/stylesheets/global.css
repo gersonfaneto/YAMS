@@ -122,7 +122,7 @@
   -fx-fill: #2f9e44;
 }
 
-.update-icon:hover {
+.update-icon:hover, .order-icon:hover {
   -fx-fill: #00d1cd;
 }
 
