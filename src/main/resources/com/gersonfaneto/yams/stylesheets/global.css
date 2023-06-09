@@ -99,6 +99,21 @@
   -fx-background-color: transparent;
 }
 
+.text-area {
+  -fx-background-insets: 0;
+  -fx-border-color: #e9ecef;
+}
+
+.text-area .content {
+  -fx-background-color: #e9ecef;
+  -fx-border-color: #e9ecef;
+  -fx-text-weight: bold;
+}
+
+.text-area:focused {
+  -fx-highlight-fill: #e9ecef;
+}
+
 .delete-icon:hover {
   -fx-fill: #e03131;
 }
