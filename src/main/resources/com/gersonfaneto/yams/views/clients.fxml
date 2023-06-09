@@ -8,10 +8,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.ClientsController">
    <children>
-      <TextField fx:id="searchField" layoutX="80.0" layoutY="13.0" prefHeight="30.0" prefWidth="580.0" promptText="Ex.: John Smith" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
-      <Button fx:id="registerButton" layoutX="672.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClient" prefHeight="30.0" prefWidth="80.0" styleClass="normal-button" stylesheets="@../stylesheets/global.css" text="Cadastrar" />
+      <TextField fx:id="searchField" layoutX="80.0" layoutY="15.0" prefHeight="30.0" prefWidth="580.0" promptText="Ex.: John Smith" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
+      <Button fx:id="registerButton" layoutX="670.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClient" prefHeight="30.0" prefWidth="80.0" styleClass="normal-button" stylesheets="@../stylesheets/global.css" text="Cadastrar" />
       <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="35.0" onMouseClicked="#closeWindow" size="25" styleClass="close-button" />
-      <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="33.0" size="20" styleClass="search-button" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="50.0" layoutY="35.0" size="20" styleClass="search-button" />
       <ListView fx:id="listView" layoutX="50.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="700.0" stylesheets="@../stylesheets/global.css" />
    </children>
 </AnchorPane>

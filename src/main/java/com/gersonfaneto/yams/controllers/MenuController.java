@@ -47,27 +47,15 @@ public class MenuController {
   private Button reportsButton;
 
   @FXML
+  private Button invoicesButton;
+
+  @FXML
   private AnchorPane sideBar;
+
 
   private Button activeButton;
 
   public void initialize() {
-    if (MainController.loggedUser.getUserType() == UserType.Administrator) {
-      homeButton.setVisible(false);
-      homeIcon.setVisible(false);
-      setActiveButton(employeesButton);
-    } else if (MainController.loggedUser.getUserType() == UserType.Receptionist) {
-      homeButton.setVisible(false);
-      homeIcon.setVisible(false);
-      employeesButton.setVisible(false);
-      employeesIcon.setVisible(false);
-      setActiveButton(clientsButton);
-    } else {
-      employeesButton.setVisible(false);
-      employeesIcon.setVisible(false);
-      setActiveButton(homeButton);
-    }
-
     for (Node currentNode : sideBar.getChildren()) {
       if (currentNode instanceof Button currentButton) {
         currentButton.setOnMouseClicked(event -> setActiveButton(currentButton));
@@ -91,6 +79,8 @@ public class MenuController {
       targetView = FXMLLoader.load(App.class.getResource("views/reports.fxml"));
     } else if (actionEvent.getSource() == employeesButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
+    } else if (actionEvent.getSource() == invoicesButton) {
+      targetView = FXMLLoader.load(App.class.getResource("views/invoices.fxml"));
     }
 
     MainController.mainWindow.setRight(targetView);
