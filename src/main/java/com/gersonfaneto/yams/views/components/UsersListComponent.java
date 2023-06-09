@@ -70,11 +70,11 @@ public class UsersListComponent extends AnchorPane {
     deleteButton.setGraphic(deleteIcon);
 
     deleteButton.setOnMouseClicked((MouseEvent event) -> {
-      deleteClient();
+      deleteUser();
     });
 
     editButton.setOnMouseClicked((MouseEvent event) -> {
-      updateClient();
+      updateUser();
     });
 
     Label nameField = new Label(targetUser.getUserName());
@@ -103,14 +103,14 @@ public class UsersListComponent extends AnchorPane {
     super.getChildren().addAll(nameField, emailField, typeField);
   }
 
-  private void deleteClient() {
+  private void deleteUser() {
     DAO.fromUsers().deleteByID(targetUser.getUserID());
 
-    usersList.clear();
-    usersList.addAll(DAO.fromUsers().findMany());
+
+    usersList.remove(targetUser);
   }
 
-  private void updateClient() {
+  private void updateUser() {
     FXMLLoader loaderFXML = new FXMLLoader();
     loaderFXML.setLocation(App.class.getResource("views/employees_update.fxml"));
 

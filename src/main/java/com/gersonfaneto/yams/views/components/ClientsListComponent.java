@@ -105,8 +105,7 @@ public class ClientsListComponent extends AnchorPane {
   private void deleteClient() {
     DAO.fromClients().deleteByID(targetClient.getClientID());
 
-    clientsList.clear();
-    clientsList.addAll(DAO.fromClients().findMany());
+    clientsList.remove(targetClient);
   }
 
   private void updateClient() {

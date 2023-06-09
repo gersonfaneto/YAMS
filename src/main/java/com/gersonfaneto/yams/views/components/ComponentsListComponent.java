@@ -150,8 +150,7 @@ public class ComponentsListComponent extends AnchorPane {
   private void deleteComponent() {
     DAO.fromComponents().deleteByID(targetComponent.getComponentID());
 
-    componentsList.clear();
-    componentsList.addAll(DAO.fromComponents().findMany());
+    componentsList.remove(targetComponent);
   }
 
   private void updateComponent() {
