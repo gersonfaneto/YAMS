@@ -3,7 +3,9 @@ package com.gersonfaneto.yams.controllers;
 import java.io.IOException;
 
 import com.gersonfaneto.yams.App;
+import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.UserType;
+import com.gersonfaneto.yams.views.components.ActionConfirmationDialog;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
@@ -11,8 +13,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MenuController {
   @FXML
@@ -101,11 +107,27 @@ public class MenuController {
 
   @FXML
   public void signOut() throws IOException {
-    MainController.saveData();
+    String confirmationMessage = "Deseja mesmo sair?";
 
-    Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
+    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
 
-    MainController.mainWindow.getChildren().setAll(loginView);
+    Stage modalStage = new Stage();
+
+    MainController.modalStage = modalStage;
+
+    modalStage.setScene(new Scene(confirmDialog));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
+    modalStage.showAndWait();
+
+    if (MainController.isConfirmed) {
+      MainController.saveData();
+
+      Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
+
+      MainController.mainWindow.getChildren().setAll(loginView);
+    }
   }
 
   private void setActiveButton(Button sourceButton) {

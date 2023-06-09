@@ -12,6 +12,7 @@ public abstract class MainController {
   public static BorderPane mainWindow;
   public static Stage modalStage;
   public static Stage primaryStage;
+  public static boolean isConfirmed = false;
 
   public static void saveData() {
     ((Persist) DAO.fromUsers()).saveAll();

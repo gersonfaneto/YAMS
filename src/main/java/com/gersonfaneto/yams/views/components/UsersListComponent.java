@@ -104,10 +104,24 @@ public class UsersListComponent extends AnchorPane {
   }
 
   private void deleteUser() {
-    DAO.fromUsers().deleteByID(targetUser.getUserID());
+    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(targetUser.getUserName());
 
+    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
 
-    usersList.remove(targetUser);
+    Stage modalStage = new Stage();
+
+    MainController.modalStage = modalStage;
+
+    modalStage.setScene(new Scene(confirmDialog));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
+    modalStage.showAndWait();
+
+    if (MainController.isConfirmed) {
+      DAO.fromUsers().deleteByID(targetUser.getUserID());
+      usersList.remove(targetUser);
+    }
   }
 
   private void updateUser() {

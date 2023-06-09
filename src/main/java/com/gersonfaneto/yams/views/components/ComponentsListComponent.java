@@ -148,9 +148,24 @@ public class ComponentsListComponent extends AnchorPane {
   }
 
   private void deleteComponent() {
-    DAO.fromComponents().deleteByID(targetComponent.getComponentID());
+    String confirmationMessage = "Deseja excluir o item %s?".formatted(targetComponent.getComponentDescription());
 
-    componentsList.remove(targetComponent);
+    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
+
+    Stage modalStage = new Stage();
+
+    MainController.modalStage = modalStage;
+
+    modalStage.setScene(new Scene(confirmDialog));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
+    modalStage.showAndWait();
+
+    if (MainController.isConfirmed) {
+      DAO.fromComponents().deleteByID(targetComponent.getComponentID());
+      componentsList.remove(targetComponent);
+    }
   }
 
   private void updateComponent() {

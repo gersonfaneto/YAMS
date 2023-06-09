@@ -103,9 +103,24 @@ public class ClientsListComponent extends AnchorPane {
   }
 
   private void deleteClient() {
-    DAO.fromClients().deleteByID(targetClient.getClientID());
+    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(targetClient.getClientName());
 
-    clientsList.remove(targetClient);
+    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
+
+    Stage modalStage = new Stage();
+
+    MainController.modalStage = modalStage;
+
+    modalStage.setScene(new Scene(confirmDialog));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
+    modalStage.showAndWait();
+
+    if (MainController.isConfirmed) {
+      DAO.fromClients().deleteByID(targetClient.getClientID());
+      clientsList.remove(targetClient);
+    }
   }
 
   private void updateClient() {
