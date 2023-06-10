@@ -1,8 +1,8 @@
 package com.gersonfaneto.yams.utils;
 
 import com.gersonfaneto.yams.models.entities.user.UserType;
-import com.gersonfaneto.yams.models.orders.work.states.State;
 import com.gersonfaneto.yams.models.orders.work.states.StateType;
+import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 
 public abstract class TypeParser {
@@ -79,6 +79,7 @@ public abstract class TypeParser {
         break;
       case "Administrador":
         userType = UserType.Administrator;
+        break;
       default:
         break;
     }
@@ -98,6 +99,7 @@ public abstract class TypeParser {
         break;
       case Administrator:
         typeName = "Administrador";
+        break;
       default:
         typeName = "Todos";
         break;
@@ -150,6 +152,52 @@ public abstract class TypeParser {
         break;
       case Payed:
         typeName = "Paga";
+        break;
+      default:
+        break;
+    }
+
+    return typeName;
+  }
+
+  public static ServiceType parseServiceType(String typeName) {
+    ServiceType serviceType = null;
+
+    switch (typeName) {
+      case "Montagem":
+        serviceType = ServiceType.Assembly;
+        break;
+      case "Limpeza":
+        serviceType = ServiceType.Cleaning;
+        break;
+      case "Formatação":
+        serviceType = ServiceType.Formatting;
+        break;
+      case "Programas":
+        serviceType = ServiceType.ProgramInstallation;
+        break;
+      default:
+        break;
+    }
+
+    return serviceType;
+  }
+
+  public static String parseServiceType(ServiceType serviceType) {
+    String typeName = null;
+
+    switch (serviceType) {
+      case Assembly:
+        typeName = "Montagem";
+        break;
+      case Cleaning:
+        typeName = "Limpeza";
+        break;
+      case Formatting:
+        typeName = "Formatação";
+        break;
+      case ProgramInstallation:
+        typeName = "Programas";
         break;
       default:
         break;
