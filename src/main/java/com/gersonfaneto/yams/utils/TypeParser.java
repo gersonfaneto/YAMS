@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.utils;
 
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.models.orders.work.states.State;
+import com.gersonfaneto.yams.models.orders.work.states.StateType;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 
 public abstract class TypeParser {
@@ -105,23 +106,49 @@ public abstract class TypeParser {
     return typeName;
   }
 
-  public static String parseWorkOrderState(State workOrderState) {
+  public static StateType parseWorkOrderStateType(String workOrderState) {
+    StateType typeName = null;
+
+    switch (workOrderState) {
+      case "Cancelada":
+        typeName = StateType.Canceled;
+        break;
+      case "Em Espera":
+        typeName = StateType.Created;
+        break;
+      case "Concluída":
+        typeName = StateType.Finished;
+        break;
+      case "Aberta":
+        typeName = StateType.Open;
+        break;
+      case "Paga":
+        typeName = StateType.Payed;
+        break;
+      default:
+        break;
+    }
+
+    return typeName;
+  }
+
+  public static String parseWorkOrderStateType(StateType workOrderState) {
     String typeName = null;
 
-    switch (workOrderState.getClass().getSimpleName()) {
-      case "Canceled":
+    switch (workOrderState) {
+      case Canceled:
         typeName = "Cancelada";
         break;
-      case "Created":
+      case Created:
         typeName = "Em Espera";
         break;
-      case "Finished":
+      case Finished:
         typeName = "Concluída";
         break;
-      case "Open":
+      case Open:
         typeName = "Aberta";
         break;
-      case "Payed":
+      case Payed:
         typeName = "Paga";
         break;
       default:
