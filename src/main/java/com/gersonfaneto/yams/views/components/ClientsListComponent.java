@@ -25,7 +25,7 @@ public class ClientsListComponent extends AnchorPane {
   private Client targetClient;
   private ObservableList<Client> clientsList;
 
-  public ClientsListComponent(Client targetClient, ObservableList<Client> clientsList) {
+  public ClientsListComponent(Client targetClient, ObservableList<Client> clientsList, ComponentSize componentSize) {
     this.targetClient = targetClient;
     this.clientsList = clientsList;
 
@@ -33,47 +33,63 @@ public class ClientsListComponent extends AnchorPane {
     super.getStylesheets().clear();
     super.getStyleClass().add("client-item");
 
-    super.setMinSize(650, 100);
-    super.setPrefSize(650, 100);
-    super.setMaxSize(650, 100);
+    switch (componentSize) {
+      case Small:
+        super.setPrefSize(550, 100);
+        break;
+      case Medium:
+        super.setPrefSize(650, 100);
+        break;
+      case Large:
+        break;
+      default:
+        break;
+    }
+
+    if (componentSize == ComponentSize.Medium) {
+      FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+      FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+
+      Button editButton = new Button();
+
+      editButton.setLayoutX(610);
+      editButton.setLayoutY(10);
+      editButton.getStyleClass().add("transparent-button");
+
+      editIcon.setSize("20");
+      editIcon.getStyleClass().add("edit-icon");
+
+      editButton.setGraphic(editIcon);
+
+      Button deleteButton = new Button();
+
+      deleteButton.setLayoutX(610);
+      deleteButton.setLayoutY(50);
+      deleteButton.getStyleClass().add("transparent-button");
+
+      deleteIcon.setSize("20");
+      deleteIcon.getStyleClass().add("delete-icon");
+
+      deleteButton.setGraphic(deleteIcon);
+
+      deleteButton.setOnMouseClicked((MouseEvent event) -> {
+        deleteClient();
+      });
+
+      editButton.setOnMouseClicked((MouseEvent event) -> {
+        updateClient();
+      });
+
+      super.getChildren().addAll(editButton, deleteButton);
+    }
 
     FontAwesomeIconView userIcon = new FontAwesomeIconView(FontAwesomeIcon.USER);
-    FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
-    FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
 
     userIcon.setLayoutX(27);
     userIcon.setLayoutY(67);
     userIcon.setSize("50");
 
-    Button editButton = new Button();
-
-    editButton.setLayoutX(610);
-    editButton.setLayoutY(10);
-    editButton.getStyleClass().add("transparent-button");
-
-    editIcon.setSize("20");
-    editIcon.getStyleClass().add("edit-icon");
-
-    editButton.setGraphic(editIcon);
-
-    Button deleteButton = new Button();
-
-    deleteButton.setLayoutX(610);
-    deleteButton.setLayoutY(50);
-    deleteButton.getStyleClass().add("transparent-button");
-
-    deleteIcon.setSize("20");
-    deleteIcon.getStyleClass().add("delete-icon");
-
-    deleteButton.setGraphic(deleteIcon);
-
-    deleteButton.setOnMouseClicked((MouseEvent event) -> {
-      deleteClient();
-    });
-
-    editButton.setOnMouseClicked((MouseEvent event) -> {
-      updateClient();
-    });
+    super.getChildren().add(userIcon);
 
     Label nameField = new Label(targetClient.getClientName());
     Label addressField = new Label(targetClient.getHomeAddress());
@@ -97,7 +113,6 @@ public class ClientsListComponent extends AnchorPane {
     phoneNumberField.setPrefSize(450, 20);
     phoneNumberField.setMaxSize(450, 20);
 
-    super.getChildren().addAll(userIcon, editButton, deleteButton);
     super.getChildren().addAll(nameField, addressField, phoneNumberField);
   }
 
