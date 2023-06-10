@@ -5,6 +5,7 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;
+import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ComponentsListComponent;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -56,8 +57,11 @@ public class StockController {
         if (component == null || empty) {
           setGraphic(null);
         } else {
-          ComponentsListComponent clientComponent = new ComponentsListComponent(component,
-              componentsLists);
+          ComponentsListComponent clientComponent = new ComponentsListComponent(
+              component,
+              componentsLists,
+              ComponentSize.Medium
+          );
 
           setGraphic(clientComponent);
         }

@@ -9,6 +9,7 @@ import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;
+import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ComponentsListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -130,8 +131,11 @@ public class CreateServiceController {
         if (component == null || empty) {
           setGraphic(null);
         } else {
-          ComponentsListComponent clientComponent = new ComponentsListComponent(component,
-              componentsLists);
+          ComponentsListComponent clientComponent = new ComponentsListComponent(
+              component,
+              componentsLists,
+              ComponentSize.Small
+          );
 
           setGraphic(clientComponent);
         }

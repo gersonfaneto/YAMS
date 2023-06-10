@@ -30,7 +30,8 @@ public class ComponentsListComponent extends AnchorPane {
 
   public ComponentsListComponent(
       Component targetComponent,
-      ObservableList<Component> componentsList
+      ObservableList<Component> componentsList,
+      ComponentSize componentSize
   ) {
     this.targetComponent = targetComponent;
     this.componentsList = componentsList;
@@ -39,41 +40,54 @@ public class ComponentsListComponent extends AnchorPane {
     super.getStylesheets().clear();
     super.getStyleClass().add("component-item");
 
-    super.setMinSize(650, 100);
-    super.setPrefSize(650, 100);
-    super.setMaxSize(650, 100);
+    switch (componentSize) {
+      case Small:
+        super.setPrefSize(550, 100);
+        break;
+      case Medium:
+        super.setPrefSize(650, 100);
+        break;
+      case Large:
+        break;
+      default:
+        break;
+    }
 
-    FontAwesomeIconView updateIcon = new FontAwesomeIconView(FontAwesomeIcon.WRENCH);
-    FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+    if (componentSize == ComponentSize.Medium) {
+      FontAwesomeIconView updateIcon = new FontAwesomeIconView(FontAwesomeIcon.WRENCH);
+      FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
 
-    Button updateButton = new Button();
-    Button deleteButton = new Button();
+      Button updateButton = new Button();
+      Button deleteButton = new Button();
 
-    updateButton.setLayoutX(620);
-    updateButton.setLayoutY(10);
-    updateButton.getStyleClass().add("transparent-button");
+      updateButton.setLayoutX(620);
+      updateButton.setLayoutY(10);
+      updateButton.getStyleClass().add("transparent-button");
 
-    updateIcon.setSize("20");
-    updateIcon.getStyleClass().add("update-icon");
+      updateIcon.setSize("20");
+      updateIcon.getStyleClass().add("update-icon");
 
-    updateButton.setGraphic(updateIcon);
+      updateButton.setGraphic(updateIcon);
 
-    deleteButton.setLayoutX(620);
-    deleteButton.setLayoutY(50);
-    deleteButton.getStyleClass().add("transparent-button");
+      deleteButton.setLayoutX(620);
+      deleteButton.setLayoutY(50);
+      deleteButton.getStyleClass().add("transparent-button");
 
-    deleteIcon.setSize("20");
-    deleteIcon.getStyleClass().add("delete-icon");
+      deleteIcon.setSize("20");
+      deleteIcon.getStyleClass().add("delete-icon");
 
-    deleteButton.setGraphic(deleteIcon);
+      deleteButton.setGraphic(deleteIcon);
 
-    deleteButton.setOnMouseClicked((MouseEvent event) -> {
-      deleteComponent();
-    });
+      deleteButton.setOnMouseClicked((MouseEvent event) -> {
+        deleteComponent();
+      });
 
-    updateButton.setOnMouseClicked((MouseEvent event) -> {
-      updateComponent();
-    });
+      updateButton.setOnMouseClicked((MouseEvent event) -> {
+        updateComponent();
+      });
+
+      super.getChildren().addAll(updateButton, deleteButton);
+    }
 
     Label priceFieldIndicator = new Label("Preço");
     Label costFieldIndicator = new Label("Custo");
@@ -82,17 +96,17 @@ public class ComponentsListComponent extends AnchorPane {
 
     priceFieldIndicator.setLayoutX(90);
     priceFieldIndicator.setLayoutY(40);
-    priceFieldIndicator.setPrefSize(60, 20);
+    priceFieldIndicator.setPrefSize(50, 20);
 
     costFieldIndicator.setLayoutX(90);
     costFieldIndicator.setLayoutY(65);
-    costFieldIndicator.setPrefSize(60, 20);
+    costFieldIndicator.setPrefSize(50, 20);
 
-    amountFieldIndicator.setLayoutX(225);
+    amountFieldIndicator.setLayoutX(235);
     amountFieldIndicator.setLayoutY(40);
     amountFieldIndicator.setPrefSize(80, 20);
 
-    typeFieldIndicator.setLayoutX(225);
+    typeFieldIndicator.setLayoutX(235);
     typeFieldIndicator.setLayoutY(65);
     typeFieldIndicator.setPrefSize(80, 20);
 
@@ -107,14 +121,14 @@ public class ComponentsListComponent extends AnchorPane {
     descriptionField.setPrefSize(450, 20);
     descriptionField.setText(targetComponent.getComponentDescription());
 
-    priceField.setLayoutX(160);
+    priceField.setLayoutX(150);
     priceField.setLayoutY(40);
-    priceField.setPrefSize(50, 20);
+    priceField.setPrefSize(60, 20);
     priceField.setText(formatMoney(targetComponent.getComponentPrice()));
 
-    costField.setLayoutX(160);
+    costField.setLayoutX(150);
     costField.setLayoutY(65);
-    costField.setPrefSize(50, 20);
+    costField.setPrefSize(60, 20);
     costField.setText(formatMoney(targetComponent.getComponentCost()));
 
     amountField.setLayoutX(325);
@@ -142,10 +156,19 @@ public class ComponentsListComponent extends AnchorPane {
     typeIcon.setImage(typeImage);
 
     super.getChildren().add(typeIcon);
-    super.getChildren().addAll(updateButton, deleteButton);
-    super.getChildren().addAll(descriptionField, priceField, costField, amountField, typeField);
-    super.getChildren()
-        .addAll(priceFieldIndicator, costFieldIndicator, amountFieldIndicator, typeFieldIndicator);
+    super.getChildren().addAll(
+        descriptionField,
+        priceField,
+        costField,
+        amountField,
+        typeField
+    );
+    super.getChildren().addAll(
+        priceFieldIndicator,
+        costFieldIndicator,
+        amountFieldIndicator,
+        typeFieldIndicator
+    );
   }
 
   private void deleteComponent() {
