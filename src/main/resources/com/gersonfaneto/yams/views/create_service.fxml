@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.CreateServiceController">
+   <children>
+      <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="766.0" layoutY="31.0" onMouseClicked="#closeWindow" size="25" styleClass="close-button" />
+      <FontAwesomeIconView fx:id="backButton" glyphName="ARROW_LEFT" layoutX="14.0" layoutY="31.0" onMouseClicked="#cancelRegister" size="20" styleClass="back-button" />
+      <TextField fx:id="descriptionField" layoutX="124.0" layoutY="403.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Descrição" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
+      <FontAwesomeIconView glyphName="PENCIL" layoutX="92.0" layoutY="425.0" size="20" />
+      <FontAwesomeIconView glyphName="GEAR" layoutX="92.0" layoutY="474.0" size="20" />
+      <ComboBox fx:id="serviceTypeFilter" layoutX="124.0" layoutY="454.0" onAction="#checkType" prefWidth="150.0" promptText="Categoria" />
+      <ListView id="listView" fx:id="listView" layoutX="92.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" stylesheets="@../stylesheets/global.css" />
+      <Button fx:id="confirmButton" layoutX="506.0" layoutY="521.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#confirmRegister" prefHeight="30.0" prefWidth="130.0" styleClass="confirm-button" stylesheets="@../stylesheets/global.css" text="Confirmar" />
+      <Button fx:id="cancelButton" layoutX="164.0" layoutY="521.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#cancelRegister" prefHeight="30.0" prefWidth="130.0" styleClass="cancel-button" stylesheets="@../stylesheets/global.css" text="Cancelar" />
+      <TextField fx:id="amountField" layoutX="294.0" layoutY="452.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="Quantidade" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
+      <TextField fx:id="searchField" layoutX="122.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" promptText="Ex.: Procesador Intel" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
+      <ComboBox fx:id="componentTypeFilter" layoutX="582.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="110.0" promptText="Tipo" styleClass="role-selector" stylesheets="@../stylesheets/global.css" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="92.0" layoutY="44.0" size="20" styleClass="search-button" />
+   </children>
+</AnchorPane>

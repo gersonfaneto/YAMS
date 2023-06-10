@@ -110,7 +110,13 @@ public class CreateOrderController {
 
   @FXML
   public void confirmRegister() {
+  }
 
+  @FXML
+  public void openServicesRegistration() throws IOException {
+    Parent servicesRegistrationView = FXMLLoader.load(App.class.getResource("views/create_service.fxml"));
+
+    MainController.mainWindow.setRight(servicesRegistrationView);
   }
 
   @FXML
