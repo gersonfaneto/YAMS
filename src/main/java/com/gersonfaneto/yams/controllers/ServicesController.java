@@ -49,15 +49,24 @@ public class ServicesController {
 
   @FXML
   public void initialize() {
-    Client randomClient = DAO.fromClients().createOne(new Client("John Smith", "Constantinople", "9999999999"));
+    // TODO: Remove after tests are finished. 
+    if (DAO.fromWorkOrders().findMany().size() == 0) {
+      Client randomClient = DAO.fromClients().createOne(
+          new Client(
+            "Gerson Ferreira dos Anjos Neto",
+            "Rua A, Campo Limpo, 07, Feira de Santana",
+            "(11) 91234-1234"
+          )
+      );
 
-    WorkOrder newWorkOrder = DAO.fromWorkOrders().createOne(new WorkOrder(randomClient.getClientID()));
+      WorkOrder newWorkOrder = DAO.fromWorkOrders().createOne(new WorkOrder(randomClient.getClientID()));
 
-    Service randomService = new Service(ServiceType.Cleaning, "Dusty!", List.of());
-    randomService.setWorkOrderID(newWorkOrder.getWorkOrderID());
+      Service randomService = new Service(ServiceType.Cleaning, "Dusty!", List.of());
+      randomService.setWorkOrderID(newWorkOrder.getWorkOrderID());
 
-    for (int i = 0; i < 5; i++) {
-      DAO.fromService().createOne(randomService);
+      for (int i = 0; i < 5; i++) {
+        DAO.fromService().createOne(randomService);
+      }
     }
 
     workOrdersList = FXCollections.observableArrayList();
