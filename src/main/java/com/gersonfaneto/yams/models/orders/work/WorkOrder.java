@@ -3,6 +3,7 @@ package com.gersonfaneto.yams.models.orders.work;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.orders.work.states.Created;
 import com.gersonfaneto.yams.models.orders.work.states.State;
+import com.gersonfaneto.yams.models.orders.work.states.StateType;
 import com.gersonfaneto.yams.models.reports.WorkReport;
 import com.gersonfaneto.yams.models.services.Service;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class WorkOrder implements Serializable {
   private String technicianID;
   private String invoiceID;
   private State workOrderState;
+  private StateType workOrderStateType;
   private Calendar createdAt;
   private Calendar closedAt;
   private WorkReport workReport;
@@ -39,6 +41,7 @@ public class WorkOrder implements Serializable {
   public WorkOrder(String clientID) {
     this.clientID = clientID;
     this.workOrderState = new Created(this);
+    this.workOrderStateType = StateType.Created;
     this.createdAt = Calendar.getInstance();
   }
 
@@ -163,6 +166,14 @@ public class WorkOrder implements Serializable {
 
   public void setWorkOrderState(State workOrderState) {
     this.workOrderState = workOrderState;
+  }
+
+  public StateType getWorkOrderStateType() {
+    return workOrderStateType;
+  }
+
+  public void setWorkOrderStateType(StateType workOrderStateType) {
+    this.workOrderStateType = workOrderStateType;
   }
 
   public Calendar getCreatedAt() {
