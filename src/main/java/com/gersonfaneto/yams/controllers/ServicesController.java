@@ -5,8 +5,10 @@ import java.util.List;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.orders.work.states.StateType;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.OrdersListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -16,6 +18,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -33,6 +36,9 @@ public class ServicesController {
 
   @FXML
   private Button registerButton;
+
+  @FXML
+  private ComboBox<String> statusFilter;
 
   private ObservableList<WorkOrder> workOrdersList;
   private FilteredList<WorkOrder> filteredWorkOrders;
@@ -53,10 +59,10 @@ public class ServicesController {
     workOrdersList = FXCollections.observableArrayList();
     filteredWorkOrders = new FilteredList<>(workOrdersList);
 
-    /* typeFilter.getItems().add("Todos");
-    for (ComponentType componentType : ComponentType.values()) {
-      typeFilter.getItems().add(TypeParser.parseComponentType(componentType));
-    } */
+    statusFilter.getItems().add("Todos");
+    for (StateType componentType : StateType.values()) {
+      statusFilter.getItems().add(TypeParser.parseWorkOrderStateType(componentType));
+    }
 
     listView.setCellFactory(listView -> new ListCell<WorkOrder>() {
       @Override
@@ -99,6 +105,17 @@ public class ServicesController {
     SortedList<WorkOrder> sortedWorkOrders = new SortedList<>(filteredWorkOrders);
 
     listView.setItems(sortedWorkOrders);
+  }
+  
+  @FXML
+  public void filterSearch() {
+    listView.setItems(filteredWorkOrders.filtered(workOrder -> {
+      String statusValue = statusFilter.getValue();
+
+      StateType statusType = TypeParser.parseWorkOrderStateType(statusValue);
+
+      return statusType == null || workOrder.getWorkOrderStateType() == statusType;
+    }));
   }
 
   @FXML
