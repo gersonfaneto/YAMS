@@ -139,6 +139,7 @@
   -fx-selection-bar-non-focused: #cfcfcf;
   -fx-accent: #cfcfcf;
   -fx-text-fill: #444444;
+  -fx-border-color: #444444;
 }
 
 .list-cell {

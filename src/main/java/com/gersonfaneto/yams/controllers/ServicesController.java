@@ -1,7 +1,9 @@
 package com.gersonfaneto.yams.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
@@ -17,6 +19,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
@@ -125,8 +129,12 @@ public class ServicesController {
   }
 
   @FXML
-  public void registerOrder() {
+  public void registerOrder() throws IOException {
+    Parent clientRegisterView = FXMLLoader.load(
+        App.class.getResource("views/create_order.fxml")
+    );
 
+    MainController.mainWindow.setRight(clientRegisterView);
   }
 }
 
