@@ -4,6 +4,8 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.views.components.ClientsListComponent;
+import com.gersonfaneto.yams.views.components.ComponentSize;
+
 import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -45,7 +47,11 @@ public class ClientsController {
         if (client == null || empty) {
           setGraphic(null);
         } else {
-          ClientsListComponent clientComponent = new ClientsListComponent(client, clientsList);
+          ClientsListComponent clientComponent = new ClientsListComponent(
+              client,
+              clientsList,
+              ComponentSize.Medium
+          );
 
           setGraphic(clientComponent);
         }
