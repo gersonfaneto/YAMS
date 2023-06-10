@@ -69,7 +69,8 @@ public class OrdersListComponent extends AnchorPane {
     priceField.setLayoutY(40);
     priceField.setPrefSize(90, 20);
     priceField.setText(
-        String.format("%.2f", DAO.fromService()
+        formatMoney(
+          DAO.fromService()
           .findByWorkOrder(workOrder.getWorkOrderID())
           .stream()
           .map(service -> service.getServicePrice())
@@ -85,10 +86,10 @@ public class OrdersListComponent extends AnchorPane {
         TypeParser.parseWorkOrderStateType(workOrder.getWorkOrderStateType())
     );
 
-    Label openingDateFieldIndicator = new Label("Abertura:");
-    Label closingDateFieldIndicator = new Label("Fechamento:");
-    Label priceFieldIndicator = new Label("Preço:");
-    Label statusFieldIndicator = new Label("Status:");
+    Label openingDateFieldIndicator = new Label("Abertura");
+    Label closingDateFieldIndicator = new Label("Fechamento");
+    Label priceFieldIndicator = new Label("Preço");
+    Label statusFieldIndicator = new Label("Status");
 
     openingDateFieldIndicator.setLayoutX(90);
     openingDateFieldIndicator.setLayoutY(40);
@@ -120,5 +121,9 @@ public class OrdersListComponent extends AnchorPane {
         priceFieldIndicator,
         statusFieldIndicator
     );
+  }
+
+  public String formatMoney(double moneyInput) {
+    return String.format("R$ %.2f", moneyInput).replace(".", ",");
   }
 }

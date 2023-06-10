@@ -75,8 +75,8 @@ public class ComponentsListComponent extends AnchorPane {
       updateComponent();
     });
 
-    Label priceFieldIndicator = new Label("Preço R$");
-    Label costFieldIndicator = new Label("Custo R$");
+    Label priceFieldIndicator = new Label("Preço");
+    Label costFieldIndicator = new Label("Custo");
     Label amountFieldIndicator = new Label("Quantidade");
     Label typeFieldIndicator = new Label("Categoria");
 
@@ -203,6 +203,6 @@ public class ComponentsListComponent extends AnchorPane {
   }
 
   public String formatMoney(double moneyInput) {
-    return String.format("%.2f", moneyInput).replace(".", ",");
+    return String.format("R$ %.2f", moneyInput).replace(".", ",");
   }
 }
