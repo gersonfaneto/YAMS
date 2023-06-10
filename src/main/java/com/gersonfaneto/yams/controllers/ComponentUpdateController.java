@@ -3,6 +3,8 @@ package com.gersonfaneto.yams.controllers;
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
+import com.gersonfaneto.yams.models.stock.ComponentType;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -96,6 +98,11 @@ public class ComponentUpdateController {
     this.componentID = componentID;
     descriptionField.setText(componentDescription);
     priceField.setText(formatMoney(componentPrice));
+
+    if (DAO.fromComponents().findByID(componentID).getComponentType() != ComponentType.Others) {
+      priceField.setDisable(true);
+    }
+
     amountField.setText(Integer.toString(amountInStock));
   }
 
