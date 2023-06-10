@@ -105,7 +105,6 @@ public class LoginController {
     String menuViewPath = String.format(
       "views/%s_menu.fxml", foundUser.getUserType().getTypeName().toLowerCase()
     );
-    System.out.println(menuViewPath);
 
     if (foundUser.getUserType() == UserType.Administrator) {
       baseViewPath = "views/employees.fxml";
