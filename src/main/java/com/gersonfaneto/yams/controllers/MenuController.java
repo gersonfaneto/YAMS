@@ -92,7 +92,7 @@ public class MenuController {
       targetView = FXMLLoader.load(App.class.getResource("views/reports.fxml"));
     } else if (actionEvent.getSource() == employeesButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
-    } else if (actionEvent.getSource() == invoicesButton) {
+    } else {
       targetView = FXMLLoader.load(App.class.getResource("views/invoices.fxml"));
     }
 
