@@ -1,6 +1,10 @@
 package com.gersonfaneto.yams.views.components;
 
+import java.io.IOException;
+
 import com.gersonfaneto.yams.App;
+import com.gersonfaneto.yams.controllers.MainController;
+import com.gersonfaneto.yams.controllers.OrderDetailsController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.utils.Time;
@@ -9,15 +13,26 @@ import com.gersonfaneto.yams.utils.TypeParser;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class OrdersListComponent extends AnchorPane {
+  private WorkOrder targetOrder;
+  private ObservableList<WorkOrder> workOrdersList;
 
   public OrdersListComponent(
       WorkOrder workOrder,
       ObservableList<WorkOrder> workOrdersLists
   ) {
+    this.targetOrder = workOrder;
+    this.workOrdersList = workOrdersList;
+
     super.getStylesheets().add(App.class.getResource("stylesheets/global.css").toExternalForm());
     super.getStylesheets().clear();
     super.getStyleClass().add("component-item");
@@ -32,6 +47,10 @@ public class OrdersListComponent extends AnchorPane {
     ordersIcon.setLayoutY(70);
     ordersIcon.setSize("50");
     ordersIcon.getStyleClass().add("order-icon");
+
+    ordersIcon.setOnMouseClicked(event -> {
+      viewDetails();
+    });
 
     Label clientNameField = new Label();
     Label openingDateField = new Label();
@@ -123,7 +142,27 @@ public class OrdersListComponent extends AnchorPane {
     );
   }
 
-  public String formatMoney(double moneyInput) {
+  private String formatMoney(double moneyInput) {
     return String.format("R$ %.2f", moneyInput).replace(".", ",");
+  }
+
+  private void viewDetails() {
+    OrderDetailsController detailsController = new OrderDetailsController();
+    detailsController.setWorkOrder(targetOrder);
+
+    FXMLLoader loaderFXML = new FXMLLoader();
+    loaderFXML.setLocation(App.class.getResource("views/order_details.fxml"));
+
+    loaderFXML.setController(detailsController);
+
+    Parent updateView;
+    try {
+      updateView = loaderFXML.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
+    }
+
+    MainController.mainWindow.setRight(updateView);
   }
 }
