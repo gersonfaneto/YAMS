@@ -10,6 +10,7 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.utils.TypeParser;
+import com.gersonfaneto.yams.views.components.ActionConfirmationDialog;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
 
@@ -21,11 +22,17 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class OrderDetailsController {
 
@@ -40,6 +47,9 @@ public class OrderDetailsController {
 
   @FXML
   private ListView<Service> listView;
+
+  @FXML
+  private Label visualFeedback;
 
   @FXML
   private TextField clientNameField;
@@ -135,7 +145,39 @@ public class OrderDetailsController {
   }
 
   @FXML
-  public void cancelOrder() {
+  public void cancelOrder() throws IOException {
+    List<Service> allServices = DAO.fromService().findByWorkOrder(workOrder.getWorkOrderID());
+
+    boolean isComplete = allServices
+      .stream()
+      .map(Service::isComplete)
+      .reduce(true, (a, b) -> a && b);
+
+    if (!isComplete) {
+      visualFeedback.setText("Ainda há serviços em aberto!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    String confirmationMessage = "Deseja mesmo cancelar a ordem?";
+
+    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
+
+    Stage modalStage = new Stage();
+
+    MainController.modalStage = modalStage;
+
+    modalStage.setScene(new Scene(confirmDialog));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
+    modalStage.showAndWait();
+
+    if (MainController.isConfirmed) {
+      DAO.fromWorkOrders().deleteByID(workOrder.getWorkOrderID());
+
+      closeDetails();
+    }
   }
 
   @FXML

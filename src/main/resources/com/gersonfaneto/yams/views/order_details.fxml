@@ -16,10 +16,11 @@
       <TextField fx:id="searchField" layoutX="79.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="560.0" promptText="Ex.: Instalar Google Chrome" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
       <ComboBox fx:id="typeFilter" layoutX="650.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="100.0" promptText="Tipo" styleClass="role-selector" stylesheets="@../stylesheets/global.css" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="52.0" layoutY="39.0" size="20" styleClass="search-button" />
-      <TextField fx:id="clientNameField" disable="true" editable="false" layoutX="50.0" layoutY="467.0" prefHeight="26.0" prefWidth="300.0" />
-      <Label layoutX="53.0" layoutY="443.0" text="Cliente" />
-      <TextField fx:id="technicianNameField" disable="true" layoutX="450.0" layoutY="467.0" prefHeight="26.0" prefWidth="300.0" />
-      <Label layoutX="450.0" layoutY="443.0" text="Têcnico" />
-      <Button fx:id="cancelOrderButton" layoutX="300.0" layoutY="531.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="30.0" prefWidth="200.0" styleClass="cancel-button" stylesheets="@../stylesheets/global.css" text="Cancelar Ordem" />
+      <TextField fx:id="clientNameField" disable="true" editable="false" layoutX="50.0" layoutY="476.0" prefHeight="26.0" prefWidth="300.0" />
+      <Label layoutX="53.0" layoutY="452.0" text="Cliente" />
+      <TextField fx:id="technicianNameField" disable="true" layoutX="450.0" layoutY="476.0" prefHeight="26.0" prefWidth="300.0" />
+      <Label layoutX="450.0" layoutY="452.0" text="Têcnico" />
+      <Button fx:id="cancelOrderButton" layoutX="300.0" layoutY="536.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="30.0" prefWidth="200.0" styleClass="cancel-button" stylesheets="@../stylesheets/global.css" text="Cancelar Ordem" />
+      <Label fx:id="visualFeedback" layoutX="54.0" layoutY="422.0" />
    </children>
 </AnchorPane>
