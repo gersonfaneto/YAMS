@@ -102,7 +102,7 @@ public class OrdersListComponent extends AnchorPane {
     statusField.setLayoutY(65);
     statusField.setPrefSize(90, 20);
     statusField.setText(
-        TypeParser.parseWorkOrderStateType(workOrder.getWorkOrderStateType())
+        TypeParser.parseWorkOrderStateType(workOrder.getWorkOrderState())
     );
 
     Label openingDateFieldIndicator = new Label("Abertura");

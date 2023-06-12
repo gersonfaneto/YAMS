@@ -1,88 +1,25 @@
 package com.gersonfaneto.yams.models.orders.work;
 
-import com.gersonfaneto.yams.models.billing.invoice.Invoice;
-import com.gersonfaneto.yams.models.orders.work.states.Created;
-import com.gersonfaneto.yams.models.orders.work.states.State;
-import com.gersonfaneto.yams.models.orders.work.states.StateType;
-import com.gersonfaneto.yams.models.reports.WorkReport;
-import com.gersonfaneto.yams.models.services.Service;
 import java.io.Serializable;
 import java.util.Calendar;
 
-/**
- * Represents the Work Orders that can be created by the Technicians of the Assistance to group the
- * Services requested by a Client, using the "State" pattern to encapsulate some of its mutable
- * behavior.
- *
- * @author Gerson Ferreira dos Anjos Neto
- * @version 1.0.0
- * @see com.gersonfaneto.yams.models.orders.work.states.State
- * @see Service
- */
+import com.gersonfaneto.yams.models.reports.WorkReport;
+
 public class WorkOrder implements Serializable {
 
   private String workOrderID;
   private String clientID;
   private String technicianID;
   private String invoiceID;
-  private State workOrderState;
-  private StateType workOrderStateType;
+  private WorkOrderState workOrderState;
   private Calendar createdAt;
   private Calendar closedAt;
   private WorkReport workReport;
 
-  /**
-   * Constructs a new <code>WorkOrder</code> for a <code>Client</code>. The initial <code>State
-   * </code> of the <code>WorkOrder</code> is <code>Created</code>.
-   *
-   * @param clientID The ID of the Client that requested the <code>Service</code>s.
-   * @see Created
-   */
   public WorkOrder(String clientID) {
     this.clientID = clientID;
-    this.workOrderState = new Created(this);
-    this.workOrderStateType = StateType.Created;
+    this.workOrderState = WorkOrderState.Created;
     this.createdAt = Calendar.getInstance();
-  }
-
-  /**
-   * Removes a <code>Service</code> from the <code>WorkOrder</code> depending on its current <code>
-   * State</code>.
-   *
-   * @param serviceID The ID of the targeted <code>Service</code>.
-   * @return <code>null</code> or the removed <code>Service</code>, depending on the current <code>
-   * State</code> of the <code>WorkOrder</code>.
-   * @see com.gersonfaneto.yams.models.orders.work.states.State
-   * @see Service
-   */
-  public Service removeService(String serviceID) {
-    return workOrderState.removeService(serviceID);
-  }
-
-  /**
-   * Attempts to generate the <code>Invoice</code> for the <code>WorkOrder</code> depending on its
-   * current <code>State</code>.
-   *
-   * @return <code>null</code> or the generated <code>Invoice</code>, depending on the current
-   * <code>State</code> of the <code>WorkOrder</code>.
-   * @see com.gersonfaneto.yams.models.orders.work.states.State
-   * @see Invoice
-   */
-  public Invoice generateInvoice() {
-    return workOrderState.generateInvoice();
-  }
-
-  /**
-   * Attempts to generate the <code>WorkReport</code> for the <code>WorkOrder</code> depending on
-   * its current <code>State</code>.
-   *
-   * @return <code>null</code> or the generated <code>WorkReport</code>, depending on the current
-   * <code>State</code> of the <code>WorkOrder</code>.
-   * @see com.gersonfaneto.yams.models.orders.work.states.State
-   * @see WorkReport
-   */
-  public WorkReport generateReport() {
-    return workOrderState.generateReport();
   }
 
   /**
@@ -160,20 +97,12 @@ public class WorkOrder implements Serializable {
     this.invoiceID = invoiceID;
   }
 
-  public State getWorkOrderState() {
+  public WorkOrderState getWorkOrderState() {
     return workOrderState;
   }
 
-  public void setWorkOrderState(State workOrderState) {
+  public void setWorkOrderState(WorkOrderState workOrderState) {
     this.workOrderState = workOrderState;
-  }
-
-  public StateType getWorkOrderStateType() {
-    return workOrderStateType;
-  }
-
-  public void setWorkOrderStateType(StateType workOrderStateType) {
-    this.workOrderStateType = workOrderStateType;
   }
 
   public Calendar getCreatedAt() {

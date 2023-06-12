@@ -1,6 +1,6 @@
-package com.gersonfaneto.yams.models.orders.work.states;
+package com.gersonfaneto.yams.models.orders.work;
 
-public enum StateType {
+public enum WorkOrderState {
   Canceled("Canceled"),
   Created("Created"),
   Finished("Finished"),
@@ -9,7 +9,7 @@ public enum StateType {
 
   private final String typeName;
 
-  StateType(String typeName) {
+  WorkOrderState(String typeName) {
     this.typeName = typeName;
   }
 
@@ -17,8 +17,8 @@ public enum StateType {
     return typeName;
   }
 
-  public static StateType findByType(String typeName) {
-    for (StateType currentType : values()) {
+  public static WorkOrderState findByType(String typeName) {
+    for (WorkOrderState currentType : values()) {
       if (currentType.typeName.equals(typeName)) {
         return currentType;
       }

@@ -7,7 +7,7 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.orders.work.states.StateType;
+import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
@@ -87,7 +87,7 @@ public class ServicesController {
     filteredWorkOrders = new FilteredList<>(workOrdersList);
 
     statusFilter.getItems().add("Todos");
-    for (StateType componentType : StateType.values()) {
+    for (WorkOrderState componentType : WorkOrderState.values()) {
       statusFilter.getItems().add(TypeParser.parseWorkOrderStateType(componentType));
     }
 
@@ -139,9 +139,9 @@ public class ServicesController {
     listView.setItems(filteredWorkOrders.filtered(workOrder -> {
       String statusValue = statusFilter.getValue();
 
-      StateType statusType = TypeParser.parseWorkOrderStateType(statusValue);
+      WorkOrderState statusType = TypeParser.parseWorkOrderStateType(statusValue);
 
-      return statusType == null || workOrder.getWorkOrderStateType() == statusType;
+      return statusType == null || workOrder.getWorkOrderState() == statusType;
     }));
   }
 

@@ -34,11 +34,9 @@ module com.gersonfaneto.yams {
   exports com.gersonfaneto.yams.models.entities.client;
   exports com.gersonfaneto.yams.models.entities.receptionist;
   exports com.gersonfaneto.yams.models.entities.technician;
-  exports com.gersonfaneto.yams.models.entities.technician.states;
   exports com.gersonfaneto.yams.models.entities.user;
 
   exports com.gersonfaneto.yams.models.orders.work;
-  exports com.gersonfaneto.yams.models.orders.work.states;
   exports com.gersonfaneto.yams.models.orders.purchase;
 
   exports com.gersonfaneto.yams.models.reports;

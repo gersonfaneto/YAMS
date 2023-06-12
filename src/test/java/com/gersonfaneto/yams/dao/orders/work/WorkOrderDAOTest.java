@@ -3,7 +3,7 @@ package com.gersonfaneto.yams.dao.orders.work;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.orders.work.states.Open;
+import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.utils.Generators;
 import java.io.File;
 import java.util.List;
@@ -94,7 +94,7 @@ class WorkOrderDAOTest {
 
   @Test
   void updateInformation() {
-    randomWorkOrder.setWorkOrderState(new Open(randomWorkOrder));
+    randomWorkOrder.setWorkOrderState(WorkOrderState.Open);
 
     boolean hasFound = DAO.fromWorkOrders().updateInformation(randomWorkOrder);
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(randomWorkOrder.getWorkOrderID());
