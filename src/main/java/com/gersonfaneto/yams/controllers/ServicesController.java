@@ -51,38 +51,6 @@ public class ServicesController {
 
   @FXML
   public void initialize() {
-    if (DAO.fromService().findMany().size() == 0) {
-      Client randomClient = DAO.fromClients().createOne(
-          new Client(
-            "Gerson Ferreira dos Anjos Neto",
-            "Rua A, Campo Limpo, 07, Feira de Santana",
-            "(11) 91234-1234"
-            )
-          );
-
-      WorkOrder newWorkOrder = DAO.fromWorkOrders().createOne(new WorkOrder(randomClient.getClientID()));
-
-      Service foo = new Service(ServiceType.Cleaning, "Dusty!", null, 0);
-      Service bar = new Service(ServiceType.Formatting, "Install Ubuntu 22.04", null, 0);
-      Service baz = new Service(ServiceType.ProgramInstallation, "Install Google Chrome", null, 0);
-      Service fizz = new Service(
-          ServiceType.Assembly,
-          "Add RAM",
-          DAO.fromComponents().createOne(new Component(ComponentType.RAM, "RAM", 1, 20, 15)),
-          1
-      );
-
-      foo.setWorkOrderID(newWorkOrder.getWorkOrderID());
-      bar.setWorkOrderID(newWorkOrder.getWorkOrderID());
-      baz.setWorkOrderID(newWorkOrder.getWorkOrderID());
-      fizz.setWorkOrderID(newWorkOrder.getWorkOrderID());
-
-      DAO.fromService().createOne(foo);
-      DAO.fromService().createOne(bar);
-      DAO.fromService().createOne(baz);
-      DAO.fromService().createOne(fizz);
-    }
-
     workOrdersList = FXCollections.observableArrayList();
     filteredWorkOrders = new FilteredList<>(workOrdersList);
 
