@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.App;
-import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.views.components.ActionConfirmationDialog;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -60,6 +59,20 @@ public class MenuController {
       if (currentNode instanceof Button currentButton) {
         currentButton.setOnMouseClicked(event -> setActiveButton(currentButton));
       }
+    }
+
+    switch(MainController.loggedUser.getUserType()) {
+      case Administrator:
+        setActiveButton(employeesButton);
+        break;
+      case Technician:
+        setActiveButton(homeButton);
+        break;
+      case Receptionist:
+        setActiveButton(clientsButton);
+        break;
+      default:
+        break;
     }
   }
 
