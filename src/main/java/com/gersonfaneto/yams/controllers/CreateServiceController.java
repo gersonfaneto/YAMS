@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
@@ -22,9 +23,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 public class CreateServiceController {
 
@@ -45,6 +48,9 @@ public class CreateServiceController {
 
   @FXML
   private ListView<Component> listView;
+
+  @FXML
+  private Label visualFeedback;
 
   @FXML
   private TextField descriptionField;
@@ -100,7 +106,63 @@ public class CreateServiceController {
   }
 
   @FXML
-  public void confirmRegister() {
+  public void confirmRegister() throws IOException {
+    Component usedComponent = listView.getSelectionModel().getSelectedItem();
+    String serviceDescription = descriptionField.getText();
+    String serviceType = serviceTypeFilter.getValue();
+    int usedAmount = getAmount();
+
+    if (serviceDescription.isEmpty()) {
+      visualFeedback.setText("Insira uma descrição!");
+      visualFeedback.setTextFill(Color.YELLOW);
+      return;
+    }
+
+    if (serviceType.equals("Montagem") && usedComponent == null) {
+      visualFeedback.setText("Selecione uma peça para a montagem!");
+      visualFeedback.setTextFill(Color.YELLOW);
+      return;
+    }
+
+    if (
+        usedComponent != null &&
+        usedComponent.getAmountInStock() < usedAmount
+    ) {
+      visualFeedback.setText("Quantidade em estoque insuficiente!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    if (
+        usedComponent != null &&
+        usedAmount <= 0
+    ) {
+      visualFeedback.setText("Quantidade inválida!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    if (usedComponent != null) {
+      usedComponent.setAmountInStock(
+          usedComponent.getAmountInStock() - usedAmount
+      );
+      DAO.fromComponents().updateInformation(usedComponent);
+    }
+
+    Service newService = new Service(
+        TypeParser.parseServiceType(serviceType),
+        serviceDescription,
+        usedComponent,
+        usedAmount
+    );
+
+    newService.setWorkOrderID("TEMP");
+
+    DAO.fromService().createOne(newService);
+
+    Parent createOrderView = FXMLLoader.load(App.class.getResource("views/create_order.fxml"));
+
+    MainController.mainWindow.setRight(createOrderView);
   }
 
   @FXML
@@ -118,8 +180,16 @@ public class CreateServiceController {
     System.exit(0);
   }
 
+  private int getAmount() {
+    try {
+      return Integer.parseInt(amountField.getText());
+    }
+    catch (NumberFormatException nfe) {
+      return -1;
+    }
+  }
 
-  public void populateTable() {
+  private void populateTable() {
     componentsLists = FXCollections.observableArrayList();
     filteredComponents = new FilteredList<>(componentsLists);
 
@@ -135,7 +205,7 @@ public class CreateServiceController {
               component,
               componentsLists,
               ComponentSize.Small
-          );
+              );
 
           setGraphic(clientComponent);
         }

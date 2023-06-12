@@ -7,7 +7,6 @@ import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.stock.Component;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Represents the Services that can be requested by the Clients of the Assistance and performed by
