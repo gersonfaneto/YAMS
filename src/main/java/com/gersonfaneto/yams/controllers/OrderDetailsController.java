@@ -10,9 +10,9 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.utils.TypeParser;
-import com.gersonfaneto.yams.views.components.ActionConfirmationDialog;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
+import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;

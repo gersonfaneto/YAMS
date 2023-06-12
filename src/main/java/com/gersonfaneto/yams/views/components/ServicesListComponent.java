@@ -6,6 +6,7 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.utils.TypeParser;
+import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;

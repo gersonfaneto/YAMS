@@ -6,6 +6,8 @@ import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.TypeParser;
+import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;

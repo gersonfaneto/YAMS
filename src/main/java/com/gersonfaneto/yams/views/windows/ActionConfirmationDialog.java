@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.views.components;
+package com.gersonfaneto.yams.views.windows;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.MainController;

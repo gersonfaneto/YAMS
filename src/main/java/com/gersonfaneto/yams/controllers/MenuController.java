@@ -1,7 +1,8 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.App;
-import com.gersonfaneto.yams.views.components.ActionConfirmationDialog;
+import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import javafx.event.ActionEvent;
