@@ -35,9 +35,9 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </PasswordField>
-      <ComboBox fx:id="roleSelector" layoutX="313.0" layoutY="416.0" prefWidth="150.0" promptText="Cargo" styleClass="role-selector" stylesheets="@../stylesheets/register.css" />
+      <ComboBox fx:id="roleSelector" layoutX="313.0" layoutY="416.0" prefWidth="150.0" promptText="Cargo" styleClass="role-selector" stylesheets="@../stylesheets/global.css" />
       <CheckBox fx:id="showPassword" layoutX="311.0" layoutY="468.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#revealSecrets" prefWidth="125.0" text="Mostrar Senha" textFill="#868e96" />
-      <Button fx:id="registerButton" layoutX="311.0" layoutY="505.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="normal-button" stylesheets="@../stylesheets/register.css" text="Registrar">
+      <Button fx:id="registerButton" layoutX="311.0" layoutY="505.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validateEntries" prefHeight="30.0" prefWidth="210.0" styleClass="normal-button" stylesheets="@../stylesheets/global.css" text="Registrar">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
