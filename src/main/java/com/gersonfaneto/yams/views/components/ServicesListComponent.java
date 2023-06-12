@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.views.components;
 
 import com.gersonfaneto.yams.App;
+import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
@@ -9,11 +10,15 @@ import com.gersonfaneto.yams.utils.TypeParser;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ServicesListComponent extends AnchorPane {
   private Service targetService;
@@ -157,6 +162,10 @@ public class ServicesListComponent extends AnchorPane {
       updateIcon.setSize("20");
       updateIcon.getStyleClass().add("delete-icon");
 
+      updateIcon.setOnMouseClicked(event -> {
+        removeService();
+      });
+
       CheckBox toggleStatus = new CheckBox();
 
       switch (componentSize) {
@@ -245,7 +254,35 @@ public class ServicesListComponent extends AnchorPane {
 
     DAO.fromService().updateInformation(targetService);
 
-    servicesList.clear();
-    servicesList.addAll(DAO.fromService().findMany());
+    servicesList.set(servicesList.indexOf(targetService), targetService);
+  }
+
+
+  private void removeService() {
+    if (targetService.isComplete()) {
+      return;
+    }
+
+    String confirmationMessage = "Deseja mesmo remover o serviço?";
+
+    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
+
+    Stage modalStage = new Stage();
+
+    MainController.modalStage = modalStage;
+
+    modalStage.setScene(new Scene(confirmDialog));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
+    modalStage.showAndWait();
+
+    if (MainController.isConfirmed) {
+      DAO.fromService().deleteByID(targetService.getServiceID());
+
+      servicesList.remove(targetService);
+
+      MainController.modalStage.close();
+    }
   }
 }
