@@ -29,7 +29,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -91,7 +90,7 @@ public class OrderDetailsController {
               service,
               servicesList,
               componentSize,
-              true
+              false
           );
 
           setGraphic(clientComponent);
@@ -151,19 +150,6 @@ public class OrderDetailsController {
 
   @FXML
   public void cancelOrder() throws IOException {
-    List<Service> allServices = DAO.fromService().findByWorkOrder(workOrder.getWorkOrderID());
-
-    boolean isComplete = allServices
-      .stream()
-      .map(Service::isComplete)
-      .reduce(true, (a, b) -> a && b);
-
-    if (!isComplete) {
-      visualFeedback.setText("Ainda há serviços em aberto!");
-      visualFeedback.setTextFill(Color.RED);
-      return;
-    }
-
     String confirmationMessage = "Deseja mesmo cancelar a ordem?";
 
     ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
