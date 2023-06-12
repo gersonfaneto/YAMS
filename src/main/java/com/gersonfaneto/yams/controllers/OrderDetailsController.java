@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
@@ -20,6 +21,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -38,6 +40,15 @@ public class OrderDetailsController {
 
   @FXML
   private ListView<Service> listView;
+
+  @FXML
+  private TextField clientNameField;
+
+  @FXML
+  private TextField technicianNameField;
+
+  @FXML
+  private Button cancelOrderButton;
 
   private ObservableList<Service> servicesList;
   private FilteredList<Service> filteredServices;
@@ -100,12 +111,16 @@ public class OrderDetailsController {
     SortedList<Service> sortedServices = new SortedList<>(filteredServices);
 
     listView.setItems(sortedServices);
-  }
 
-  @FXML
-  public void closeWindow() {
-    MainController.saveData();
-    System.exit(0);
+    clientNameField.setText(
+        DAO.fromClients().findByID(workOrder.getClientID()).getClientName()
+    );
+
+    technicianNameField.setText(
+        (workOrder.getTechnicianID() == null)
+          ? "Ordem não iniciada!"
+          : DAO.fromUsers().findByID(workOrder.getTechnicianID()).getUserName()
+    );
   }
 
   @FXML
@@ -120,10 +135,20 @@ public class OrderDetailsController {
   }
 
   @FXML
+  public void cancelOrder() {
+  }
+
+  @FXML
   public void closeDetails() throws IOException {
     Parent servicesView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
 
     MainController.mainWindow.setRight(servicesView);
+  }
+
+  @FXML
+  public void closeWindow() {
+    MainController.saveData();
+    System.exit(0);
   }
 
   public void setWorkOrder(WorkOrder workOrder) {
