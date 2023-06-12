@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.utils.TypeParser;
@@ -90,8 +90,9 @@ public class OrderDetailsController {
           ServicesListComponent clientComponent = new ServicesListComponent(
               service,
               servicesList,
-              componentSize
-              );
+              componentSize,
+              true
+          );
 
           setGraphic(clientComponent);
         }
@@ -131,6 +132,10 @@ public class OrderDetailsController {
           ? "Ordem não iniciada!"
           : DAO.fromUsers().findByID(workOrder.getTechnicianID()).getUserName()
     );
+
+    if (workOrder.getWorkOrderState() != WorkOrderState.Created) {
+      cancelOrderButton.setVisible(false);
+    }
   }
 
   @FXML
@@ -174,7 +179,9 @@ public class OrderDetailsController {
     modalStage.showAndWait();
 
     if (MainController.isConfirmed) {
-      DAO.fromWorkOrders().deleteByID(workOrder.getWorkOrderID());
+      workOrder.setWorkOrderState(WorkOrderState.Canceled);
+
+      DAO.fromWorkOrders().updateInformation(workOrder);
 
       closeDetails();
     }

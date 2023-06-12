@@ -22,7 +22,8 @@ public class ServicesListComponent extends AnchorPane {
   public ServicesListComponent(
       Service targetService,
       ObservableList<Service> servicesList,
-      ComponentSize componentSize
+      ComponentSize componentSize,
+      boolean enableToggles
   ) {
     this.targetService = targetService;
     this.servicesList = servicesList;
@@ -135,53 +136,57 @@ public class ServicesListComponent extends AnchorPane {
       );
     }
 
-    FontAwesomeIconView updateIcon = new FontAwesomeIconView(FontAwesomeIcon.WRENCH);
+    if (enableToggles) {
+      FontAwesomeIconView updateIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
 
-    switch (componentSize) {
-      case Small:
-        updateIcon.setLayoutX(620);
-        updateIcon.setLayoutY(35);
-        break;
-      case Medium:
-        updateIcon.setLayoutX(620);
-        updateIcon.setLayoutY(35);
-        break;
-      case Large:
-        break;
-      default:
-        break;
+      switch (componentSize) {
+        case Small:
+          updateIcon.setLayoutX(620);
+          updateIcon.setLayoutY(35);
+          break;
+        case Medium:
+          updateIcon.setLayoutX(620);
+          updateIcon.setLayoutY(35);
+          break;
+        case Large:
+          break;
+        default:
+          break;
+      }
+
+      updateIcon.setSize("20");
+      updateIcon.getStyleClass().add("delete-icon");
+
+      CheckBox toggleStatus = new CheckBox();
+
+      switch (componentSize) {
+        case Small:
+          toggleStatus.setLayoutX(620);
+          toggleStatus.setLayoutY(65);
+          break;
+        case Medium:
+          toggleStatus.setLayoutX(620);
+          toggleStatus.setLayoutY(80);
+          break;
+        case Large:
+          break;
+        default:
+          break;
+      }
+
+      if (targetService.isComplete()) {
+        toggleStatus.setSelected(true);
+      }
+      else {
+        toggleStatus.setSelected(false);
+      }
+
+      toggleStatus.setOnMouseClicked(event -> {
+        updateStatus();
+      });
+
+      super.getChildren().addAll(toggleStatus, updateIcon);
     }
-
-    updateIcon.setSize("20");
-    updateIcon.getStyleClass().add("update-icon");
-
-    CheckBox toggleStatus = new CheckBox();
-
-    switch (componentSize) {
-      case Small:
-        toggleStatus.setLayoutX(620);
-        toggleStatus.setLayoutY(65);
-        break;
-      case Medium:
-        toggleStatus.setLayoutX(620);
-        toggleStatus.setLayoutY(80);
-        break;
-      case Large:
-        break;
-      default:
-        break;
-    }
-
-    if (targetService.isComplete()) {
-      toggleStatus.setSelected(true);
-    }
-    else {
-      toggleStatus.setSelected(false);
-    }
-
-    toggleStatus.setOnMouseClicked(event -> {
-      updateStatus();
-    });
 
     ImageView typeIcon = new ImageView();
 
@@ -212,8 +217,6 @@ public class ServicesListComponent extends AnchorPane {
     typeIcon.setImage(typeImage);
 
     super.getChildren().addAll(
-        updateIcon,
-        toggleStatus,
         typeIcon
     );
 
