@@ -149,7 +149,8 @@ public class ComponentsListComponent extends AnchorPane {
     typeIcon.setLayoutY(25);
 
     String typeIconPath = "assets/%s.png".formatted(
-        targetComponent.getComponentType().getTypeName().replace(" ", ""));
+        targetComponent.getComponentType().getTypeName().replace(" ", "")
+    );
 
     Image typeImage = new Image(App.class.getResourceAsStream(typeIconPath));
 

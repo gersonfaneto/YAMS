@@ -23,7 +23,8 @@ class ServiceDAOTest {
     randomService = new Service(
         ServiceType.Formatting,
         "Format and install Windows 11 :(",
-        List.of()
+        null,
+        1
     );
     randomService.setWorkOrderID(randomWorkOrderID);
     DAO.fromService().createOne(randomService);
@@ -33,7 +34,8 @@ class ServiceDAOTest {
           new Service(
               ServiceType.ProgramInstallation,
               "Minecraft!",
-              List.of()
+              null,
+              1
           )
       );
     }
@@ -78,7 +80,8 @@ class ServiceDAOTest {
         new Service(
             ServiceType.Cleaning,
             "The client dropped his computer in a honey bathtub!",
-            List.of()
+            null,
+            1
         )
     );
 

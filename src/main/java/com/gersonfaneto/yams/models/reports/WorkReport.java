@@ -57,9 +57,9 @@ public class WorkReport implements Serializable {
 
     StringBuilder stringBuilder = new StringBuilder();
 
-    List<Service> performedServices = DAO.fromService().findByWorkOrder(workOrderID);
+    // List<Service> performedServices = DAO.fromService().findByWorkOrder(workOrderID);
 
-    for (Service currentService : performedServices) {
+    /* for (Service currentService : performedServices) {
       if (currentService.getServiceType().equals(Assembly)) {
         for (Component currentComponent : currentService.getUsedComponents()) {
           stringBuilder.append(
@@ -71,7 +71,7 @@ public class WorkReport implements Serializable {
           );
         }
       }
-    }
+    } */
 
     this.usedComponents = stringBuilder.toString();
   }
