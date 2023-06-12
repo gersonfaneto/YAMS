@@ -20,14 +20,12 @@ import javafx.scene.layout.AnchorPane;
 
 public class OrdersListComponent extends AnchorPane {
   private WorkOrder targetOrder;
-  private ObservableList<WorkOrder> workOrdersList;
 
   public OrdersListComponent(
       WorkOrder workOrder,
-      ObservableList<WorkOrder> workOrdersLists
+      ObservableList<WorkOrder> workOrdersList
   ) {
     this.targetOrder = workOrder;
-    this.workOrdersList = workOrdersList;
 
     super.getStylesheets().add(App.class.getResource("stylesheets/global.css").toExternalForm());
     super.getStylesheets().clear();

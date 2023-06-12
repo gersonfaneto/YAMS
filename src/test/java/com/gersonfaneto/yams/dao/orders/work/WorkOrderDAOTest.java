@@ -99,6 +99,7 @@ class WorkOrderDAOTest {
     boolean hasFound = DAO.fromWorkOrders().updateInformation(randomWorkOrder);
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(randomWorkOrder.getWorkOrderID());
 
+    Assertions.assertTrue(hasFound);
     Assertions.assertEquals(randomWorkOrder, foundWorkOrder);
   }
 

@@ -1,15 +1,11 @@
 package com.gersonfaneto.yams.models.reports;
 
-import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.Time;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Represents the Work Reports that can be generated once a Work Order is finished. It makes the
