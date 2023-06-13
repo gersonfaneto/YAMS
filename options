@@ -1,7 +1,7 @@
 --class-path
 '/home/runner/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2.jar:/home/runner/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2.jar:/home/runner/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2.jar:/home/runner/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-suite/1.9.3/junit-platform-suite-1.9.3.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-suite-api/1.9.3/junit-platform-suite-api-1.9.3.jar'
 --module-path
-'/home/runner/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-linux.jar:/home/runner/work/YAMS/YAMS/target/classes:/home/runner/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-linux.jar:/home/runner/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-linux.jar:/home/runner/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-linux.jar'
+'/home/runner/.m2/repository/de/jensd/fontawesomefx-fontawesome/4.7.0-9.1.2/fontawesomefx-fontawesome-4.7.0-9.1.2.jar:/home/runner/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-linux.jar:/home/runner/work/YAMS/YAMS/target/classes:/home/runner/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-linux.jar:/home/runner/.m2/repository/de/jensd/fontawesomefx-commons/9.1.2/fontawesomefx-commons-9.1.2.jar:/home/runner/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-linux.jar:/home/runner/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-linux.jar'
 --patch-module
 com.gersonfaneto.yams='/home/runner/work/YAMS/YAMS/src/main/java'
 -encoding
@@ -19,8 +19,8 @@ com.gersonfaneto.yams='/home/runner/work/YAMS/YAMS/src/main/java'
 -docencoding
 'UTF-8'
 -doctitle
-'YAMS 1.0-SNAPSHOT API'
+'YAMS 1.1.0 API'
 -use
 -version
 -windowtitle
-'YAMS 1.0-SNAPSHOT API'
+'YAMS 1.1.0 API'
