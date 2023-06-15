@@ -1,6 +1,8 @@
 package com.gersonfaneto.yams;
 
 import com.gersonfaneto.yams.controllers.MainController;
+import com.gersonfaneto.yams.utils.Mock;
+
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -21,8 +23,11 @@ public class App extends Application {
   }
 
   @Override
-
   public void start(Stage primaryStage) throws IOException {
+    // HACK: Uncomment these lines to mock some data!
+    Mock.cleanData();
+    Mock.mockData();
+
     Parent rootView = FXMLLoader.load(getClass().getResource("views/login.fxml"));
 
     rootView.setOnMousePressed(event -> {
