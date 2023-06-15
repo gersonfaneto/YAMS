@@ -83,7 +83,7 @@ public class RegisterController {
 
     User foundUser = DAO.fromUsers().findByEmail(userEmail);
 
-    if (userName.length() == 0 || userEmail.length() == 0 || userPassword.length() == 0) {
+    if (userName.isBlank() || userEmail.isBlank() || userPassword.isBlank()) {
       visualFeedback.setText("Insira o seus dados!");
       visualFeedback.setTextFill(Color.RED);
       return;

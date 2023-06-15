@@ -62,7 +62,7 @@ public class ClientsRegisterController {
     String homeAddress = addressField.getText();
     String phoneNumber = phoneField.getText();
 
-    if (clientName.length() == 0 || homeAddress.length() == 0 || phoneNumber.length() == 0) {
+    if (clientName.isBlank() || homeAddress.isBlank() || phoneNumber.isBlank()) {
       visualFeedback.setText("Favor, preencher todos os campos!");
       visualFeedback.setTextFill(Color.RED);
       return;

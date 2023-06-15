@@ -9,6 +9,7 @@ import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
@@ -165,6 +166,26 @@ public class OrderDetailsController {
     modalStage.showAndWait();
 
     if (MainController.isConfirmed) {
+      List<Service> relatedServices = DAO.fromService()
+        .findByWorkOrder(workOrder.getWorkOrderID());
+
+      for (Service currentService : relatedServices) {
+        if (currentService.getServiceType() == ServiceType.Assembly) {
+          Component usedComponent = currentService.getUsedComponent();
+          Component foundComponent = DAO.fromComponents().findEquals(usedComponent);
+
+          if (foundComponent != null) {
+            foundComponent.setAmountInStock(
+                foundComponent.getAmountInStock() + currentService.getAmountUsed()
+            );
+            DAO.fromComponents().updateInformation(foundComponent);
+          }
+          else {
+            DAO.fromComponents().createOne(usedComponent);
+          }
+        }
+      }
+
       workOrder.setWorkOrderState(WorkOrderState.Canceled);
 
       DAO.fromWorkOrders().updateInformation(workOrder);

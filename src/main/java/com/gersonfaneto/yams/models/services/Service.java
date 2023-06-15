@@ -50,7 +50,7 @@ public class Service implements Serializable {
     if (serviceType != Assembly) {
       this.servicePrice = serviceType.getTypeValue();
     } else {
-      this.servicePrice = usedComponent.getComponentPrice();
+      this.servicePrice = usedComponent.getComponentPrice() * amountUsed;
     }
 
     this.amountUsed = amountUsed;

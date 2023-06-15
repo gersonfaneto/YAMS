@@ -146,7 +146,13 @@ public class CreateServiceController {
       usedComponent.setAmountInStock(
           usedComponent.getAmountInStock() - usedAmount
       );
-      DAO.fromComponents().updateInformation(usedComponent);
+
+      if (usedComponent.getAmountInStock() == 0) {
+        DAO.fromComponents().deleteByID(usedComponent.getComponentID());
+      }
+      else {
+        DAO.fromComponents().updateInformation(usedComponent);
+      }
     }
 
     Service newService = new Service(
