@@ -69,7 +69,7 @@ public abstract class Mock {
 
     DAO.fromComponents().createOne(
         new Component(
-          ComponentType.Motherboard,
+          ComponentType.GraphicsCard,
           "NVIDIA RTX 4090 TI",
           30,
           100,
