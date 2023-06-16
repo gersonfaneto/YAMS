@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.controllers;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import com.gersonfaneto.yams.App;
@@ -171,6 +172,7 @@ public class OrderDetailsController {
       }
 
       workOrder.setWorkOrderState(WorkOrderState.Canceled);
+      workOrder.setClosedAt(Calendar.getInstance());
 
       DAO.fromWorkOrders().updateInformation(workOrder);
 

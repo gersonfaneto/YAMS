@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.controllers;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import com.gersonfaneto.yams.App;
@@ -152,6 +153,7 @@ public class TechnicianOccupiedController {
           }
 
           openOrder.setWorkOrderState(WorkOrderState.Canceled);
+          openOrder.setClosedAt(Calendar.getInstance());
           loggedTechnician.setStatus(TechnicianStatus.Free);
 
           DAO.fromWorkOrders().updateInformation(openOrder);
@@ -184,6 +186,7 @@ public class TechnicianOccupiedController {
     else {
       if (allFinished) {
         openOrder.setWorkOrderState(WorkOrderState.Finished);
+        openOrder.setClosedAt(Calendar.getInstance());
         loggedTechnician.setStatus(TechnicianStatus.Free);
 
         DAO.fromWorkOrders().updateInformation(openOrder);

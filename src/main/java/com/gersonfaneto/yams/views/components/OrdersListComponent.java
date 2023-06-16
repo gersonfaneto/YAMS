@@ -73,7 +73,7 @@ public class OrdersListComponent extends AnchorPane {
       closingDateField.setText("");
     }
     else {
-      openingDateField.setText(
+      closingDateField.setText(
           Time.extractDateFromCalendar(workOrder.getClosedAt())
       );
     }
