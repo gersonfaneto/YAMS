@@ -6,9 +6,6 @@ import java.util.List;
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
-import com.gersonfaneto.yams.models.entities.client.Client;
-import com.gersonfaneto.yams.models.entities.technician.Technician;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.views.components.InvoicesListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -110,19 +107,7 @@ public class InvoicesController {
       return;
     }
 
-    WorkOrder relatedWorkOrder = DAO.fromWorkOrders()
-      .findByID(selectedInvoice.getWorkOrderID());
-
-    Client relatedClient = DAO.fromClients()
-      .findByID(relatedWorkOrder.getClientID());
-    
-    Technician relatedTechnician = (Technician) DAO.fromUsers()
-      .findByID(relatedWorkOrder.getTechnicianID());
-
-    createPaymentController.injectFields(
-        relatedClient.getClientName(),
-        relatedTechnician.getUserName()
-    );
+    createPaymentController.setInvoice(selectedInvoice);
 
     FXMLLoader loaderFXML = new FXMLLoader();
 

@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -19,5 +20,6 @@
       <FontAwesomeIconView glyphName="USER" layoutX="100.0" layoutY="161.0" size="20" />
       <FontAwesomeIconView glyphName="DOLLAR" layoutX="100.0" layoutY="215.0" size="20" />
       <TextField fx:id="paymentValueField" layoutX="291.0" layoutY="195.0" prefHeight="26.0" prefWidth="210.0" promptText="Valor" />
+      <Label fx:id="visualFeedback" layoutX="124.0" layoutY="58.0" prefHeight="18.0" prefWidth="380.0" />
    </children>
 </AnchorPane>
