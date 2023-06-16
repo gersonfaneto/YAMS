@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.utils;
 
+import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
 import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.models.services.ServiceType;
@@ -204,5 +205,51 @@ public abstract class TypeParser {
     }
 
     return typeName;
+  }
+
+  public static PaymentMethod parsePaymentMethod(String typeName) {
+    PaymentMethod paymentMethod = null;
+
+    switch (typeName) {
+      case "Dinheiro":
+        paymentMethod = PaymentMethod.Cash;
+        break;
+      case "Cartão de Credito":
+        paymentMethod = PaymentMethod.CreditCard;
+        break;
+      case "Cartão de Débito":
+        paymentMethod = PaymentMethod.DebitCard;
+        break;
+      case "Transferência":
+        paymentMethod = PaymentMethod.Transference;
+        break;
+      default:
+        break;
+    }
+
+    return paymentMethod;
+  }
+
+  public static String parsePaymentMethod(PaymentMethod paymentMethod) {
+    String methodName = null;
+
+    switch (paymentMethod) {
+      case Cash:
+        methodName = "Dinheiro";
+        break;
+      case CreditCard:
+        methodName = "Cartão de Credito";
+        break;
+      case DebitCard:
+        methodName = "Cartão de Débito";
+        break;
+      case Transference:
+        methodName = "Transferência";
+        break;
+      default:
+        break;
+    }
+
+    return methodName;
   }
 }
