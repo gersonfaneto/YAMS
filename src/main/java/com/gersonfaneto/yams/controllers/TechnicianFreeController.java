@@ -20,12 +20,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class TechnicianController {
-  @FXML
-  public Button openOrderButton;
-
+public class TechnicianFreeController {
   @FXML
   public FontAwesomeIconView closeButton;
+
+  @FXML
+  public Button openOrderButton;
 
   private Technician loggedTechnician;
 
@@ -72,6 +72,8 @@ public class TechnicianController {
 
     DAO.fromUsers().updateInformation(loggedTechnician);
     DAO.fromWorkOrders().updateInformation(foundWorkOrder);
+
+    MainController.openOrder = foundWorkOrder;
 
     Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
 

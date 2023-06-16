@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.TechnicianController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.TechnicianFreeController">
    <children>
       <Button fx:id="openOrderButton" layoutX="150.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#openOrder" prefHeight="50.0" prefWidth="200.0" styleClass="normal-button" stylesheets="@../stylesheets/global.css" text="Abrir Nova Ordem" />
       <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="165.0" layoutY="299.0" size="20" />
