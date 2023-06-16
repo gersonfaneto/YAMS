@@ -2,6 +2,7 @@ package com.gersonfaneto.yams.views.components;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.utils.TypeParser;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -36,10 +37,16 @@ public class PaymentsListComponent extends AnchorPane {
     paymentMethodField.setLayoutX(160);
     paymentMethodField.setLayoutY(25);
     paymentMethodField.setPrefSize(150, 20);
+    paymentMethodField.setText(
+        TypeParser.parsePaymentMethod(targetPayment.getPaymentMethod())
+    );
 
     paidValueField.setLayoutX(160);
     paidValueField.setLayoutY(55);
     paidValueField.setPrefSize(100, 20);
+    paidValueField.setText(
+        formatMoney(targetPayment.getPaidValue())
+    );
 
     super.getChildren().addAll(
         paymentMethodFieldIndicator,
@@ -67,4 +74,8 @@ public class PaymentsListComponent extends AnchorPane {
 
     super.getChildren().add(typeIcon);
   } 
+
+  private String formatMoney(double moneyInput) {
+    return String.format("%.2f", moneyInput).replace(".", ",");
+  }
 }
