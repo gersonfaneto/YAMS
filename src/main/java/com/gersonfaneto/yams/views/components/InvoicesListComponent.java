@@ -1,13 +1,20 @@
 package com.gersonfaneto.yams.views.components;
 
+import java.io.IOException;
+
 import com.gersonfaneto.yams.App;
+import com.gersonfaneto.yams.controllers.InvoiceDetailsController;
+import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.billing.invoice.InvoiceDiskDAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.services.Service;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
@@ -117,7 +124,23 @@ public class InvoicesListComponent extends AnchorPane {
   }
 
   public void openDetails() {
-    System.out.println("InvoicesListComponent.openDetails()");
+    InvoiceDetailsController detailsController = new InvoiceDetailsController();
+    detailsController.setInvoice(targetInvoice);
+
+    FXMLLoader loaderFXML = new FXMLLoader();
+
+    loaderFXML.setLocation(App.class.getResource("views/invoice_details.fxml"));
+    loaderFXML.setController(detailsController);
+
+    Parent updateView;
+    try {
+      updateView = loaderFXML.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
+    }
+
+    MainController.mainWindow.setRight(updateView);
   }
   
   public String formatMoney(double moneyInput) {

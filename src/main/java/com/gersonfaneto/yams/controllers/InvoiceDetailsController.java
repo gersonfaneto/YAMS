@@ -1,5 +1,6 @@
 package com.gersonfaneto.yams.controllers;
 
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
 import com.gersonfaneto.yams.models.entities.user.UserType;
@@ -38,6 +39,8 @@ public class InvoiceDetailsController {
   private ObservableList<Payment> paymentsList;
   private FilteredList<Payment> filteredPayments;
 
+  private Invoice targetInvoice;
+
   @FXML
   public void closeDetails() {
     methodFilter.getItems().add("Todos");
@@ -61,6 +64,14 @@ public class InvoiceDetailsController {
   public void closeWindow() {
     MainController.saveData();
     System.exit(0);
+  }
+
+  public void setInvoice(Invoice targetInvoice) {
+    this.targetInvoice = targetInvoice;
+  }
+  
+  public Invoice getInvoice() {
+    return targetInvoice;
   }
 }
 
