@@ -1,22 +1,36 @@
 package com.gersonfaneto.yams.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
+import com.gersonfaneto.yams.models.entities.technician.TechnicianStatus;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.models.services.Service;
+import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.Time;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
+import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class TechnicianOccupiedController {
   @FXML
@@ -98,8 +112,108 @@ public class TechnicianOccupiedController {
   }
 
   @FXML
-  public void handleClicks() {
+  public void handleClicks(ActionEvent actionEvent) throws IOException {
+    boolean allFinished = DAO.fromService()
+      .findByWorkOrder(openOrder.getWorkOrderID())
+      .stream()
+      .map(Service::isComplete)
+      .reduce(true, (a, b) -> a && b);
 
+    if (actionEvent.getSource() == cancelOrderButton) {
+      if (allFinished) {
+        String confirmationMessage = "Todos os serviços já foram realizados, seleciona a opção \"Finalizar Ordem\"!";
+
+        ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
+
+        Stage modalStage = new Stage();
+
+        MainController.modalStage = modalStage;
+
+        modalStage.setScene(new Scene(confirmDialog));
+        modalStage.initStyle(StageStyle.UNDECORATED);
+        modalStage.initModality(Modality.APPLICATION_MODAL);
+        modalStage.initOwner(MainController.primaryStage);
+        modalStage.show();
+      }
+      else {
+        String confirmationMessage = "Deseja mesmo cancelar a ordem?";
+
+        ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
+
+        Stage modalStage = new Stage();
+
+        MainController.modalStage = modalStage;
+
+        modalStage.setScene(new Scene(confirmDialog));
+        modalStage.initStyle(StageStyle.UNDECORATED);
+        modalStage.initModality(Modality.APPLICATION_MODAL);
+        modalStage.initOwner(MainController.primaryStage);
+        modalStage.showAndWait();
+
+        if (MainController.isConfirmed) {
+          List<Service> relatedServices = DAO.fromService()
+            .findByWorkOrder(openOrder.getWorkOrderID());
+
+          for (Service currentService : relatedServices) {
+            if (!currentService.isComplete()) {
+              if (currentService.getServiceType() == ServiceType.Assembly) {
+                Component usedComponent = currentService.getUsedComponent();
+                Component foundComponent = DAO.fromComponents().findEquals(usedComponent);
+
+                if (foundComponent != null) {
+                  foundComponent.setAmountInStock(
+                      foundComponent.getAmountInStock() + currentService.getAmountUsed()
+                      );
+                  DAO.fromComponents().updateInformation(foundComponent);
+                }
+                else {
+                  DAO.fromComponents().createOne(usedComponent);
+                }
+              }
+              DAO.fromService().deleteByID(currentService.getServiceID());
+            }
+          }
+
+          openOrder.setWorkOrderState(WorkOrderState.Canceled);
+          loggedTechnician.setStatus(TechnicianStatus.Free);
+
+          DAO.fromWorkOrders().updateInformation(openOrder);
+          DAO.fromUsers().updateInformation(loggedTechnician);
+
+          Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
+
+          MainController.mainWindow.setRight(homeView);
+        }
+      }
+    }
+    else {
+      if (allFinished) {
+        openOrder.setWorkOrderState(WorkOrderState.Finished);
+        loggedTechnician.setStatus(TechnicianStatus.Free);
+
+        DAO.fromWorkOrders().updateInformation(openOrder);
+        DAO.fromUsers().updateInformation(loggedTechnician);
+
+        Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
+
+        MainController.mainWindow.setRight(homeView);
+      }
+      else {
+        String confirmationMessage = "Ainda há serviços em aberto!";
+
+        ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
+
+        Stage modalStage = new Stage();
+
+        MainController.modalStage = modalStage;
+
+        modalStage.setScene(new Scene(confirmDialog));
+        modalStage.initStyle(StageStyle.UNDECORATED);
+        modalStage.initModality(Modality.APPLICATION_MODAL);
+        modalStage.initOwner(MainController.primaryStage);
+        modalStage.show();
+      }
+    }
   }
 
   @FXML
