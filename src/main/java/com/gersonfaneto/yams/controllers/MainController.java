@@ -10,6 +10,7 @@ public abstract class MainController {
 
   public static User loggedUser;
   public static BorderPane mainWindow;
+  public static BorderPane homeWindow;
   public static Stage modalStage;
   public static Stage primaryStage;
   public static boolean isConfirmed = false;
