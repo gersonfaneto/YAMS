@@ -2,9 +2,13 @@ package com.gersonfaneto.yams.utils;
 
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.dao.orders.work.WorkOrderMemoryDAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
+import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.services.Service;
+import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 
@@ -18,6 +22,11 @@ public abstract class Mock {
     DAO.fromUsers().createOne(
         new Technician(
           "sholmes@gmail.com", "221B", "Shelock Holmes"
+        )
+    );
+    DAO.fromUsers().createOne(
+        new Technician(
+          "mholmes@gmail.com", "eurus", "Mycroft Holmes"
         )
     );
 
@@ -86,6 +95,35 @@ public abstract class Mock {
           12.40
         )
     );
+
+  
+    WorkOrder newOrder = DAO.fromWorkOrders().createOne(
+        new WorkOrder(
+          DAO.fromClients()
+            .findByName("Oliver Smith")
+            .get(0)
+            .getClientID()
+        )
+    );
+
+    Service firstService = new Service(
+        ServiceType.Formatting,
+        "Instalar o Windows 11",
+        null,
+        0
+    );
+    Service secondService = new Service(
+        ServiceType.ProgramInstallation,
+        "Baixar o Google Chrome",
+        null,
+        0
+    );
+
+    firstService.setWorkOrderID(newOrder.getWorkOrderID());
+    secondService.setWorkOrderID(newOrder.getWorkOrderID());
+
+    DAO.fromService().createOne(firstService);
+    DAO.fromService().createOne(secondService);
 
     MainController.saveData();
   }
