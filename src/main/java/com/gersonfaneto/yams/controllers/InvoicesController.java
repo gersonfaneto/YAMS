@@ -6,6 +6,7 @@ import java.util.List;
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
+import com.gersonfaneto.yams.models.billing.payments.Payment;
 import com.gersonfaneto.yams.views.components.InvoicesListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -98,11 +99,23 @@ public class InvoicesController {
   @FXML
   public void newPayment() {
     CreatePaymentController createPaymentController = new CreatePaymentController();
-    
+
     Invoice selectedInvoice = listView.getSelectionModel().getSelectedItem();
 
     if (selectedInvoice == null) {
       visualFeedback.setText("Selecione uma fatura!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    double paidValue = DAO.fromPayments()
+      .findByInvoice(selectedInvoice.getInvoiceID())
+      .stream()
+      .map(Payment::getPaidValue)
+      .reduce(0.0, Double::sum);
+
+    if (selectedInvoice.getTotalValue() == paidValue) {
+      visualFeedback.setText("Saldo devedor liquidado para a fatura selecionada!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
