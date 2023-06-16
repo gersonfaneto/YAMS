@@ -9,6 +9,7 @@ import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.views.components.InvoicesListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -58,6 +59,9 @@ public class InvoicesController {
           setGraphic(null);
         }
         else {
+          InvoicesListComponent invoiceComponent = new InvoicesListComponent(invoice);
+
+          setGraphic(invoiceComponent);
         }
       }
     });
