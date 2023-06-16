@@ -10,6 +10,7 @@ import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.PaymentsListComponent;
 
@@ -119,6 +120,21 @@ public class CreatePaymentController {
       );
 
       DAO.fromPayments().createOne(newPayment);
+
+      currentlyPaid = DAO.fromPayments()
+        .findByInvoice(targetInvoice.getInvoiceID())
+        .stream()
+        .map(Payment::getPaidValue)
+        .reduce(0.0, Double::sum);
+
+      if (currentlyPaid == targetInvoice.getTotalValue()) {
+        WorkOrder relatedOrder = DAO.fromWorkOrders()
+          .findByID(targetInvoice.getWorkOrderID());
+
+        relatedOrder.setWorkOrderState(WorkOrderState.Payed);
+
+        DAO.fromWorkOrders().updateInformation(relatedOrder);
+      }
     }
 
     closeWindow();
