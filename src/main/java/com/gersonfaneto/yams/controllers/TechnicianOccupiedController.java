@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
+import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.technician.TechnicianStatus;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
@@ -155,6 +156,16 @@ public class TechnicianOccupiedController {
           DAO.fromWorkOrders().updateInformation(openOrder);
           DAO.fromUsers().updateInformation(loggedTechnician);
 
+          Invoice newInvoice = new Invoice(
+              openOrder.getWorkOrderID(),
+              DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID())
+                .stream()
+                .map(Service::getServicePrice)
+                .reduce(0.0, Double::sum)
+          );
+
+          DAO.fromInvoices().createOne(newInvoice);
+
           Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
 
           MainController.mainWindow.setRight(homeView);
@@ -168,6 +179,16 @@ public class TechnicianOccupiedController {
 
         DAO.fromWorkOrders().updateInformation(openOrder);
         DAO.fromUsers().updateInformation(loggedTechnician);
+
+        Invoice newInvoice = new Invoice(
+            openOrder.getWorkOrderID(),
+            DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID())
+            .stream()
+            .map(Service::getServicePrice)
+            .reduce(0.0, Double::sum)
+            );
+
+        DAO.fromInvoices().createOne(newInvoice);
 
         Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
 
