@@ -15,7 +15,6 @@ import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.Time;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
-import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,14 +22,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class TechnicianOccupiedController {
   @FXML
@@ -122,33 +117,13 @@ public class TechnicianOccupiedController {
     if (actionEvent.getSource() == cancelOrderButton) {
       if (allFinished) {
         String confirmationMessage = "Todos os serviços já foram realizados, seleciona a opção \"Finalizar Ordem\"!";
-
-        ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-        Stage modalStage = new Stage();
-
-        MainController.modalStage = modalStage;
-
-        modalStage.setScene(new Scene(confirmDialog));
-        modalStage.initStyle(StageStyle.UNDECORATED);
-        modalStage.initModality(Modality.APPLICATION_MODAL);
-        modalStage.initOwner(MainController.primaryStage);
-        modalStage.show();
+        
+        MainController.openModal(confirmationMessage, false); 
       }
       else {
         String confirmationMessage = "Deseja mesmo cancelar a ordem?";
 
-        ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-        Stage modalStage = new Stage();
-
-        MainController.modalStage = modalStage;
-
-        modalStage.setScene(new Scene(confirmDialog));
-        modalStage.initStyle(StageStyle.UNDECORATED);
-        modalStage.initModality(Modality.APPLICATION_MODAL);
-        modalStage.initOwner(MainController.primaryStage);
-        modalStage.showAndWait();
+        MainController.openModal(confirmationMessage, true);
 
         if (MainController.isConfirmed) {
           List<Service> relatedServices = DAO.fromService()
@@ -201,17 +176,7 @@ public class TechnicianOccupiedController {
       else {
         String confirmationMessage = "Ainda há serviços em aberto!";
 
-        ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-        Stage modalStage = new Stage();
-
-        MainController.modalStage = modalStage;
-
-        modalStage.setScene(new Scene(confirmDialog));
-        modalStage.initStyle(StageStyle.UNDECORATED);
-        modalStage.initModality(Modality.APPLICATION_MODAL);
-        modalStage.initOwner(MainController.primaryStage);
-        modalStage.show();
+        MainController.openModal(confirmationMessage, false);
       }
     }
   }

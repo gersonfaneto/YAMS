@@ -1,8 +1,6 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.App;
-import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -10,12 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class MenuController {
 
@@ -104,17 +98,7 @@ public class MenuController {
   public void signOut() throws IOException {
     String confirmationMessage = "Deseja mesmo sair?";
 
-    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-    Stage modalStage = new Stage();
-
-    MainController.modalStage = modalStage;
-
-    modalStage.setScene(new Scene(confirmDialog));
-    modalStage.initStyle(StageStyle.UNDECORATED);
-    modalStage.initModality(Modality.APPLICATION_MODAL);
-    modalStage.initOwner(MainController.primaryStage);
-    modalStage.showAndWait();
+    MainController.openModal(confirmationMessage, true);
 
     if (MainController.isConfirmed) {
       MainController.saveData();

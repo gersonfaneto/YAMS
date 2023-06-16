@@ -6,20 +6,14 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.utils.TypeParser;
-import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class ServicesListComponent extends AnchorPane {
   private Service targetService;
@@ -266,17 +260,7 @@ public class ServicesListComponent extends AnchorPane {
 
     String confirmationMessage = "Deseja mesmo remover o serviço?";
 
-    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-    Stage modalStage = new Stage();
-
-    MainController.modalStage = modalStage;
-
-    modalStage.setScene(new Scene(confirmDialog));
-    modalStage.initStyle(StageStyle.UNDECORATED);
-    modalStage.initModality(Modality.APPLICATION_MODAL);
-    modalStage.initOwner(MainController.primaryStage);
-    modalStage.showAndWait();
+    MainController.openModal(confirmationMessage, true);
 
     if (MainController.isConfirmed) {
       DAO.fromService().deleteByID(targetService.getServiceID());

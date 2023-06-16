@@ -8,17 +8,11 @@ import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.technician.TechnicianStatus;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
-import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class TechnicianFreeController {
   @FXML
@@ -50,17 +44,7 @@ public class TechnicianFreeController {
     if (foundWorkOrder == null) {
       String confirmationMessage = "Nenhuma ordem em espera!";
 
-      ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-      Stage modalStage = new Stage();
-
-      MainController.modalStage = modalStage;
-
-      modalStage.setScene(new Scene(confirmDialog));
-      modalStage.initStyle(StageStyle.UNDECORATED);
-      modalStage.initModality(Modality.APPLICATION_MODAL);
-      modalStage.initOwner(MainController.primaryStage);
-      modalStage.show();
+      MainController.openModal(confirmationMessage, false);
 
       return;
     } 

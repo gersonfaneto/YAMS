@@ -6,8 +6,6 @@ import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.TypeParser;
-import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -179,17 +177,7 @@ public class ComponentsListComponent extends AnchorPane {
         targetComponent.getComponentDescription()
     );
 
-    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-    Stage modalStage = new Stage();
-
-    MainController.modalStage = modalStage;
-
-    modalStage.setScene(new Scene(confirmDialog));
-    modalStage.initStyle(StageStyle.UNDECORATED);
-    modalStage.initModality(Modality.APPLICATION_MODAL);
-    modalStage.initOwner(MainController.primaryStage);
-    modalStage.showAndWait();
+    MainController.openModal(confirmationMessage, true);
 
     if (MainController.isConfirmed) {
       DAO.fromComponents().deleteByID(targetComponent.getComponentID());

@@ -5,8 +5,6 @@ import com.gersonfaneto.yams.controllers.ClientsUpdateController;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
-import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -122,17 +120,7 @@ public class ClientsListComponent extends AnchorPane {
     String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(
         targetClient.getClientName());
 
-    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-    Stage modalStage = new Stage();
-
-    MainController.modalStage = modalStage;
-
-    modalStage.setScene(new Scene(confirmDialog));
-    modalStage.initStyle(StageStyle.UNDECORATED);
-    modalStage.initModality(Modality.APPLICATION_MODAL);
-    modalStage.initOwner(MainController.primaryStage);
-    modalStage.showAndWait();
+    MainController.openModal(confirmationMessage, true);
 
     if (MainController.isConfirmed) {
       DAO.fromClients().deleteByID(targetClient.getClientID());

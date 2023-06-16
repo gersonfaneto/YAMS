@@ -13,8 +13,6 @@ import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
-import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,16 +21,12 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class OrderDetailsController {
 
@@ -153,17 +147,7 @@ public class OrderDetailsController {
   public void cancelOrder() throws IOException {
     String confirmationMessage = "Deseja mesmo cancelar a ordem?";
 
-    ActionConfirmationDialog confirmDialog = new ActionConfirmationDialog(confirmationMessage);
-
-    Stage modalStage = new Stage();
-
-    MainController.modalStage = modalStage;
-
-    modalStage.setScene(new Scene(confirmDialog));
-    modalStage.initStyle(StageStyle.UNDECORATED);
-    modalStage.initModality(Modality.APPLICATION_MODAL);
-    modalStage.initOwner(MainController.primaryStage);
-    modalStage.showAndWait();
+    MainController.openModal(confirmationMessage, true);
 
     if (MainController.isConfirmed) {
       List<Service> relatedServices = DAO.fromService()
