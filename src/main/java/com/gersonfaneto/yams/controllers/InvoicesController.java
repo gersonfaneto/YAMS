@@ -1,11 +1,14 @@
 package com.gersonfaneto.yams.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
+import com.gersonfaneto.yams.models.entities.client.Client;
+import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.views.components.OrdersListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -13,19 +16,30 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class InvoicesController {
   @FXML
   private FontAwesomeIconView closeButton;
 
   @FXML
-  private ListView<Invoice> listView;
+  private Label visualFeedback;
 
   @FXML
   private TextField searchField;
+
+  @FXML
+  private ListView<Invoice> listView;
 
   private ObservableList<Invoice> invoicesList;
   private FilteredList<Invoice> filteredInvoices;
@@ -82,7 +96,51 @@ public class InvoicesController {
 
   @FXML
   public void newPayment() {
+    CreatePaymentController createPaymentController = new CreatePaymentController();
+    
+    Invoice selectedInvoice = listView.getSelectionModel().getSelectedItem();
 
+    if (selectedInvoice == null) {
+      visualFeedback.setText("Selecione uma fatura!");
+      visualFeedback.setTextFill(Color.RED);
+      return;
+    }
+
+    WorkOrder relatedWorkOrder = DAO.fromWorkOrders()
+      .findByID(selectedInvoice.getWorkOrderID());
+
+    Client relatedClient = DAO.fromClients()
+      .findByID(relatedWorkOrder.getClientID());
+    
+    Technician relatedTechnician = (Technician) DAO.fromUsers()
+      .findByID(relatedWorkOrder.getTechnicianID());
+
+    createPaymentController.injectFields(
+        relatedClient.getClientName(),
+        relatedTechnician.getUserName()
+    );
+
+    FXMLLoader loaderFXML = new FXMLLoader();
+
+    loaderFXML.setLocation(App.class.getResource("views/create_payment.fxml"));
+    loaderFXML.setController(createPaymentController);
+
+    try {
+      loaderFXML.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    Parent updateView = loaderFXML.getRoot();
+    Stage modalStage = new Stage();
+
+    modalStage.setScene(new Scene(updateView));
+    modalStage.initStyle(StageStyle.UNDECORATED);
+    modalStage.initModality(Modality.APPLICATION_MODAL);
+    modalStage.initOwner(MainController.primaryStage);
+    modalStage.show();
+
+    MainController.modalStage = modalStage;
   }
 
   @FXML
