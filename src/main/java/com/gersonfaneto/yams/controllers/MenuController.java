@@ -38,9 +38,6 @@ public class MenuController {
   private Button stockButton;
 
   @FXML
-  private Button reportsButton;
-
-  @FXML
   private Button invoicesButton;
 
   @FXML
@@ -83,8 +80,6 @@ public class MenuController {
       targetView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
     } else if (actionEvent.getSource() == stockButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/stock.fxml"));
-    } else if (actionEvent.getSource() == reportsButton) {
-      targetView = FXMLLoader.load(App.class.getResource("views/reports.fxml"));
     } else if (actionEvent.getSource() == employeesButton) {
       targetView = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
     } else {
