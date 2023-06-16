@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="578.0" layoutY="21.0" onMouseClicked="#closeWindow" selectionEnd="0" size="20" styleClass="close-button" />
       <Button fx:id="cancelButton" layoutX="96.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="100.0" styleClass="cancel-button" stylesheets="@../stylesheets/global.css" text="Cancelar" />
