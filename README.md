@@ -15,7 +15,7 @@ __   __        _         __  __       ___
 [![License](https://img.shields.io/github/license/gersonfaneto/YAMS?color=blue&style=for-the-badge)](https://github.com/gersonfaneto/YAMS/blob/main/LICENSE)
 [![Stars](https://img.shields.io/github/stars/gersonfaneto/YAMS?style=for-the-badge&logo=github)](https://github.com/gersonfaneto/YAMS)
 [![Language](https://img.shields.io/static/v1?label=LANGUAGE&message=Java&color=informational&style=for-the-badge&logo=openjdk)](https://www.java.com/en/)
-[![Version](https://img.shields.io/static/v1?label=VERSION&message=1.1.0&color=informational&style=for-the-badge)](https://github.com/gersonfaneto/YAMS/releases/latest)
+[![Version](https://img.shields.io/static/v1?label=VERSION&message=1.2.0&color=informational&style=for-the-badge)](https://github.com/gersonfaneto/YAMS/releases/latest)
 
 </div>
 
@@ -56,8 +56,8 @@ should be capable of:
   `Payments` for them from different methods.
 - Updating the stock with `Components` needed for the realization of
   some of the `Services`.
-- Generating reports for the `Services` containing relevant
-  information, like: time waited, `Client` rating and used `Components`.
+- Generating `Reports` for the `Services` containing relevant
+  information, like: Wait time, `Client` rating and used `Components`.
 
 ## Development
 
@@ -82,7 +82,7 @@ Afterwards, simply follow the steps ahead:
   of the project or clone it into your machine using `git`.
 
 ```console
-git clone https://github.com/gersonfaneto/YAMS --branch V1.1.0 --depth 1
+git clone https://github.com/gersonfaneto/YAMS --branch V1.2.0 --depth 1
 ```
 
 - Move into the project folder and build it using `maven`.
