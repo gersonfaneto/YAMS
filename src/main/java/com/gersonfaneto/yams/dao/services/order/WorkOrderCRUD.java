@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.services.order;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * @see CRUD
  * @see WorkOrder
  */
-public interface WorkOrderCRUD extends CRUD<WorkOrder> {
+public interface WorkOrderCRUD extends CRUD<WorkOrder>, Persist {
 
   /**
    * Searches for all the <code>WorkOrder</code>s related to a given <code>Client</code>.

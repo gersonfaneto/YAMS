@@ -10,11 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class PaymentsListComponent extends AnchorPane {
-  private Payment targetPayment;
-
   public PaymentsListComponent(Payment targetPayment) {
-    this.targetPayment = targetPayment;
-
     super.getStylesheets().add(App.class.getResource("stylesheets/global.css").toExternalForm());
     super.getStylesheets().clear();
     super.getStyleClass().add("component-item");

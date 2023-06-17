@@ -28,6 +28,16 @@ public class ServiceMemoryDAO implements ServiceCRUD {
   public ServiceMemoryDAO() {
     this.storedServices = new HashMap<>();
   }
+ 
+  @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
+  }
 
   @Override
   public Service createOne(Service newService) {

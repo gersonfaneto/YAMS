@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.services.service;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.service.Service;
 import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.utils.Generators;
@@ -56,7 +55,7 @@ class ServiceDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromService()).saveAll();
+    boolean hasSaved = DAO.fromService().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -64,7 +63,7 @@ class ServiceDAOTest {
 
     DAO.fromService().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromService()).loadAll();
+    boolean hasLoaded = DAO.fromService().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 

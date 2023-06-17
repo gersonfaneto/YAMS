@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @see CRUD
  * @see Client
  */
-public interface ClientCRUD extends CRUD<Client> {
+public interface ClientCRUD extends CRUD<Client>, Persist {
 
   /**
    * Searches for all the <code>Client</code>s with a given name.

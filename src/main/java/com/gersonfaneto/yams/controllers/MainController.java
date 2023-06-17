@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.controllers;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
@@ -23,21 +22,21 @@ public abstract class MainController {
   public static boolean isConfirmed = false;
 
   public static void saveData() {
-    ((Persist) DAO.fromUsers()).saveAll();
-    ((Persist) DAO.fromClients()).saveAll();
-    ((Persist) DAO.fromPayments()).saveAll();
-    ((Persist) DAO.fromComponents()).saveAll();
-    ((Persist) DAO.fromService()).saveAll();
-    ((Persist) DAO.fromWorkOrders()).saveAll();
+    DAO.fromUsers().saveAll();
+    DAO.fromClients().saveAll();
+    DAO.fromPayments().saveAll();
+    DAO.fromComponents().saveAll();
+    DAO.fromService().saveAll();
+    DAO.fromWorkOrders().saveAll();
   }
 
   public static void loadData() {
-    ((Persist) DAO.fromUsers()).loadAll();
-    ((Persist) DAO.fromClients()).loadAll();
-    ((Persist) DAO.fromPayments()).loadAll();
-    ((Persist) DAO.fromComponents()).loadAll();
-    ((Persist) DAO.fromService()).loadAll();
-    ((Persist) DAO.fromWorkOrders()).loadAll();
+    DAO.fromUsers().loadAll();
+    DAO.fromClients().loadAll();
+    DAO.fromPayments().loadAll();
+    DAO.fromComponents().loadAll();
+    DAO.fromService().loadAll();
+    DAO.fromWorkOrders().loadAll();
   }
 
   public static void openModal(String modalMessage, boolean awaitResponse) {

@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.billing.payment;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.payment.Payment;
 import com.gersonfaneto.yams.models.billing.payment.PaymentMethod;
 import com.gersonfaneto.yams.utils.Generators;
@@ -54,7 +53,7 @@ class PaymentDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromPayments()).saveAll();
+    boolean hasSaved = DAO.fromPayments().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -62,7 +61,7 @@ class PaymentDAOTest {
 
     DAO.fromPayments().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromPayments()).loadAll();
+    boolean hasLoaded = DAO.fromPayments().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 

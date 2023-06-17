@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.billing.payment;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.payment.Payment;
 
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.List;
  * @see CRUD
  * @see Payment
  */
-public interface PaymentCRUD extends CRUD<Payment> {
+public interface PaymentCRUD extends CRUD<Payment>, Persist  {
 
-  /**
+  /** 
    * Searches for all the <code>Payment</code>s related to a given <code>Invoice</code>.
    *
    * @param invoiceID The ID of the targeted <code>Invoice</code>.

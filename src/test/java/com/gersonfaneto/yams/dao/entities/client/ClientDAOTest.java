@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import java.io.File;
 import java.util.List;
@@ -51,7 +50,7 @@ class ClientDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromClients()).saveAll();
+    boolean hasSaved = DAO.fromClients().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -59,7 +58,7 @@ class ClientDAOTest {
 
     DAO.fromClients().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromClients()).loadAll();
+    boolean hasLoaded = DAO.fromClients().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 

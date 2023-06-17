@@ -26,6 +26,16 @@ public class WorkOrderMemoryDAO implements WorkOrderCRUD {
   public WorkOrderMemoryDAO() {
     this.storedWorkOrders = new HashMap<>();
   }
+  
+  @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
+  }
 
   @Override
   public WorkOrder createOne(WorkOrder newWorkOrder) {

@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.services.order;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.utils.Generators;
 import com.gersonfaneto.yams.utils.ObjectIO;
@@ -22,7 +21,7 @@ import java.util.Map;
  * @see WorkOrderCRUD
  * @see ObjectIO
  */
-public class WorkOrderDiskDAO implements WorkOrderCRUD, Persist {
+public class WorkOrderDiskDAO implements WorkOrderCRUD {
 
   private final Map<String, WorkOrder> storedWorkOrders;
   private final ObjectIO<WorkOrder> workOrderObjectIO;

@@ -28,6 +28,16 @@ public class PaymentMemoryDAO implements PaymentCRUD {
   }
 
   @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
+  }
+
+  @Override
   public Payment createOne(Payment newPayment) {
     String newID = Generators.randomID();
 

@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.entities.user;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
@@ -53,7 +52,7 @@ class UserDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromUsers()).saveAll();
+    boolean hasSaved = DAO.fromUsers().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -61,7 +60,7 @@ class UserDAOTest {
 
     DAO.fromUsers().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromUsers()).loadAll();
+    boolean hasLoaded = DAO.fromUsers().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to laod data!");
 

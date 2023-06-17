@@ -8,11 +8,7 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payment.Payment;
 import com.gersonfaneto.yams.models.billing.payment.PaymentMethod;
-import com.gersonfaneto.yams.models.entities.client.Client;
-import com.gersonfaneto.yams.models.entities.user.UserType;
 import com.gersonfaneto.yams.utils.TypeParser;
-import com.gersonfaneto.yams.views.components.ClientsListComponent;
-import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.PaymentsListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;

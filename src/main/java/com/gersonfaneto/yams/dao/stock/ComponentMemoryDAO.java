@@ -27,6 +27,16 @@ public class ComponentMemoryDAO implements ComponentCRUD {
   public ComponentMemoryDAO() {
     this.storedComponents = new HashMap<>();
   }
+ 
+  @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
+  }
 
   @Override
   public Component createOne(Component newComponent) {

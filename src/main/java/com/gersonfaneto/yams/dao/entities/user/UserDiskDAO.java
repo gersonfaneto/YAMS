@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.entities.user;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.utils.Generators;
 import com.gersonfaneto.yams.utils.ObjectIO;
@@ -21,7 +20,7 @@ import java.util.Map;
  * @see UserCRUD
  * @see ObjectIO
  */
-public class UserDiskDAO implements UserCRUD, Persist {
+public class UserDiskDAO implements UserCRUD {
 
   private final Map<String, User> storedUsers;
   private final ObjectIO<User> userObjectIO;

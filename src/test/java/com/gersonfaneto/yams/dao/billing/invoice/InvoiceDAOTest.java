@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.billing.invoice;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import java.io.File;
 import java.util.List;
@@ -51,7 +50,7 @@ class InvoiceDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromInvoices()).saveAll();
+    boolean hasSaved = DAO.fromInvoices().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -59,7 +58,7 @@ class InvoiceDAOTest {
 
     DAO.fromInvoices().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromInvoices()).loadAll();
+    boolean hasLoaded = DAO.fromInvoices().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 

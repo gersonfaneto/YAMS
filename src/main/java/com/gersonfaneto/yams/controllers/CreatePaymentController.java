@@ -12,7 +12,6 @@ import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.models.services.order.WorkOrderState;
 import com.gersonfaneto.yams.utils.TypeParser;
-import com.gersonfaneto.yams.views.components.PaymentsListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;

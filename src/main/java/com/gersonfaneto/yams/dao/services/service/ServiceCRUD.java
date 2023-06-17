@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.services.service;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.service.Service;
 import com.gersonfaneto.yams.models.services.service.ServiceType;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * @see CRUD
  * @see Service
  */
-public interface ServiceCRUD extends CRUD<Service> {
+public interface ServiceCRUD extends CRUD<Service>, Persist {
 
   /**
    * Searches for all the <code>Service</code>s of a given type.

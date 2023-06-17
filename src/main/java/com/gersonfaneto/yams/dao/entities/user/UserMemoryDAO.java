@@ -28,6 +28,16 @@ public class UserMemoryDAO implements UserCRUD {
   }
 
   @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
+  }
+
+  @Override
   public User createOne(User newTechnician) {
     String newID = Generators.randomID();
 

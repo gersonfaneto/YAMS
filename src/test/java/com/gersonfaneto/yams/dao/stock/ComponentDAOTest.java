@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.stock;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.io.File;
@@ -56,7 +55,7 @@ class ComponentDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromComponents()).saveAll();
+    boolean hasSaved = DAO.fromComponents().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -64,7 +63,7 @@ class ComponentDAOTest {
 
     DAO.fromComponents().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromComponents()).loadAll();
+    boolean hasLoaded = DAO.fromComponents().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 

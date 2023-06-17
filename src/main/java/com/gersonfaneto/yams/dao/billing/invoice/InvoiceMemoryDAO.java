@@ -28,6 +28,16 @@ public class InvoiceMemoryDAO implements InvoiceCRUD {
   }
 
   @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
+  }
+
+  @Override
   public Invoice createOne(Invoice newInvoice) {
     String newID = Generators.randomID();
 

@@ -28,6 +28,16 @@ public class ClientMemoryDAO implements ClientCRUD {
   }
 
   @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
+  }
+
+  @Override
   public Client createOne(Client newClient) {
     String newID = Generators.randomID();
 
