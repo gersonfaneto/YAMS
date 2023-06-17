@@ -1,9 +1,9 @@
-package com.gersonfaneto.yams.dao.orders.work;
+package com.gersonfaneto.yams.dao.services.order;
 
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
+import com.gersonfaneto.yams.models.services.order.WorkOrderState;
 import com.gersonfaneto.yams.utils.Generators;
 import java.io.File;
 import java.util.List;
@@ -52,8 +52,6 @@ class WorkOrderDAOTest {
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
     List<WorkOrder> beforeDeletion = DAO.fromWorkOrders().findMany();
-
-    DAO.fromPurchaseOrders().deleteMany();
 
     boolean hasLoaded = ((Persist) DAO.fromWorkOrders()).loadAll();
 

@@ -1,9 +1,9 @@
-package com.gersonfaneto.yams.dao.billing.paymet;
+package com.gersonfaneto.yams.dao.billing.payment;
 
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
-import com.gersonfaneto.yams.models.billing.payments.Payment;
-import com.gersonfaneto.yams.models.billing.payments.PaymentMethod;
+import com.gersonfaneto.yams.models.billing.payment.Payment;
+import com.gersonfaneto.yams.models.billing.payment.PaymentMethod;
 import com.gersonfaneto.yams.utils.Generators;
 import java.io.File;
 import java.util.List;

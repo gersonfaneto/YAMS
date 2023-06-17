@@ -5,9 +5,9 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
+import com.gersonfaneto.yams.models.services.service.Service;
+import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 
@@ -133,7 +133,6 @@ public abstract class Mock {
     DAO.fromPayments().deleteMany();
     DAO.fromComponents().deleteMany();
     DAO.fromService().deleteMany();
-    DAO.fromPurchaseOrders().deleteMany();
     DAO.fromWorkOrders().deleteMany();
 
     MainController.saveData();

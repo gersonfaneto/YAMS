@@ -6,7 +6,7 @@ import java.util.List;
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
-import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.models.billing.payment.Payment;
 import com.gersonfaneto.yams.views.components.InvoicesListComponent;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;

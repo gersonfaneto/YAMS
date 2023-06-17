@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.models.services;
+package com.gersonfaneto.yams.models.services.service;
 
 /**
  * Represents the types of Services offered by the Assistance, including their base values.

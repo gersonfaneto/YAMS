@@ -7,7 +7,7 @@ import com.gersonfaneto.yams.controllers.InvoiceDetailsController;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
-import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.models.billing.payment.Payment;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;

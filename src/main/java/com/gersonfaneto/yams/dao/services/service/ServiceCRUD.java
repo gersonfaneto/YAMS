@@ -1,8 +1,9 @@
-package com.gersonfaneto.yams.dao.services;
+package com.gersonfaneto.yams.dao.services.service;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.services.service.Service;
+import com.gersonfaneto.yams.models.services.service.ServiceType;
+
 import java.util.List;
 
 /**

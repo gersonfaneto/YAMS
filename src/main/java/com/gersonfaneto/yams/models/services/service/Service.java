@@ -1,11 +1,11 @@
-package com.gersonfaneto.yams.models.services;
+package com.gersonfaneto.yams.models.services.service;
 
-import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
+import static com.gersonfaneto.yams.models.services.service.ServiceType.Assembly;
 
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.stock.Component;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
+import com.gersonfaneto.yams.models.stock.Component; 
 import java.io.Serializable;
 
 /**

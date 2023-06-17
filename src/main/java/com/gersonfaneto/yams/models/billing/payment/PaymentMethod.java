@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.models.billing.payments;
+package com.gersonfaneto.yams.models.billing.payment;
 
 /**
  * Represents the accepted payment methods by the assistance.

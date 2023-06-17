@@ -6,8 +6,9 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.technician.TechnicianStatus;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
+import com.gersonfaneto.yams.models.services.order.WorkOrderState;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

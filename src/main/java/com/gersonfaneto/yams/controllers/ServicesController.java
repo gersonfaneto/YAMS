@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
+import com.gersonfaneto.yams.models.services.order.WorkOrderState;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.OrdersListComponent;
 

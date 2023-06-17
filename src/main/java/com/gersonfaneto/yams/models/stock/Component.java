@@ -1,7 +1,8 @@
 package com.gersonfaneto.yams.models.stock;
 
-import com.gersonfaneto.yams.models.services.Service;
 import java.io.Serializable;
+
+import com.gersonfaneto.yams.models.services.service.Service;
 
 /**
  * Represents each Computer Component that the Assistance might have in Stock, that can be used on

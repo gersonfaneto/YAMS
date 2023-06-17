@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.services.service.Service;
+import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;

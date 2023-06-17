@@ -3,7 +3,7 @@ package com.gersonfaneto.yams.controllers;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.user.User;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
 
 import javafx.scene.Scene;
@@ -28,7 +28,6 @@ public abstract class MainController {
     ((Persist) DAO.fromPayments()).saveAll();
     ((Persist) DAO.fromComponents()).saveAll();
     ((Persist) DAO.fromService()).saveAll();
-    ((Persist) DAO.fromPurchaseOrders()).saveAll();
     ((Persist) DAO.fromWorkOrders()).saveAll();
   }
 
@@ -38,7 +37,6 @@ public abstract class MainController {
     ((Persist) DAO.fromPayments()).loadAll();
     ((Persist) DAO.fromComponents()).loadAll();
     ((Persist) DAO.fromService()).loadAll();
-    ((Persist) DAO.fromPurchaseOrders()).loadAll();
     ((Persist) DAO.fromWorkOrders()).loadAll();
   }
 

@@ -6,7 +6,7 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.controllers.OrderDetailsController;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.utils.Time;
 import com.gersonfaneto.yams.utils.TypeParser;
 

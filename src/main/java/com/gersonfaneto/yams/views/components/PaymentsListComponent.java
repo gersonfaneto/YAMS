@@ -1,7 +1,7 @@
 package com.gersonfaneto.yams.views.components;
 
 import com.gersonfaneto.yams.App;
-import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.models.billing.payment.Payment;
 import com.gersonfaneto.yams.utils.TypeParser;
 
 import javafx.scene.control.Label;

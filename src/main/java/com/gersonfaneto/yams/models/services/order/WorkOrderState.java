@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.models.orders.work;
+package com.gersonfaneto.yams.models.services.order;
 
 public enum WorkOrderState {
   Canceled("Canceled"),

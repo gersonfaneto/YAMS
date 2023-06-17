@@ -1,4 +1,4 @@
-package com.gersonfaneto.yams.models.billing.payments;
+package com.gersonfaneto.yams.models.billing.payment;
 
 import java.io.Serializable;
 

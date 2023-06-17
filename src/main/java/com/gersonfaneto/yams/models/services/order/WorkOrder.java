@@ -1,9 +1,7 @@
-package com.gersonfaneto.yams.models.orders.work;
+package com.gersonfaneto.yams.models.services.order;
 
 import java.io.Serializable;
 import java.util.Calendar;
-
-import com.gersonfaneto.yams.models.reports.WorkReport;
 
 public class WorkOrder implements Serializable {
 
@@ -14,7 +12,6 @@ public class WorkOrder implements Serializable {
   private WorkOrderState workOrderState;
   private Calendar createdAt;
   private Calendar closedAt;
-  private WorkReport workReport;
 
   public WorkOrder(String clientID) {
     this.clientID = clientID;
@@ -119,13 +116,5 @@ public class WorkOrder implements Serializable {
 
   public void setClosedAt(Calendar closedAt) {
     this.closedAt = closedAt;
-  }
-
-  public WorkReport getWorkReport() {
-    return workReport;
-  }
-
-  public void setWorkReport(WorkReport workReport) {
-    this.workReport = workReport;
   }
 }
