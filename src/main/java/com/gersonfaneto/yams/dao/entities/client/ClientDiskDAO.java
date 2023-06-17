@@ -1,10 +1,11 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.ObjectIO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.utils.Generators;
+import com.gersonfaneto.yams.utils.ObjectIO;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

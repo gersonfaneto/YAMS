@@ -1,10 +1,11 @@
 package com.gersonfaneto.yams.dao.services.order;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.ObjectIO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.utils.Generators;
+import com.gersonfaneto.yams.utils.ObjectIO;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
