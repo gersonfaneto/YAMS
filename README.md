@@ -6,15 +6,15 @@ __   __        _         __  __       ___
 
 ```
 
-> **Y.A.M.S.** stands for "Yet Another Managements System". This project is
-> being developed for educational purposes, so don't expect much of it 🙃.
+> **Y.A.M.S.** stands for "Yet Another Managements System". This project was
+> developed for educational purposes, so don't expect much of it 🙃.
 
 <div align="center">
 
 [![Activity](https://img.shields.io/github/last-commit/gersonfaneto/YAMS?color=blue&style=for-the-badge&logo=git)](https://github.com/gersonfaneto/YAMS/commit/main)
 [![License](https://img.shields.io/github/license/gersonfaneto/YAMS?color=blue&style=for-the-badge)](https://github.com/gersonfaneto/YAMS/blob/main/LICENSE)
 [![Stars](https://img.shields.io/github/stars/gersonfaneto/YAMS?style=for-the-badge&logo=github)](https://github.com/gersonfaneto/YAMS)
-![Language](https://img.shields.io/static/v1?label=LANGUAGE&message=Java&color=informational&style=for-the-badge&logo=openjdk)
+[![Language](https://img.shields.io/static/v1?label=LANGUAGE&message=Java&color=informational&style=for-the-badge&logo=openjdk)](https://www.java.com/en/)
 [![Version](https://img.shields.io/static/v1?label=VERSION&message=1.1.0&color=informational&style=for-the-badge)](https://github.com/gersonfaneto/YAMS/releases/latest)
 
 </div>
@@ -37,11 +37,11 @@ __   __        _         __  __       ___
 microcomputer assistance more practical and efficient. The final product
 should be capable of:
 
-- Registering and keeping important information from the "Clients" of the
+- Registering and keeping important information from the `Clients` of the
   assistance.
-- Creation of "Work Orders" from the "Clients", which must be carried out
+- Creation of `Work Orders` from the `Clients`, which must be carried out
   in order of arrival.
-    - The "Work Orders" must contain one or more of the following "Services":
+    - The `Work Orders` must contain one or more of the following `Services`:
         - Assembly - Component Installation:
             - RAM - Price: R$ 20.00
             - Motherboard - Price: R$ 100.00
@@ -52,12 +52,12 @@ should be capable of:
         - Cleaning - Price: R$ 70.00
         - Formatting - Price: R$ 50.00
         - Programs Installation - Price: R$ 10.00
-- Generating "Invoices" referring to the "Work Orders" and receiving
-  "Payments" for them from different methods.
-- Creating "Purchase Orders" for the "Components" needed for the
-  realization of the "Services".
-- Generating "Reports" for the "Services" containing relevant
-  information, like: time waited, client rating and used components.
+- Generating `Invoices` referring to the `Work Orders` and receiving
+  `Payments` for them from different methods.
+- Updating the stock with `Components` needed for the realization of
+  some of the `Services`.
+- Generating reports for the `Services` containing relevant
+  information, like: time waited, `Client` rating and used `Components`.
 
 ## Development
 
@@ -79,7 +79,7 @@ Make **sure** you have the following dependencies installed before proceeding.
 Afterwards, simply follow the steps ahead: 
 
 - Download the latest [release](https://github.com/gersonfaneto/YAMS/releases/latest)
-  of the project or clone it using `git` into your machine.
+  of the project or clone it into your machine using `git`.
 
 ```console
 git clone https://github.com/gersonfaneto/YAMS --branch V1.1.0 --depth 1
