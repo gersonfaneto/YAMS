@@ -142,7 +142,7 @@ public class CreatePaymentController {
 
   @FXML
   public void closeWindow() throws IOException {
-    Parent invoicesView = FXMLLoader.load(App.class.getResource("views/invoices.fxml"));
+    Parent invoicesView = FXMLLoader.load(App.class.getResource("views/invoices/Main.fxml"));
 
     MainController.mainWindow.setRight(invoicesView);
 

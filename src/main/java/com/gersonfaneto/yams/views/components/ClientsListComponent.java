@@ -130,7 +130,7 @@ public class ClientsListComponent extends AnchorPane {
 
   private void updateClient() {
     FXMLLoader loaderFXML = new FXMLLoader();
-    loaderFXML.setLocation(App.class.getResource("views/clients_update.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/clients/ClientsUpdate.fxml"));
 
     try {
       loaderFXML.load();

@@ -42,7 +42,7 @@ public class ComponentUpdateController {
 
   @FXML
   public void cancelUpdate() throws IOException {
-    Parent stockView = FXMLLoader.load(App.class.getResource("views/stock.fxml"));
+    Parent stockView = FXMLLoader.load(App.class.getResource("views/stock/Main.fxml"));
 
     MainController.mainWindow.setRight(stockView);
 

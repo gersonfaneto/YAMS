@@ -117,7 +117,7 @@ public class ServicesController {
   @FXML
   public void registerOrder() throws IOException {
     Parent clientRegisterView = FXMLLoader.load(
-        App.class.getResource("views/create_order.fxml")
+        App.class.getResource("views/services/CreateOrder.fxml")
     );
 
     MainController.mainWindow.setRight(clientRegisterView);

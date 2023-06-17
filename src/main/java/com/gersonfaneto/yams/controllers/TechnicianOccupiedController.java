@@ -177,7 +177,7 @@ public class TechnicianOccupiedController {
             DAO.fromInvoices().createOne(newInvoice);
           }
 
-          Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
+          Parent homeView = FXMLLoader.load(App.class.getResource("views/home/Main.fxml"));
 
           MainController.mainWindow.setRight(homeView);
         }
@@ -210,7 +210,7 @@ public class TechnicianOccupiedController {
           DAO.fromInvoices().createOne(newInvoice);
         }
 
-        Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
+        Parent homeView = FXMLLoader.load(App.class.getResource("views/home/Main.fxml"));
 
         MainController.mainWindow.setRight(homeView);
       }

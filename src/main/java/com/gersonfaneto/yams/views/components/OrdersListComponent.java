@@ -145,7 +145,7 @@ public class OrdersListComponent extends AnchorPane {
     detailsController.setWorkOrder(targetOrder);
 
     FXMLLoader loaderFXML = new FXMLLoader();
-    loaderFXML.setLocation(App.class.getResource("views/order_details.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/services/OrderDetails.fxml"));
 
     loaderFXML.setController(detailsController);
 

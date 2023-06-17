@@ -7,13 +7,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../../stylesheets/global.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FontAwesomeIconView fx:id="closeButton" glyphName="CLOSE" layoutX="771.0" layoutY="28.0" onMouseClicked="#closeWindow" size="25" styleClass="close-button" />
       <ListView id="listView" fx:id="listView" layoutX="50.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="700.0" />
       <FontAwesomeIconView fx:id="backButton" glyphName="ARROW_LEFT" layoutX="14.0" layoutY="28.0" onMouseClicked="#closeDetails" size="20" styleClass="back-button" />
-      <TextField fx:id="searchField" layoutX="79.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="460.0" styleClass="input-field" stylesheets="@../stylesheets/global.css" />
-      <ComboBox fx:id="methodFilter" layoutX="550.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="200.0" promptText="Método" styleClass="role-selector" stylesheets="@../stylesheets/global.css" />
+      <TextField fx:id="searchField" layoutX="79.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="460.0" styleClass="input-field" stylesheets="@../../stylesheets/global.css" />
+      <ComboBox fx:id="methodFilter" layoutX="550.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#filterSearch" prefHeight="30.0" prefWidth="200.0" promptText="Método" styleClass="role-selector" stylesheets="@../../stylesheets/global.css" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="52.0" layoutY="39.0" size="20" styleClass="search-button" />
       <TextField fx:id="clientNameField" disable="true" editable="false" layoutX="50.0" layoutY="524.0" prefHeight="26.0" prefWidth="300.0" />
       <Label layoutX="53.0" layoutY="500.0" text="Cliente" />

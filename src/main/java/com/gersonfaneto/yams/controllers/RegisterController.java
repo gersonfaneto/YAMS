@@ -157,7 +157,7 @@ public class RegisterController {
 
   @FXML
   public void openLogin() throws IOException {
-    Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
+    Parent loginView = FXMLLoader.load(App.class.getResource("views/Login.fxml"));
 
     MainController.mainWindow.getChildren().setAll(loginView);
   }

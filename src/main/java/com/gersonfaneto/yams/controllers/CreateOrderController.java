@@ -157,7 +157,7 @@ public class CreateOrderController {
 
     DAO.fromWorkOrders().deleteByID("TEMP");
 
-    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
+    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services/Main.fxml"));
 
     MainController.mainWindow.setRight(servicesView);
   }
@@ -188,14 +188,14 @@ public class CreateOrderController {
 
     DAO.fromWorkOrders().deleteByID("TEMP");
 
-    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
+    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services/Main.fxml"));
 
     MainController.mainWindow.setRight(servicesView);
   }
 
   @FXML
   public void openServicesRegistration() throws IOException {
-    Parent createServicesView = FXMLLoader.load(App.class.getResource("views/create_service.fxml"));
+    Parent createServicesView = FXMLLoader.load(App.class.getResource("views/services/CreateService.fxml"));
 
     MainController.mainWindow.setRight(createServicesView);
   }

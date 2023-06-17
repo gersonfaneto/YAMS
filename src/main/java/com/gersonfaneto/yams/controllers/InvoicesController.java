@@ -124,7 +124,7 @@ public class InvoicesController {
 
     FXMLLoader loaderFXML = new FXMLLoader();
 
-    loaderFXML.setLocation(App.class.getResource("views/create_payment.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/invoices/CreatePayment.fxml"));
     loaderFXML.setController(createPaymentController);
 
     try {

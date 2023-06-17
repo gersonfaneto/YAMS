@@ -103,15 +103,15 @@ public class LoginController {
 
     String baseViewPath = null;
     String menuViewPath = String.format(
-      "views/%s_menu.fxml", foundUser.getUserType().getTypeName().toLowerCase()
+      "views/menus/%sMenu.fxml", foundUser.getUserType().getTypeName()
     );
 
     if (foundUser.getUserType() == UserType.Administrator) {
-      baseViewPath = "views/employees.fxml";
+      baseViewPath = "views/employees/Main.fxml";
     } else if (foundUser.getUserType() == UserType.Technician) {
-      baseViewPath = "views/home.fxml";
+      baseViewPath = "views/home/Main.fxml";
     } else {
-      baseViewPath = "views/clients.fxml";
+      baseViewPath = "views/clients/Main.fxml";
     }
 
     Parent userBaseView = FXMLLoader.load(App.class.getResource(baseViewPath));
@@ -128,7 +128,7 @@ public class LoginController {
 
   @FXML
   public void registerUser() throws IOException {
-    Parent registerView = FXMLLoader.load(App.class.getResource("views/register.fxml"));
+    Parent registerView = FXMLLoader.load(App.class.getResource("views/Register.fxml"));
 
     mainWindow.setRight(registerView);
   }

@@ -182,7 +182,7 @@ public class OrderDetailsController {
 
   @FXML
   public void closeDetails() throws IOException {
-    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
+    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services/Main.fxml"));
 
     MainController.mainWindow.setRight(servicesView);
   }

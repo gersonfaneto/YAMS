@@ -64,7 +64,7 @@ public class PaymentsListComponent extends AnchorPane {
     typeIcon.setLayoutX(20);
     typeIcon.setLayoutY(25);
 
-    String typeIconPath = "assets/%s.png".formatted(
+    String typeIconPath = "assets/payments/%s.png".formatted(
         targetPayment.getPaymentMethod().getTypeName().replace(" ", "")
     );
 

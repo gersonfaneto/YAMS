@@ -28,7 +28,7 @@ public class App extends Application {
     Mock.cleanData();
     Mock.mockData();
 
-    Parent rootView = FXMLLoader.load(getClass().getResource("views/login.fxml"));
+    Parent rootView = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
 
     rootView.setOnMousePressed(event -> {
       xCoord = event.getSceneX();

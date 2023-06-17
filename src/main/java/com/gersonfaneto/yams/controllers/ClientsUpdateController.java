@@ -75,7 +75,7 @@ public class ClientsUpdateController {
 
   @FXML
   public void closeWindow() throws IOException {
-    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients/Main.fxml"));
 
     MainController.mainWindow.setRight(clientsView);
 

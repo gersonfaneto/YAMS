@@ -127,7 +127,7 @@ public class InvoicesListComponent extends AnchorPane {
 
     FXMLLoader loaderFXML = new FXMLLoader();
 
-    loaderFXML.setLocation(App.class.getResource("views/invoice_details.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/invoices/InvoiceDetails.fxml"));
     loaderFXML.setController(detailsController);
 
     Parent updateView;

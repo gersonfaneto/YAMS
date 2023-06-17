@@ -125,7 +125,7 @@ public class InvoiceDetailsController {
 
   @FXML
   public void closeDetails() throws IOException {
-    Parent invoicesView = FXMLLoader.load(App.class.getResource("views/invoices.fxml"));
+    Parent invoicesView = FXMLLoader.load(App.class.getResource("views/invoices/Main.fxml"));
 
     MainController.mainWindow.setRight(invoicesView);
   }

@@ -51,7 +51,7 @@ public class ClientsRegisterController {
 
   @FXML
   public void cancelRegister() throws IOException {
-    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients/Main.fxml"));
 
     MainController.mainWindow.setRight(clientsView);
   }

@@ -59,7 +59,7 @@ public class TechnicianFreeController {
 
     MainController.openOrder = foundWorkOrder;
 
-    Parent homeView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
+    Parent homeView = FXMLLoader.load(App.class.getResource("views/home/Main.fxml"));
 
     MainController.mainWindow.setRight(homeView);
   }

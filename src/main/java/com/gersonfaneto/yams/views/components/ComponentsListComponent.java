@@ -148,7 +148,7 @@ public class ComponentsListComponent extends AnchorPane {
     typeIcon.setLayoutX(15);
     typeIcon.setLayoutY(25);
 
-    String typeIconPath = "assets/%s.png".formatted(
+    String typeIconPath = "assets/components/%s.png".formatted(
         targetComponent.getComponentType().getTypeName().replace(" ", "")
     );
 
@@ -187,7 +187,7 @@ public class ComponentsListComponent extends AnchorPane {
 
   private void updateComponent() {
     FXMLLoader loaderFXML = new FXMLLoader();
-    loaderFXML.setLocation(App.class.getResource("views/component_update.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/stock/UpdateComponent.fxml"));
 
     try {
       loaderFXML.load();

@@ -212,7 +212,7 @@ public class ServicesListComponent extends AnchorPane {
     typeIcon.setFitWidth(50);
     typeIcon.setFitHeight(50);
 
-    String typeIconPath = "assets/%s.png".formatted(
+    String typeIconPath = "assets/services/%s.png".formatted(
         targetService.getServiceType().getTypeName().replace(" ", "")
     );
 

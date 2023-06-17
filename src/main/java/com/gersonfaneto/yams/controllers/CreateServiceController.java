@@ -100,7 +100,7 @@ public class CreateServiceController {
 
   @FXML
   public void cancelRegister() throws IOException {
-    Parent createOrderView = FXMLLoader.load(App.class.getResource("views/create_order.fxml"));
+    Parent createOrderView = FXMLLoader.load(App.class.getResource("views/services/CreateOrder.fxml"));
 
     MainController.mainWindow.setRight(createOrderView);
   }
@@ -166,7 +166,7 @@ public class CreateServiceController {
 
     DAO.fromService().createOne(newService);
 
-    Parent createOrderView = FXMLLoader.load(App.class.getResource("views/create_order.fxml"));
+    Parent createOrderView = FXMLLoader.load(App.class.getResource("views/services/CreateOrder.fxml"));
 
     MainController.mainWindow.setRight(createOrderView);
   }

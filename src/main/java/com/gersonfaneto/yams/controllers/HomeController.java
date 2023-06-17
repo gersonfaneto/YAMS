@@ -33,12 +33,11 @@ public class HomeController {
       MainController.homeWindow = homeWindow;
     }
 
-    String sideViewPath = "views/technician_%s.fxml".formatted(
+    String sideViewPath = "views/home/Technician%s.fxml".formatted(
       ((Technician) MainController.loggedUser)
         .getStatus()
         .getStatusName()
-        .toLowerCase()
-    );
+    ); 
 
     Parent sideView = FXMLLoader.load(App.class.getResource(sideViewPath));
 

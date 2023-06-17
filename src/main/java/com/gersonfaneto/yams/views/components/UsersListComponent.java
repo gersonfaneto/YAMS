@@ -117,7 +117,7 @@ public class UsersListComponent extends AnchorPane {
 
   private void updateUser() {
     FXMLLoader loaderFXML = new FXMLLoader();
-    loaderFXML.setLocation(App.class.getResource("views/employees_update.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/employees/EmployeesUpdate.fxml"));
 
     try {
       loaderFXML.load();

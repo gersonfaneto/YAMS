@@ -111,7 +111,7 @@ public class StockController {
   @FXML
   public void openPurchase() throws IOException {
     Parent purchaseComponentElements = FXMLLoader.load(
-        App.class.getResource("views/purchase_component.fxml")
+        App.class.getResource("views/stock/PurchaseComponent.fxml")
     );
 
     MainController.mainWindow.setRight(purchaseComponentElements);

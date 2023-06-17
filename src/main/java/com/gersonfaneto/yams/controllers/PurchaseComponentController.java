@@ -106,7 +106,7 @@ public class PurchaseComponentController {
 
   @FXML
   public void cancelPurchase() throws IOException {
-    Parent stockView = FXMLLoader.load(App.class.getResource("views/stock.fxml"));
+    Parent stockView = FXMLLoader.load(App.class.getResource("views/stock/Main.fxml"));
 
     MainController.mainWindow.setRight(stockView);
   }

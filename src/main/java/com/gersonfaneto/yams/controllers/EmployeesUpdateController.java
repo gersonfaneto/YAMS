@@ -139,7 +139,7 @@ public class EmployeesUpdateController {
 
   @FXML
   public void cancelUpdate() throws IOException {
-    Parent employeesView = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
+    Parent employeesView = FXMLLoader.load(App.class.getResource("views/employees/Main.fxml"));
 
     MainController.mainWindow.setRight(employeesView);
 
