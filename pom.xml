@@ -6,12 +6,13 @@
 
     <groupId>com.gersonfaneto</groupId>
     <artifactId>YAMS</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1.0</version>
     <name>YAMS</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.9.1</junit.version>
+        <runTestSuite>**/TestSuite.class</runTestSuite>
     </properties>
 
     <dependencies>
@@ -49,6 +50,12 @@
             <artifactId>junit-platform-suite-api</artifactId>
             <version>1.9.3</version>
         </dependency>
+
+        <dependency>
+          <groupId>de.jensd</groupId>
+          <artifactId>fontawesomefx-fontawesome</artifactId>
+          <version>4.7.0-9.1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -64,6 +71,11 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.0</version>
+                <configuration>
+                  <includes>
+                    <include>${runTestSuite}</include>
+                  </includes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

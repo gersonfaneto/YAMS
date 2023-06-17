@@ -1,7 +1,5 @@
 package com.gersonfaneto.yams.models.stock;
 
-import static com.gersonfaneto.yams.models.stock.ComponentType.Others;
-
 import com.gersonfaneto.yams.models.services.Service;
 import java.io.Serializable;
 
@@ -40,7 +38,7 @@ public class Component implements Serializable {
     this.componentType = componentType;
     this.componentDescription = componentDescription;
     this.componentCost = componentCost;
-    this.componentPrice = (componentType == Others) ? componentPrice : componentType.getTypeValue();
+    this.componentPrice = componentPrice;
     this.amountInStock = amountInStock;
   }
 

@@ -1,15 +1,11 @@
 package com.gersonfaneto.yams.models.reports;
 
-import static com.gersonfaneto.yams.models.services.ServiceType.Assembly;
-
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.Time;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Represents the Work Reports that can be generated once a Work Order is finished. It makes the
@@ -38,7 +34,7 @@ public class WorkReport implements Serializable {
 
     this.technicianName = ((Technician) DAO.fromUsers()
         .findByID(workOrder.getTechnicianID()))
-        .getTechnicianName();
+        .getUserName();
 
     this.clientName = DAO.fromClients()
         .findByID(workOrder.getClientID())
@@ -57,9 +53,9 @@ public class WorkReport implements Serializable {
 
     StringBuilder stringBuilder = new StringBuilder();
 
-    List<Service> performedServices = DAO.fromService().findByWorkOrder(workOrderID);
+    // List<Service> performedServices = DAO.fromService().findByWorkOrder(workOrderID);
 
-    for (Service currentService : performedServices) {
+    /* for (Service currentService : performedServices) {
       if (currentService.getServiceType().equals(Assembly)) {
         for (Component currentComponent : currentService.getUsedComponents()) {
           stringBuilder.append(
@@ -71,7 +67,7 @@ public class WorkReport implements Serializable {
           );
         }
       }
-    }
+    } */
 
     this.usedComponents = stringBuilder.toString();
   }

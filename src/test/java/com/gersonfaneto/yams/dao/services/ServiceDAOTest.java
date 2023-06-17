@@ -5,7 +5,9 @@ import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.Service;
 import com.gersonfaneto.yams.models.services.ServiceType;
 import com.gersonfaneto.yams.utils.Generators;
+import java.io.File;
 import java.util.List;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +23,8 @@ class ServiceDAOTest {
     randomService = new Service(
         ServiceType.Formatting,
         "Format and install Windows 11 :(",
-        List.of()
+        null,
+        1
     );
     randomService.setWorkOrderID(randomWorkOrderID);
     DAO.fromService().createOne(randomService);
@@ -31,7 +34,8 @@ class ServiceDAOTest {
           new Service(
               ServiceType.ProgramInstallation,
               "Minecraft!",
-              List.of()
+              null,
+              1
           )
       );
     }
@@ -40,6 +44,14 @@ class ServiceDAOTest {
   @AfterEach
   void tearDown() {
     DAO.fromService().deleteMany();
+  }
+
+  // HACK: Find a better way of cleaning up these!
+  @AfterAll
+  static void cleanUp() {
+    File dataFile = new File("data/services.ser");
+
+    dataFile.delete();
   }
 
   @Test
@@ -68,7 +80,8 @@ class ServiceDAOTest {
         new Service(
             ServiceType.Cleaning,
             "The client dropped his computer in a honey bathtub!",
-            List.of()
+            null,
+            1
         )
     );
 

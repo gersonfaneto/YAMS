@@ -12,6 +12,7 @@ import java.io.Serializable;
 public abstract class User implements Serializable {
 
   private String userID;
+  private String userName;
   private String userEmail;
   private String userPassword;
   private UserType userType;
@@ -19,12 +20,14 @@ public abstract class User implements Serializable {
   /**
    * Constructs a new <code>User</code>.
    *
+   * @param userName     The <code>User</code> name.
    * @param userEmail    The <code>User</code> chosen email.
    * @param userPassword The <code>User</code> chose password.
    * @param userType     The type of the <code>User</code>.
    * @see UserType
    */
-  public User(String userEmail, String userPassword, UserType userType) {
+  public User(String userName, String userEmail, String userPassword, UserType userType) {
+    this.userName = userName;
     this.userEmail = userEmail;
     this.userPassword = userPassword;
     this.userType = userType;
@@ -77,6 +80,14 @@ public abstract class User implements Serializable {
 
   public void setUserID(String userID) {
     this.userID = userID;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public String getUserEmail() {

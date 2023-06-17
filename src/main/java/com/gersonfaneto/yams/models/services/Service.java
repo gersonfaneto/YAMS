@@ -7,7 +7,6 @@ import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
 import com.gersonfaneto.yams.models.stock.Component;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Represents the Services that can be requested by the Clients of the Assistance and performed by
@@ -28,19 +27,22 @@ public class Service implements Serializable {
   private double clientRating;
   private double servicePrice;
   private boolean isComplete;
-  private List<Component> usedComponents;
+  private Component usedComponent;
+  private int amountUsed;
 
   /**
    * Constructs a new <code>Service</code>.
    *
    * @param serviceType        The type of the <code>Service</code>.
    * @param serviceDescription The description of the <code>Service</code>.
-   * @param usedComponents     The list of <code>Component</code>s used on <code>Service</code>.
+   * @param usedComponent      The <code>Component</code> used on the <code>Service</code>.
+   * @param amountUsed      The amount of the used <code>Component</code>.
    */
   public Service(
       ServiceType serviceType,
       String serviceDescription,
-      List<Component> usedComponents
+      Component usedComponent,
+      int amountUsed
   ) {
     this.serviceType = serviceType;
     this.serviceDescription = serviceDescription;
@@ -48,14 +50,13 @@ public class Service implements Serializable {
     if (serviceType != Assembly) {
       this.servicePrice = serviceType.getTypeValue();
     } else {
-      this.servicePrice = usedComponents
-          .stream()
-          .mapToDouble(Component::getComponentPrice)
-          .reduce(0.0, Double::sum);
+      this.servicePrice = usedComponent.getComponentPrice() * amountUsed;
     }
 
+    this.amountUsed = amountUsed;
+
     this.isComplete = false;
-    this.usedComponents = usedComponents;
+    this.usedComponent = usedComponent;
   }
 
   /**
@@ -155,12 +156,12 @@ public class Service implements Serializable {
     isComplete = complete;
   }
 
-  public List<Component> getUsedComponents() {
-    return usedComponents;
+  public Component getUsedComponent() {
+    return usedComponent;
   }
 
-  public void setUsedComponents(List<Component> usedComponents) {
-    this.usedComponents = usedComponents;
+  public void setUsedComponents(Component usedComponent) {
+    this.usedComponent = usedComponent;
   }
 
   public String getWorkOrderID() {
@@ -169,5 +170,17 @@ public class Service implements Serializable {
 
   public void setWorkOrderID(String workOrderID) {
     this.workOrderID = workOrderID;
+  }
+
+  public void setUsedComponent(Component usedComponent) {
+    this.usedComponent = usedComponent;
+  }
+
+  public int getAmountUsed() {
+    return amountUsed;
+  }
+
+  public void setAmountUsed(int amountUsed) {
+    this.amountUsed = amountUsed;
   }
 }

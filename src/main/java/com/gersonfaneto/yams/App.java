@@ -1,36 +1,64 @@
 package com.gersonfaneto.yams;
 
+import com.gersonfaneto.yams.controllers.MainController;
+import com.gersonfaneto.yams.utils.Mock;
+
+import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class App extends Application {
+
+  private double xCoord, yCoord;
 
   public static void main(String[] args) {
     launch(args);
   }
 
   @Override
-  public void start(Stage primaryStage) {
-    primaryStage.setTitle("Hello, World!");
-    Button primaryButton = new Button();
-    primaryButton.setText("Say \"Hello, World!\"");
-    primaryButton.setOnAction(
-        new EventHandler<ActionEvent>() {
+  public void start(Stage primaryStage) throws IOException {
+    // HACK: Uncomment these lines to mock some data!
+    Mock.cleanData();
+    Mock.mockData();
 
-          @Override
-          public void handle(ActionEvent event) {
-            System.out.println("Hello World!");
-          }
-        });
+    Parent rootView = FXMLLoader.load(getClass().getResource("views/login.fxml"));
 
-    StackPane primaryPane = new StackPane();
-    primaryPane.getChildren().add(primaryButton);
-    primaryStage.setScene(new Scene(primaryPane, 300, 250));
+    rootView.setOnMousePressed(event -> {
+      xCoord = event.getSceneX();
+      yCoord = event.getSceneY();
+    });
+
+    rootView.setOnMouseDragged(event -> {
+      primaryStage.setX(event.getScreenX() - xCoord);
+      primaryStage.setY(event.getScreenY() - yCoord);
+    });
+
+    Scene loginScene = new Scene(rootView);
+
+    Image appIcon = new Image(getClass().getResourceAsStream("assets/Logo.png"));
+
+    primaryStage.setResizable(false);
+    primaryStage.initStyle(StageStyle.UNDECORATED);
+
+    primaryStage.getIcons().add(appIcon);
+
+    primaryStage.setScene(loginScene);
     primaryStage.show();
+
+    primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+      @Override
+      public void handle(WindowEvent windowEvent) {
+        MainController.saveData();
+      }
+    });
+
+    MainController.primaryStage = primaryStage;
   }
 }

@@ -1,6 +1,10 @@
 module com.gersonfaneto.yams {
+  requires javafx.graphics;
   requires javafx.controls;
   requires javafx.fxml;
+
+  requires de.jensd.fx.glyphs.fontawesome;
+  requires de.jensd.fx.glyphs.commons;
 
   // Needed for JUnit Test Suite.
   opens com.gersonfaneto.yams.dao;
@@ -24,26 +28,17 @@ module com.gersonfaneto.yams {
   exports com.gersonfaneto.yams.dao.services;
   exports com.gersonfaneto.yams.dao.stock;
 
-  exports com.gersonfaneto.yams.exceptions.billing;
-  exports com.gersonfaneto.yams.exceptions.client;
-  exports com.gersonfaneto.yams.exceptions.orders;
-  exports com.gersonfaneto.yams.exceptions.services;
-  exports com.gersonfaneto.yams.exceptions.stock;
-  exports com.gersonfaneto.yams.exceptions.users;
-
   exports com.gersonfaneto.yams.models.billing.invoice;
   exports com.gersonfaneto.yams.models.billing.payments;
   exports com.gersonfaneto.yams.models.entities.admnistrator;
   exports com.gersonfaneto.yams.models.entities.client;
   exports com.gersonfaneto.yams.models.entities.receptionist;
   exports com.gersonfaneto.yams.models.entities.technician;
-  exports com.gersonfaneto.yams.models.entities.technician.states;
   exports com.gersonfaneto.yams.models.entities.user;
 
   exports com.gersonfaneto.yams.models.orders.work;
-  exports com.gersonfaneto.yams.models.orders.work.states;
   exports com.gersonfaneto.yams.models.orders.purchase;
-  
+
   exports com.gersonfaneto.yams.models.reports;
 
   exports com.gersonfaneto.yams.models.services;
@@ -53,7 +48,7 @@ module com.gersonfaneto.yams {
   exports com.gersonfaneto.yams.utils;
 
   // Needed for JavaFX.
-  opens com.gersonfaneto.yams to javafx.fxml;
+  opens com.gersonfaneto.yams.controllers to javafx.fxml, javafx.controls, javafx.graphics;
 
   exports com.gersonfaneto.yams;
 }

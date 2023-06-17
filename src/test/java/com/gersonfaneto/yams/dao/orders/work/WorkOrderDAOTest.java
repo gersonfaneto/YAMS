@@ -3,9 +3,11 @@ package com.gersonfaneto.yams.dao.orders.work;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.orders.work.states.Open;
+import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
 import com.gersonfaneto.yams.utils.Generators;
+import java.io.File;
 import java.util.List;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +37,13 @@ class WorkOrderDAOTest {
     DAO.fromWorkOrders().deleteMany();
   }
 
+  // HACK: Find a better way of cleaning up these!
+  @AfterAll
+  static void cleanUp() {
+    File dataFile = new File("data/work-orders.ser");
+
+    dataFile.delete();
+  }
 
   @Test
   void dataPersistence() {
@@ -85,11 +94,12 @@ class WorkOrderDAOTest {
 
   @Test
   void updateInformation() {
-    randomWorkOrder.setWorkOrderState(new Open(randomWorkOrder));
+    randomWorkOrder.setWorkOrderState(WorkOrderState.Open);
 
     boolean hasFound = DAO.fromWorkOrders().updateInformation(randomWorkOrder);
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(randomWorkOrder.getWorkOrderID());
 
+    Assertions.assertTrue(hasFound);
     Assertions.assertEquals(randomWorkOrder, foundWorkOrder);
   }
 

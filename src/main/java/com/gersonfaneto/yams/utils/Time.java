@@ -1,15 +1,17 @@
 package com.gersonfaneto.yams.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <code>Time<code/> contains functions for dealing with: converting, formatting and operating with
  * time units.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
  */
 public abstract class Time {
+  private static final SimpleDateFormat dateMask = new SimpleDateFormat("dd/MM/yyyy");
 
   /**
    * Converts a time duration in milliseconds to a more human-readable format as a <code>String
@@ -43,5 +45,9 @@ public abstract class Time {
         "%d Days %d Hours %d Minutes %d Seconds",
         totalDays, totalHours, totalMinutes, totalSeconds
     );
+  }
+
+  public static String extractDateFromCalendar(Calendar calendarTime) {
+    return dateMask.format(calendarTime.getTime());
   }
 }
