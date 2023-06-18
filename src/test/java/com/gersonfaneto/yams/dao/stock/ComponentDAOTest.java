@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.stock;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.io.File;
@@ -18,26 +17,14 @@ class ComponentDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomComponent = DAO.fromComponents().createOne(
-        new Component(
-            ComponentType.GraphicsCard,
-            "Nvidia RTX 4090 TI",
-            10,
-            30.00,
-            100.00
-        )
-    );
+    randomComponent =
+        DAO.fromComponents()
+            .createOne(
+                new Component(ComponentType.GraphicsCard, "Nvidia RTX 4090 TI", 10, 30.00, 100.00));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromComponents().createOne(
-          new Component(
-              ComponentType.RAM,
-              "Corsair Prime",
-              10,
-              15.00,
-              30.00
-          )
-      );
+      DAO.fromComponents()
+          .createOne(new Component(ComponentType.RAM, "Corsair Prime", 10, 15.00, 30.00));
     }
   }
 
@@ -56,7 +43,7 @@ class ComponentDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromComponents()).saveAll();
+    boolean hasSaved = DAO.fromComponents().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -64,7 +51,7 @@ class ComponentDAOTest {
 
     DAO.fromComponents().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromComponents()).loadAll();
+    boolean hasLoaded = DAO.fromComponents().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
@@ -76,15 +63,9 @@ class ComponentDAOTest {
 
   @Test
   void createOne() {
-    Component newComponent = DAO.fromComponents().createOne(
-        new Component(
-            ComponentType.Motherboard,
-            "Asus Prime",
-            10,
-            30.00,
-            100.00
-        )
-    );
+    Component newComponent =
+        DAO.fromComponents()
+            .createOne(new Component(ComponentType.Motherboard, "Asus Prime", 10, 30.00, 100.00));
 
     Component foundComponent = DAO.fromComponents().findByID(newComponent.getComponentID());
 

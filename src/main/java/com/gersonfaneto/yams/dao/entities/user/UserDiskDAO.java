@@ -1,10 +1,9 @@
 package com.gersonfaneto.yams.dao.entities.user;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.ObjectIO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.utils.Generators;
+import com.gersonfaneto.yams.utils.ObjectIO;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,7 @@ import java.util.Map;
  * @see UserCRUD
  * @see ObjectIO
  */
-public class UserDiskDAO implements UserCRUD, Persist {
+public class UserDiskDAO implements UserCRUD {
 
   private final Map<String, User> storedUsers;
   private final ObjectIO<User> userObjectIO;
@@ -36,9 +35,7 @@ public class UserDiskDAO implements UserCRUD, Persist {
   }
 
   public boolean saveAll() {
-    List<User> toSave = storedUsers.values()
-        .stream()
-        .toList();
+    List<User> toSave = storedUsers.values().stream().toList();
 
     return userObjectIO.saveObjects(toSave);
   }
@@ -74,9 +71,7 @@ public class UserDiskDAO implements UserCRUD, Persist {
 
   @Override
   public List<User> findMany() {
-    return storedUsers.values()
-        .stream()
-        .toList();
+    return storedUsers.values().stream().toList();
   }
 
   @Override
@@ -113,8 +108,7 @@ public class UserDiskDAO implements UserCRUD, Persist {
 
   @Override
   public User findByEmail(String userEmail) {
-    return storedUsers.values()
-        .stream()
+    return storedUsers.values().stream()
         .filter(x -> x.getUserEmail().equals(userEmail))
         .findFirst()
         .orElse(null);

@@ -24,17 +24,13 @@ import javafx.scene.control.TextField;
 
 public class StockController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private ListView<Component> listView;
+  @FXML private ListView<Component> listView;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
-  @FXML
-  private ComboBox<String> typeFilter;
+  @FXML private ComboBox<String> typeFilter;
 
   private ObservableList<Component> componentsLists;
   private FilteredList<Component> filteredComponents;
@@ -49,44 +45,48 @@ public class StockController {
       typeFilter.getItems().add(TypeParser.parseComponentType(componentType));
     }
 
-    listView.setCellFactory(listView -> new ListCell<Component>() {
-      @Override
-      protected void updateItem(Component component, boolean empty) {
-        super.updateItem(component, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<Component>() {
+              @Override
+              protected void updateItem(Component component, boolean empty) {
+                super.updateItem(component, empty);
 
-        if (component == null || empty) {
-          setGraphic(null);
-        } else {
-          ComponentsListComponent clientComponent = new ComponentsListComponent(
-              component,
-              componentsLists,
-              ComponentSize.Medium
-          );
+                if (component == null || empty) {
+                  setGraphic(null);
+                } else {
+                  ComponentsListComponent clientComponent =
+                      new ComponentsListComponent(component, componentsLists, ComponentSize.Medium);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
     List<Component> allComponents = DAO.fromComponents().findMany();
 
     componentsLists.addAll(allComponents);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredComponents.setPredicate(user -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredComponents.setPredicate(
+                  user -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getComponentDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    });
+                    if (user.getComponentDescription().toLowerCase().indexOf(lowerCaseFilter)
+                        != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<Component> sortedComponents = new SortedList<>(filteredComponents);
 
@@ -95,24 +95,25 @@ public class StockController {
 
   @FXML
   public void filterSearch() {
-    listView.setItems(filteredComponents.filtered(component -> {
-      String typeValue = typeFilter.getValue();
+    listView.setItems(
+        filteredComponents.filtered(
+            component -> {
+              String typeValue = typeFilter.getValue();
 
-      if (typeValue.equals("Todos")) {
-        return true;
-      }
+              if (typeValue.equals("Todos")) {
+                return true;
+              }
 
-      ComponentType componentType = TypeParser.parseComponentType(typeValue);
+              ComponentType componentType = TypeParser.parseComponentType(typeValue);
 
-      return componentType == null || component.getComponentType() == componentType;
-    }));
+              return componentType == null || component.getComponentType() == componentType;
+            }));
   }
 
   @FXML
   public void openPurchase() throws IOException {
-    Parent purchaseComponentElements = FXMLLoader.load(
-        App.class.getResource("views/purchase_component.fxml")
-    );
+    Parent purchaseComponentElements =
+        FXMLLoader.load(App.class.getResource("views/stock/PurchaseComponent.fxml"));
 
     MainController.mainWindow.setRight(purchaseComponentElements);
   }

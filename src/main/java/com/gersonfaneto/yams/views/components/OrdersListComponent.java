@@ -1,17 +1,15 @@
 package com.gersonfaneto.yams.views.components;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.controllers.OrderDetailsController;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.utils.Time;
 import com.gersonfaneto.yams.utils.TypeParser;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,10 +19,7 @@ import javafx.scene.layout.AnchorPane;
 public class OrdersListComponent extends AnchorPane {
   private WorkOrder targetOrder;
 
-  public OrdersListComponent(
-      WorkOrder workOrder,
-      ObservableList<WorkOrder> workOrdersList
-  ) {
+  public OrdersListComponent(WorkOrder workOrder, ObservableList<WorkOrder> workOrdersList) {
     this.targetOrder = workOrder;
 
     super.getStylesheets().add(App.class.getResource("stylesheets/global.css").toExternalForm());
@@ -35,16 +30,17 @@ public class OrdersListComponent extends AnchorPane {
     super.setPrefSize(650, 100);
     super.setMaxSize(650, 100);
 
-    FontAwesomeIconView ordersIcon = new FontAwesomeIconView(FontAwesomeIcon.CLIPBOARD); 
+    FontAwesomeIconView ordersIcon = new FontAwesomeIconView(FontAwesomeIcon.CLIPBOARD);
 
     ordersIcon.setLayoutX(25);
     ordersIcon.setLayoutY(70);
     ordersIcon.setSize("50");
     ordersIcon.getStyleClass().add("order-icon");
 
-    ordersIcon.setOnMouseClicked(event -> {
-      viewDetails();
-    });
+    ordersIcon.setOnMouseClicked(
+        event -> {
+          viewDetails();
+        });
 
     Label clientNameField = new Label();
     Label openingDateField = new Label();
@@ -55,27 +51,20 @@ public class OrdersListComponent extends AnchorPane {
     clientNameField.setLayoutX(90);
     clientNameField.setLayoutY(15);
     clientNameField.setPrefSize(400, 20);
-    clientNameField.setText(
-        DAO.fromClients().findByID(workOrder.getClientID()).getClientName()
-    );
+    clientNameField.setText(DAO.fromClients().findByID(workOrder.getClientID()).getClientName());
 
     openingDateField.setLayoutX(190);
     openingDateField.setLayoutY(40);
     openingDateField.setPrefSize(90, 20);
-    openingDateField.setText(
-      Time.extractDateFromCalendar(workOrder.getCreatedAt())
-    );
+    openingDateField.setText(Time.extractDateFromCalendar(workOrder.getCreatedAt()));
 
     closingDateField.setLayoutX(190);
     closingDateField.setLayoutY(65);
     closingDateField.setPrefSize(90, 20);
     if (workOrder.getClosedAt() == null) {
       closingDateField.setText("");
-    }
-    else {
-      closingDateField.setText(
-          Time.extractDateFromCalendar(workOrder.getClosedAt())
-      );
+    } else {
+      closingDateField.setText(Time.extractDateFromCalendar(workOrder.getClosedAt()));
     }
 
     priceField.setLayoutX(390);
@@ -83,21 +72,15 @@ public class OrdersListComponent extends AnchorPane {
     priceField.setPrefSize(90, 20);
     priceField.setText(
         formatMoney(
-          DAO.fromService()
-          .findByWorkOrder(workOrder.getWorkOrderID())
-          .stream()
-          .map(service -> service.getServicePrice())
-          .reduce(Double::sum)
-          .orElse(0.0)
-        )
-    );
+            DAO.fromService().findByWorkOrder(workOrder.getWorkOrderID()).stream()
+                .map(service -> service.getServicePrice())
+                .reduce(Double::sum)
+                .orElse(0.0)));
 
     statusField.setLayoutX(390);
     statusField.setLayoutY(65);
     statusField.setPrefSize(90, 20);
-    statusField.setText(
-        TypeParser.parseWorkOrderStateType(workOrder.getWorkOrderState())
-    );
+    statusField.setText(TypeParser.parseWorkOrderStateType(workOrder.getWorkOrderState()));
 
     Label openingDateFieldIndicator = new Label("Abertura");
     Label closingDateFieldIndicator = new Label("Fechamento");
@@ -121,19 +104,14 @@ public class OrdersListComponent extends AnchorPane {
     statusFieldIndicator.setPrefSize(90, 20);
 
     super.getChildren().add(ordersIcon);
-    super.getChildren().addAll(
-        clientNameField,
-        openingDateField,
-        closingDateField,
-        priceField,
-        statusField
-    );
-    super.getChildren().addAll(
-        openingDateFieldIndicator,
-        closingDateFieldIndicator,
-        priceFieldIndicator,
-        statusFieldIndicator
-    );
+    super.getChildren()
+        .addAll(clientNameField, openingDateField, closingDateField, priceField, statusField);
+    super.getChildren()
+        .addAll(
+            openingDateFieldIndicator,
+            closingDateFieldIndicator,
+            priceFieldIndicator,
+            statusFieldIndicator);
   }
 
   private String formatMoney(double moneyInput) {
@@ -145,7 +123,7 @@ public class OrdersListComponent extends AnchorPane {
     detailsController.setWorkOrder(targetOrder);
 
     FXMLLoader loaderFXML = new FXMLLoader();
-    loaderFXML.setLocation(App.class.getResource("views/order_details.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/services/OrderDetails.fxml"));
 
     loaderFXML.setController(detailsController);
 

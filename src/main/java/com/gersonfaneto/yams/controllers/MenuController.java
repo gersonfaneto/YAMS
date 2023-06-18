@@ -13,36 +13,25 @@ import javafx.scene.layout.AnchorPane;
 
 public class MenuController {
 
-  @FXML
-  private FontAwesomeIconView signOutButton;
+  @FXML private FontAwesomeIconView signOutButton;
 
-  @FXML
-  private FontAwesomeIconView homeIcon;
+  @FXML private FontAwesomeIconView homeIcon;
 
-  @FXML
-  private Button homeButton;
+  @FXML private Button homeButton;
 
-  @FXML
-  private FontAwesomeIconView employeesIcon;
+  @FXML private FontAwesomeIconView employeesIcon;
 
-  @FXML
-  private Button employeesButton;
+  @FXML private Button employeesButton;
 
-  @FXML
-  private Button clientsButton;
+  @FXML private Button clientsButton;
 
-  @FXML
-  private Button servicesButton;
+  @FXML private Button servicesButton;
 
-  @FXML
-  private Button stockButton;
+  @FXML private Button stockButton;
 
-  @FXML
-  private Button invoicesButton;
+  @FXML private Button invoicesButton;
 
-  @FXML
-  private AnchorPane sideBar;
-
+  @FXML private AnchorPane sideBar;
 
   private Button activeButton;
 
@@ -53,7 +42,7 @@ public class MenuController {
       }
     }
 
-    switch(MainController.loggedUser.getUserType()) {
+    switch (MainController.loggedUser.getUserType()) {
       case Administrator:
         setActiveButton(employeesButton);
         break;
@@ -73,17 +62,17 @@ public class MenuController {
     Parent targetView = null;
 
     if (actionEvent.getSource() == homeButton) {
-      targetView = FXMLLoader.load(App.class.getResource("views/home.fxml"));
+      targetView = FXMLLoader.load(App.class.getResource("views/home/Main.fxml"));
     } else if (actionEvent.getSource() == clientsButton) {
-      targetView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+      targetView = FXMLLoader.load(App.class.getResource("views/clients/Main.fxml"));
     } else if (actionEvent.getSource() == servicesButton) {
-      targetView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
+      targetView = FXMLLoader.load(App.class.getResource("views/services/Main.fxml"));
     } else if (actionEvent.getSource() == stockButton) {
-      targetView = FXMLLoader.load(App.class.getResource("views/stock.fxml"));
+      targetView = FXMLLoader.load(App.class.getResource("views/stock/Main.fxml"));
     } else if (actionEvent.getSource() == employeesButton) {
-      targetView = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
+      targetView = FXMLLoader.load(App.class.getResource("views/employees/Main.fxml"));
     } else {
-      targetView = FXMLLoader.load(App.class.getResource("views/invoices.fxml"));
+      targetView = FXMLLoader.load(App.class.getResource("views/invoices/Main.fxml"));
     }
 
     MainController.mainWindow.setRight(targetView);
@@ -98,7 +87,7 @@ public class MenuController {
     if (MainController.isConfirmed) {
       MainController.saveData();
 
-      Parent loginView = FXMLLoader.load(App.class.getResource("views/login.fxml"));
+      Parent loginView = FXMLLoader.load(App.class.getResource("views/Login.fxml"));
 
       MainController.mainWindow.getChildren().setAll(loginView);
     }

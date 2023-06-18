@@ -1,20 +1,18 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
+import com.gersonfaneto.yams.models.services.service.Service;
+import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.views.components.ClientsListComponent;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -31,32 +29,23 @@ import javafx.scene.paint.Color;
 
 public class CreateOrderController {
 
-  @FXML
-  private FontAwesomeIconView backButton;
+  @FXML private FontAwesomeIconView backButton;
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private Button addService;
+  @FXML private Button addService;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
-  @FXML
-  private ListView<Client> clientsListView;
+  @FXML private ListView<Client> clientsListView;
 
-  @FXML
-  private ListView<Service> servicesListView;
+  @FXML private ListView<Service> servicesListView;
 
-  @FXML
-  private Button confirmButton;
+  @FXML private Button confirmButton;
 
-  @FXML
-  private Button cancelButton;
+  @FXML private Button cancelButton;
 
   private ObservableList<Client> clientsList;
   private FilteredList<Client> filteredClients;
@@ -70,44 +59,41 @@ public class CreateOrderController {
 
     servicesList = FXCollections.observableArrayList();
 
-    clientsListView.setCellFactory(listView -> new ListCell<Client>() {
-      @Override
-      protected void updateItem(Client client, boolean empty) {
-        super.updateItem(client, empty);
+    clientsListView.setCellFactory(
+        listView ->
+            new ListCell<Client>() {
+              @Override
+              protected void updateItem(Client client, boolean empty) {
+                super.updateItem(client, empty);
 
-        if (client == null || empty) {
-          setGraphic(null);
-        } else {
-          ClientsListComponent clientComponent = new ClientsListComponent(
-              client,
-              clientsList,
-              ComponentSize.Small
-          );
+                if (client == null || empty) {
+                  setGraphic(null);
+                } else {
+                  ClientsListComponent clientComponent =
+                      new ClientsListComponent(client, clientsList, ComponentSize.Small);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
-    servicesListView.setCellFactory(listView -> new ListCell<Service>() {
-      @Override
-      protected void updateItem(Service service, boolean empty) {
-        super.updateItem(service, empty);
+    servicesListView.setCellFactory(
+        listView ->
+            new ListCell<Service>() {
+              @Override
+              protected void updateItem(Service service, boolean empty) {
+                super.updateItem(service, empty);
 
-        if (service == null || empty) {
-          setGraphic(null);
-        } else {
-          ServicesListComponent clientComponent = new ServicesListComponent(
-              service,
-              servicesList,
-              ComponentSize.Small,
-              true
-          );
+                if (service == null || empty) {
+                  setGraphic(null);
+                } else {
+                  ServicesListComponent clientComponent =
+                      new ServicesListComponent(service, servicesList, ComponentSize.Small, false);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
     List<Client> allClients = DAO.fromClients().findMany();
     List<Service> relatedServices = DAO.fromService().findByWorkOrder("TEMP");
@@ -115,21 +101,25 @@ public class CreateOrderController {
     clientsList.addAll(allClients);
     servicesList.addAll(relatedServices);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredClients.setPredicate(user -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredClients.setPredicate(
+                  user -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    });
+                    if (user.getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<Client> sortedClients = new SortedList<>(filteredClients);
 
@@ -147,8 +137,7 @@ public class CreateOrderController {
         Component storedComponent = DAO.fromComponents().findEquals(usedComponent);
 
         storedComponent.setAmountInStock(
-            storedComponent.getAmountInStock() + service.getAmountUsed()
-        );
+            storedComponent.getAmountInStock() + service.getAmountUsed());
 
         DAO.fromComponents().updateInformation(storedComponent);
       }
@@ -157,7 +146,7 @@ public class CreateOrderController {
 
     DAO.fromWorkOrders().deleteByID("TEMP");
 
-    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
+    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services/Main.fxml"));
 
     MainController.mainWindow.setRight(servicesView);
   }
@@ -166,7 +155,7 @@ public class CreateOrderController {
   public void confirmRegister() throws IOException {
     Client targetClient = clientsListView.getSelectionModel().getSelectedItem();
     List<Service> selectedServices = servicesListView.getItems();
-    
+
     if (targetClient == null) {
       visualFeedback.setText("Selecione o cliente!");
       visualFeedback.setTextFill(Color.RED);
@@ -188,14 +177,15 @@ public class CreateOrderController {
 
     DAO.fromWorkOrders().deleteByID("TEMP");
 
-    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
+    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services/Main.fxml"));
 
     MainController.mainWindow.setRight(servicesView);
   }
 
   @FXML
   public void openServicesRegistration() throws IOException {
-    Parent createServicesView = FXMLLoader.load(App.class.getResource("views/create_service.fxml"));
+    Parent createServicesView =
+        FXMLLoader.load(App.class.getResource("views/services/CreateService.fxml"));
 
     MainController.mainWindow.setRight(createServicesView);
   }

@@ -21,41 +21,29 @@ import javafx.scene.paint.Color;
 
 public class EmployeesUpdateController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField nameField;
+  @FXML private TextField nameField;
 
-  @FXML
-  private TextField emailField;
+  @FXML private TextField emailField;
 
-  @FXML
-  private PasswordField passwordField;
+  @FXML private PasswordField passwordField;
 
-  @FXML
-  private TextField passwordText;
+  @FXML private TextField passwordText;
 
-  @FXML
-  private PasswordField confirmPasswordField;
+  @FXML private PasswordField confirmPasswordField;
 
-  @FXML
-  private TextField confirmPasswordText;
+  @FXML private TextField confirmPasswordText;
 
-  @FXML
-  private ComboBox<String> roleSelector;
+  @FXML private ComboBox<String> roleSelector;
 
-  @FXML
-  private CheckBox showPassword;
+  @FXML private CheckBox showPassword;
 
-  @FXML
-  private Button confirmUpdate;
+  @FXML private Button confirmUpdate;
 
-  @FXML
-  private Button cancelButton;
+  @FXML private Button cancelButton;
 
   private String employeeID;
 
@@ -139,7 +127,7 @@ public class EmployeesUpdateController {
 
   @FXML
   public void cancelUpdate() throws IOException {
-    Parent employeesView = FXMLLoader.load(App.class.getResource("views/employees.fxml"));
+    Parent employeesView = FXMLLoader.load(App.class.getResource("views/employees/Main.fxml"));
 
     MainController.mainWindow.setRight(employeesView);
 
@@ -166,12 +154,7 @@ public class EmployeesUpdateController {
   }
 
   public void injectFields(
-      String userID,
-      String userName,
-      String userEmail,
-      String userPassword,
-      UserType userType
-  ) {
+      String userID, String userName, String userEmail, String userPassword, UserType userType) {
     this.employeeID = userID;
     nameField.setText(userName);
     emailField.setText(userEmail);
@@ -181,9 +164,7 @@ public class EmployeesUpdateController {
   }
 
   private String passwordValue() {
-    return showPassword.isSelected()
-        ? passwordText.getText()
-        : passwordField.getText();
+    return showPassword.isSelected() ? passwordText.getText() : passwordField.getText();
   }
 
   private String confirmPasswordValue() {

@@ -5,7 +5,6 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.views.components.ClientsListComponent;
 import com.gersonfaneto.yams.views.components.ComponentSize;
-
 import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -22,14 +21,11 @@ import javafx.scene.control.TextField;
 
 public class ClientsController {
 
-  @FXML
-  private ListView<Client> listView;
+  @FXML private ListView<Client> listView;
 
-  @FXML
-  private Button registerButton;
+  @FXML private Button registerButton;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
   private ObservableList<Client> clientsList;
   private FilteredList<Client> filteredClients;
@@ -39,44 +35,47 @@ public class ClientsController {
     clientsList = FXCollections.observableArrayList();
     filteredClients = new FilteredList<>(clientsList, x -> true);
 
-    listView.setCellFactory(listView -> new ListCell<Client>() {
-      @Override
-      protected void updateItem(Client client, boolean empty) {
-        super.updateItem(client, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<Client>() {
+              @Override
+              protected void updateItem(Client client, boolean empty) {
+                super.updateItem(client, empty);
 
-        if (client == null || empty) {
-          setGraphic(null);
-        } else {
-          ClientsListComponent clientComponent = new ClientsListComponent(
-              client,
-              clientsList,
-              ComponentSize.Medium
-          );
+                if (client == null || empty) {
+                  setGraphic(null);
+                } else {
+                  ClientsListComponent clientComponent =
+                      new ClientsListComponent(client, clientsList, ComponentSize.Medium);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
     List<Client> allClients = DAO.fromClients().findMany();
 
     clientsList.addAll(allClients);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredClients.setPredicate(user -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredClients.setPredicate(
+                  user -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    });
+                    if (user.getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<Client> sortedClients = new SortedList<>(filteredClients);
 
@@ -85,9 +84,8 @@ public class ClientsController {
 
   @FXML
   public void registerClient() throws IOException {
-    Parent clientRegisterView = FXMLLoader.load(
-        App.class.getResource("views/clients_register.fxml")
-    );
+    Parent clientRegisterView =
+        FXMLLoader.load(App.class.getResource("views/clients/ClientsRegister.fxml"));
 
     MainController.mainWindow.setRight(clientRegisterView);
   }

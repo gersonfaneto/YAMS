@@ -18,14 +18,11 @@ import javafx.scene.control.TextField;
 
 public class EmployeesController {
 
-  @FXML
-  private ListView<User> listView;
+  @FXML private ListView<User> listView;
 
-  @FXML
-  private ComboBox<String> roleFilter;
+  @FXML private ComboBox<String> roleFilter;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
   private ObservableList<User> employeesList;
   private FilteredList<User> filteredEmployees;
@@ -35,20 +32,22 @@ public class EmployeesController {
     employeesList = FXCollections.observableArrayList();
     filteredEmployees = new FilteredList<>(employeesList, x -> true);
 
-    listView.setCellFactory(listView -> new ListCell<User>() {
-      @Override
-      protected void updateItem(User user, boolean empty) {
-        super.updateItem(user, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<User>() {
+              @Override
+              protected void updateItem(User user, boolean empty) {
+                super.updateItem(user, empty);
 
-        if (user == null || empty) {
-          setGraphic(null);
-        } else {
-          UsersListComponent clientComponent = new UsersListComponent(user, employeesList);
+                if (user == null || empty) {
+                  setGraphic(null);
+                } else {
+                  UsersListComponent clientComponent = new UsersListComponent(user, employeesList);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
     roleFilter.getItems().add("Todos");
     for (UserType userType : UserType.values()) {
@@ -57,28 +56,32 @@ public class EmployeesController {
       }
     }
 
-    List<User> allEmployees = DAO.fromUsers().findMany()
-        .stream()
-        .filter(user -> user.getUserType() != UserType.Administrator)
-        .toList();
+    List<User> allEmployees =
+        DAO.fromUsers().findMany().stream()
+            .filter(user -> user.getUserType() != UserType.Administrator)
+            .toList();
 
     employeesList.addAll(allEmployees);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredEmployees.setPredicate(user -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredEmployees.setPredicate(
+                  user -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    });
+                    if (user.getUserName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<User> sortedEmployees = new SortedList<>(filteredEmployees);
 
@@ -87,13 +90,15 @@ public class EmployeesController {
 
   @FXML
   public void filterSearch() {
-    listView.setItems(filteredEmployees.filtered(user -> {
-      String roleValue = roleFilter.getValue();
+    listView.setItems(
+        filteredEmployees.filtered(
+            user -> {
+              String roleValue = roleFilter.getValue();
 
-      UserType userType = TypeParser.parseUserType(roleValue);
+              UserType userType = TypeParser.parseUserType(roleValue);
 
-      return userType == null || user.getUserType() == userType;
-    }));
+              return userType == null || user.getUserType() == userType;
+            }));
   }
 
   @FXML

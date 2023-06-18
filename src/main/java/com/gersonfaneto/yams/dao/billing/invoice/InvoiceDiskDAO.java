@@ -1,10 +1,9 @@
 package com.gersonfaneto.yams.dao.billing.invoice;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.ObjectIO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.utils.Generators;
+import com.gersonfaneto.yams.utils.ObjectIO;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,7 @@ import java.util.Map;
  * @see InvoiceCRUD
  * @see ObjectIO
  */
-public class InvoiceDiskDAO implements InvoiceCRUD, Persist {
+public class InvoiceDiskDAO implements InvoiceCRUD {
 
   private final Map<String, Invoice> storedInvoices;
   private final ObjectIO<Invoice> invoiceObjectIO;
@@ -36,9 +35,7 @@ public class InvoiceDiskDAO implements InvoiceCRUD, Persist {
   }
 
   public boolean saveAll() {
-    List<Invoice> toSave = storedInvoices.values()
-        .stream()
-        .toList();
+    List<Invoice> toSave = storedInvoices.values().stream().toList();
 
     return invoiceObjectIO.saveObjects(toSave);
   }
@@ -75,9 +72,7 @@ public class InvoiceDiskDAO implements InvoiceCRUD, Persist {
 
   @Override
   public List<Invoice> findMany() {
-    return storedInvoices.values()
-        .stream()
-        .toList();
+    return storedInvoices.values().stream().toList();
   }
 
   @Override
@@ -114,8 +109,7 @@ public class InvoiceDiskDAO implements InvoiceCRUD, Persist {
 
   @Override
   public Invoice findByWorkOrder(String workOrderID) {
-    return storedInvoices.values()
-        .stream()
+    return storedInvoices.values().stream()
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .findFirst()
         .orElse(null);

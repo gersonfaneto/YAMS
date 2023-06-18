@@ -20,11 +20,19 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   private final Map<String, Client> storedClients;
 
-  /**
-   * Constructs a new <code>{@link ClientMemoryDAO}</code>
-   */
+  /** Constructs a new <code>{@link ClientMemoryDAO}</code> */
   public ClientMemoryDAO() {
     this.storedClients = new HashMap<>();
+  }
+
+  @Override
+  public boolean saveAll() {
+    return false;
+  }
+
+  @Override
+  public boolean loadAll() {
+    return false;
   }
 
   @Override
@@ -45,9 +53,7 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   @Override
   public List<Client> findMany() {
-    return storedClients.values()
-        .stream()
-        .toList();
+    return storedClients.values().stream().toList();
   }
 
   @Override
@@ -84,8 +90,7 @@ public class ClientMemoryDAO implements ClientCRUD {
 
   @Override
   public List<Client> findByName(String clientName) {
-    return storedClients.values()
-        .stream()
+    return storedClients.values().stream()
         .filter(x -> x.getClientName().equals(clientName))
         .toList();
   }

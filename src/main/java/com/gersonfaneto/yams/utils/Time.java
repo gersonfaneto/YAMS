@@ -18,7 +18,7 @@ public abstract class Time {
    * </code>.
    *
    * @param startTime The starting time in milliseconds.
-   * @param endTime   The ending time in milliseconds.
+   * @param endTime The ending time in milliseconds.
    * @return A properly formatted <code>String</code>.
    * @throws IllegalArgumentException If the total time obtained by subtracting <code>startTime
    *                                  </code> and <code>endTime</code> is lower than 0.
@@ -43,8 +43,7 @@ public abstract class Time {
 
     return String.format(
         "%d Days %d Hours %d Minutes %d Seconds",
-        totalDays, totalHours, totalMinutes, totalSeconds
-    );
+        totalDays, totalHours, totalMinutes, totalSeconds);
   }
 
   public static String extractDateFromCalendar(Calendar calendarTime) {

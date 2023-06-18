@@ -1,10 +1,9 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.ObjectIO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.utils.Generators;
+import com.gersonfaneto.yams.utils.ObjectIO;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,7 @@ import java.util.Map;
  * @see ClientCRUD
  * @see ObjectIO
  */
-public class ClientDiskDAO implements ClientCRUD, Persist {
+public class ClientDiskDAO implements ClientCRUD {
 
   private final Map<String, Client> storedClients;
   private final ObjectIO<Client> clientObjectIO;
@@ -36,9 +35,7 @@ public class ClientDiskDAO implements ClientCRUD, Persist {
   }
 
   public boolean saveAll() {
-    List<Client> toSave = storedClients.values()
-        .stream()
-        .toList();
+    List<Client> toSave = storedClients.values().stream().toList();
 
     return clientObjectIO.saveObjects(toSave);
   }
@@ -75,9 +72,7 @@ public class ClientDiskDAO implements ClientCRUD, Persist {
 
   @Override
   public List<Client> findMany() {
-    return storedClients.values()
-        .stream()
-        .toList();
+    return storedClients.values().stream().toList();
   }
 
   @Override
@@ -114,8 +109,7 @@ public class ClientDiskDAO implements ClientCRUD, Persist {
 
   @Override
   public List<Client> findByName(String clientName) {
-    return storedClients.values()
-        .stream()
+    return storedClients.values().stream()
         .filter(x -> x.getClientName().equals(clientName))
         .toList();
   }

@@ -25,7 +25,8 @@ public class ClientsListComponent extends AnchorPane {
   private Client targetClient;
   private ObservableList<Client> clientsList;
 
-  public ClientsListComponent(Client targetClient, ObservableList<Client> clientsList, ComponentSize componentSize) {
+  public ClientsListComponent(
+      Client targetClient, ObservableList<Client> clientsList, ComponentSize componentSize) {
     this.targetClient = targetClient;
     this.clientsList = clientsList;
 
@@ -72,13 +73,15 @@ public class ClientsListComponent extends AnchorPane {
 
       deleteButton.setGraphic(deleteIcon);
 
-      deleteButton.setOnMouseClicked((MouseEvent event) -> {
-        deleteClient();
-      });
+      deleteButton.setOnMouseClicked(
+          (MouseEvent event) -> {
+            deleteClient();
+          });
 
-      editButton.setOnMouseClicked((MouseEvent event) -> {
-        updateClient();
-      });
+      editButton.setOnMouseClicked(
+          (MouseEvent event) -> {
+            updateClient();
+          });
 
       super.getChildren().addAll(editButton, deleteButton);
     }
@@ -117,8 +120,8 @@ public class ClientsListComponent extends AnchorPane {
   }
 
   private void deleteClient() {
-    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(
-        targetClient.getClientName());
+    String confirmationMessage =
+        "Deseja excluir o cadastro de %s?".formatted(targetClient.getClientName());
 
     MainController.openModal(confirmationMessage, true);
 
@@ -130,7 +133,7 @@ public class ClientsListComponent extends AnchorPane {
 
   private void updateClient() {
     FXMLLoader loaderFXML = new FXMLLoader();
-    loaderFXML.setLocation(App.class.getResource("views/clients_update.fxml"));
+    loaderFXML.setLocation(App.class.getResource("views/clients/ClientsUpdate.fxml"));
 
     try {
       loaderFXML.load();
@@ -144,8 +147,7 @@ public class ClientsListComponent extends AnchorPane {
         targetClient.getClientID(),
         targetClient.getClientName(),
         targetClient.getHomeAddress(),
-        targetClient.getPhoneNumber()
-    );
+        targetClient.getPhoneNumber());
 
     Parent updateView = loaderFXML.getRoot();
     Stage modalStage = new Stage();

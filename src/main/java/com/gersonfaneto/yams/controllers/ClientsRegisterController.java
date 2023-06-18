@@ -16,42 +16,32 @@ import javafx.scene.paint.Color;
 
 public class ClientsRegisterController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private FontAwesomeIconView backButton;
+  @FXML private FontAwesomeIconView backButton;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField nameField;
+  @FXML private TextField nameField;
 
-  @FXML
-  private TextField addressField;
+  @FXML private TextField addressField;
 
-  @FXML
-  private TextField phoneField;
+  @FXML private TextField phoneField;
 
-  @FXML
-  private Button cancelButton;
+  @FXML private Button cancelButton;
 
-  @FXML
-  private Button confirmButton;
+  @FXML private Button confirmButton;
 
   private final String PHONE_REGEX = "^\\(?(\\d{2})\\)?[-.\\s]?(\\d{4,5})[-.\\s]?(\\d{4})$";
   private final Pattern PHONE_PATTERN = Pattern.compile(PHONE_REGEX);
   private final String MASK = "($1) $2-$3";
 
   @FXML
-  public void initialize() {
-
-  }
+  public void initialize() {}
 
   @FXML
   public void cancelRegister() throws IOException {
-    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients/Main.fxml"));
 
     MainController.mainWindow.setRight(clientsView);
   }
@@ -74,13 +64,8 @@ public class ClientsRegisterController {
       return;
     }
 
-    DAO.fromClients().createOne(
-        new Client(
-            clientName,
-            homeAddress,
-            applyMaskToPhoneNumber(phoneNumber)
-        )
-    );
+    DAO.fromClients()
+        .createOne(new Client(clientName, homeAddress, applyMaskToPhoneNumber(phoneNumber)));
 
     visualFeedback.setText("Registrado com sucesso!");
     visualFeedback.setTextFill(Color.GREEN);

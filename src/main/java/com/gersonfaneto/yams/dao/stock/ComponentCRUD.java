@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.stock;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * @see CRUD
  * @see Component
  */
-public interface ComponentCRUD extends CRUD<Component> {
+public interface ComponentCRUD extends CRUD<Component>, Persist {
 
   /**
    * Searches for all the <code>Component</code>s of a given type.

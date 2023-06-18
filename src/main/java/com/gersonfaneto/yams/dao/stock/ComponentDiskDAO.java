@@ -1,20 +1,18 @@
 package com.gersonfaneto.yams.dao.stock;
 
 import com.gersonfaneto.yams.dao.CRUD;
-import com.gersonfaneto.yams.dao.ObjectIO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.Generators;
+import com.gersonfaneto.yams.utils.ObjectIO;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Implementations for the <code>ComponentCRUD</code> and <code>CRUD</code> operations. Uses a
- * <code> HashMap</code> as a cache to store all the <code>Component</code>s during the
- * execution of the program and loads or unloads the contents of it into a file using an
- * <code>ObjectIO</code>.
+ * <code> HashMap</code> as a cache to store all the <code>Component</code>s during the execution of
+ * the program and loads or unloads the contents of it into a file using an <code>ObjectIO</code>.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
@@ -22,7 +20,7 @@ import java.util.Map;
  * @see ComponentCRUD
  * @see ObjectIO
  */
-public class ComponentDiskDAO implements ComponentCRUD, Persist {
+public class ComponentDiskDAO implements ComponentCRUD {
 
   private final Map<String, Component> storedComponents;
   private final ObjectIO<Component> componentObjectIO;
@@ -38,9 +36,7 @@ public class ComponentDiskDAO implements ComponentCRUD, Persist {
   }
 
   public boolean saveAll() {
-    List<Component> toSave = storedComponents.values()
-        .stream()
-        .toList();
+    List<Component> toSave = storedComponents.values().stream().toList();
 
     return componentObjectIO.saveObjects(toSave);
   }
@@ -77,9 +73,7 @@ public class ComponentDiskDAO implements ComponentCRUD, Persist {
 
   @Override
   public List<Component> findMany() {
-    return storedComponents.values()
-        .stream()
-        .toList();
+    return storedComponents.values().stream().toList();
   }
 
   @Override
@@ -116,18 +110,13 @@ public class ComponentDiskDAO implements ComponentCRUD, Persist {
 
   @Override
   public List<Component> findByType(ComponentType componentType) {
-    return storedComponents.values()
-        .stream()
+    return storedComponents.values().stream()
         .filter(x -> x.getComponentType().equals(componentType))
         .toList();
   }
 
   @Override
   public Component findEquals(Object otherObject) {
-    return storedComponents.values()
-        .stream()
-        .filter(otherObject::equals)
-        .findFirst()
-        .orElse(null);
+    return storedComponents.values().stream().filter(otherObject::equals).findFirst().orElse(null);
   }
 }

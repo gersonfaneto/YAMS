@@ -18,7 +18,7 @@ public class Client implements Serializable {
   /**
    * Constructs a new <code>Client</code>.
    *
-   * @param clientName  The <code>Client</code> full name.
+   * @param clientName The <code>Client</code> full name.
    * @param homeAddress The <code>Client</code> home address.
    * @param phoneNumber The <code>Client</code> phone number.
    */
@@ -47,12 +47,14 @@ public class Client implements Serializable {
 
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Name: %s
         Address: %s
         Contact: %s
-        """, clientID, clientName, homeAddress, phoneNumber);
+        """,
+        clientID, clientName, homeAddress, phoneNumber);
   }
 
   public String getClientID() {

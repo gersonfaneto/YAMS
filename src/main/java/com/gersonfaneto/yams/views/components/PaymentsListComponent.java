@@ -1,20 +1,15 @@
 package com.gersonfaneto.yams.views.components;
 
 import com.gersonfaneto.yams.App;
-import com.gersonfaneto.yams.models.billing.payments.Payment;
+import com.gersonfaneto.yams.models.billing.payment.Payment;
 import com.gersonfaneto.yams.utils.TypeParser;
-
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class PaymentsListComponent extends AnchorPane {
-  private Payment targetPayment;
-
   public PaymentsListComponent(Payment targetPayment) {
-    this.targetPayment = targetPayment;
-
     super.getStylesheets().add(App.class.getResource("stylesheets/global.css").toExternalForm());
     super.getStylesheets().clear();
     super.getStyleClass().add("component-item");
@@ -37,25 +32,15 @@ public class PaymentsListComponent extends AnchorPane {
     paymentMethodField.setLayoutX(160);
     paymentMethodField.setLayoutY(25);
     paymentMethodField.setPrefSize(150, 20);
-    paymentMethodField.setText(
-        TypeParser.parsePaymentMethod(targetPayment.getPaymentMethod())
-    );
+    paymentMethodField.setText(TypeParser.parsePaymentMethod(targetPayment.getPaymentMethod()));
 
     paidValueField.setLayoutX(160);
     paidValueField.setLayoutY(55);
     paidValueField.setPrefSize(100, 20);
-    paidValueField.setText(
-        formatMoney(targetPayment.getPaidValue())
-    );
+    paidValueField.setText(formatMoney(targetPayment.getPaidValue()));
 
-    super.getChildren().addAll(
-        paymentMethodFieldIndicator,
-        paidValueFieldIndicator
-    );
-    super.getChildren().addAll(
-        paymentMethodField,
-        paidValueField
-    );
+    super.getChildren().addAll(paymentMethodFieldIndicator, paidValueFieldIndicator);
+    super.getChildren().addAll(paymentMethodField, paidValueField);
 
     ImageView typeIcon = new ImageView();
 
@@ -64,16 +49,16 @@ public class PaymentsListComponent extends AnchorPane {
     typeIcon.setLayoutX(20);
     typeIcon.setLayoutY(25);
 
-    String typeIconPath = "assets/%s.png".formatted(
-        targetPayment.getPaymentMethod().getTypeName().replace(" ", "")
-    );
+    String typeIconPath =
+        "assets/payments/%s.png"
+            .formatted(targetPayment.getPaymentMethod().getTypeName().replace(" ", ""));
 
     Image typeImage = new Image(App.class.getResourceAsStream(typeIconPath));
 
     typeIcon.setImage(typeImage);
 
     super.getChildren().add(typeIcon);
-  } 
+  }
 
   private String formatMoney(double moneyInput) {
     return String.format("%.2f", moneyInput).replace(".", ",");

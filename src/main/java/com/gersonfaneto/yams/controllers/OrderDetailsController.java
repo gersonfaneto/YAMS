@@ -1,20 +1,19 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.orders.work.WorkOrder;
-import com.gersonfaneto.yams.models.orders.work.WorkOrderState;
-import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.services.order.WorkOrder;
+import com.gersonfaneto.yams.models.services.order.WorkOrderState;
+import com.gersonfaneto.yams.models.services.service.Service;
+import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -31,29 +30,21 @@ import javafx.scene.control.TextField;
 
 public class OrderDetailsController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
-  @FXML
-  private ComboBox<String> typeFilter;
+  @FXML private ComboBox<String> typeFilter;
 
-  @FXML
-  private ListView<Service> listView;
+  @FXML private ListView<Service> listView;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField clientNameField;
+  @FXML private TextField clientNameField;
 
-  @FXML
-  private TextField technicianNameField;
+  @FXML private TextField technicianNameField;
 
-  @FXML
-  private Button cancelOrderButton;
+  @FXML private Button cancelOrderButton;
 
   private ObservableList<Service> servicesList;
   private FilteredList<Service> filteredServices;
@@ -70,63 +61,64 @@ public class OrderDetailsController {
       typeFilter.getItems().add(TypeParser.parseServiceType(serviceType));
     }
 
-    listView.setCellFactory(listView -> new ListCell<Service>() {
-      @Override
-      protected void updateItem(Service service, boolean empty) {
-        super.updateItem(service, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<Service>() {
+              @Override
+              protected void updateItem(Service service, boolean empty) {
+                super.updateItem(service, empty);
 
-        ComponentSize componentSize = (service != null && service.getServiceType() == ServiceType.Assembly)
-          ? ComponentSize.Medium
-          : ComponentSize.Small;
+                ComponentSize componentSize =
+                    (service != null && service.getServiceType() == ServiceType.Assembly)
+                        ? ComponentSize.Medium
+                        : ComponentSize.Small;
 
-        if (service == null || empty) {
-          setGraphic(null);
-        } else {
-          ServicesListComponent clientComponent = new ServicesListComponent(
-              service,
-              servicesList,
-              componentSize,
-              false
-          );
+                if (service == null || empty) {
+                  setGraphic(null);
+                } else {
+                  ServicesListComponent clientComponent =
+                      new ServicesListComponent(service, servicesList, componentSize, false);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
     List<Service> allServices = DAO.fromService().findByWorkOrder(workOrder.getWorkOrderID());
 
     servicesList.addAll(allServices);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredServices.setPredicate(service -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredServices.setPredicate(
+                  service -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (service.getServiceDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    });
+                    if (service.getServiceDescription().toLowerCase().indexOf(lowerCaseFilter)
+                        != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<Service> sortedServices = new SortedList<>(filteredServices);
 
     listView.setItems(sortedServices);
 
-    clientNameField.setText(
-        DAO.fromClients().findByID(workOrder.getClientID()).getClientName()
-    );
+    clientNameField.setText(DAO.fromClients().findByID(workOrder.getClientID()).getClientName());
 
     technicianNameField.setText(
         (workOrder.getTechnicianID() == null)
-          ? "Ordem não iniciada!"
-          : DAO.fromUsers().findByID(workOrder.getTechnicianID()).getUserName()
-    );
+            ? "Ordem não iniciada!"
+            : DAO.fromUsers().findByID(workOrder.getTechnicianID()).getUserName());
 
     if (workOrder.getWorkOrderState() != WorkOrderState.Created) {
       cancelOrderButton.setVisible(false);
@@ -135,13 +127,15 @@ public class OrderDetailsController {
 
   @FXML
   public void filterSearch() {
-    listView.setItems(filteredServices.filtered(service -> {
-      String typeValue = typeFilter.getValue();
+    listView.setItems(
+        filteredServices.filtered(
+            service -> {
+              String typeValue = typeFilter.getValue();
 
-      ServiceType serviceType = TypeParser.parseServiceType(typeValue);
+              ServiceType serviceType = TypeParser.parseServiceType(typeValue);
 
-      return serviceType == null || service.getServiceType() == serviceType;
-    }));
+              return serviceType == null || service.getServiceType() == serviceType;
+            }));
   }
 
   @FXML
@@ -151,8 +145,7 @@ public class OrderDetailsController {
     MainController.openModal(confirmationMessage, true);
 
     if (MainController.isConfirmed) {
-      List<Service> relatedServices = DAO.fromService()
-        .findByWorkOrder(workOrder.getWorkOrderID());
+      List<Service> relatedServices = DAO.fromService().findByWorkOrder(workOrder.getWorkOrderID());
 
       for (Service currentService : relatedServices) {
         if (currentService.getServiceType() == ServiceType.Assembly) {
@@ -161,11 +154,9 @@ public class OrderDetailsController {
 
           if (foundComponent != null) {
             foundComponent.setAmountInStock(
-                foundComponent.getAmountInStock() + currentService.getAmountUsed()
-            );
+                foundComponent.getAmountInStock() + currentService.getAmountUsed());
             DAO.fromComponents().updateInformation(foundComponent);
-          }
-          else {
+          } else {
             DAO.fromComponents().createOne(usedComponent);
           }
         }
@@ -182,7 +173,7 @@ public class OrderDetailsController {
 
   @FXML
   public void closeDetails() throws IOException {
-    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services.fxml"));
+    Parent servicesView = FXMLLoader.load(App.class.getResource("views/services/Main.fxml"));
 
     MainController.mainWindow.setRight(servicesView);
   }

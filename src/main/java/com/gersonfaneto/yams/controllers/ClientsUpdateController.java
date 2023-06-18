@@ -16,26 +16,19 @@ import javafx.scene.paint.Color;
 
 public class ClientsUpdateController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField addressField;
+  @FXML private TextField addressField;
 
-  @FXML
-  private TextField nameField;
+  @FXML private TextField nameField;
 
-  @FXML
-  private TextField phoneField;
+  @FXML private TextField phoneField;
 
-  @FXML
-  private Button cancelButton;
+  @FXML private Button cancelButton;
 
-  @FXML
-  private Button confirmButton;
+  @FXML private Button confirmButton;
 
   private String clientID;
 
@@ -75,7 +68,7 @@ public class ClientsUpdateController {
 
   @FXML
   public void closeWindow() throws IOException {
-    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients.fxml"));
+    Parent clientsView = FXMLLoader.load(App.class.getResource("views/clients/Main.fxml"));
 
     MainController.mainWindow.setRight(clientsView);
 
@@ -83,11 +76,7 @@ public class ClientsUpdateController {
   }
 
   public void injectFields(
-      String clientID,
-      String clientName,
-      String homeAddress,
-      String phoneNumber
-  ) {
+      String clientID, String clientName, String homeAddress, String phoneNumber) {
     this.clientID = clientID;
     nameField.setText(clientName);
     addressField.setText(homeAddress);

@@ -1,19 +1,17 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.services.service.Service;
+import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ComponentsListComponent;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -31,38 +29,27 @@ import javafx.scene.paint.Color;
 
 public class CreateServiceController {
 
-  @FXML
-  private FontAwesomeIconView backButton;
+  @FXML private FontAwesomeIconView backButton;
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private ComboBox<String> componentTypeFilter;
+  @FXML private ComboBox<String> componentTypeFilter;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
-  @FXML
-  private ComboBox<String> serviceTypeFilter;
+  @FXML private ComboBox<String> serviceTypeFilter;
 
-  @FXML
-  private ListView<Component> listView;
+  @FXML private ListView<Component> listView;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField descriptionField;
+  @FXML private TextField descriptionField;
 
-  @FXML
-  private TextField amountField;
+  @FXML private TextField amountField;
 
-  @FXML
-  private Button confirmButton;
+  @FXML private Button confirmButton;
 
-  @FXML
-  private Button cancelButton;
+  @FXML private Button cancelButton;
 
   private ObservableList<Component> componentsLists;
   private FilteredList<Component> filteredComponents;
@@ -85,22 +72,25 @@ public class CreateServiceController {
 
   @FXML
   public void filterSearch() {
-    listView.setItems(filteredComponents.filtered(component -> {
-      String typeValue = componentTypeFilter.getValue();
+    listView.setItems(
+        filteredComponents.filtered(
+            component -> {
+              String typeValue = componentTypeFilter.getValue();
 
-      if (typeValue.equals("Todos")) {
-        return true;
-      }
+              if (typeValue.equals("Todos")) {
+                return true;
+              }
 
-      ComponentType componentType = TypeParser.parseComponentType(typeValue);
+              ComponentType componentType = TypeParser.parseComponentType(typeValue);
 
-      return componentType == null || component.getComponentType() == componentType;
-    }));
+              return componentType == null || component.getComponentType() == componentType;
+            }));
   }
 
   @FXML
   public void cancelRegister() throws IOException {
-    Parent createOrderView = FXMLLoader.load(App.class.getResource("views/create_order.fxml"));
+    Parent createOrderView =
+        FXMLLoader.load(App.class.getResource("views/services/CreateOrder.fxml"));
 
     MainController.mainWindow.setRight(createOrderView);
   }
@@ -124,49 +114,41 @@ public class CreateServiceController {
       return;
     }
 
-    if (
-        usedComponent != null &&
-        usedComponent.getAmountInStock() < usedAmount
-    ) {
+    if (usedComponent != null && usedComponent.getAmountInStock() < usedAmount) {
       visualFeedback.setText("Quantidade em estoque insuficiente!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
 
-    if (
-        usedComponent != null &&
-        usedAmount <= 0
-    ) {
+    if (serviceType.equals("Montagem") && usedAmount <= 0) {
       visualFeedback.setText("Quantidade inválida!");
       visualFeedback.setTextFill(Color.RED);
       return;
     }
 
     if (usedComponent != null) {
-      usedComponent.setAmountInStock(
-          usedComponent.getAmountInStock() - usedAmount
-      );
+      usedComponent.setAmountInStock(usedComponent.getAmountInStock() - usedAmount);
 
       if (usedComponent.getAmountInStock() == 0) {
         DAO.fromComponents().deleteByID(usedComponent.getComponentID());
-      }
-      else {
+      } else {
         DAO.fromComponents().updateInformation(usedComponent);
       }
     }
 
-    Service newService = new Service(
-        TypeParser.parseServiceType(serviceType),
-        serviceDescription,
-        usedComponent,
-        usedAmount
-    );
+    Service newService =
+        new Service(
+            TypeParser.parseServiceType(serviceType),
+            serviceDescription,
+            usedComponent,
+            usedAmount);
 
     newService.setWorkOrderID("TEMP");
 
     DAO.fromService().createOne(newService);
 
-    Parent createOrderView = FXMLLoader.load(App.class.getResource("views/create_order.fxml"));
+    Parent createOrderView =
+        FXMLLoader.load(App.class.getResource("views/services/CreateOrder.fxml"));
 
     MainController.mainWindow.setRight(createOrderView);
   }
@@ -189,8 +171,7 @@ public class CreateServiceController {
   private int getAmount() {
     try {
       return Integer.parseInt(amountField.getText());
-    }
-    catch (NumberFormatException nfe) {
+    } catch (NumberFormatException nfe) {
       return -1;
     }
   }
@@ -199,44 +180,48 @@ public class CreateServiceController {
     componentsLists = FXCollections.observableArrayList();
     filteredComponents = new FilteredList<>(componentsLists);
 
-    listView.setCellFactory(listView -> new ListCell<Component>() {
-      @Override
-      protected void updateItem(Component component, boolean empty) {
-        super.updateItem(component, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<Component>() {
+              @Override
+              protected void updateItem(Component component, boolean empty) {
+                super.updateItem(component, empty);
 
-        if (component == null || empty) {
-          setGraphic(null);
-        } else {
-          ComponentsListComponent clientComponent = new ComponentsListComponent(
-              component,
-              componentsLists,
-              ComponentSize.Small
-              );
+                if (component == null || empty) {
+                  setGraphic(null);
+                } else {
+                  ComponentsListComponent clientComponent =
+                      new ComponentsListComponent(component, componentsLists, ComponentSize.Small);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
     List<Component> allComponents = DAO.fromComponents().findMany();
 
     componentsLists.addAll(allComponents);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredComponents.setPredicate(user -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredComponents.setPredicate(
+                  user -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (user.getComponentDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    });
+                    if (user.getComponentDescription().toLowerCase().indexOf(lowerCaseFilter)
+                        != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<Component> sortedComponents = new SortedList<>(filteredComponents);
 

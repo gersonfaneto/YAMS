@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.billing.invoice;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 
 /**
@@ -12,7 +13,7 @@ import com.gersonfaneto.yams.models.billing.invoice.Invoice;
  * @see CRUD
  * @see Invoice
  */
-public interface InvoiceCRUD extends CRUD<Invoice> {
+public interface InvoiceCRUD extends CRUD<Invoice>, Persist {
 
   /**
    * Searches for a <code>Invoice</code> by its referred <code>WorkOrder</code>.

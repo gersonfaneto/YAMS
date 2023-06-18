@@ -2,18 +2,16 @@ package com.gersonfaneto.yams.dao;
 
 import com.gersonfaneto.yams.dao.billing.invoice.InvoiceCRUD;
 import com.gersonfaneto.yams.dao.billing.invoice.InvoiceDiskDAO;
-import com.gersonfaneto.yams.dao.billing.paymet.PaymentCRUD;
-import com.gersonfaneto.yams.dao.billing.paymet.PaymentDiskDAO;
+import com.gersonfaneto.yams.dao.billing.payment.PaymentCRUD;
+import com.gersonfaneto.yams.dao.billing.payment.PaymentDiskDAO;
 import com.gersonfaneto.yams.dao.entities.client.ClientCRUD;
 import com.gersonfaneto.yams.dao.entities.client.ClientDiskDAO;
 import com.gersonfaneto.yams.dao.entities.user.UserCRUD;
 import com.gersonfaneto.yams.dao.entities.user.UserDiskDAO;
-import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderCRUD;
-import com.gersonfaneto.yams.dao.orders.purchase.PurchaseOrderDiskDAO;
-import com.gersonfaneto.yams.dao.orders.work.WorkOrderCRUD;
-import com.gersonfaneto.yams.dao.orders.work.WorkOrderDiskDAO;
-import com.gersonfaneto.yams.dao.services.ServiceCRUD;
-import com.gersonfaneto.yams.dao.services.ServiceDiskDAO;
+import com.gersonfaneto.yams.dao.services.order.WorkOrderCRUD;
+import com.gersonfaneto.yams.dao.services.order.WorkOrderDiskDAO;
+import com.gersonfaneto.yams.dao.services.service.ServiceCRUD;
+import com.gersonfaneto.yams.dao.services.service.ServiceDiskDAO;
 import com.gersonfaneto.yams.dao.stock.ComponentCRUD;
 import com.gersonfaneto.yams.dao.stock.ComponentDiskDAO;
 
@@ -29,7 +27,6 @@ import com.gersonfaneto.yams.dao.stock.ComponentDiskDAO;
  * @see InvoiceCRUD
  * @see ComponentCRUD
  * @see ServiceCRUD
- * @see PurchaseOrderCRUD
  * @see WorkOrderCRUD
  */
 public abstract class DAO {
@@ -40,7 +37,6 @@ public abstract class DAO {
   private static InvoiceCRUD invoiceCRUD;
   private static ComponentCRUD componentCRUD;
   private static ServiceCRUD serviceCRUD;
-  private static PurchaseOrderCRUD purchaseOrderCRUD;
   private static WorkOrderCRUD workOrderCRUD;
 
   private static final String SAVE_PATH = "data/";
@@ -126,20 +122,6 @@ public abstract class DAO {
     }
 
     return serviceCRUD;
-  }
-
-  /**
-   * Retrieves the <code>DAO</code> for the <code>PurchaseOrder</code> model, instantiating it if
-   * necessary.
-   *
-   * @return The <code>DAO</code> for the <code>PurchaseOrder</code> model.
-   */
-  public static PurchaseOrderCRUD fromPurchaseOrders() {
-    if (purchaseOrderCRUD == null) {
-      purchaseOrderCRUD = new PurchaseOrderDiskDAO(SAVE_PATH + "purchase-orders.ser");
-    }
-
-    return purchaseOrderCRUD;
   }
 
   /**

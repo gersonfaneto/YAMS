@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.entities.user;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.receptionist.Receptionist;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.user.User;
@@ -19,22 +18,17 @@ class UserDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomUser = DAO.fromUsers().createOne(
-        new Receptionist(
-            "sholmes@gmail.com",
-            "watson",
-            "Sherlock Holmes"
-        )
-    );
+    randomUser =
+        DAO.fromUsers()
+            .createOne(new Receptionist("sholmes@gmail.com", "watson", "Sherlock Holmes"));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromUsers().createOne(
-          new Technician(
-              "jdoe" + ((Integer) i).toString() + "@gmail.com",
-              "jdoe@" + ((Integer) i).toString(),
-              "John Doe"
-          )
-      );
+      DAO.fromUsers()
+          .createOne(
+              new Technician(
+                  "jdoe" + ((Integer) i).toString() + "@gmail.com",
+                  "jdoe@" + ((Integer) i).toString(),
+                  "John Doe"));
     }
   }
 
@@ -53,7 +47,7 @@ class UserDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromUsers()).saveAll();
+    boolean hasSaved = DAO.fromUsers().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -61,7 +55,7 @@ class UserDAOTest {
 
     DAO.fromUsers().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromUsers()).loadAll();
+    boolean hasLoaded = DAO.fromUsers().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to laod data!");
 
@@ -73,13 +67,8 @@ class UserDAOTest {
 
   @Test
   void createOne() {
-    User randomUser = DAO.fromUsers().createOne(
-        new Technician(
-            "jsmith@gmail.com",
-            "jsmith@2023",
-            "John Smith"
-        )
-    );
+    User randomUser =
+        DAO.fromUsers().createOne(new Technician("jsmith@gmail.com", "jsmith@2023", "John Smith"));
 
     User foundUser = DAO.fromUsers().findByID(randomUser.getUserID());
 

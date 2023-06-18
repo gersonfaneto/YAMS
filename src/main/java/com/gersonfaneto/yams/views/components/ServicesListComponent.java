@@ -3,31 +3,25 @@ package com.gersonfaneto.yams.views.components;
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.models.services.Service;
-import com.gersonfaneto.yams.models.services.ServiceType;
+import com.gersonfaneto.yams.models.services.service.Service;
+import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.utils.TypeParser;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class ServicesListComponent extends AnchorPane {
-  private Service targetService;
-  private ObservableList<Service> servicesList;
-
   public ServicesListComponent(
       Service targetService,
       ObservableList<Service> servicesList,
       ComponentSize componentSize,
-      boolean enableToggles
-  ) {
-    this.targetService = targetService;
-    this.servicesList = servicesList;
-
+      boolean enableToggles) {
     super.getStylesheets().add(App.class.getResource("stylesheets/global.css").toExternalForm());
     super.getStylesheets().clear();
     super.getStyleClass().add("component-item");
@@ -95,7 +89,8 @@ public class ServicesListComponent extends AnchorPane {
     ratingField.setLayoutX(350);
     ratingField.setLayoutY(65);
     ratingField.setPrefSize(80, 20);
-    ratingField.setText(Double.toString(targetService.getClientRating()));
+    ratingField.setText(
+        (targetService.getClientRating() == null) ? "Pendente" : targetService.getClientRating());
 
     if (targetService.getServiceType() == ServiceType.Assembly) {
       Label componentFieldIndicator = new Label("Peça");
@@ -108,11 +103,7 @@ public class ServicesListComponent extends AnchorPane {
       componentField.setLayoutX(160);
       componentField.setLayoutY(90);
       componentField.setPrefSize(210, 20);
-      componentField.setText(
-          targetService
-          .getUsedComponent()
-          .getComponentDescription()
-      );
+      componentField.setText(targetService.getUsedComponent().getComponentDescription());
 
       Label componentAmountIndicator = new Label("Qnt.");
       Label componentAmount = new Label();
@@ -124,16 +115,11 @@ public class ServicesListComponent extends AnchorPane {
       componentAmount.setLayoutX(430);
       componentAmount.setLayoutY(90);
       componentAmount.setPrefSize(35, 20);
-      componentAmount.setText(
-          Integer.toString(targetService.getAmountUsed())
-      );
+      componentAmount.setText(Integer.toString(targetService.getAmountUsed()));
 
-      super.getChildren().addAll(
-          componentFieldIndicator,
-          componentField,
-          componentAmountIndicator,
-          componentAmount
-      );
+      super.getChildren()
+          .addAll(
+              componentFieldIndicator, componentField, componentAmountIndicator, componentAmount);
     }
 
     if (enableToggles) {
@@ -157,9 +143,49 @@ public class ServicesListComponent extends AnchorPane {
       updateIcon.setSize("20");
       updateIcon.getStyleClass().add("delete-icon");
 
-      updateIcon.setOnMouseClicked(event -> {
-        removeService();
-      });
+      updateIcon.setOnMouseClicked(
+          event -> {
+            if (targetService.isComplete()) {
+              return;
+            }
+
+            String confirmationMessage = "Deseja mesmo remover o serviço?";
+
+            MainController.openModal(confirmationMessage, true);
+
+            if (MainController.isConfirmed) {
+              DAO.fromService().deleteByID(targetService.getServiceID());
+
+              servicesList.remove(targetService);
+
+              MainController.modalStage.close();
+            }
+          });
+
+      ratingField.setVisible(false);
+
+      ComboBox<String> ratingSelector = new ComboBox<>();
+
+      ratingSelector.setLayoutX(350);
+      ratingSelector.setLayoutY(65);
+      ratingSelector.setPrefSize(120, 25);
+      ratingSelector.setValue(
+          (targetService.getClientRating() == null)
+              ? "Selecione"
+              : targetService.getClientRating());
+
+      ratingSelector.getStyleClass().add("combo-box");
+
+      ratingSelector.getItems().addAll("Ótimo", "Bom", "Suficiente", "Ruim", "Péssimo");
+
+      ratingSelector.setOnAction(
+          event -> {
+            targetService.setClientRating(ratingSelector.getValue());
+
+            DAO.fromService().updateInformation(targetService);
+
+            servicesList.set(servicesList.indexOf(targetService), targetService);
+          });
 
       CheckBox toggleStatus = new CheckBox();
 
@@ -180,16 +206,22 @@ public class ServicesListComponent extends AnchorPane {
 
       if (targetService.isComplete()) {
         toggleStatus.setSelected(true);
-      }
-      else {
+      } else {
         toggleStatus.setSelected(false);
       }
 
-      toggleStatus.setOnMouseClicked(event -> {
-        updateStatus();
-      });
+      toggleStatus.setOnMouseClicked(
+          event -> {
+            targetService.setComplete(!targetService.isComplete());
 
-      super.getChildren().addAll(toggleStatus, updateIcon);
+            DAO.fromService().updateInformation(targetService);
+
+            servicesList.set(servicesList.indexOf(targetService), targetService);
+          });
+
+      ratingSelector.visibleProperty().bind(toggleStatus.selectedProperty());
+
+      super.getChildren().addAll(toggleStatus, updateIcon, ratingSelector);
     }
 
     ImageView typeIcon = new ImageView();
@@ -212,62 +244,24 @@ public class ServicesListComponent extends AnchorPane {
     typeIcon.setFitWidth(50);
     typeIcon.setFitHeight(50);
 
-    String typeIconPath = "assets/%s.png".formatted(
-        targetService.getServiceType().getTypeName().replace(" ", "")
-    );
+    String typeIconPath =
+        "assets/services/%s.png"
+            .formatted(targetService.getServiceType().getTypeName().replace(" ", ""));
 
     Image typeImage = new Image(App.class.getResourceAsStream(typeIconPath));
 
     typeIcon.setImage(typeImage);
 
-    super.getChildren().addAll(
-        typeIcon
-    );
+    super.getChildren().addAll(typeIcon);
 
-    super.getChildren().addAll(
-        descriptionField,
-        priceField,
-        typeField,
-        statusField,
-        ratingField
-    );
+    super.getChildren()
+        .addAll(
+            priceFieldIndicator, typeFieldIndicator, statusFieldIndicator, ratingFieldIndicator);
 
-    super.getChildren().addAll(
-        priceFieldIndicator,
-        typeFieldIndicator,
-        statusFieldIndicator,
-        ratingFieldIndicator
-    );
+    super.getChildren().addAll(descriptionField, priceField, typeField, statusField, ratingField);
   }
 
   private String formatMoney(double moneyInput) {
     return String.format("R$ %.2f", moneyInput).replace(".", ",");
-  }
-
-  private void updateStatus() {
-    targetService.setComplete(!targetService.isComplete());
-
-    DAO.fromService().updateInformation(targetService);
-
-    servicesList.set(servicesList.indexOf(targetService), targetService);
-  }
-
-
-  private void removeService() {
-    if (targetService.isComplete()) {
-      return;
-    }
-
-    String confirmationMessage = "Deseja mesmo remover o serviço?";
-
-    MainController.openModal(confirmationMessage, true);
-
-    if (MainController.isConfirmed) {
-      DAO.fromService().deleteByID(targetService.getServiceID());
-
-      servicesList.remove(targetService);
-
-      MainController.modalStage.close();
-    }
   }
 }

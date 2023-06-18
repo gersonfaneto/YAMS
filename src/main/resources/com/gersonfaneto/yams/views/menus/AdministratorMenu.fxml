@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="sideBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar" stylesheets="@../../stylesheets/global.css" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gersonfaneto.yams.controllers.MenuController">
+   <children>
+      <Button fx:id="clientsButton" layoutY="224.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../../stylesheets/global.css" text="Clientes" />
+      <Button fx:id="servicesButton" layoutY="274.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../../stylesheets/global.css" text="Serviços" />
+      <Button fx:id="stockButton" layoutY="324.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../../stylesheets/global.css" text="Estoque" />
+      <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="93.0" layoutY="256.0" size="20" text="" />
+      <FontAwesomeIconView fill="WHITE" glyphName="CLIPBOARD" layoutX="93.0" layoutY="306.0" size="20" />
+      <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" layoutX="93.0" layoutY="356.0" size="20" />
+      <FontAwesomeIconView fx:id="signOutButon" fill="WHITE" glyphName="SIGN_OUT" layoutX="14.0" layoutY="31.0" onMouseClicked="#signOut" size="20" styleClass="back-button" />
+      <Button fx:id="invoicesButtons" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../../stylesheets/global.css" text="Faturas">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Button>
+      <FontAwesomeIconView fill="WHITE" glyphName="MONEY" layoutX="94.0" layoutY="406.0" size="20" />
+      <Button fx:id="employeesButton" layoutX="1.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="50.0" prefWidth="400.0" styleClass="nav-buttons" stylesheets="@../../stylesheets/global.css" text="Funcionários" />
+      <FontAwesomeIconView fill="WHITE" glyphName="ID_CARD" layoutX="95.0" layoutY="208.0" size="20" />
+   </children>
+</AnchorPane>

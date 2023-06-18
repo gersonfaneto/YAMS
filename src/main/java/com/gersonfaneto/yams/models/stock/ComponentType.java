@@ -23,7 +23,7 @@ public enum ComponentType {
   /**
    * Generates a new <code>enum</code> item based on its name and value.
    *
-   * @param typeName  The name of the component type.
+   * @param typeName The name of the component type.
    * @param typeValue The base value for the component type.
    */
   ComponentType(String typeName, double typeValue) {

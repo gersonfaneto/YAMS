@@ -1,7 +1,6 @@
 package com.gersonfaneto.yams.dao.entities.client;
 
 import com.gersonfaneto.yams.dao.DAO;
-import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.client.Client;
 import java.io.File;
 import java.util.List;
@@ -17,22 +16,12 @@ class ClientDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomClient = DAO.fromClients().createOne(
-        new Client(
-            "Sherlock Holmes",
-            "221B, Baker Street, London",
-            "999-999-999"
-        )
-    );
+    randomClient =
+        DAO.fromClients()
+            .createOne(new Client("Sherlock Holmes", "221B, Baker Street, London", "999-999-999"));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromClients().createOne(
-          new Client(
-              "John Doe",
-              "Who knows?",
-              "Doesn't matter..."
-          )
-      );
+      DAO.fromClients().createOne(new Client("John Doe", "Who knows?", "Doesn't matter..."));
     }
   }
 
@@ -51,7 +40,7 @@ class ClientDAOTest {
 
   @Test
   void dataPersistence() {
-    boolean hasSaved = ((Persist) DAO.fromClients()).saveAll();
+    boolean hasSaved = DAO.fromClients().saveAll();
 
     Assertions.assertTrue(hasSaved, "dataPersistence(): Failed to save data!");
 
@@ -59,7 +48,7 @@ class ClientDAOTest {
 
     DAO.fromClients().deleteMany();
 
-    boolean hasLoaded = ((Persist) DAO.fromClients()).loadAll();
+    boolean hasLoaded = DAO.fromClients().loadAll();
 
     Assertions.assertTrue(hasLoaded, "dataPersistence(): Failed to load data!");
 
@@ -71,13 +60,9 @@ class ClientDAOTest {
 
   @Test
   void createOne() {
-    Client newClient = DAO.fromClients().createOne(
-        new Client(
-            "John Watson",
-            "221B, Baker Street, London",
-            "999-999-999"
-        )
-    );
+    Client newClient =
+        DAO.fromClients()
+            .createOne(new Client("John Watson", "221B, Baker Street, London", "999-999-999"));
 
     Client foundClient = DAO.fromClients().findByID(newClient.getClientID());
 

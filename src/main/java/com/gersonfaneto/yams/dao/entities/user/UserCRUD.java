@@ -1,6 +1,7 @@
 package com.gersonfaneto.yams.dao.entities.user;
 
 import com.gersonfaneto.yams.dao.CRUD;
+import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.entities.user.User;
 
 /**
@@ -12,7 +13,7 @@ import com.gersonfaneto.yams.models.entities.user.User;
  * @see CRUD
  * @see User
  */
-public interface UserCRUD extends CRUD<User> {
+public interface UserCRUD extends CRUD<User>, Persist {
 
   /**
    * Searches for a <code>User</code> by its email.
