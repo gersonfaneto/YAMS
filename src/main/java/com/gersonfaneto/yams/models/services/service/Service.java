@@ -24,7 +24,7 @@ public class Service implements Serializable {
   private String workOrderID;
   private ServiceType serviceType;
   private String serviceDescription;
-  private double clientRating;
+  private String clientRating;
   private double servicePrice;
   private boolean isComplete;
   private Component usedComponent;
@@ -132,11 +132,11 @@ public class Service implements Serializable {
     this.serviceDescription = serviceDescription;
   }
 
-  public double getClientRating() {
+  public String getClientRating() {
     return clientRating;
   }
 
-  public void setClientRating(double clientRating) {
+  public void setClientRating(String clientRating) {
     this.clientRating = clientRating;
   }
 
