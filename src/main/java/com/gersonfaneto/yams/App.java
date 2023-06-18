@@ -2,7 +2,6 @@ package com.gersonfaneto.yams;
 
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.utils.Mock;
-
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -30,15 +29,17 @@ public class App extends Application {
 
     Parent rootView = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
 
-    rootView.setOnMousePressed(event -> {
-      xCoord = event.getSceneX();
-      yCoord = event.getSceneY();
-    });
+    rootView.setOnMousePressed(
+        event -> {
+          xCoord = event.getSceneX();
+          yCoord = event.getSceneY();
+        });
 
-    rootView.setOnMouseDragged(event -> {
-      primaryStage.setX(event.getScreenX() - xCoord);
-      primaryStage.setY(event.getScreenY() - yCoord);
-    });
+    rootView.setOnMouseDragged(
+        event -> {
+          primaryStage.setX(event.getScreenX() - xCoord);
+          primaryStage.setY(event.getScreenY() - yCoord);
+        });
 
     Scene loginScene = new Scene(rootView);
 
@@ -52,12 +53,13 @@ public class App extends Application {
     primaryStage.setScene(loginScene);
     primaryStage.show();
 
-    primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-      @Override
-      public void handle(WindowEvent windowEvent) {
-        MainController.saveData();
-      }
-    });
+    primaryStage.setOnCloseRequest(
+        new EventHandler<WindowEvent>() {
+          @Override
+          public void handle(WindowEvent windowEvent) {
+            MainController.saveData();
+          }
+        });
 
     MainController.primaryStage = primaryStage;
   }

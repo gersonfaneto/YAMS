@@ -4,7 +4,6 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.views.windows.ActionConfirmationDialog;
-
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -53,8 +52,7 @@ public abstract class MainController {
 
     if (awaitResponse) {
       modalStage.showAndWait();
-    }
-    else {
+    } else {
       modalStage.show();
     }
   }

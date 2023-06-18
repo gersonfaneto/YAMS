@@ -20,10 +20,10 @@ public abstract class User implements Serializable {
   /**
    * Constructs a new <code>User</code>.
    *
-   * @param userName     The <code>User</code> name.
-   * @param userEmail    The <code>User</code> chosen email.
+   * @param userName The <code>User</code> name.
+   * @param userEmail The <code>User</code> chosen email.
    * @param userPassword The <code>User</code> chose password.
-   * @param userType     The type of the <code>User</code>.
+   * @param userType The type of the <code>User</code>.
    * @see UserType
    */
   public User(String userName, String userEmail, String userPassword, UserType userType) {
@@ -67,11 +67,13 @@ public abstract class User implements Serializable {
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Email: %s
         Password: %s
-        """, userID, userEmail, userPassword);
+        """,
+        userID, userEmail, userPassword);
   }
 
   public String getUserID() {

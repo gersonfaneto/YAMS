@@ -5,17 +5,15 @@ import com.gersonfaneto.yams.models.services.service.Service;
 import com.gersonfaneto.yams.models.services.service.ServiceType;
 import com.gersonfaneto.yams.utils.Generators;
 import com.gersonfaneto.yams.utils.ObjectIO;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 /**
- * Implementations for the <code>ServiceCRUD</code> and <code>CRUD</code> operations. Uses a
- * <code> HashMap</code> as a cache to store all the <code>Service</code>s during the
- * execution of the program and loads or unloads the contents of it into a file using an
- * <code>ObjectIO</code>.
+ * Implementations for the <code>ServiceCRUD</code> and <code>CRUD</code> operations. Uses a <code>
+ *  HashMap</code> as a cache to store all the <code>Service</code>s during the execution of the
+ * program and loads or unloads the contents of it into a file using an <code>ObjectIO</code>.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
@@ -39,9 +37,7 @@ public class ServiceDiskDAO implements ServiceCRUD {
   }
 
   public boolean saveAll() {
-    List<Service> toSave = storedServices.values()
-        .stream()
-        .toList();
+    List<Service> toSave = storedServices.values().stream().toList();
 
     return serviceObjectIO.saveObjects(toSave);
   }
@@ -78,9 +74,7 @@ public class ServiceDiskDAO implements ServiceCRUD {
 
   @Override
   public List<Service> findMany() {
-    return storedServices.values()
-        .stream()
-        .toList();
+    return storedServices.values().stream().toList();
   }
 
   @Override
@@ -117,16 +111,14 @@ public class ServiceDiskDAO implements ServiceCRUD {
 
   @Override
   public List<Service> findByType(ServiceType serviceType) {
-    return storedServices.values()
-        .stream()
+    return storedServices.values().stream()
         .filter(x -> x.getServiceType().equals(serviceType))
         .toList();
   }
 
   @Override
   public List<Service> findByWorkOrder(String workOrderID) {
-    return storedServices.values()
-        .stream()
+    return storedServices.values().stream()
         .filter(x -> Objects.nonNull(x.getWorkOrderID()))
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .toList();

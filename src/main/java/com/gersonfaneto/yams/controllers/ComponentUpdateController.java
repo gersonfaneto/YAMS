@@ -4,7 +4,6 @@ import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.models.stock.ComponentType;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -17,26 +16,19 @@ import javafx.scene.paint.Color;
 
 public class ComponentUpdateController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField descriptionField;
+  @FXML private TextField descriptionField;
 
-  @FXML
-  private TextField amountField;
+  @FXML private TextField amountField;
 
-  @FXML
-  private TextField priceField;
+  @FXML private TextField priceField;
 
-  @FXML
-  private Button cancelButton;
+  @FXML private Button cancelButton;
 
-  @FXML
-  private Button confirmButton;
+  @FXML private Button confirmButton;
 
   private String componentID;
 
@@ -90,11 +82,7 @@ public class ComponentUpdateController {
   }
 
   public void injectFields(
-      String componentID,
-      String componentDescription,
-      double componentPrice,
-      int amountInStock
-  ) {
+      String componentID, String componentDescription, double componentPrice, int amountInStock) {
     this.componentID = componentID;
     descriptionField.setText(componentDescription);
     priceField.setText(formatMoney(componentPrice));
@@ -110,12 +98,9 @@ public class ComponentUpdateController {
     return String.format("%.2f", moneyInput).replace(".", ",");
   }
 
-
   public int getAmount() {
     try {
-      int amountValue = Integer.parseInt(
-          amountField.getText()
-      );
+      int amountValue = Integer.parseInt(amountField.getText());
 
       return (amountValue > 0) ? amountValue : -1;
     } catch (NumberFormatException nfe) {
@@ -125,9 +110,7 @@ public class ComponentUpdateController {
 
   public double getPrice() {
     try {
-      double priceValue = Double.parseDouble(
-          priceField.getText().replaceFirst(",", ".")
-      );
+      double priceValue = Double.parseDouble(priceField.getText().replaceFirst(",", "."));
 
       return (priceValue > 0) ? priceValue : -1;
     } catch (NumberFormatException nfe) {
@@ -135,4 +118,3 @@ public class ComponentUpdateController {
     }
   }
 }
-

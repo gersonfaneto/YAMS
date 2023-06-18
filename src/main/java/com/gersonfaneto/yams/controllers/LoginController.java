@@ -5,7 +5,6 @@ import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.admnistrator.Administrator;
 import com.gersonfaneto.yams.models.entities.user.User;
 import com.gersonfaneto.yams.models.entities.user.UserType;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -21,29 +20,21 @@ import javafx.scene.paint.Color;
 
 public class LoginController {
 
-  @FXML
-  private BorderPane mainWindow;
+  @FXML private BorderPane mainWindow;
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private TextField emailField;
+  @FXML private TextField emailField;
 
-  @FXML
-  private TextField passwordText;
+  @FXML private TextField passwordText;
 
-  @FXML
-  private PasswordField passwordField;
+  @FXML private PasswordField passwordField;
 
-  @FXML
-  private CheckBox showPassword;
+  @FXML private CheckBox showPassword;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private Button loginButton;
+  @FXML private Button loginButton;
 
   @FXML
   public void initialize() {
@@ -102,9 +93,8 @@ public class LoginController {
     MainController.loggedUser = foundUser;
 
     String baseViewPath = null;
-    String menuViewPath = String.format(
-      "views/menus/%sMenu.fxml", foundUser.getUserType().getTypeName()
-    );
+    String menuViewPath =
+        String.format("views/menus/%sMenu.fxml", foundUser.getUserType().getTypeName());
 
     if (foundUser.getUserType() == UserType.Administrator) {
       baseViewPath = "views/employees/Main.fxml";
@@ -124,7 +114,6 @@ public class LoginController {
   private String passwordValue() {
     return showPassword.isSelected() ? passwordText.getText() : passwordField.getText();
   }
-
 
   @FXML
   public void registerUser() throws IOException {

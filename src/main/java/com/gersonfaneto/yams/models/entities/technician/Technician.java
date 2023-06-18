@@ -7,11 +7,7 @@ public class Technician extends User {
 
   private TechnicianStatus technicianStatus;
 
-  public Technician(
-      String userEmail,
-      String userPassword,
-      String technicianName
-  ) {
+  public Technician(String userEmail, String userPassword, String technicianName) {
     super(technicianName, userEmail, userPassword, UserType.Technician);
     this.technicianStatus = TechnicianStatus.Free;
   }

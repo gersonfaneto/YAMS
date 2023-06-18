@@ -20,9 +20,7 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   private final Map<String, Payment> storedPayments;
 
-  /**
-   * Constructs a new <code>{@link PaymentMemoryDAO}</code>
-   */
+  /** Constructs a new <code>{@link PaymentMemoryDAO}</code> */
   public PaymentMemoryDAO() {
     this.storedPayments = new HashMap<>();
   }
@@ -55,9 +53,7 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findMany() {
-    return storedPayments.values()
-        .stream()
-        .toList();
+    return storedPayments.values().stream().toList();
   }
 
   @Override
@@ -94,8 +90,7 @@ public class PaymentMemoryDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findByInvoice(String invoiceID) {
-    return storedPayments.values()
-        .stream()
+    return storedPayments.values().stream()
         .filter(x -> x.getInvoiceID().equals(invoiceID))
         .toList();
   }

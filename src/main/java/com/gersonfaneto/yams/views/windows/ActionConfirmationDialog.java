@@ -42,11 +42,12 @@ public class ActionConfirmationDialog extends AnchorPane {
     closeIcon.setSize("20");
     closeIcon.getStyleClass().add("close-button");
 
-    closeIcon.setOnMouseClicked(event -> {
-      MainController.isConfirmed = false;
+    closeIcon.setOnMouseClicked(
+        event -> {
+          MainController.isConfirmed = false;
 
-      MainController.modalStage.close();
-    });
+          MainController.modalStage.close();
+        });
 
     confirmButton = new Button("Confirmar");
     cancelButton = new Button("Cancelar");
@@ -56,22 +57,24 @@ public class ActionConfirmationDialog extends AnchorPane {
     confirmButton.setPrefSize(100, 30);
     confirmButton.getStyleClass().add("confirm-button");
 
-    confirmButton.setOnMouseClicked(event -> {
-      MainController.isConfirmed = true;
+    confirmButton.setOnMouseClicked(
+        event -> {
+          MainController.isConfirmed = true;
 
-      MainController.modalStage.close();
-    });
+          MainController.modalStage.close();
+        });
 
     cancelButton.setLayoutX(300);
     cancelButton.setLayoutY(170);
     cancelButton.setPrefSize(100, 30);
     cancelButton.getStyleClass().add("cancel-button");
 
-    cancelButton.setOnMouseClicked(event -> {
-      MainController.isConfirmed = false;
+    cancelButton.setOnMouseClicked(
+        event -> {
+          MainController.isConfirmed = false;
 
-      MainController.modalStage.close();
-    });
+          MainController.modalStage.close();
+        });
 
     super.getChildren().add(closeIcon);
     super.getChildren().add(messageField);

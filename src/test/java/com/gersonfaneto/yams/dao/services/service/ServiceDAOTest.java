@@ -19,24 +19,14 @@ class ServiceDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomService = new Service(
-        ServiceType.Formatting,
-        "Format and install Windows 11 :(",
-        null,
-        1
-    );
+    randomService =
+        new Service(ServiceType.Formatting, "Format and install Windows 11 :(", null, 1);
     randomService.setWorkOrderID(randomWorkOrderID);
     DAO.fromService().createOne(randomService);
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromService().createOne(
-          new Service(
-              ServiceType.ProgramInstallation,
-              "Minecraft!",
-              null,
-              1
-          )
-      );
+      DAO.fromService()
+          .createOne(new Service(ServiceType.ProgramInstallation, "Minecraft!", null, 1));
     }
   }
 
@@ -75,14 +65,14 @@ class ServiceDAOTest {
 
   @Test
   void createOne() {
-    Service newService = DAO.fromService().createOne(
-        new Service(
-            ServiceType.Cleaning,
-            "The client dropped his computer in a honey bathtub!",
-            null,
-            1
-        )
-    );
+    Service newService =
+        DAO.fromService()
+            .createOne(
+                new Service(
+                    ServiceType.Cleaning,
+                    "The client dropped his computer in a honey bathtub!",
+                    null,
+                    1));
 
     Service foundService = DAO.fromService().findByID(newService.getServiceID());
 
@@ -112,9 +102,7 @@ class ServiceDAOTest {
 
     Assertions.assertTrue(hasFound);
     Assertions.assertEquals(
-        "Format and install Ubuntu LTS :)",
-        foundService.getServiceDescription()
-    );
+        "Format and install Ubuntu LTS :)", foundService.getServiceDescription());
   }
 
   @Test

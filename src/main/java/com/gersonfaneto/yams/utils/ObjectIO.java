@@ -65,7 +65,8 @@ public class ObjectIO<T> {
       ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
       while (fileIn.available() > 0) {
-        @SuppressWarnings("unchecked") T readObject = (T) objectIn.readObject();
+        @SuppressWarnings("unchecked")
+        T readObject = (T) objectIn.readObject();
         retrievedObjects.add(readObject);
       }
 

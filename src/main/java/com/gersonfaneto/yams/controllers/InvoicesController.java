@@ -1,15 +1,13 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payment.Payment;
 import com.gersonfaneto.yams.views.components.InvoicesListComponent;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,17 +26,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class InvoicesController {
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
-  @FXML
-  private ListView<Invoice> listView;
+  @FXML private ListView<Invoice> listView;
 
   private ObservableList<Invoice> invoicesList;
   private FilteredList<Invoice> filteredInvoices;
@@ -48,48 +42,54 @@ public class InvoicesController {
     invoicesList = FXCollections.observableArrayList();
     filteredInvoices = new FilteredList<>(invoicesList);
 
-    listView.setCellFactory(listView -> new ListCell<Invoice>() {
-      @Override
-      protected void updateItem(Invoice invoice, boolean empty) {
-        super.updateItem(invoice, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<Invoice>() {
+              @Override
+              protected void updateItem(Invoice invoice, boolean empty) {
+                super.updateItem(invoice, empty);
 
-        if (invoice == null || empty) {
-          setGraphic(null);
-        }
-        else {
-          InvoicesListComponent invoiceComponent = new InvoicesListComponent(invoice);
+                if (invoice == null || empty) {
+                  setGraphic(null);
+                } else {
+                  InvoicesListComponent invoiceComponent = new InvoicesListComponent(invoice);
 
-          setGraphic(invoiceComponent);
-        }
-      }
-    });
+                  setGraphic(invoiceComponent);
+                }
+              }
+            });
 
     List<Invoice> allInvoices = DAO.fromInvoices().findMany();
 
     invoicesList.addAll(allInvoices);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredInvoices.setPredicate(service -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredInvoices.setPredicate(
+                  service -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (
-            DAO.fromClients().findByID(
-              DAO.fromWorkOrders().findByID(
-                service.getWorkOrderID()
-              ).getClientID()
-            ).getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1
-        ) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      });
-    });
+                    if (DAO.fromClients()
+                            .findByID(
+                                DAO.fromWorkOrders()
+                                    .findByID(service.getWorkOrderID())
+                                    .getClientID())
+                            .getClientName()
+                            .toLowerCase()
+                            .indexOf(lowerCaseFilter)
+                        != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<Invoice> sortedInvoices = new SortedList<>(filteredInvoices);
 
@@ -108,11 +108,10 @@ public class InvoicesController {
       return;
     }
 
-    double paidValue = DAO.fromPayments()
-      .findByInvoice(selectedInvoice.getInvoiceID())
-      .stream()
-      .map(Payment::getPaidValue)
-      .reduce(0.0, Double::sum);
+    double paidValue =
+        DAO.fromPayments().findByInvoice(selectedInvoice.getInvoiceID()).stream()
+            .map(Payment::getPaidValue)
+            .reduce(0.0, Double::sum);
 
     if (selectedInvoice.getTotalValue() == paidValue) {
       visualFeedback.setText("Saldo devedor liquidado para a fatura selecionada!");

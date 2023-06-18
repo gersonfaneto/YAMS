@@ -7,7 +7,7 @@ public enum ComponentSize {
 
   private final String typeName;
 
-  ComponentSize (String typeName) {
+  ComponentSize(String typeName) {
     this.typeName = typeName;
   }
 

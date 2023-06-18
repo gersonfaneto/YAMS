@@ -1,8 +1,7 @@
 package com.gersonfaneto.yams.models.stock;
 
-import java.io.Serializable;
-
 import com.gersonfaneto.yams.models.services.service.Service;
+import java.io.Serializable;
 
 /**
  * Represents each Computer Component that the Assistance might have in Stock, that can be used on
@@ -23,19 +22,18 @@ public class Component implements Serializable {
   private int amountInStock;
 
   /**
-   * @param componentType        The type of the <code>Component</code>.
+   * @param componentType The type of the <code>Component</code>.
    * @param componentDescription The description of the <code>Component</code>.
-   * @param amountInStock        The amount currently in stock of the <code>Component</code>.
-   * @param componentCost        The cost of each <code>Component</code>.
-   * @param componentPrice       The price of each <code>Component</code>.
+   * @param amountInStock The amount currently in stock of the <code>Component</code>.
+   * @param componentCost The cost of each <code>Component</code>.
+   * @param componentPrice The price of each <code>Component</code>.
    */
   public Component(
       ComponentType componentType,
       String componentDescription,
       int amountInStock,
       double componentCost,
-      double componentPrice
-  ) {
+      double componentPrice) {
     this.componentType = componentType;
     this.componentDescription = componentDescription;
     this.componentCost = componentCost;
@@ -81,13 +79,15 @@ public class Component implements Serializable {
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Type: %s
         Description: %s
         Cost: R$ %.2f
         Price: R$ %.2f
-        """, componentID, componentType, componentDescription, componentCost, componentPrice);
+        """,
+        componentID, componentType, componentDescription, componentCost, componentPrice);
   }
 
   public String getComponentID() {

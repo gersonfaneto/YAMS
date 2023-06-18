@@ -4,16 +4,14 @@ import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.utils.Generators;
 import com.gersonfaneto.yams.utils.ObjectIO;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Implementations for the <code>WorkOrderCRUD</code> and <code>CRUD</code> operations. Uses a
- * <code> HashMap</code> as a cache to store all the <code>WorkOrder</code>s during the
- * execution of the program and loads or unloads the contents of it into a file using an
- * <code>ObjectIO</code>.
+ * <code> HashMap</code> as a cache to store all the <code>WorkOrder</code>s during the execution of
+ * the program and loads or unloads the contents of it into a file using an <code>ObjectIO</code>.
  *
  * @author Gerson Ferreira dos Anjos Neto
  * @version 1.0.0
@@ -37,9 +35,7 @@ public class WorkOrderDiskDAO implements WorkOrderCRUD {
   }
 
   public boolean saveAll() {
-    List<WorkOrder> toSave = storedWorkOrders.values()
-        .stream()
-        .toList();
+    List<WorkOrder> toSave = storedWorkOrders.values().stream().toList();
 
     return workOrderObjectIO.saveObjects(toSave);
   }
@@ -76,9 +72,7 @@ public class WorkOrderDiskDAO implements WorkOrderCRUD {
 
   @Override
   public List<WorkOrder> findMany() {
-    return storedWorkOrders.values()
-        .stream()
-        .toList();
+    return storedWorkOrders.values().stream().toList();
   }
 
   @Override
@@ -115,18 +109,15 @@ public class WorkOrderDiskDAO implements WorkOrderCRUD {
 
   @Override
   public List<WorkOrder> findByClient(String clientID) {
-    return storedWorkOrders.values()
-        .stream()
+    return storedWorkOrders.values().stream()
         .filter(x -> x.getClientID().equals(clientID))
         .toList();
   }
 
   @Override
   public List<WorkOrder> findByTechnician(String technicianID) {
-    return storedWorkOrders.values()
-        .stream()
+    return storedWorkOrders.values().stream()
         .filter(x -> x.getTechnicianID().equals(technicianID))
         .toList();
   }
-
 }

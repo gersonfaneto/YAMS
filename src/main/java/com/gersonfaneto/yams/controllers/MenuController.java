@@ -13,36 +13,25 @@ import javafx.scene.layout.AnchorPane;
 
 public class MenuController {
 
-  @FXML
-  private FontAwesomeIconView signOutButton;
+  @FXML private FontAwesomeIconView signOutButton;
 
-  @FXML
-  private FontAwesomeIconView homeIcon;
+  @FXML private FontAwesomeIconView homeIcon;
 
-  @FXML
-  private Button homeButton;
+  @FXML private Button homeButton;
 
-  @FXML
-  private FontAwesomeIconView employeesIcon;
+  @FXML private FontAwesomeIconView employeesIcon;
 
-  @FXML
-  private Button employeesButton;
+  @FXML private Button employeesButton;
 
-  @FXML
-  private Button clientsButton;
+  @FXML private Button clientsButton;
 
-  @FXML
-  private Button servicesButton;
+  @FXML private Button servicesButton;
 
-  @FXML
-  private Button stockButton;
+  @FXML private Button stockButton;
 
-  @FXML
-  private Button invoicesButton;
+  @FXML private Button invoicesButton;
 
-  @FXML
-  private AnchorPane sideBar;
-
+  @FXML private AnchorPane sideBar;
 
   private Button activeButton;
 
@@ -53,7 +42,7 @@ public class MenuController {
       }
     }
 
-    switch(MainController.loggedUser.getUserType()) {
+    switch (MainController.loggedUser.getUserType()) {
       case Administrator:
         setActiveButton(employeesButton);
         break;

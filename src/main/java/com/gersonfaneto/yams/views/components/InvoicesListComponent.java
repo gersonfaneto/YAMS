@@ -1,16 +1,14 @@
 package com.gersonfaneto.yams.views.components;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.controllers.InvoiceDetailsController;
 import com.gersonfaneto.yams.controllers.MainController;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
 import com.gersonfaneto.yams.models.billing.payment.Payment;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -57,54 +55,41 @@ public class InvoicesListComponent extends AnchorPane {
     clientNameField.setLayoutY(15);
     clientNameField.setPrefSize(400, 20);
     clientNameField.setText(
-        DAO.fromClients().findByID(
-          DAO.fromWorkOrders().findByID(targetInvoice.getWorkOrderID())
-          .getClientID()
-        ).getClientName()
-    );
+        DAO.fromClients()
+            .findByID(DAO.fromWorkOrders().findByID(targetInvoice.getWorkOrderID()).getClientID())
+            .getClientName());
 
     technicianNameField.setLayoutX(140);
     technicianNameField.setLayoutY(40);
     technicianNameField.setPrefSize(400, 20);
     technicianNameField.setText(
-        DAO.fromUsers().findByID(
-          DAO.fromWorkOrders().findByID(targetInvoice.getWorkOrderID())
-          .getTechnicianID()
-        ).getUserName()
-    );
+        DAO.fromUsers()
+            .findByID(
+                DAO.fromWorkOrders().findByID(targetInvoice.getWorkOrderID()).getTechnicianID())
+            .getUserName());
 
     totalCostField.setLayoutX(140);
     totalCostField.setLayoutY(65);
     totalCostField.setPrefSize(60, 20);
-    totalCostField.setText(
-      formatMoney(targetInvoice.getTotalValue())
-    );
+    totalCostField.setText(formatMoney(targetInvoice.getTotalValue()));
 
     amountPaidField.setLayoutX(260);
     amountPaidField.setLayoutY(65);
     amountPaidField.setPrefSize(60, 20);
     amountPaidField.setText(
-      formatMoney(
-        DAO.fromPayments()
-          .findByInvoice(targetInvoice.getInvoiceID())
-          .stream()
-          .map(Payment::getPaidValue)
-          .reduce(0.0, Double::sum)
-      )
-    );
+        formatMoney(
+            DAO.fromPayments().findByInvoice(targetInvoice.getInvoiceID()).stream()
+                .map(Payment::getPaidValue)
+                .reduce(0.0, Double::sum)));
 
-    super.getChildren().addAll(
-        clientNameFieldIndicator,
-        technicianNameFieldIndicator,
-        totalCostFieldIndicator,
-        amountPaidFieldIndicator
-    );
-    super.getChildren().addAll(
-        clientNameField,
-        technicianNameField,
-        totalCostField,
-        amountPaidField
-    );
+    super.getChildren()
+        .addAll(
+            clientNameFieldIndicator,
+            technicianNameFieldIndicator,
+            totalCostFieldIndicator,
+            amountPaidFieldIndicator);
+    super.getChildren()
+        .addAll(clientNameField, technicianNameField, totalCostField, amountPaidField);
 
     FontAwesomeIconView updateIcon = new FontAwesomeIconView(FontAwesomeIcon.DOLLAR);
 
@@ -114,9 +99,10 @@ public class InvoicesListComponent extends AnchorPane {
 
     updateIcon.getStyleClass().add("update-icon");
 
-    updateIcon.setOnMouseClicked(event -> {
-      openDetails();
-    });
+    updateIcon.setOnMouseClicked(
+        event -> {
+          openDetails();
+        });
 
     super.getChildren().add(updateIcon);
   }
@@ -140,7 +126,7 @@ public class InvoicesListComponent extends AnchorPane {
 
     MainController.mainWindow.setRight(updateView);
   }
-  
+
   public String formatMoney(double moneyInput) {
     return String.format("R$ %.2f", moneyInput).replace(".", ",");
   }

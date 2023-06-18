@@ -3,7 +3,6 @@ package com.gersonfaneto.yams.dao.services.order;
 import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
-
 import java.util.List;
 
 /**

@@ -16,22 +16,12 @@ class ClientDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomClient = DAO.fromClients().createOne(
-        new Client(
-            "Sherlock Holmes",
-            "221B, Baker Street, London",
-            "999-999-999"
-        )
-    );
+    randomClient =
+        DAO.fromClients()
+            .createOne(new Client("Sherlock Holmes", "221B, Baker Street, London", "999-999-999"));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromClients().createOne(
-          new Client(
-              "John Doe",
-              "Who knows?",
-              "Doesn't matter..."
-          )
-      );
+      DAO.fromClients().createOne(new Client("John Doe", "Who knows?", "Doesn't matter..."));
     }
   }
 
@@ -70,13 +60,9 @@ class ClientDAOTest {
 
   @Test
   void createOne() {
-    Client newClient = DAO.fromClients().createOne(
-        new Client(
-            "John Watson",
-            "221B, Baker Street, London",
-            "999-999-999"
-        )
-    );
+    Client newClient =
+        DAO.fromClients()
+            .createOne(new Client("John Watson", "221B, Baker Street, London", "999-999-999"));
 
     Client foundClient = DAO.fromClients().findByID(newClient.getClientID());
 

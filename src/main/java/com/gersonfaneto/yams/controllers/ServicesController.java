@@ -1,16 +1,14 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.models.services.order.WorkOrderState;
 import com.gersonfaneto.yams.utils.TypeParser;
 import com.gersonfaneto.yams.views.components.OrdersListComponent;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,20 +24,15 @@ import javafx.scene.control.TextField;
 
 public class ServicesController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private ListView<WorkOrder> listView;
+  @FXML private ListView<WorkOrder> listView;
 
-  @FXML
-  private TextField searchField;
+  @FXML private TextField searchField;
 
-  @FXML
-  private Button registerButton;
+  @FXML private Button registerButton;
 
-  @FXML
-  private ComboBox<String> statusFilter;
+  @FXML private ComboBox<String> statusFilter;
 
   private ObservableList<WorkOrder> workOrdersList;
   private FilteredList<WorkOrder> filteredWorkOrders;
@@ -54,58 +47,68 @@ public class ServicesController {
       statusFilter.getItems().add(TypeParser.parseWorkOrderStateType(componentType));
     }
 
-    listView.setCellFactory(listView -> new ListCell<WorkOrder>() {
-      @Override
-      protected void updateItem(WorkOrder workOrder, boolean empty) {
-        super.updateItem(workOrder, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<WorkOrder>() {
+              @Override
+              protected void updateItem(WorkOrder workOrder, boolean empty) {
+                super.updateItem(workOrder, empty);
 
-        if (workOrder == null || empty) {
-          setGraphic(null);
-        } else {
-          OrdersListComponent orderComponent = new OrdersListComponent(
-              workOrder,
-              workOrdersList
-          );
-          setGraphic(orderComponent);
-        }
-      }
-    });
+                if (workOrder == null || empty) {
+                  setGraphic(null);
+                } else {
+                  OrdersListComponent orderComponent =
+                      new OrdersListComponent(workOrder, workOrdersList);
+                  setGraphic(orderComponent);
+                }
+              }
+            });
 
     List<WorkOrder> allComponents = DAO.fromWorkOrders().findMany();
 
     workOrdersList.addAll(allComponents);
 
-    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-      filteredWorkOrders.setPredicate(workOrder -> {
-        if (newValue == null || newValue.isEmpty()) {
-          return true;
-        }
+    searchField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              filteredWorkOrders.setPredicate(
+                  workOrder -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                      return true;
+                    }
 
-        String lowerCaseFilter = newValue.toLowerCase();
+                    String lowerCaseFilter = newValue.toLowerCase();
 
-        if (DAO.fromClients().findByID(workOrder.getClientID()).getClientName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      });
-    });
+                    if (DAO.fromClients()
+                            .findByID(workOrder.getClientID())
+                            .getClientName()
+                            .toLowerCase()
+                            .indexOf(lowerCaseFilter)
+                        != -1) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
 
     SortedList<WorkOrder> sortedWorkOrders = new SortedList<>(filteredWorkOrders);
 
     listView.setItems(sortedWorkOrders);
   }
-  
+
   @FXML
   public void filterSearch() {
-    listView.setItems(filteredWorkOrders.filtered(workOrder -> {
-      String statusValue = statusFilter.getValue();
+    listView.setItems(
+        filteredWorkOrders.filtered(
+            workOrder -> {
+              String statusValue = statusFilter.getValue();
 
-      WorkOrderState statusType = TypeParser.parseWorkOrderStateType(statusValue);
+              WorkOrderState statusType = TypeParser.parseWorkOrderStateType(statusValue);
 
-      return statusType == null || workOrder.getWorkOrderState() == statusType;
-    }));
+              return statusType == null || workOrder.getWorkOrderState() == statusType;
+            }));
   }
 
   @FXML
@@ -116,11 +119,9 @@ public class ServicesController {
 
   @FXML
   public void registerOrder() throws IOException {
-    Parent clientRegisterView = FXMLLoader.load(
-        App.class.getResource("views/services/CreateOrder.fxml")
-    );
+    Parent clientRegisterView =
+        FXMLLoader.load(App.class.getResource("views/services/CreateOrder.fxml"));
 
     MainController.mainWindow.setRight(clientRegisterView);
   }
 }
-

@@ -31,8 +31,7 @@ public class ComponentsListComponent extends AnchorPane {
   public ComponentsListComponent(
       Component targetComponent,
       ObservableList<Component> componentsList,
-      ComponentSize componentSize
-  ) {
+      ComponentSize componentSize) {
     this.targetComponent = targetComponent;
     this.componentsList = componentsList;
 
@@ -78,13 +77,15 @@ public class ComponentsListComponent extends AnchorPane {
 
       deleteButton.setGraphic(deleteIcon);
 
-      deleteButton.setOnMouseClicked((MouseEvent event) -> {
-        deleteComponent();
-      });
+      deleteButton.setOnMouseClicked(
+          (MouseEvent event) -> {
+            deleteComponent();
+          });
 
-      updateButton.setOnMouseClicked((MouseEvent event) -> {
-        updateComponent();
-      });
+      updateButton.setOnMouseClicked(
+          (MouseEvent event) -> {
+            updateComponent();
+          });
 
       super.getChildren().addAll(updateButton, deleteButton);
     }
@@ -148,34 +149,23 @@ public class ComponentsListComponent extends AnchorPane {
     typeIcon.setLayoutX(15);
     typeIcon.setLayoutY(25);
 
-    String typeIconPath = "assets/components/%s.png".formatted(
-        targetComponent.getComponentType().getTypeName().replace(" ", "")
-    );
+    String typeIconPath =
+        "assets/components/%s.png"
+            .formatted(targetComponent.getComponentType().getTypeName().replace(" ", ""));
 
     Image typeImage = new Image(App.class.getResourceAsStream(typeIconPath));
 
     typeIcon.setImage(typeImage);
 
     super.getChildren().add(typeIcon);
-    super.getChildren().addAll(
-        descriptionField,
-        priceField,
-        costField,
-        amountField,
-        typeField
-    );
-    super.getChildren().addAll(
-        priceFieldIndicator,
-        costFieldIndicator,
-        amountFieldIndicator,
-        typeFieldIndicator
-    );
+    super.getChildren().addAll(descriptionField, priceField, costField, amountField, typeField);
+    super.getChildren()
+        .addAll(priceFieldIndicator, costFieldIndicator, amountFieldIndicator, typeFieldIndicator);
   }
 
   private void deleteComponent() {
-    String confirmationMessage = "Deseja excluir o item %s?".formatted(
-        targetComponent.getComponentDescription()
-    );
+    String confirmationMessage =
+        "Deseja excluir o item %s?".formatted(targetComponent.getComponentDescription());
 
     MainController.openModal(confirmationMessage, true);
 
@@ -201,8 +191,7 @@ public class ComponentsListComponent extends AnchorPane {
         targetComponent.getComponentID(),
         targetComponent.getComponentDescription(),
         targetComponent.getComponentPrice(),
-        targetComponent.getAmountInStock()
-    );
+        targetComponent.getAmountInStock());
 
     Parent updateView = loaderFXML.getRoot();
     Stage modalStage = new Stage();

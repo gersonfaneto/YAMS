@@ -22,13 +22,11 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   private final Map<String, Service> storedServices;
 
-  /**
-   * Constructs a new <code>{@link ServiceMemoryDAO}</code>
-   */
+  /** Constructs a new <code>{@link ServiceMemoryDAO}</code> */
   public ServiceMemoryDAO() {
     this.storedServices = new HashMap<>();
   }
- 
+
   @Override
   public boolean saveAll() {
     return false;
@@ -57,9 +55,7 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   @Override
   public List<Service> findMany() {
-    return storedServices.values()
-        .stream()
-        .toList();
+    return storedServices.values().stream().toList();
   }
 
   @Override
@@ -96,16 +92,14 @@ public class ServiceMemoryDAO implements ServiceCRUD {
 
   @Override
   public List<Service> findByType(ServiceType serviceType) {
-    return storedServices.values()
-        .stream()
+    return storedServices.values().stream()
         .filter(x -> x.getServiceType().equals(serviceType))
         .toList();
   }
 
   @Override
   public List<Service> findByWorkOrder(String workOrderID) {
-    return storedServices.values()
-        .stream()
+    return storedServices.values().stream()
         .filter(x -> Objects.nonNull(x.getWorkOrderID()))
         .filter(x -> x.getWorkOrderID().equals(workOrderID))
         .toList();

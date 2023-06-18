@@ -21,8 +21,7 @@ public class ServicesListComponent extends AnchorPane {
       Service targetService,
       ObservableList<Service> servicesList,
       ComponentSize componentSize,
-      boolean enableToggles
-  ) {
+      boolean enableToggles) {
     super.getStylesheets().add(App.class.getResource("stylesheets/global.css").toExternalForm());
     super.getStylesheets().clear();
     super.getStyleClass().add("component-item");
@@ -91,10 +90,7 @@ public class ServicesListComponent extends AnchorPane {
     ratingField.setLayoutY(65);
     ratingField.setPrefSize(80, 20);
     ratingField.setText(
-        (targetService.getClientRating() == null)
-          ? "Pendente"
-          : targetService.getClientRating()
-    );
+        (targetService.getClientRating() == null) ? "Pendente" : targetService.getClientRating());
 
     if (targetService.getServiceType() == ServiceType.Assembly) {
       Label componentFieldIndicator = new Label("Peça");
@@ -107,11 +103,7 @@ public class ServicesListComponent extends AnchorPane {
       componentField.setLayoutX(160);
       componentField.setLayoutY(90);
       componentField.setPrefSize(210, 20);
-      componentField.setText(
-          targetService
-          .getUsedComponent()
-          .getComponentDescription()
-      );
+      componentField.setText(targetService.getUsedComponent().getComponentDescription());
 
       Label componentAmountIndicator = new Label("Qnt.");
       Label componentAmount = new Label();
@@ -123,16 +115,11 @@ public class ServicesListComponent extends AnchorPane {
       componentAmount.setLayoutX(430);
       componentAmount.setLayoutY(90);
       componentAmount.setPrefSize(35, 20);
-      componentAmount.setText(
-          Integer.toString(targetService.getAmountUsed())
-      );
+      componentAmount.setText(Integer.toString(targetService.getAmountUsed()));
 
-      super.getChildren().addAll(
-          componentFieldIndicator,
-          componentField,
-          componentAmountIndicator,
-          componentAmount
-      );
+      super.getChildren()
+          .addAll(
+              componentFieldIndicator, componentField, componentAmountIndicator, componentAmount);
     }
 
     if (enableToggles) {
@@ -156,23 +143,24 @@ public class ServicesListComponent extends AnchorPane {
       updateIcon.setSize("20");
       updateIcon.getStyleClass().add("delete-icon");
 
-      updateIcon.setOnMouseClicked(event -> {
-        if (targetService.isComplete()) {
-          return;
-        }
+      updateIcon.setOnMouseClicked(
+          event -> {
+            if (targetService.isComplete()) {
+              return;
+            }
 
-        String confirmationMessage = "Deseja mesmo remover o serviço?";
+            String confirmationMessage = "Deseja mesmo remover o serviço?";
 
-        MainController.openModal(confirmationMessage, true);
+            MainController.openModal(confirmationMessage, true);
 
-        if (MainController.isConfirmed) {
-          DAO.fromService().deleteByID(targetService.getServiceID());
+            if (MainController.isConfirmed) {
+              DAO.fromService().deleteByID(targetService.getServiceID());
 
-          servicesList.remove(targetService);
+              servicesList.remove(targetService);
 
-          MainController.modalStage.close();
-        }
-      });
+              MainController.modalStage.close();
+            }
+          });
 
       ratingField.setVisible(false);
 
@@ -182,28 +170,22 @@ public class ServicesListComponent extends AnchorPane {
       ratingSelector.setLayoutY(65);
       ratingSelector.setPrefSize(120, 25);
       ratingSelector.setValue(
-        (targetService.getClientRating() == null) 
-          ? "Selecione"
-          : targetService.getClientRating()
-      );
+          (targetService.getClientRating() == null)
+              ? "Selecione"
+              : targetService.getClientRating());
 
       ratingSelector.getStyleClass().add("combo-box");
 
-      ratingSelector.getItems().addAll(
-        "Ótimo",
-        "Bom",
-        "Suficiente",
-        "Ruim",
-        "Péssimo"
-      );
+      ratingSelector.getItems().addAll("Ótimo", "Bom", "Suficiente", "Ruim", "Péssimo");
 
-      ratingSelector.setOnAction(event -> {
-        targetService.setClientRating(ratingSelector.getValue());
+      ratingSelector.setOnAction(
+          event -> {
+            targetService.setClientRating(ratingSelector.getValue());
 
-        DAO.fromService().updateInformation(targetService);
+            DAO.fromService().updateInformation(targetService);
 
-        servicesList.set(servicesList.indexOf(targetService), targetService);
-      });
+            servicesList.set(servicesList.indexOf(targetService), targetService);
+          });
 
       CheckBox toggleStatus = new CheckBox();
 
@@ -224,18 +206,18 @@ public class ServicesListComponent extends AnchorPane {
 
       if (targetService.isComplete()) {
         toggleStatus.setSelected(true);
-      }
-      else {
+      } else {
         toggleStatus.setSelected(false);
       }
 
-      toggleStatus.setOnMouseClicked(event -> {
-        targetService.setComplete(!targetService.isComplete());
+      toggleStatus.setOnMouseClicked(
+          event -> {
+            targetService.setComplete(!targetService.isComplete());
 
-        DAO.fromService().updateInformation(targetService);
+            DAO.fromService().updateInformation(targetService);
 
-        servicesList.set(servicesList.indexOf(targetService), targetService);
-      });
+            servicesList.set(servicesList.indexOf(targetService), targetService);
+          });
 
       ratingSelector.visibleProperty().bind(toggleStatus.selectedProperty());
 
@@ -262,32 +244,21 @@ public class ServicesListComponent extends AnchorPane {
     typeIcon.setFitWidth(50);
     typeIcon.setFitHeight(50);
 
-    String typeIconPath = "assets/services/%s.png".formatted(
-        targetService.getServiceType().getTypeName().replace(" ", "")
-    );
+    String typeIconPath =
+        "assets/services/%s.png"
+            .formatted(targetService.getServiceType().getTypeName().replace(" ", ""));
 
     Image typeImage = new Image(App.class.getResourceAsStream(typeIconPath));
 
     typeIcon.setImage(typeImage);
 
-    super.getChildren().addAll(
-        typeIcon
-    );
+    super.getChildren().addAll(typeIcon);
 
-    super.getChildren().addAll(
-        priceFieldIndicator,
-        typeFieldIndicator,
-        statusFieldIndicator,
-        ratingFieldIndicator
-    );
+    super.getChildren()
+        .addAll(
+            priceFieldIndicator, typeFieldIndicator, statusFieldIndicator, ratingFieldIndicator);
 
-    super.getChildren().addAll(
-        descriptionField,
-        priceField,
-        typeField,
-        statusField,
-        ratingField
-    );
+    super.getChildren().addAll(descriptionField, priceField, typeField, statusField, ratingField);
   }
 
   private String formatMoney(double moneyInput) {

@@ -21,13 +21,11 @@ public class ComponentMemoryDAO implements ComponentCRUD {
 
   private final Map<String, Component> storedComponents;
 
-  /**
-   * Constructs a new <code>{@link ComponentMemoryDAO}</code>
-   */
+  /** Constructs a new <code>{@link ComponentMemoryDAO}</code> */
   public ComponentMemoryDAO() {
     this.storedComponents = new HashMap<>();
   }
- 
+
   @Override
   public boolean saveAll() {
     return false;
@@ -56,9 +54,7 @@ public class ComponentMemoryDAO implements ComponentCRUD {
 
   @Override
   public List<Component> findMany() {
-    return storedComponents.values()
-        .stream()
-        .toList();
+    return storedComponents.values().stream().toList();
   }
 
   @Override
@@ -95,18 +91,13 @@ public class ComponentMemoryDAO implements ComponentCRUD {
 
   @Override
   public List<Component> findByType(ComponentType componentType) {
-    return storedComponents.values()
-        .stream()
+    return storedComponents.values().stream()
         .filter(x -> x.getComponentType().equals(componentType))
         .toList();
   }
 
   @Override
   public Component findEquals(Object otherObject) {
-    return storedComponents.values()
-        .stream()
-        .filter(otherObject::equals)
-        .findFirst()
-        .orElse(null);
+    return storedComponents.values().stream().filter(otherObject::equals).findFirst().orElse(null);
   }
 }

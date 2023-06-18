@@ -19,22 +19,11 @@ class PaymentDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomPayment = DAO.fromPayments().createOne(
-        new Payment(
-            randomInvoiceID,
-            PaymentMethod.Cash,
-            25.50
-        )
-    );
+    randomPayment =
+        DAO.fromPayments().createOne(new Payment(randomInvoiceID, PaymentMethod.Cash, 25.50));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromPayments().createOne(
-          new Payment(
-              Generators.randomID(),
-              PaymentMethod.Cash,
-              42.00
-          )
-      );
+      DAO.fromPayments().createOne(new Payment(Generators.randomID(), PaymentMethod.Cash, 42.00));
     }
   }
 
@@ -73,13 +62,8 @@ class PaymentDAOTest {
 
   @Test
   void createOne() {
-    Payment newPayment = DAO.fromPayments().createOne(
-        new Payment(
-            randomInvoiceID,
-            PaymentMethod.CreditCard,
-            10.50
-        )
-    );
+    Payment newPayment =
+        DAO.fromPayments().createOne(new Payment(randomInvoiceID, PaymentMethod.CreditCard, 10.50));
 
     Payment foundPayment = DAO.fromPayments().findByID(newPayment.getPaymentID());
 

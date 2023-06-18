@@ -64,11 +64,7 @@ class WorkOrderDAOTest {
 
   @Test
   void createOne() {
-    WorkOrder newWorkOrder = DAO.fromWorkOrders().createOne(
-        new WorkOrder(
-            Generators.randomID()
-        )
-    );
+    WorkOrder newWorkOrder = DAO.fromWorkOrders().createOne(new WorkOrder(Generators.randomID()));
 
     WorkOrder foundWorkOrder = DAO.fromWorkOrders().findByID(newWorkOrder.getWorkOrderID());
 

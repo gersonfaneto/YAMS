@@ -19,7 +19,7 @@ public class Invoice implements Serializable {
    * Constructs a new <code>Invoice</code>.
    *
    * @param workOrderID The ID referent to the <code>WorkOrder</code>.
-   * @param totalValue  The total value of the services in the <code>WorkOrder</code>;
+   * @param totalValue The total value of the services in the <code>WorkOrder</code>;
    */
   public Invoice(String workOrderID, double totalValue) {
     this.workOrderID = workOrderID;
@@ -54,18 +54,19 @@ public class Invoice implements Serializable {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the
-   * <code>Invoice</code>.
+   * Generate a <code>String</code> from the most important information of the <code>Invoice</code>.
    *
    * @return Relevant information about the <code>Invoice</code>.
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Work Order: %s
         Total Value: R$ %.2f
-        """, invoiceID, workOrderID, totalValue);
+        """,
+        invoiceID, workOrderID, totalValue);
   }
 
   public String getInvoiceID() {

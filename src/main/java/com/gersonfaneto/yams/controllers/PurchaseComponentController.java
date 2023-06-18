@@ -19,47 +19,33 @@ import javafx.scene.paint.Color;
 
 public class PurchaseComponentController {
 
-  @FXML
-  private FontAwesomeIconView backButton;
+  @FXML private FontAwesomeIconView backButton;
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private TextField descriptionField;
+  @FXML private TextField descriptionField;
 
-  @FXML
-  private ComboBox<String> typeSelector;
+  @FXML private ComboBox<String> typeSelector;
 
-  @FXML
-  private TextField typeField;
+  @FXML private TextField typeField;
 
-  @FXML
-  private ComboBox<String> amountSelector;
+  @FXML private ComboBox<String> amountSelector;
 
-  @FXML
-  private TextField amountField;
+  @FXML private TextField amountField;
 
-  @FXML
-  private TextField costField;
+  @FXML private TextField costField;
 
-  @FXML
-  private TextField priceField;
+  @FXML private TextField priceField;
 
-  @FXML
-  private Button cancelButton;
+  @FXML private Button cancelButton;
 
-  @FXML
-  private Button confirmButton;
-  
+  @FXML private Button confirmButton;
+
   @FXML
   public void initialize() {
-    amountSelector.getItems().addAll(
-        List.of("5", "10", "15", "20", "Outro")
-    );
+    amountSelector.getItems().addAll(List.of("5", "10", "15", "20", "Outro"));
     amountField.setVisible(false);
 
     for (ComponentType componentType : ComponentType.values()) {
@@ -160,13 +146,8 @@ public class PurchaseComponentController {
 
     ComponentType typeValue = TypeParser.parseComponentType(typeName);
 
-    Component boughtComponent = new Component(
-        typeValue,
-        componentDescription,
-        amountBought,
-        componentCost,
-        componentPrice
-    );
+    Component boughtComponent =
+        new Component(typeValue, componentDescription, amountBought, componentCost, componentPrice);
 
     Component foundComponent = DAO.fromComponents().findEquals(boughtComponent);
 
@@ -193,9 +174,9 @@ public class PurchaseComponentController {
 
   public int getAmmount() {
     try {
-      int amountValue = Integer.parseInt(
-          (amountField.isVisible()) ? amountField.getText() : amountSelector.getValue()
-      );
+      int amountValue =
+          Integer.parseInt(
+              (amountField.isVisible()) ? amountField.getText() : amountSelector.getValue());
 
       return (amountValue > 0) ? amountValue : -1;
     } catch (NumberFormatException nfe) {
@@ -205,9 +186,7 @@ public class PurchaseComponentController {
 
   public double getCost() {
     try {
-      double costValue = Double.parseDouble(
-          costField.getText().replaceFirst(",", ".")
-      );
+      double costValue = Double.parseDouble(costField.getText().replaceFirst(",", "."));
 
       return (costValue > 0) ? costValue : -1;
     } catch (NumberFormatException nfe) {
@@ -217,9 +196,7 @@ public class PurchaseComponentController {
 
   public double getPrice() {
     try {
-      double priceValue = Double.parseDouble(
-          priceField.getText().replaceFirst(",", ".")
-      );
+      double priceValue = Double.parseDouble(priceField.getText().replaceFirst(",", "."));
 
       return (priceValue > 0) ? priceValue : -1;
     } catch (NumberFormatException nfe) {

@@ -18,20 +18,10 @@ class InvoiceDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomInvoice = DAO.fromInvoices().createOne(
-        new Invoice(
-            randomWorkOrderID,
-            25.50
-        )
-    );
+    randomInvoice = DAO.fromInvoices().createOne(new Invoice(randomWorkOrderID, 25.50));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromInvoices().createOne(
-          new Invoice(
-              UUID.randomUUID().toString(),
-              25.50
-          )
-      );
+      DAO.fromInvoices().createOne(new Invoice(UUID.randomUUID().toString(), 25.50));
     }
   }
 
@@ -70,12 +60,8 @@ class InvoiceDAOTest {
 
   @Test
   void createOne() {
-    Invoice newInvoice = DAO.fromInvoices().createOne(
-        new Invoice(
-            UUID.randomUUID().toString(),
-            25.50
-        )
-    );
+    Invoice newInvoice =
+        DAO.fromInvoices().createOne(new Invoice(UUID.randomUUID().toString(), 25.50));
 
     Invoice foundInvoice = DAO.fromInvoices().findByID(newInvoice.getInvoiceID());
 

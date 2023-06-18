@@ -5,7 +5,7 @@ import static com.gersonfaneto.yams.models.services.service.ServiceType.Assembly
 import com.gersonfaneto.yams.models.entities.client.Client;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
-import com.gersonfaneto.yams.models.stock.Component; 
+import com.gersonfaneto.yams.models.stock.Component;
 import java.io.Serializable;
 
 /**
@@ -33,17 +33,13 @@ public class Service implements Serializable {
   /**
    * Constructs a new <code>Service</code>.
    *
-   * @param serviceType        The type of the <code>Service</code>.
+   * @param serviceType The type of the <code>Service</code>.
    * @param serviceDescription The description of the <code>Service</code>.
-   * @param usedComponent      The <code>Component</code> used on the <code>Service</code>.
-   * @param amountUsed      The amount of the used <code>Component</code>.
+   * @param usedComponent The <code>Component</code> used on the <code>Service</code>.
+   * @param amountUsed The amount of the used <code>Component</code>.
    */
   public Service(
-      ServiceType serviceType,
-      String serviceDescription,
-      Component usedComponent,
-      int amountUsed
-  ) {
+      ServiceType serviceType, String serviceDescription, Component usedComponent, int amountUsed) {
     this.serviceType = serviceType;
     this.serviceDescription = serviceDescription;
 
@@ -87,14 +83,14 @@ public class Service implements Serializable {
   }
 
   /**
-   * Generate a <code>String</code> from the most important information of the
-   * <code>Service</code>.
+   * Generate a <code>String</code> from the most important information of the <code>Service</code>.
    *
    * @return Relevant information about the <code>Service</code>.
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
             ID: %s
             Type: %s
             Description: %s

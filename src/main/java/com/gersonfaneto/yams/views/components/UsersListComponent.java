@@ -68,13 +68,15 @@ public class UsersListComponent extends AnchorPane {
 
     deleteButton.setGraphic(deleteIcon);
 
-    deleteButton.setOnMouseClicked((MouseEvent event) -> {
-      deleteUser();
-    });
+    deleteButton.setOnMouseClicked(
+        (MouseEvent event) -> {
+          deleteUser();
+        });
 
-    editButton.setOnMouseClicked((MouseEvent event) -> {
-      updateUser();
-    });
+    editButton.setOnMouseClicked(
+        (MouseEvent event) -> {
+          updateUser();
+        });
 
     Label nameField = new Label(targetUser.getUserName());
     Label emailField = new Label(targetUser.getUserEmail());
@@ -103,9 +105,8 @@ public class UsersListComponent extends AnchorPane {
   }
 
   private void deleteUser() {
-    String confirmationMessage = "Deseja excluir o cadastro de %s?".formatted(
-        targetUser.getUserName()
-    );
+    String confirmationMessage =
+        "Deseja excluir o cadastro de %s?".formatted(targetUser.getUserName());
 
     MainController.openModal(confirmationMessage, true);
 
@@ -132,8 +133,7 @@ public class UsersListComponent extends AnchorPane {
         targetUser.getUserName(),
         targetUser.getUserEmail(),
         targetUser.getUserPassword(),
-        targetUser.getUserType()
-    );
+        targetUser.getUserType());
 
     Parent updateView = loaderFXML.getRoot();
     Stage modalStage = new Stage();

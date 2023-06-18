@@ -54,12 +54,14 @@ public class WorkOrder implements Serializable {
    */
   @Override
   public String toString() {
-    return String.format("""
+    return String.format(
+        """
         ID: %s
         Client: %s
         Technician: %s
         Invoice: %s
-        """, workOrderID, clientID, technicianID, invoiceID);
+        """,
+        workOrderID, clientID, technicianID, invoiceID);
   }
 
   public String getWorkOrderID() {

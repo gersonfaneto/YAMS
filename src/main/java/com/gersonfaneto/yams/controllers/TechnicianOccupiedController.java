@@ -1,9 +1,5 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.List;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.billing.invoice.Invoice;
@@ -17,7 +13,9 @@ import com.gersonfaneto.yams.models.stock.Component;
 import com.gersonfaneto.yams.utils.Time;
 import com.gersonfaneto.yams.views.components.ComponentSize;
 import com.gersonfaneto.yams.views.components.ServicesListComponent;
-
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,23 +28,17 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class TechnicianOccupiedController {
-  @FXML
-  private TextField clientNameField;
+  @FXML private TextField clientNameField;
 
-  @FXML
-  private TextField creationDateField;
+  @FXML private TextField creationDateField;
 
-  @FXML
-  private TextField priceField;
+  @FXML private TextField priceField;
 
-  @FXML
-  private ListView<Service> listView;
+  @FXML private ListView<Service> listView;
 
-  @FXML
-  private Button cancelOrderButton;
+  @FXML private Button cancelOrderButton;
 
-  @FXML
-  private Button finishOrderButton;
+  @FXML private Button finishOrderButton;
 
   private ObservableList<Service> servicesList;
 
@@ -58,50 +50,37 @@ public class TechnicianOccupiedController {
     this.loggedTechnician = (Technician) MainController.loggedUser;
     this.openOrder = MainController.openOrder;
 
-    clientNameField.setText(
-        DAO.fromClients().findByID(openOrder.getClientID()).getClientName()
-    );
+    clientNameField.setText(DAO.fromClients().findByID(openOrder.getClientID()).getClientName());
 
-    creationDateField.setText(
-        Time.extractDateFromCalendar(
-          openOrder.getCreatedAt()
-        )
-    );
+    creationDateField.setText(Time.extractDateFromCalendar(openOrder.getCreatedAt()));
 
     priceField.setText(
         formatMoney(
-          DAO.fromService()
-            .findByWorkOrder(openOrder.getWorkOrderID())
-            .stream()
-            .map(Service::getServicePrice)
-            .reduce(0.0, Double::sum)
-        )
-    );
+            DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID()).stream()
+                .map(Service::getServicePrice)
+                .reduce(0.0, Double::sum)));
 
     servicesList = FXCollections.observableArrayList();
 
-    listView.setCellFactory(listView -> new ListCell<Service>() {
-      @Override
-      protected void updateItem(Service service, boolean empty) {
-        super.updateItem(service, empty);
+    listView.setCellFactory(
+        listView ->
+            new ListCell<Service>() {
+              @Override
+              protected void updateItem(Service service, boolean empty) {
+                super.updateItem(service, empty);
 
-        if (service == null || empty) {
-          setGraphic(null);
-        } else {
-          ServicesListComponent clientComponent = new ServicesListComponent(
-              service,
-              servicesList,
-              ComponentSize.Small,
-              true
-          );
+                if (service == null || empty) {
+                  setGraphic(null);
+                } else {
+                  ServicesListComponent clientComponent =
+                      new ServicesListComponent(service, servicesList, ComponentSize.Small, true);
 
-          setGraphic(clientComponent);
-        }
-      }
-    });
+                  setGraphic(clientComponent);
+                }
+              }
+            });
 
-    List<Service> relatedServices = DAO.fromService()
-      .findByWorkOrder(openOrder.getWorkOrderID());
+    List<Service> relatedServices = DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID());
 
     servicesList.addAll(relatedServices);
 
@@ -110,26 +89,25 @@ public class TechnicianOccupiedController {
 
   @FXML
   public void handleClicks(ActionEvent actionEvent) throws IOException {
-    boolean allFinished = DAO.fromService()
-      .findByWorkOrder(openOrder.getWorkOrderID())
-      .stream()
-      .map(Service::isComplete)
-      .reduce(true, (a, b) -> a && b);
+    boolean allFinished =
+        DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID()).stream()
+            .map(Service::isComplete)
+            .reduce(true, (a, b) -> a && b);
 
     if (actionEvent.getSource() == cancelOrderButton) {
       if (allFinished) {
-        String confirmationMessage = "Todos os serviços já foram realizados, seleciona a opção \"Finalizar Ordem\"!";
-        
-        MainController.openModal(confirmationMessage, false); 
-      }
-      else {
+        String confirmationMessage =
+            "Todos os serviços já foram realizados, seleciona a opção \"Finalizar Ordem\"!";
+
+        MainController.openModal(confirmationMessage, false);
+      } else {
         String confirmationMessage = "Deseja mesmo cancelar a ordem?";
 
         MainController.openModal(confirmationMessage, true);
 
         if (MainController.isConfirmed) {
-          List<Service> relatedServices = DAO.fromService()
-            .findByWorkOrder(openOrder.getWorkOrderID());
+          List<Service> relatedServices =
+              DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID());
 
           for (Service currentService : relatedServices) {
             if (!currentService.isComplete()) {
@@ -139,11 +117,9 @@ public class TechnicianOccupiedController {
 
                 if (foundComponent != null) {
                   foundComponent.setAmountInStock(
-                      foundComponent.getAmountInStock() + currentService.getAmountUsed()
-                      );
+                      foundComponent.getAmountInStock() + currentService.getAmountUsed());
                   DAO.fromComponents().updateInformation(foundComponent);
-                }
-                else {
+                } else {
                   DAO.fromComponents().createOne(usedComponent);
                 }
               }
@@ -158,20 +134,18 @@ public class TechnicianOccupiedController {
           DAO.fromWorkOrders().updateInformation(openOrder);
           DAO.fromUsers().updateInformation(loggedTechnician);
 
-          double orderTotalValue = DAO.fromService()
-            .findByWorkOrder(openOrder.getWorkOrderID())
-            .stream()
-            .map(Service::getServicePrice)
-            .reduce(0.0, Double::sum);
+          double orderTotalValue =
+              DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID()).stream()
+                  .map(Service::getServicePrice)
+                  .reduce(0.0, Double::sum);
 
           if (orderTotalValue != 0) {
-            Invoice newInvoice = new Invoice(
-                openOrder.getWorkOrderID(),
-                DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID())
-                .stream()
-                .map(Service::getServicePrice)
-                .reduce(0.0, Double::sum)
-                );
+            Invoice newInvoice =
+                new Invoice(
+                    openOrder.getWorkOrderID(),
+                    DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID()).stream()
+                        .map(Service::getServicePrice)
+                        .reduce(0.0, Double::sum));
 
             DAO.fromInvoices().createOne(newInvoice);
           }
@@ -181,8 +155,7 @@ public class TechnicianOccupiedController {
           MainController.mainWindow.setRight(homeView);
         }
       }
-    }
-    else {
+    } else {
       if (allFinished) {
         openOrder.setWorkOrderState(WorkOrderState.Finished);
         openOrder.setClosedAt(Calendar.getInstance());
@@ -191,20 +164,18 @@ public class TechnicianOccupiedController {
         DAO.fromWorkOrders().updateInformation(openOrder);
         DAO.fromUsers().updateInformation(loggedTechnician);
 
-        double orderTotalValue = DAO.fromService()
-          .findByWorkOrder(openOrder.getWorkOrderID())
-          .stream()
-          .map(Service::getServicePrice)
-          .reduce(0.0, Double::sum);
+        double orderTotalValue =
+            DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID()).stream()
+                .map(Service::getServicePrice)
+                .reduce(0.0, Double::sum);
 
         if (orderTotalValue != 0) {
-          Invoice newInvoice = new Invoice(
-              openOrder.getWorkOrderID(),
-              DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID())
-              .stream()
-              .map(Service::getServicePrice)
-              .reduce(0.0, Double::sum)
-              );
+          Invoice newInvoice =
+              new Invoice(
+                  openOrder.getWorkOrderID(),
+                  DAO.fromService().findByWorkOrder(openOrder.getWorkOrderID()).stream()
+                      .map(Service::getServicePrice)
+                      .reduce(0.0, Double::sum));
 
           DAO.fromInvoices().createOne(newInvoice);
         }
@@ -212,8 +183,7 @@ public class TechnicianOccupiedController {
         Parent homeView = FXMLLoader.load(App.class.getResource("views/home/Main.fxml"));
 
         MainController.mainWindow.setRight(homeView);
-      }
-      else {
+      } else {
         String confirmationMessage = "Ainda há serviços em aberto!";
 
         MainController.openModal(confirmationMessage, false);
@@ -231,4 +201,3 @@ public class TechnicianOccupiedController {
     return String.format("%.2f", moneyInput).replace(".", ",");
   }
 }
-

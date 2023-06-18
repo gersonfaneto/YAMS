@@ -4,7 +4,6 @@ import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.dao.Persist;
 import com.gersonfaneto.yams.models.services.service.Service;
 import com.gersonfaneto.yams.models.services.service.ServiceType;
-
 import java.util.List;
 
 /**

@@ -23,41 +23,29 @@ import javafx.scene.paint.Color;
 
 public class RegisterController {
 
-  @FXML
-  private FontAwesomeIconView closeButton;
+  @FXML private FontAwesomeIconView closeButton;
 
-  @FXML
-  private FontAwesomeIconView backButton;
+  @FXML private FontAwesomeIconView backButton;
 
-  @FXML
-  private PasswordField confirmPasswordField;
+  @FXML private PasswordField confirmPasswordField;
 
-  @FXML
-  private TextField confirmPasswordText;
+  @FXML private TextField confirmPasswordText;
 
-  @FXML
-  private TextField emailField;
+  @FXML private TextField emailField;
 
-  @FXML
-  private TextField nameField;
+  @FXML private TextField nameField;
 
-  @FXML
-  private PasswordField passwordField;
+  @FXML private PasswordField passwordField;
 
-  @FXML
-  private TextField passwordText;
+  @FXML private TextField passwordText;
 
-  @FXML
-  private Button registerButton;
+  @FXML private Button registerButton;
 
-  @FXML
-  private CheckBox showPassword;
+  @FXML private CheckBox showPassword;
 
-  @FXML
-  private Label visualFeedback;
+  @FXML private Label visualFeedback;
 
-  @FXML
-  private ComboBox<String> roleSelector;
+  @FXML private ComboBox<String> roleSelector;
 
   private final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
   private final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);

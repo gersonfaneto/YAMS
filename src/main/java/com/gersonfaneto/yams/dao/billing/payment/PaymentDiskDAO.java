@@ -4,7 +4,6 @@ import com.gersonfaneto.yams.dao.CRUD;
 import com.gersonfaneto.yams.models.billing.payment.Payment;
 import com.gersonfaneto.yams.utils.Generators;
 import com.gersonfaneto.yams.utils.ObjectIO;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +35,7 @@ public class PaymentDiskDAO implements PaymentCRUD {
   }
 
   public boolean saveAll() {
-    List<Payment> toSave = storedPayments.values()
-        .stream()
-        .toList();
+    List<Payment> toSave = storedPayments.values().stream().toList();
 
     return paymentObjectIO.saveObjects(toSave);
   }
@@ -75,9 +72,7 @@ public class PaymentDiskDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findMany() {
-    return storedPayments.values()
-        .stream()
-        .toList();
+    return storedPayments.values().stream().toList();
   }
 
   @Override
@@ -114,8 +109,7 @@ public class PaymentDiskDAO implements PaymentCRUD {
 
   @Override
   public List<Payment> findByInvoice(String invoiceID) {
-    return storedPayments.values()
-        .stream()
+    return storedPayments.values().stream()
         .filter(x -> x.getInvoiceID().equals(invoiceID))
         .toList();
   }

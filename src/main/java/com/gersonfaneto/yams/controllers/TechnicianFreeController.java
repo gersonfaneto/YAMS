@@ -1,26 +1,22 @@
 package com.gersonfaneto.yams.controllers;
 
-import java.io.IOException;
-
 import com.gersonfaneto.yams.App;
 import com.gersonfaneto.yams.dao.DAO;
 import com.gersonfaneto.yams.models.entities.technician.Technician;
 import com.gersonfaneto.yams.models.entities.technician.TechnicianStatus;
 import com.gersonfaneto.yams.models.services.order.WorkOrder;
 import com.gersonfaneto.yams.models.services.order.WorkOrderState;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 public class TechnicianFreeController {
-  @FXML
-  public FontAwesomeIconView closeButton;
+  @FXML public FontAwesomeIconView closeButton;
 
-  @FXML
-  public Button openOrderButton;
+  @FXML public Button openOrderButton;
 
   private Technician loggedTechnician;
 
@@ -31,16 +27,17 @@ public class TechnicianFreeController {
 
   @FXML
   public void openOrder() throws IOException {
-    WorkOrder foundWorkOrder = DAO.fromWorkOrders().findMany()
-      .stream()
-      .filter(workOrder -> {
-        return workOrder.getWorkOrderState() == WorkOrderState.Created;
-      })
-      .min((firstWorkOrder, secondWorkOrder) -> {
-        return firstWorkOrder.getCreatedAt()
-          .compareTo(secondWorkOrder.getCreatedAt());
-      })
-      .orElse(null);
+    WorkOrder foundWorkOrder =
+        DAO.fromWorkOrders().findMany().stream()
+            .filter(
+                workOrder -> {
+                  return workOrder.getWorkOrderState() == WorkOrderState.Created;
+                })
+            .min(
+                (firstWorkOrder, secondWorkOrder) -> {
+                  return firstWorkOrder.getCreatedAt().compareTo(secondWorkOrder.getCreatedAt());
+                })
+            .orElse(null);
 
     if (foundWorkOrder == null) {
       String confirmationMessage = "Nenhuma ordem em espera!";
@@ -48,7 +45,7 @@ public class TechnicianFreeController {
       MainController.openModal(confirmationMessage, false);
 
       return;
-    } 
+    }
 
     foundWorkOrder.setTechnicianID(loggedTechnician.getUserID());
 

@@ -18,22 +18,17 @@ class UserDAOTest {
 
   @BeforeEach
   void setUp() {
-    randomUser = DAO.fromUsers().createOne(
-        new Receptionist(
-            "sholmes@gmail.com",
-            "watson",
-            "Sherlock Holmes"
-        )
-    );
+    randomUser =
+        DAO.fromUsers()
+            .createOne(new Receptionist("sholmes@gmail.com", "watson", "Sherlock Holmes"));
 
     for (int i = 0; i < 10; i++) {
-      DAO.fromUsers().createOne(
-          new Technician(
-              "jdoe" + ((Integer) i).toString() + "@gmail.com",
-              "jdoe@" + ((Integer) i).toString(),
-              "John Doe"
-          )
-      );
+      DAO.fromUsers()
+          .createOne(
+              new Technician(
+                  "jdoe" + ((Integer) i).toString() + "@gmail.com",
+                  "jdoe@" + ((Integer) i).toString(),
+                  "John Doe"));
     }
   }
 
@@ -72,13 +67,8 @@ class UserDAOTest {
 
   @Test
   void createOne() {
-    User randomUser = DAO.fromUsers().createOne(
-        new Technician(
-            "jsmith@gmail.com",
-            "jsmith@2023",
-            "John Smith"
-        )
-    );
+    User randomUser =
+        DAO.fromUsers().createOne(new Technician("jsmith@gmail.com", "jsmith@2023", "John Smith"));
 
     User foundUser = DAO.fromUsers().findByID(randomUser.getUserID());
 
