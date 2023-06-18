@@ -101,7 +101,7 @@ public class CreateOrderController {
               service,
               servicesList,
               ComponentSize.Small,
-              true
+              false
           );
 
           setGraphic(clientComponent);

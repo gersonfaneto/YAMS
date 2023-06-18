@@ -133,10 +133,7 @@ public class CreateServiceController {
       return;
     }
 
-    if (
-        usedComponent != null &&
-        usedAmount <= 0
-    ) {
+    if (serviceType.equals("Montagem") && usedAmount <= 0) {
       visualFeedback.setText("Quantidade inválida!");
       visualFeedback.setTextFill(Color.RED);
       return;
