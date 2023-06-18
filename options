@@ -19,8 +19,8 @@ com.gersonfaneto.yams='/home/runner/work/YAMS/YAMS/src/main/java'
 -docencoding
 'UTF-8'
 -doctitle
-'YAMS 1.1.0 API'
+'YAMS 2.0.0 API'
 -use
 -version
 -windowtitle
-'YAMS 1.1.0 API'
+'YAMS 2.0.0 API'
