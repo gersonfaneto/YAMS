@@ -41,17 +41,17 @@ should be capable of:
   assistance.
 - Creation of `Work Orders` from the `Clients`, which must be carried out
   in order of arrival.
-    - The `Work Orders` must contain one or more of the following `Services`:
-        - Assembly - Component Installation:
-            - RAM - Price: R$ 20.00
-            - Motherboard - Price: R$ 100.00
-            - Power Supply - Price: R$ 30.00
-            - Graphics Card - Price: R$ 100.00
-            - HD/SSD - Price: R$ 30.00
-            - Others - Price: _To be defined!_
-        - Cleaning - Price: R$ 70.00
-        - Formatting - Price: R$ 50.00
-        - Programs Installation - Price: R$ 10.00
+  - The `Work Orders` must contain one or more of the following `Services`:
+    - Assembly - Component Installation:
+      - RAM - Price: R$ 20.00
+      - Motherboard - Price: R$ 100.00
+      - Power Supply - Price: R$ 30.00
+      - Graphics Card - Price: R$ 100.00
+      - HD/SSD - Price: R$ 30.00
+      - Others - Price: _To be defined!_
+    - Cleaning - Price: R$ 70.00
+    - Formatting - Price: R$ 50.00
+    - Programs Installation - Price: R$ 10.00
 - Generating `Invoices` referring to the `Work Orders` and receiving
   `Payments` for them from different methods.
 - Updating the stock with `Components` needed for the realization of
@@ -65,7 +65,7 @@ The development was divided in the following phases:
 
 - [x] Phase I: Modeling of the system trough Class and Use Case Diagrams.
 - [x] Phase II: Implementation of the base models and DAOs for the CRUD
-  operations, as well as the creation of the Unit Tests.
+      operations, as well as the creation of the Unit Tests.
 - [x] Phase III: Assure the persistence of the system's information.
 - [x] Phase IV: Construction of the GUI using JavaFX.
 
@@ -76,32 +76,34 @@ Make **sure** you have the following dependencies installed before proceeding.
 - [OpenJDK 17](https://openjdk.org/projects/jdk/17/)
 - [Maven](https://maven.apache.org/download.cgi)
 
-Afterwards, simply follow the steps ahead: 
+Afterwards, simply follow the steps ahead:
 
 - Download the latest [release](https://github.com/gersonfaneto/YAMS/releases/latest)
   of the project or clone it into your machine using `git`.
 
-```console
+```shell
 git clone https://github.com/gersonfaneto/YAMS --branch V2.0.0 --depth 1
 ```
 
 - Move into the project folder and build it using `maven`.
 
-```console
+```shell
 maven clean install
 ```
 
-> **Note**: This will download all dependencies, compile the project as well
+> 📝 **Note**  
+> This will download all dependencies, compile the project as well
 > as run the tests. It will take some time on the first time, but should be
 > relatively faster after the caching is made.
 
 - Run the program using the following command and have fun 😄.
 
-```console
+```shell
 maven clean javafx:run
 ```
 
-> **Note**: Alternatively you can open the project using you preferred IDE
+> 📝 **Note**  
+> Alternatively you can open the project using you preferred IDE
 > and follow its steps on building and running using the GUI.
 
 ## License
