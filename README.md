@@ -1,3 +1,4 @@
+<!-- prettier-ignore -->
 ```markdown
 __   __        _         __  __       ___     
 \ \ / /       /_\       |  \/  |     / __|      # Yet Another Management System.
@@ -104,6 +105,8 @@ maven clean javafx:run
 
 Released under [MIT][license-url] by [gersonfaneto][profile-url].
 
+<!-- prettier-ignore-start -->
+
 <!-- NOTE: Links... -->
 
 [profile-url]: https://github.com/gersonfaneto
@@ -122,3 +125,5 @@ Released under [MIT][license-url] by [gersonfaneto][profile-url].
 [stars-shield]: https://img.shields.io/github/stars/gersonfaneto/YAMS?style=for-the-badge&logo=github
 [language-shield]: https://img.shields.io/static/v1?label=LANGUAGE&message=Java&color=informational&style=for-the-badge&logo=openjdk
 [version-shield]: https://img.shields.io/static/v1?label=VERSION&message=2.0.0&color=informational&style=for-the-badge
+
+<!-- prettier-ignore-end -->
