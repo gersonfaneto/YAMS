@@ -1,14 +1,17 @@
-### General
+# General
 dist/
 build/
 target/
 
-### Editor | IDEs
+# Editor | IDEs
 .idea/
 .vscode/
 .project
 .settings
 .classpath
 
-### Custom
+# Tools
+.mise.toml
+
+# Custom
 data/*.ser
