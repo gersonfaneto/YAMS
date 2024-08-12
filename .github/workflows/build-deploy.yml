@@ -27,10 +27,6 @@ jobs:
       - name: Run tests with Maven
         run: mvn test
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Generate JavaDoc with Maven
         run: mvn javadoc:javadoc
 
