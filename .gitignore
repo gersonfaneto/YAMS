@@ -15,3 +15,6 @@ target/
 
 # Custom
 data/*.ser
+
+# Nix
+.direnv/
